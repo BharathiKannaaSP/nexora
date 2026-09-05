@@ -9,10 +9,13 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(4001),
 
   DATABASE_URL: z.string().min(1),
+
+  CLERK_WEBHOOK_SIGNING_SECRET: z.string().min(1),
 })
 
 export const env = envSchema.parse({
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
   DATABASE_URL: process.env.DATABASE_URL,
+  CLERK_WEBHOOK_SIGNING_SECRET: process.env.CLERK_WEBHOOK_SIGNING_SECRET,
 })
