@@ -1,0 +1,38 @@
+// use prisma-next
+
+enum SystemRole {
+  ADMIN
+  ORGANIZATION_ADMIN
+  ORGANIZATION_MEMBER
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  DELETED
+}
+
+enum OnboardingStatus {
+  PENDING
+  IN_PROGRESS
+  SUBMITTED
+  WAITING_APPROVAL
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id               String           @id @default(uuid())
+  clerkUserId      String           @unique
+  email            String           @unique
+  firstName        String?
+  lastName         String?
+  imageUrl         String?
+  systemRole       SystemRole       @default(USER)
+  status           UserStatus       @default(ACTIVE)
+  onboardingStatus OnboardingStatus @default(PENDING)
+  createdAt        TimestamptzString @default(now())
+  updatedAt        temporal.updatedAtString()
+}
