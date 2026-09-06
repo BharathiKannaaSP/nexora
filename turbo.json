@@ -4,7 +4,21 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "NODE_ENV",
+        "PORT",
+        "CLERK_SECRET_KEY",
+        "CLIENT_URL",
+        "ADMIN_URL",
+        "AUTH_SERVICE_URL",
+        "ONBOARDING_SERVICE_URL",
+        "INTERNAL_SERVICE_SECRET",
+        "RATE_LIMIT_WINDOW_MS",
+        "RATE_LIMIT_MAX",
+        "CLERK_WEBHOOK_SIGNING_SECRET",
+        "DATABASE_URL"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
