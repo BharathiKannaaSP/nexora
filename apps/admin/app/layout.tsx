@@ -4,6 +4,7 @@ import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils"
 import { ClerkProvider } from "@clerk/nextjs"
+import { ConvexClientProvider } from "@/providers/convex-provider"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -30,7 +31,9 @@ export default function RootLayout({
     >
       <body>
         <ClerkProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ConvexClientProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>

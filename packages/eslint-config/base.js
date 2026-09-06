@@ -35,6 +35,6 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**", "**/contract.d.ts",],
+    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**", "**/contract.d.ts", "**/convex/_generated/**"],
   },
 ]
