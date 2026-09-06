@@ -13,38 +13,13 @@
     "namespaces": {
       "public": {
         "enum": {
-          "OnboardingStatus": {
-            "codecId": "pg/text@1",
-            "members": [
-              {
-                "name": "PENDING",
-                "value": "PENDING"
-              },
-              {
-                "name": "IN_PROGRESS",
-                "value": "IN_PROGRESS"
-              },
-              {
-                "name": "SUBMITTED",
-                "value": "SUBMITTED"
-              },
-              {
-                "name": "WAITING_APPROVAL",
-                "value": "WAITING_APPROVAL"
-              },
-              {
-                "name": "APPROVED",
-                "value": "APPROVED"
-              },
-              {
-                "name": "REJECTED",
-                "value": "REJECTED"
-              }
-            ]
-          },
           "SystemRole": {
             "codecId": "pg/text@1",
             "members": [
+              {
+                "name": "SUPER_ADMIN",
+                "value": "SUPER_ADMIN"
+              },
               {
                 "name": "ADMIN",
                 "value": "ADMIN"
@@ -137,19 +112,6 @@
                   "kind": "scalar"
                 }
               },
-              "onboardingStatus": {
-                "nullable": false,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                },
-                "valueSet": {
-                  "entityKind": "enum",
-                  "entityName": "OnboardingStatus",
-                  "namespaceId": "public",
-                  "plane": "domain"
-                }
-              },
               "status": {
                 "nullable": false,
                 "type": {
@@ -208,9 +170,6 @@
                 "lastName": {
                   "column": "lastName"
                 },
-                "onboardingStatus": {
-                  "column": "onboardingStatus"
-                },
                 "status": {
                   "column": "status"
                 },
@@ -237,18 +196,13 @@
             "user": {
               "checks": [
                 {
-                  "expression": "\"onboardingStatus\" IN ('PENDING', 'IN_PROGRESS', 'SUBMITTED', 'WAITING_APPROVAL', 'APPROVED', 'REJECTED')",
-                  "name": "user_onboardingStatus_check_3fa44d53",
-                  "prefix": "user_onboardingStatus_check"
-                },
-                {
                   "expression": "\"status\" IN ('ACTIVE', 'INACTIVE', 'SUSPENDED', 'DELETED')",
                   "name": "user_status_check_90a3bf2d",
                   "prefix": "user_status_check"
                 },
                 {
-                  "expression": "\"systemRole\" IN ('ADMIN', 'ORGANIZATION_ADMIN', 'ORGANIZATION_MEMBER', 'USER')",
-                  "name": "user_systemRole_check_00231d33",
+                  "expression": "\"systemRole\" IN ('SUPER_ADMIN', 'ADMIN', 'ORGANIZATION_ADMIN', 'ORGANIZATION_MEMBER', 'USER')",
+                  "name": "user_systemRole_check_1c7ab36f",
                   "prefix": "user_systemRole_check"
                 }
               ],
@@ -291,21 +245,6 @@
                   "codecId": "pg/text@1",
                   "nativeType": "text",
                   "nullable": true
-                },
-                "onboardingStatus": {
-                  "codecId": "pg/text@1",
-                  "default": {
-                    "kind": "literal",
-                    "value": "PENDING"
-                  },
-                  "nativeType": "text",
-                  "nullable": false,
-                  "valueSet": {
-                    "entityKind": "valueSet",
-                    "entityName": "OnboardingStatus",
-                    "namespaceId": "public",
-                    "plane": "storage"
-                  }
                 },
                 "status": {
                   "codecId": "pg/text@1",
@@ -365,20 +304,10 @@
             }
           },
           "valueSet": {
-            "OnboardingStatus": {
-              "kind": "valueSet",
-              "values": [
-                "PENDING",
-                "IN_PROGRESS",
-                "SUBMITTED",
-                "WAITING_APPROVAL",
-                "APPROVED",
-                "REJECTED"
-              ]
-            },
             "SystemRole": {
               "kind": "valueSet",
               "values": [
+                "SUPER_ADMIN",
                 "ADMIN",
                 "ORGANIZATION_ADMIN",
                 "ORGANIZATION_MEMBER",
@@ -400,7 +329,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "e55684c6fceac0440777362064e489bd4e8efe69637cf20e2ef9f6966721795f"
+    "storageHash": "007df1a90e97ac38db94b065685d9e292ef0660ac3f1ee64aaf94f24c41b06e6"
   },
   "execution": {
     "executionHash": "310019084b15be2633fbf0348189a54dcf1b6e81878d091114c19e518b840b95",

@@ -1,5 +1,5 @@
 import { db } from "../prisma/db"
-import { CreateUserInput } from "../types/user.types"
+import { CreateUserInput } from "../types/auth.types"
 
 export async function findUserByClerkId(clerkUserId: string) {
   return db.orm.public.User.where({
@@ -16,6 +16,5 @@ export async function createUser(input: CreateUserInput) {
     imageUrl: input.imageUrl ?? null,
     systemRole: "USER",
     status: "ACTIVE",
-    onboardingStatus: "PENDING",
   })
 }

@@ -1,18 +1,13 @@
 import express from "express"
-import cors from "cors"
 import helmet from "helmet"
 import webhookRoutes from "./routes/webhook.routes"
+import authRoutes from "./routes/auth.routes"
+import { notFoundMiddleware } from "./middleware/not-found-middleware"
+import { errorMiddleware } from "./middleware/error-middleware"
 
 const app = express()
 
 app.use(helmet())
-
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-)
 
 /** Clerk Webhook  This must come BEFORE express.json() */
 app.use(
@@ -27,9 +22,17 @@ app.use(express.json())
 
 app.get("/health", (_req, res) => {
   res.status(200).json({
-    status: "ok",
+    success: true,
     service: "auth-service",
+    status: "ok",
+    timestamp: new Date().toISOString(),
   })
 })
+
+app.use("/api/v1/auth", authRoutes)
+
+app.use(notFoundMiddleware)
+
+app.use(errorMiddleware)
 
 export default app

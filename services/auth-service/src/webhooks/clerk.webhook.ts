@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { verifyWebhook } from "@clerk/express/webhooks"
-import { createUserIfNotExists } from "../services/user.service"
+import { createUserIfNotExists } from "../services/auth.service"
 
 export const handleClerkWebhook = async (req: Request, res: Response) => {
   try {
