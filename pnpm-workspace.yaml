@@ -1,6 +1,10 @@
 packages:
   - "apps/*"
   - "packages/*"
+  - "services/auth-service"
+  - "services/onboarding-service"
+  - "services/api-gateway"
+  - "infrastructure/*"
 
 allowBuilds:
   esbuild: false

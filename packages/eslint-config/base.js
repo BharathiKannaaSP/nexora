@@ -18,6 +18,14 @@ export const config = [
       turbo: turboPlugin,
     },
     rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
       "turbo/no-undeclared-env-vars": "warn",
     },
   },
@@ -27,6 +35,6 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**"],
+    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**", "**/contract.d.ts", "**/convex/_generated/**"],
   },
 ]
