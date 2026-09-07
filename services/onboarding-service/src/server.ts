@@ -1,41 +1,51 @@
 import "dotenv/config"
 
-import {
-  startUserCreatedConsumer,
-  stopUserCreatedConsumer,
-} from "./consumers/user-created.consumer"
+import app, { startApp, stopApp } from "./app"
+
+import { env } from "./config/env"
 
 const start = async (): Promise<void> => {
   try {
     console.log("Starting Nexora Onboarding Service...")
-    await startUserCreatedConsumer()
-    console.log("Nexora Onboarding Service started")
+
+    // Start Kafka consumer
+    await startApp()
+
+    // Start HTTP server
+    const server = app.listen(env.PORT, () => {
+      console.log(`Onboarding Service running on http://localhost:${env.PORT}`)
+    })
+
+    const shutdown = async (signal: string): Promise<void> => {
+      console.log(`Received ${signal}. Shutting down...`)
+
+      server.close(async () => {
+        try {
+          await stopApp()
+
+          console.log("Onboarding Service stopped.")
+
+          process.exit(0)
+        } catch (error) {
+          console.error("Error while shutting down Onboarding Service:", error)
+
+          process.exit(1)
+        }
+      })
+    }
+
+    process.on("SIGINT", () => {
+      void shutdown("SIGINT")
+    })
+
+    process.on("SIGTERM", () => {
+      void shutdown("SIGTERM")
+    })
   } catch (error) {
     console.error("Failed to start Onboarding Service:", error)
-    process.exit(1)
-  }
-}
-
-const shutdown = async (signal: string): Promise<void> => {
-  console.log(`Received ${signal}. Shutting down...`)
-
-  try {
-    await stopUserCreatedConsumer()
-
-    process.exit(0)
-  } catch (error) {
-    console.error("Error during shutdown:", error)
 
     process.exit(1)
   }
 }
-
-process.on("SIGINT", () => {
-  void shutdown("SIGINT")
-})
-
-process.on("SIGTERM", () => {
-  void shutdown("SIGTERM")
-})
 
 void start()

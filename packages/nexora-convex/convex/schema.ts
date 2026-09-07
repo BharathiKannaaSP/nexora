@@ -17,7 +17,8 @@ export default defineSchema({
       v.literal("BASIC_INFORMATION"),
       v.literal("CHOOSE_PATH"),
       v.literal("ROLE_REQUIREMENTS"),
-      v.literal("COMPLETED")
+      v.literal("COMPLETED"),
+      v.literal("REVIEW_SUBMIT")
     ),
 
     path: v.optional(
@@ -30,5 +31,7 @@ export default defineSchema({
 
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_clerkUserId", ["clerkUserId"]),
+  })
+    .index("by_clerkUserId", ["clerkUserId"])
+    .index("by_userId", ["userId"]),
 })
