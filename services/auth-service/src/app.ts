@@ -11,7 +11,7 @@ app.use(helmet())
 
 /** Clerk Webhook  This must come BEFORE express.json() */
 app.use(
-  "/api/v1/webhooks",
+  "/api/v1/auth/webhooks",
   express.raw({
     type: "application/json",
   }),

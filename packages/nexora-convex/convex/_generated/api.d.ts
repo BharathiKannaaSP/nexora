@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as onboarding_mutations from "../onboarding/mutations.js"
 import type * as onboarding_queries from "../onboarding/queries.js"
 
 import type {
@@ -17,6 +18,7 @@ import type {
 } from "convex/server"
 
 declare const fullApi: ApiFromModules<{
+  "onboarding/mutations": typeof onboarding_mutations
   "onboarding/queries": typeof onboarding_queries
 }>
 

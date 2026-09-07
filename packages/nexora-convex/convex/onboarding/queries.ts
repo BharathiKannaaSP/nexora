@@ -3,12 +3,12 @@ import { query } from "../_generated/server"
 
 export const getUserById = query({
   args: {
-    userId: v.string(),
+    clerkUserId: v.string(),
   },
   handler: async (ctx, args) => {
     return await ctx.db
       .query("onboarding")
-      .withIndex("by_userId", (q) => q.eq("userId", args.userId))
+      .withIndex("by_clerkUserId", (q) => q.eq("clerkUserId", args.clerkUserId))
       .unique()
   },
 })

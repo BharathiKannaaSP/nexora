@@ -4,7 +4,7 @@ import { v } from "convex/values"
 export default defineSchema({
   onboarding: defineTable({
     userId: v.string(),
-
+    clerkUserId: v.string(),
     status: v.union(
       v.literal("PENDING"),
       v.literal("IN_PROGRESS"),
@@ -30,5 +30,5 @@ export default defineSchema({
 
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_userId", ["userId"]),
+  }).index("by_clerkUserId", ["clerkUserId"]),
 })

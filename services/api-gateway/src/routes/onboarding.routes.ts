@@ -10,11 +10,7 @@ router.use(requireAuth)
 
 router.use(
   createProxyMiddleware({
-    ...createProxyOptions(services.onboarding),
-
-    pathRewrite: {
-      "^/api/v1/onboarding": "/api/v1/onboarding",
-    },
+    ...createProxyOptions(`${services.onboarding}/api/v1/onboarding`),
   })
 )
 

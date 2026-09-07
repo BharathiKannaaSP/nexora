@@ -9,11 +9,13 @@ import { getOnboardingRoute } from "@/features/onboarding/utils/get-onboarding-r
 const AuthBootstrap = () => {
   const router = useRouter()
   const { isLoaded, isSignedIn, userId } = useAuth()
-
+  console.log(userId)
   const onboarding = useQuery(
     api.onboarding.queries.getUserById,
-    userId ? { userId } : "skip"
+    userId ? { clerkUserId: userId } : "skip"
   )
+
+  console.log(onboarding)
 
   useEffect(() => {
     if (!isLoaded) {

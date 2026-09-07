@@ -17,7 +17,9 @@
         "RATE_LIMIT_WINDOW_MS",
         "RATE_LIMIT_MAX",
         "CLERK_WEBHOOK_SIGNING_SECRET",
-        "DATABASE_URL"
+        "DATABASE_URL",
+        "KAFKA_GROUP_ID",
+        "CONVEX_URL"
       ]
     },
     "lint": {

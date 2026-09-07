@@ -86,6 +86,28 @@ importers:
         specifier: ^5
         version: 5.9.3
 
+  infrastructure/kafka:
+    dependencies:
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
+    devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.20.1
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      eslint:
+        specifier: ^10.10.0
+        version: 10.10.0(jiti@2.7.0)
+      tsx:
+        specifier: ^4.23.13
+        version: 4.23.13
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   packages/eslint-config:
     devDependencies:
       '@eslint/js':
@@ -127,25 +149,6 @@ importers:
       typescript-eslint:
         specifier: ^8.60.0
         version: 8.60.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
-
-  packages/kafka:
-    dependencies:
-      kafkajs:
-        specifier: ^2.2.4
-        version: 2.2.4
-    devDependencies:
-      '@types/node':
-        specifier: ^22.0.0
-        version: 22.20.1
-      '@workspace/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      eslint:
-        specifier: ^10.10.0
-        version: 10.10.0(jiti@2.7.0)
-      typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
 
   packages/nexora-convex:
     dependencies:
@@ -283,6 +286,9 @@ importers:
       '@clerk/express':
         specifier: ^2.1.66
         version: 2.1.66(express@5.2.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@nexora/kafka':
+        specifier: workspace:*
+        version: link:../../infrastructure/kafka
       '@prisma/client':
         specifier: ^7.10.0
         version: 7.10.0(prisma@8.0.0-rc.10(@types/node@20.19.41)(@types/react@19.2.15)(@vercel/nft@1.11.0)(magicast@0.5.4)(pg@8.22.0)(typanion@3.14.0)(typescript@7.0.2)(vite@8.2.2(@types/node@20.19.41)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@4.1.11(@types/node@20.19.41)(vite@8.2.2(@types/node@20.19.41)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0)))(ws@8.21.3))(typescript@7.0.2)
@@ -323,6 +329,40 @@ importers:
       prisma:
         specifier: 8.0.0-rc.10
         version: 8.0.0-rc.10(@types/node@20.19.41)(@types/react@19.2.15)(@vercel/nft@1.11.0)(magicast@0.5.4)(pg@8.22.0)(typanion@3.14.0)(typescript@7.0.2)(vite@8.2.2(@types/node@20.19.41)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0))(vitest@4.1.11(@types/node@20.19.41)(vite@8.2.2(@types/node@20.19.41)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0)))(ws@8.21.3)
+      tsx:
+        specifier: ^4.23.13
+        version: 4.23.13
+      typescript:
+        specifier: ^7.0.2
+        version: 7.0.2
+
+  services/onboarding-service:
+    dependencies:
+      '@nexora/convex':
+        specifier: workspace:*
+        version: link:../../packages/nexora-convex
+      '@nexora/kafka':
+        specifier: workspace:*
+        version: link:../../infrastructure/kafka
+      convex:
+        specifier: ^1.45.0
+        version: 1.45.0(@clerk/react@6.15.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      '@types/node':
+        specifier: ^20.19.41
+        version: 20.19.41
+      eslint:
+        specifier: ^9.39.4
+        version: 9.39.4(jiti@2.7.0)
       tsx:
         specifier: ^4.23.13
         version: 4.23.13

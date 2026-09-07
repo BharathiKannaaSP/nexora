@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { verifyWebhook } from "@clerk/express/webhooks"
 import { createUserIfNotExists } from "../services/auth.service"
+import { KAFKA_TOPICS, publishEvent } from "@nexora/kafka"
 
 export const handleClerkWebhook = async (req: Request, res: Response) => {
   try {
@@ -21,6 +22,15 @@ export const handleClerkWebhook = async (req: Request, res: Response) => {
       })
 
       console.log(`Auth user synchronized: ${user.clerkUserId}`)
+
+      await publishEvent(KAFKA_TOPICS.USER_CREATED, {
+        eventId: crypto.randomUUID(),
+        eventType: "user.created",
+        userId: user.id,
+        clerkUserId: user.clerkUserId,
+        email: user.email,
+        timestamp: new Date().toISOString(),
+      })
 
       return res.status(200).json({
         message: "User created successfully",
