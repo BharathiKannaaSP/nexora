@@ -12,7 +12,7 @@ export default function OnboardingLayout({
       <div className="min-h-screen bg-background">
         <div className="mx-auto grid w-full grid-cols-1 md:min-h-screen md:grid-cols-4">
           {/* Stepper */}
-          <aside className="order-1 px-4 py-2 md:order-1 md:col-span-1 md:px-6 md:py-8">
+          <aside className="order-1 px-4 py-2 md:order-1 md:col-span-1 md:px-6 md:py-6">
             <OnboardingStepper />
           </aside>
 

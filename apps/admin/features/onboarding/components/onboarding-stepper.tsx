@@ -35,22 +35,34 @@ const steps = [
 
 const OnboardingStepper = () => {
   return (
-    <Stepper className="mt-2" orientation="vertical" value={1}>
-      {steps.map((step, index) => (
-        <StepperItem key={step.value} value={step.value}>
-          <StepperTrigger>
-            <StepperIndicator />
+    <div className="w-full">
+      {/* Mobile heading */}
+      <h2 className="mb-4 text-xl font-semibold md:hidden">
+        Complete Your Profile
+      </h2>
 
-            <div className="flex flex-col gap-1">
-              <StepperTitle>{step.title}</StepperTitle>
-              <StepperDescription>{step.description}</StepperDescription>
-            </div>
-          </StepperTrigger>
+      <Stepper className="mt-2" orientation="vertical" value={1}>
+        {/* Desktop heading */}
+        <h2 className="mb-6 hidden text-xl font-semibold md:block">
+          Complete Your Profile
+        </h2>
 
-          {index < steps.length - 1 && <StepperConnector />}
-        </StepperItem>
-      ))}
-    </Stepper>
+        {steps.map((step, index) => (
+          <StepperItem key={step.value} value={step.value}>
+            <StepperTrigger>
+              <StepperIndicator />
+
+              <div className="flex flex-col gap-1">
+                <StepperTitle>{step.title}</StepperTitle>
+                <StepperDescription>{step.description}</StepperDescription>
+              </div>
+            </StepperTrigger>
+
+            {index < steps.length - 1 && <StepperConnector />}
+          </StepperItem>
+        ))}
+      </Stepper>
+    </div>
   )
 }
 
