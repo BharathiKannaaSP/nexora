@@ -19,7 +19,8 @@
         "CLERK_WEBHOOK_SIGNING_SECRET",
         "DATABASE_URL",
         "KAFKA_GROUP_ID",
-        "CONVEX_URL"
+        "CONVEX_URL",
+        "CLERK_FRONTEND_API_URL"
       ]
     },
     "lint": {

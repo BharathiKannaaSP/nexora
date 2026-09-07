@@ -10,10 +10,7 @@ const AuthBootstrap = () => {
   const router = useRouter()
   const { isLoaded, isSignedIn, userId } = useAuth()
   console.log(userId)
-  const onboarding = useQuery(
-    api.onboarding.queries.getUserById,
-    userId ? { clerkUserId: userId } : "skip"
-  )
+  const onboarding = useQuery(api.onboarding.queries.getUserById)
 
   console.log(onboarding)
 

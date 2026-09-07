@@ -156,6 +156,9 @@ importers:
         specifier: ^1.27.3
         version: 1.45.0(@clerk/react@6.15.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
     devDependencies:
+      '@types/node':
+        specifier: ^26.4.1
+        version: 26.4.1
       eslint:
         specifier: ^10.10.0
         version: 10.10.0(jiti@2.7.0)

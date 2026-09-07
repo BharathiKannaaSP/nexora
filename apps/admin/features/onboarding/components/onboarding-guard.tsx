@@ -19,10 +19,7 @@ export const OnboardingGuard = ({ children }: OnboardingGuardProps) => {
 
   const { isLoaded, isSignedIn, userId } = useAuth()
 
-  const onboarding = useQuery(
-    api.onboarding.queries.getUserById,
-    userId ? { clerkUserId: userId } : "skip"
-  )
+  const onboarding = useQuery(api.onboarding.queries.getUserById)
 
   useEffect(() => {
     if (!isLoaded) {
