@@ -16,7 +16,7 @@ export default defineSchema({
     currentStep: v.union(
       v.literal("BASIC_INFORMATION"),
       v.literal("CHOOSE_PATH"),
-      v.literal("ADDITIONAL_DETAILS"),
+      v.literal("ROLE_REQUIREMENTS"),
       v.literal("COMPLETED")
     ),
 

@@ -8,7 +8,7 @@ type OnboardingStatus =
 type OnboardingStep =
   | "BASIC_INFORMATION"
   | "CHOOSE_PATH"
-  | "ADDITIONAL_DETAILS"
+  | "ROLE_REQUIREMENTS"
   | "COMPLETED"
 
 interface GetOnboardingRouteParams {
@@ -39,8 +39,8 @@ export const getOnboardingRoute = ({
     case "CHOOSE_PATH":
       return "/onboarding/choose-path"
 
-    case "ADDITIONAL_DETAILS":
-      return "/onboarding/additional-details"
+    case "ROLE_REQUIREMENTS":
+      return "/onboarding/role-requirements"
 
     case "COMPLETED":
       return "/dashboard"
