@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "Vérifiez votre adresse e-mail Nexora",
+    "badge": "VÉRIFICATION DE L'E-MAIL",
+    "heading": "Bienvenue sur Nexora",
+    "intro": "Plus qu'une étape. Vérifiez votre adresse e-mail pour finaliser votre inscription et commencer.",
+    "button": "Vérifier l'adresse e-mail",
+    "expiry": "Ce lien de vérification expire 3 jours après son émission.",
+    "fallback": "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :",
+    "ignore": "Si vous n'avez pas créé de compte Nexora, vous pouvez ignorer cet e-mail.",
+    "copyright": "© Nexora {year}. Tous droits réservés."
+  }
+}

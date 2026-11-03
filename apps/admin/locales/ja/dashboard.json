@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "メイン",
+    "dashboard": "ダッシュボード",
+    "profile": "プロフィール"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "概要",
+      "platform": "プラットフォーム管理",
+      "access": "アクセスと承認",
+      "commerce": "コマース",
+      "insights": "インサイトとシステム"
+    },
+    "items": {
+      "dashboard": "ダッシュボード",
+      "countries": "国",
+      "languages": "言語",
+      "organizations": "組織",
+      "users": "ユーザー",
+      "admins": "管理者の管理",
+      "approvals": "承認",
+      "rolesPermissions": "ロールと権限",
+      "products": "商品",
+      "categories": "カテゴリ",
+      "inventory": "在庫",
+      "orders": "注文",
+      "promotions": "プロモーション",
+      "reports": "レポート",
+      "auditLogs": "監査ログ",
+      "notifications": "通知",
+      "settings": "プラットフォーム設定"
+    }
+  },
+  "userMenu": {
+    "signOut": "サインアウト"
+  },
+  "home": {
+    "metadata": {
+      "title": "ダッシュボード",
+      "description": "Nexora 管理画面の概要です。"
+    },
+    "greeting": "おかえりなさい、{firstName}さん",
+    "description": "アカウントの概要です。",
+    "summary": {
+      "role": "ロール",
+      "status": "アカウントの状態",
+      "email": "メールアドレス",
+      "verified": "確認済み",
+      "notVerified": "未確認",
+      "memberSince": "登録日"
+    },
+    "profile": {
+      "title": "プロフィール",
+      "description": "アカウントの詳細を確認できます。",
+      "action": "プロフィールを見る"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "プロフィール",
+      "description": "サインイン中のアカウントの詳細です。"
+    },
+    "sections": {
+      "personal": "個人情報",
+      "account": "アカウント"
+    },
+    "fields": {
+      "name": "名前",
+      "userName": "ユーザー名",
+      "email": "メールアドレス",
+      "language": "優先言語",
+      "country": "国",
+      "role": "ロール",
+      "status": "状態",
+      "emailVerification": "メール確認",
+      "createdAt": "登録日",
+      "updatedAt": "最終更新日",
+      "id": "ユーザー ID"
+    },
+    "values": {
+      "verifiedOn": "{date} に確認済み",
+      "notVerified": "未確認"
+    }
+  },
+  "roles": {
+    "ADMIN": "管理者",
+    "USER": "ユーザー",
+    "GUEST": "ゲスト",
+    "ORG_ADMIN": "組織管理者",
+    "ORG_MEMBER": "組織メンバー"
+  },
+  "statuses": {
+    "ACTIVE": "有効",
+    "INACTIVE": "無効",
+    "SUSPENDED": "停止中"
+  }
+}

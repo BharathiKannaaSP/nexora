@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "ಆನ್‌ಬೋರ್ಡಿಂಗ್ ಹಂತಗಳು",
+  "signOut": "ಸೈನ್ ಔಟ್",
+  "steps": {
+    "basicInformation": {
+      "title": "ಮೂಲ ಮಾಹಿತಿ",
+      "description": "ನಿಮ್ಮ ಮೂಲ ವಿವರಗಳನ್ನು ನಮಗೆ ತಿಳಿಸಿ"
+    },
+    "choosePath": {
+      "title": "ನಿಮ್ಮ ಮಾರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "description": "ನೀವು ಹೇಗೆ ಮುಂದುವರಿಯಬೇಕೆಂದು ಆಯ್ಕೆಮಾಡಿ"
+    },
+    "roleRequirements": {
+      "title": "ಪಾತ್ರದ ಅವಶ್ಯಕತೆಗಳು",
+      "description": "ಪಾತ್ರಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿವರಗಳನ್ನು ಒದಗಿಸಿ"
+    },
+    "review": {
+      "title": "ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸಲ್ಲಿಸಿ",
+      "description": "ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಸಲ್ಲಿಸಿ"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "ಮೂಲ ಮಾಹಿತಿ",
+      "description": "ನಿಮ್ಮ ಬಗ್ಗೆ ಸ್ವಲ್ಪ ತಿಳಿಸಿ."
+    },
+    "choosePath": {
+      "title": "ನಿಮ್ಮ ಮಾರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "description": "ನಿರ್ವಾಹಕರಾಗಿ, ಸಂಸ್ಥೆಯನ್ನು ರಚಿಸಿ ಅಥವಾ ಒಂದಕ್ಕೆ ಸೇರಿ."
+    },
+    "becomeAdmin": {
+      "title": "ನಿರ್ವಾಹಕರಾಗಿ",
+      "description": "ನಿರ್ವಾಹಕ ಪ್ರವೇಶವನ್ನು ವಿನಂತಿಸಲು ಬೇಕಾದ ವಿವರಗಳನ್ನು ನೀಡಿ."
+    },
+    "createOrganization": {
+      "title": "ಸಂಸ್ಥೆಯನ್ನು ರಚಿಸಿ",
+      "description": "ನೀವು ನಿರ್ವಹಿಸುವ ಸಂಸ್ಥೆಯನ್ನು ಹೊಂದಿಸಿ."
+    },
+    "joinOrganization": {
+      "title": "ಸಂಸ್ಥೆಗೆ ಸೇರಿ",
+      "description": "ನೀವು ಸೇರಲು ಬಯಸುವ ಸಂಸ್ಥೆಯನ್ನು ಹುಡುಕಿ."
+    },
+    "review": {
+      "title": "ಪರಿಶೀಲನೆ",
+      "description": "ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಅನುಮೋದನೆಗಾಗಿ ಸಲ್ಲಿಸಿ."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "ಇದು Nexora ನಲ್ಲಿ ನಿಮ್ಮ ಅನನ್ಯ ಗುರುತಾಗಿರುತ್ತದೆ.",
+    "passwordHint": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಪಾಸ್‌ವರ್ಡ್ ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ, ಅಥವಾ ಬದಲಾಯಿಸಲು 8 ಅಥವಾ ಹೆಚ್ಚಿನ ಅಕ್ಷರಗಳನ್ನು ಬಳಸಿ.",
+    "emailHint": "ನೀವು ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ಬದಲಾಯಿಸಿದರೆ, ಅದನ್ನು ಮತ್ತೆ ಪರಿಶೀಲಿಸಬೇಕಾಗುತ್ತದೆ.",
+    "verified": "ಪರಿಶೀಲಿಸಲಾಗಿದೆ"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "ನಿಮ್ಮ ಮಾರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "phoneNumber": "ಫೋನ್ ಸಂಖ್ಯೆ",
+      "dob": "ಜನ್ಮ ದಿನಾಂಕ",
+      "gender": "ಲಿಂಗ",
+      "bioCountry": "ದೇಶ",
+      "bio": "ಪರಿಚಯ",
+      "addressLine1": "ವಿಳಾಸ ಸಾಲು 1",
+      "addressLine2": "ವಿಳಾಸ ಸಾಲು 2",
+      "city": "ನಗರ",
+      "state": "ರಾಜ್ಯ",
+      "postalCode": "ಪಿನ್ ಕೋಡ್",
+      "languageCode": "ಭಾಷೆ",
+      "timezone": "ಸಮಯ ವಲಯ"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "ನಿರ್ವಾಹಕರಾಗಿ",
+        "description": "Nexora ನಲ್ಲಿ ನಿರ್ವಾಹಕ ಪ್ರವೇಶಕ್ಕೆ ವಿನಂತಿಸಿ."
+      },
+      "createOrganization": {
+        "label": "ಸಂಸ್ಥೆಯನ್ನು ರಚಿಸಿ",
+        "description": "ನೀವು ನಿರ್ವಹಿಸುವ ಸಂಸ್ಥೆಯನ್ನು ಹೊಂದಿಸಿ."
+      },
+      "joinOrganization": {
+        "label": "ಸಂಸ್ಥೆಗೆ ಸೇರಿ",
+        "description": "ಈಗಾಗಲೇ Nexora ಬಳಸುತ್ತಿರುವ ಸಂಸ್ಥೆಗೆ ಸೇರಿ."
+      }
+    },
+    "genderOptions": {
+      "male": "ಪುರುಷ",
+      "female": "ಮಹಿಳೆ",
+      "other": "ಇತರೆ",
+      "preferNotToSay": "ಹೇಳಲು ಬಯಸುವುದಿಲ್ಲ"
+    },
+    "validation": {
+      "selectedPathRequired": "ಮುಂದುವರಿಯಲು ಒಂದು ಮಾರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "phoneNumberRequired": "ಫೋನ್ ಸಂಖ್ಯೆ ಅಗತ್ಯವಿದೆ",
+      "dobRequired": "ಮಾನ್ಯವಾದ ಜನ್ಮ ದಿನಾಂಕವನ್ನು ನಮೂದಿಸಿ",
+      "genderRequired": "ನಿಮ್ಮ ಲಿಂಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "bioCountryRequired": "ದೇಶ ಅಗತ್ಯವಿದೆ",
+      "bioRequired": "ಪರಿಚಯ ಅಗತ್ಯವಿದೆ",
+      "bioTooLong": "ಪರಿಚಯ 1000 ಅಕ್ಷರಗಳನ್ನು ಮೀರಬಾರದು",
+      "addressLine1Required": "ವಿಳಾಸ ಅಗತ್ಯವಿದೆ",
+      "cityRequired": "ನಗರ ಅಗತ್ಯವಿದೆ",
+      "stateRequired": "ರಾಜ್ಯ ಅಗತ್ಯವಿದೆ",
+      "postalCodeRequired": "ಪಿನ್ ಕೋಡ್ ಅಗತ್ಯವಿದೆ",
+      "timeZoneRequired": "ಸಮಯ ವಲಯ ಅಗತ್ಯವಿದೆ",
+      "postalCodeInvalid": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶಕ್ಕೆ ಮಾನ್ಯವಾದ ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ",
+      "phoneNumberInvalid": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶಕ್ಕೆ ಮಾನ್ಯವಾದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
+    },
+    "hints": {
+      "selectCountryFirst": "ಮೊದಲು ನಿಮ್ಮ ದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "countrySwitch": "ನೀವು Nexora {current} ಬಳಸುತ್ತಿದ್ದೀರಿ. ಮುಂದುವರಿದರೆ, ನಿಮ್ಮನ್ನು Nexora {next} ಗೆ ಬದಲಾಯಿಸುತ್ತೇವೆ."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ನಿರ್ವಾಹಕ ಪ್ರವೇಶಕ್ಕಾಗಿ ವಿನಂತಿಸಿ",
+    "description": "ನಿಮಗೆ ಬೇಕಾದ ದೇಶಗಳು ಮತ್ತು ನಿರ್ವಹಣಾ ಅನುಮತಿಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಅಧಿಕೃತ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ನಿರ್ವಾಹಕರು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತಾರೆ.",
+    "sections": {
+      "role": {
+        "title": "ನಿಮ್ಮ ಪಾತ್ರ",
+        "description": "ಪರಿಶೀಲಕರು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಹುದ್ದೆಯ ಬಗ್ಗೆ ತಿಳಿಸಿ."
+      },
+      "justification": {
+        "title": "ವಿನಂತಿಯ ಕಾರಣ",
+        "description": "ನಿಮಗೆ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ನಿರ್ವಾಹಕ ಪ್ರವೇಶ ಏಕೆ ಬೇಕು ಮತ್ತು ಅದನ್ನು ಹೇಗೆ ಬಳಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ವಿವರಿಸಿ."
+      },
+      "countries": {
+        "title": "ದೇಶಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        "description": "ಗರಿಷ್ಠ {max, number} ಬೆಂಬಲಿತ ದೇಶಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+      },
+      "permissions": {
+        "title": "ಪ್ರತಿ ದೇಶಕ್ಕೆ ಅನುಮತಿಗಳನ್ನು ಹೊಂದಿಸಿ",
+        "description": "ಪ್ರತಿ ದೇಶಕ್ಕೆ ನಿಮಗೆ ಪ್ರವೇಶ ಬೇಕಾದ ನಿರ್ವಹಣಾ ಮಾಡ್ಯೂಲ್‌ಗಳು ಮತ್ತು ಕ್ರಿಯೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ."
+      }
+    },
+    "fields": {
+      "jobTitle": "ಹುದ್ದೆಯ ಹೆಸರು",
+      "department": "ವಿಭಾಗ",
+      "currentOrganizationName": "ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆ",
+      "justification": "ಕಾರಣ",
+      "countries": "ದೇಶಗಳು",
+      "permissions": "ಅನುಮತಿಗಳು"
+    },
+    "placeholders": {
+      "jobTitle": "ಉದಾ: ಪ್ರಾದೇಶಿಕ ಕಾರ್ಯಾಚರಣೆ ವ್ಯವಸ್ಥಾಪಕ",
+      "department": "ಉದಾ: ಕಾರ್ಯಾಚರಣೆ",
+      "currentOrganizationName": "ಉದಾ: Acme ಕಾರ್ಪೊರೇಷನ್",
+      "justification": "ನಿಮಗೆ ನಿರ್ವಾಹಕ ಪ್ರವೇಶ ಏಕೆ ಬೇಕು, ನಿಮ್ಮ ಜವಾಬ್ದಾರಿಗಳು ಮತ್ತು ಅದು ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ ಎಂಬುದನ್ನು ವಿವರವಾಗಿ ತಿಳಿಸಿ…"
+    },
+    "permissions": {
+      "module": "ಮಾಡ್ಯೂಲ್",
+      "modulesSelected": "{count, plural, =0 {ಯಾವುದೇ ಮಾಡ್ಯೂಲ್ ಆಯ್ಕೆಯಾಗಿಲ್ಲ} one {# ಮಾಡ್ಯೂಲ್ ಆಯ್ಕೆಯಾಗಿದೆ} other {# ಮಾಡ್ಯೂಲ್‌ಗಳು ಆಯ್ಕೆಯಾಗಿವೆ}}"
+    },
+    "modules": {
+      "country": {
+        "label": "ದೇಶ ನಿರ್ವಹಣೆ",
+        "description": "ದೇಶದ ವಿವರಗಳು ಮತ್ತು ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "city": {
+        "label": "ನಗರ ನಿರ್ವಹಣೆ",
+        "description": "ನಗರಗಳು, ಪ್ರದೇಶಗಳು ಮತ್ತು ಸ್ಥಳಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "user": {
+        "label": "ಬಳಕೆದಾರ ನಿರ್ವಹಣೆ",
+        "description": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಬಳಕೆದಾರರು ಮತ್ತು ಪ್ರವೇಶವನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "organization": {
+        "label": "ಸಂಸ್ಥೆ ನಿರ್ವಹಣೆ",
+        "description": "ಸಂಸ್ಥೆ ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಅನುಮೋದಿಸಿ"
+      },
+      "product": {
+        "label": "ಉತ್ಪನ್ನ ನಿರ್ವಹಣೆ",
+        "description": "ಉತ್ಪನ್ನಗಳು ಮತ್ತು ಕ್ಯಾಟಲಾಗ್ ಅನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "inventory": {
+        "label": "ದಾಸ್ತಾನು ನಿರ್ವಹಣೆ",
+        "description": "ದಾಸ್ತಾನು ಮತ್ತು ಸ್ಟಾಕ್ ಅನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "billing": {
+        "label": "ಬಿಲ್ಲಿಂಗ್ ನಿರ್ವಹಣೆ",
+        "description": "ಬಿಲ್ಲಿಂಗ್, ಯೋಜನೆಗಳು ಮತ್ತು ಪಾವತಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ"
+      },
+      "analytics": {
+        "label": "ವಿಶ್ಲೇಷಣೆ ನಿರ್ವಹಣೆ",
+        "description": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ವರದಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+      }
+    },
+    "actions": {
+      "view": "ವೀಕ್ಷಿಸಿ",
+      "create": "ರಚಿಸಿ",
+      "edit": "ಸಂಪಾದಿಸಿ",
+      "delete": "ಅಳಿಸಿ"
+    },
+    "hints": {
+      "countriesSelected": "{max, number} ರಲ್ಲಿ {count, number} ಆಯ್ಕೆಯಾಗಿವೆ",
+      "selectCountryFirst": "ಅನುಮತಿಗಳನ್ನು ಹೊಂದಿಸಲು ಒಂದು ದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "ownCountryLocked": "ನಿಮ್ಮ ಸ್ವಂತ ದೇಶ ಯಾವಾಗಲೂ ಸೇರಿರುತ್ತದೆ.",
+      "inactiveUntilApproved": "ನಿಮ್ಮ ವಿನಂತಿ ಅನುಮೋದನೆಯಾಗುವವರೆಗೆ ನಿಮ್ಮ ಪ್ರವೇಶ ನಿಷ್ಕ್ರಿಯವಾಗಿರುತ್ತದೆ."
+    },
+    "validation": {
+      "jobTitleRequired": "ನಿಮ್ಮ ಹುದ್ದೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ",
+      "jobTitleTooLong": "ಹುದ್ದೆಯ ಹೆಸರು {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಅದಕ್ಕಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+      "departmentRequired": "ನಿಮ್ಮ ವಿಭಾಗವನ್ನು ನಮೂದಿಸಿ",
+      "departmentTooLong": "ವಿಭಾಗ {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಅದಕ್ಕಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+      "currentOrganizationNameRequired": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸಂಸ್ಥೆಯನ್ನು ನಮೂದಿಸಿ",
+      "currentOrganizationNameTooLong": "ಸಂಸ್ಥೆಯ ಹೆಸರು {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಅದಕ್ಕಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+      "justificationRequired": "ನಿಮಗೆ ನಿರ್ವಾಹಕ ಪ್ರವೇಶ ಏಕೆ ಬೇಕು ಎಂದು ತಿಳಿಸಿ",
+      "justificationTooLong": "ಕಾರಣ 1000 ಅಕ್ಷರಗಳು ಅಥವಾ ಅದಕ್ಕಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+      "countriesRequired": "ಕನಿಷ್ಠ ಒಂದು ದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "countriesTooMany": "ಗರಿಷ್ಠ {max, number} ದೇಶಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "permissionsRequired": "ಈ ದೇಶಕ್ಕೆ ಕನಿಷ್ಠ ಒಂದು ಅನುಮತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+    },
+    "confirmSubmit": {
+      "title": "ಸಲ್ಲಿಸುವ ಮೊದಲು ಪರಿಶೀಲಿಸಿ",
+      "description": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ. ಸಲ್ಲಿಸಿದ ನಂತರ ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "ನಿಮ್ಮ ಸಂಸ್ಥೆಯನ್ನು ರಚಿಸಿ",
+        "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆಯನ್ನು ನೋಂದಾಯಿಸಲು ಕೆಳಗಿನ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ. ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನಮ್ಮ ನಿರ್ವಾಹಕ ತಂಡ ಪರಿಶೀಲಿಸುತ್ತದೆ."
+      },
+      "location": {
+        "title": "ಸ್ಥಳ ಮತ್ತು ತೆರಿಗೆ ವಿವರಗಳು",
+        "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆ ನೋಂದಾಯಿತವಾಗಿರುವ ದೇಶ. ವಿಳಾಸ ಮತ್ತು ತೆರಿಗೆ ಐಡಿಯನ್ನು ಈ ದೇಶಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಪರಿಶೀಲಿಸಲಾಗುತ್ತದೆ."
+      }
+    },
+    "fields": {
+      "name": "ಸಂಸ್ಥೆಯ ಹೆಸರು",
+      "slug": "ಸಂಸ್ಥೆಯ URL",
+      "logo": "ಸಂಸ್ಥೆಯ ಲೋಗೋ",
+      "industry": "ಉದ್ಯಮ",
+      "size": "ಸಂಸ್ಥೆಯ ಗಾತ್ರ",
+      "website": "ವೆಬ್‌ಸೈಟ್",
+      "description": "ಸಂಸ್ಥೆಯ ವಿವರಣೆ",
+      "taxId": "ತೆರಿಗೆ ಐಡಿ (ಉದಾ: GSTIN, VAT ಅಥವಾ EIN)"
+    },
+    "placeholders": {
+      "name": "ಉದಾ: Acme Retail",
+      "industry": "ಉದ್ಯಮವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "size": "ಗಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆ ಏನು ಮಾಡುತ್ತದೆ ಮತ್ತು ಯಾರಿಗೆ ಸೇವೆ ನೀಡುತ್ತದೆ?",
+      "taxId": "ಉದಾ: GSTIN, VAT ಅಥವಾ EIN",
+      "logo": "ಲೋಗೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
+    },
+    "hints": {
+      "slug": "ಸಣ್ಣ ಇಂಗ್ಲಿಷ್ ಅಕ್ಷರಗಳು, ಅಂಕಿಗಳು ಮತ್ತು ಹೈಫನ್‌ಗಳು. ಇದು ನಿಮ್ಮ ಸಂಸ್ಥೆಯ ವೆಬ್ ವಿಳಾಸದ ಭಾಗವಾಗುತ್ತದೆ.",
+      "logo": "PNG, JPEG ಅಥವಾ WebP, ಗರಿಷ್ಠ {maxMb, number} MB.",
+      "description": "{min, number}–{max, number} ಅಕ್ಷರಗಳು.",
+      "taxId": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶದಲ್ಲಿ ನಿಮ್ಮ ಸಂಸ್ಥೆ ಬಳಸುವ ತೆರಿಗೆ ನೋಂದಣಿ ಸಂಖ್ಯೆ."
+    },
+    "sizeOption": "{range} ಉದ್ಯೋಗಿಗಳು",
+    "industries": {
+      "fashionApparel": "ಫ್ಯಾಷನ್ ಮತ್ತು ಉಡುಪು",
+      "retail": "ಚಿಲ್ಲರೆ ವ್ಯಾಪಾರ",
+      "ecommerce": "ಇ-ಕಾಮರ್ಸ್",
+      "healthBeauty": "ಆರೋಗ್ಯ ಮತ್ತು ಸೌಂದರ್ಯ",
+      "electronics": "ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್",
+      "homeFurniture": "ಗೃಹ ಮತ್ತು ಪೀಠೋಪಕರಣ",
+      "manufacturing": "ಉತ್ಪಾದನೆ",
+      "technology": "ತಂತ್ರಜ್ಞಾನ",
+      "logistics": "ಲಾಜಿಸ್ಟಿಕ್ಸ್",
+      "education": "ಶಿಕ್ಷಣ",
+      "other": "ಇತರೆ"
+    },
+    "validation": {
+      "organizationNameRequired": "ಸಂಸ್ಥೆಯ ಹೆಸರು ಅಗತ್ಯವಿದೆ",
+      "organizationNameTooLong": "ಸಂಸ್ಥೆಯ ಹೆಸರು {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಕಡಿಮೆ ಇರಬೇಕು",
+      "organizationSlugRequired": "ಸ್ಲಗ್ ಅಗತ್ಯವಿದೆ",
+      "organizationSlugMinLength": "ಸ್ಲಗ್ ಕನಿಷ್ಠ {min, number} ಅಕ್ಷರಗಳಿರಬೇಕು",
+      "organizationSlugTooLong": "ಸ್ಲಗ್ {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಕಡಿಮೆ ಇರಬೇಕು",
+      "organizationSlugPattern": "ಸಣ್ಣ ಇಂಗ್ಲಿಷ್ ಅಕ್ಷರಗಳು, ಅಂಕಿಗಳು ಮತ್ತು ಒಂದೇ ಹೈಫನ್ ಬಳಸಿ, ಉದಾ. acme-retail",
+      "organizationLogoRequired": "ನಿಮ್ಮ ಸಂಸ್ಥೆಯ ಲೋಗೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+      "organizationLogoTooLarge": "ಲೋಗೋ {maxMb, number} MB ಅಥವಾ ಅದಕ್ಕಿಂತ ಚಿಕ್ಕದಾಗಿರಬೇಕು",
+      "organizationLogoWrongFormat": "ಲೋಗೋ PNG, JPEG ಅಥವಾ WebP ಚಿತ್ರವಾಗಿರಬೇಕು",
+      "organizationSizeRequired": "ನಿಮ್ಮ ಸಂಸ್ಥೆಯ ಗಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "organizationIndustryTypeRequired": "ನಿಮ್ಮ ಉದ್ಯಮವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+      "organizationCountryRequired": "ದೇಶ ಅಗತ್ಯವಿದೆ",
+      "organizationWebsiteInvalid": "ಮಾನ್ಯ ವೆಬ್‌ಸೈಟ್ ನಮೂದಿಸಿ, ಉದಾ. https://example.com",
+      "organizationDescriptionRequired": "ವಿವರಣೆ ಅಗತ್ಯವಿದೆ",
+      "organizationDescriptionMinLength": "ವಿವರಣೆ ಕನಿಷ್ಠ {min, number} ಅಕ್ಷರಗಳಿರಬೇಕು",
+      "organizationDescriptionTooLong": "ವಿವರಣೆ {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಕಡಿಮೆ ಇರಬೇಕು",
+      "organizationTaxDetailsRequired": "ತೆರಿಗೆ ಐಡಿ ಅಗತ್ಯವಿದೆ",
+      "organizationTaxDetailsInvalid": "ಮಾನ್ಯ ತೆರಿಗೆ ಐಡಿ ನಮೂದಿಸಿ",
+      "addressLine1Required": "ವಿಳಾಸ ಅಗತ್ಯವಿದೆ",
+      "cityRequired": "ನಗರ ಅಗತ್ಯವಿದೆ",
+      "stateRequired": "ರಾಜ್ಯ ಅಗತ್ಯವಿದೆ",
+      "postalCodeRequired": "ಪಿನ್ ಕೋಡ್ ಅಗತ್ಯವಿದೆ",
+      "postalCodeInvalid": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶಕ್ಕೆ ಮಾನ್ಯವಾದ ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "ವಿನಂತಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ!",
+        "subtitle": "ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ",
+        "description": "ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಸಲ್ಲಿಸಲಾಗಿದೆ ಮತ್ತು ನಮ್ಮ ಆಡಳಿತ ತಂಡ ಅದನ್ನು ಪರಿಶೀಲಿಸುತ್ತಿದೆ. ನಿರ್ಧಾರವಾದ ತಕ್ಷಣ ನಿಮಗೆ ತಿಳಿಸಲಾಗುವುದು."
+      },
+      "approved": {
+        "title": "ವಿನಂತಿ ಅನುಮೋದಿಸಲಾಗಿದೆ!",
+        "subtitle": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ",
+        "description": "ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಅನುಮೋದಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುತ್ತಿದ್ದೇವೆ; ಶೀಘ್ರದಲ್ಲೇ ನೀವು Nexora ಬಳಸಲು ಪ್ರಾರಂಭಿಸಬಹುದು."
+      },
+      "rejected": {
+        "title": "ವಿನಂತಿ ಅನುಮೋದನೆಯಾಗಿಲ್ಲ",
+        "subtitle": "ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ",
+        "description": "ದುರದೃಷ್ಟವಶಾತ್, ಈ ಬಾರಿ ನಿಮ್ಮ ವಿನಂತಿ ಅನುಮೋದನೆಯಾಗಿಲ್ಲ. ವಿವರಗಳಿಗಾಗಿ ಕೆಳಗಿನ ಪರಿಶೀಲಕರ ಅಭಿಪ್ರಾಯ ನೋಡಿ."
+      }
+    },
+    "stages": {
+      "submitted": "ಸಲ್ಲಿಸಲಾಗಿದೆ",
+      "inReview": "ಪರಿಶೀಲನೆಯಲ್ಲಿ",
+      "underApproval": "ಅನುಮೋದನೆಯಲ್ಲಿ",
+      "completed": "ಪೂರ್ಣಗೊಂಡಿದೆ"
+    },
+    "stageStates": {
+      "done": "ಮುಗಿದಿದೆ",
+      "current": "ಪ್ರಗತಿಯಲ್ಲಿದೆ",
+      "pending": "ಬಾಕಿ ಇದೆ",
+      "rejected": "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ"
+    },
+    "turnaround": "ಇದಕ್ಕೆ ಸಾಮಾನ್ಯವಾಗಿ 1–2 ಕೆಲಸದ ದಿನಗಳು ಬೇಕಾಗುತ್ತವೆ. ನಿಮ್ಮ ತಾಳ್ಮೆಗೆ ಧನ್ಯವಾದಗಳು.",
+    "rejectionReason": "ಪರಿಶೀಲಕರ ಅಭಿಪ್ರಾಯ",
+    "details": {
+      "title": "ವಿನಂತಿ ವಿವರಗಳು",
+      "requestId": "ವಿನಂತಿ ID",
+      "submittedOn": "ಸಲ್ಲಿಸಿದ ದಿನಾಂಕ",
+      "requestType": "ವಿನಂತಿ ಪ್ರಕಾರ",
+      "submittedBy": "ಸಲ್ಲಿಸಿದವರು",
+      "you": "{name} (ನೀವು)",
+      "currentStatus": "ಪ್ರಸ್ತುತ ಸ್ಥಿತಿ"
+    },
+    "statuses": {
+      "waiting": "ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಲಾಗುತ್ತಿದೆ",
+      "inReview": "ಪರಿಶೀಲನೆಯಲ್ಲಿ",
+      "approved": "ಅನುಮೋದಿಸಲಾಗಿದೆ",
+      "rejected": "ತಿರಸ್ಕರಿಸಲಾಗಿದೆ"
+    },
+    "viewSubmitted": "ಸಲ್ಲಿಸಿದ ಮಾಹಿತಿ ನೋಡಿ",
+    "hideSubmitted": "ಸಲ್ಲಿಸಿದ ಮಾಹಿತಿ ಮರೆಮಾಡಿ",
+    "submittedInformation": {
+      "title": "ಸಲ್ಲಿಸಿದ ಮಾಹಿತಿ",
+      "personal": "ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ",
+      "name": "ಹೆಸರು",
+      "email": "ಇಮೇಲ್",
+      "permissions": "ವಿನಂತಿಸಿದ ಅನುಮತಿಗಳು",
+      "logoAlt": "{name} ಲೋಗೋ",
+      "logoUnavailable": "ಲೋಗೋ ಲಭ್ಯವಿಲ್ಲ"
+    },
+    "next": {
+      "title": "ಮುಂದೇನು?",
+      "review": {
+        "title": "ಪರಿಶೀಲನೆ ನಡೆಯುತ್ತಿದೆ",
+        "description": "ನೀವು ಸಲ್ಲಿಸಿದ ಮಾಹಿತಿಯನ್ನು ನಮ್ಮ ಆಡಳಿತ ತಂಡ ಪರಿಶೀಲಿಸುತ್ತಿದೆ."
+      },
+      "notified": {
+        "title": "ಅಧಿಸೂಚನೆ ಪಡೆಯಿರಿ",
+        "description": "ಯಾವುದೇ ಅಪ್‌ಡೇಟ್ ಇದ್ದಾಗ ನಿಮಗೆ ಇಮೇಲ್ ಮತ್ತು ಆ್ಯಪ್‌ನಲ್ಲಿ ಅಧಿಸೂಚನೆ ಬರುತ್ತದೆ."
+      },
+      "activation": {
+        "title": "ಖಾತೆ ಸಕ್ರಿಯಗೊಳಿಸುವಿಕೆ",
+        "description": "ಅನುಮೋದನೆಯ ನಂತರ ನಿಮ್ಮ ಖಾತೆ ಸಕ್ರಿಯವಾಗುತ್ತದೆ ಮತ್ತು ನೀವು Nexora ಬಳಸಲು ಪ್ರಾರಂಭಿಸಬಹುದು."
+      }
+    },
+    "thanks": "Nexora ಆಯ್ಕೆ ಮಾಡಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮನ್ನು ಸ್ವಾಗತಿಸಲು ನಮಗೆ ಸಂತೋಷವಾಗಿದೆ!"
+  }
+}

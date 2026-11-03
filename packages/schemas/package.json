@@ -1,0 +1,28 @@
+{
+  "name": "@nexora/schemas",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "libphonenumber-js": "1.13.15",
+    "postcode-validator": "3.10.26",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@nexora/eslint-config": "workspace:*",
+    "@nexora/typescript-config": "workspace:*",
+    "eslint": "^10",
+    "typescript": "^5"
+  },
+  "exports": {
+    "./auth/*": "./src/auth/*.ts",
+    "./onboarding/*": "./src/onboarding/*.ts",
+    "./organization/*": "./src/organization/*.ts",
+    "./user-details/*": "./src/user-details/*.ts"
+  }
+}

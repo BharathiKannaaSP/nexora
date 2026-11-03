@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "profile": "الملف الشخصي"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "نظرة عامة",
+      "platform": "إدارة المنصة",
+      "access": "الوصول والموافقات",
+      "commerce": "التجارة",
+      "insights": "الرؤى والنظام"
+    },
+    "items": {
+      "dashboard": "لوحة التحكم",
+      "countries": "الدول",
+      "languages": "اللغات",
+      "organizations": "المؤسسات",
+      "users": "المستخدمون",
+      "admins": "إدارة المسؤولين",
+      "approvals": "الموافقات",
+      "rolesPermissions": "الأدوار والصلاحيات",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "inventory": "المخزون",
+      "orders": "الطلبات",
+      "promotions": "العروض الترويجية",
+      "reports": "التقارير",
+      "auditLogs": "سجلات التدقيق",
+      "notifications": "الإشعارات",
+      "settings": "إعدادات المنصة"
+    }
+  },
+  "userMenu": {
+    "signOut": "تسجيل الخروج"
+  },
+  "home": {
+    "metadata": {
+      "title": "لوحة التحكم",
+      "description": "نظرة عامة على إدارة Nexora الخاصة بك."
+    },
+    "greeting": "مرحبًا بعودتك، {firstName}",
+    "description": "إليك نظرة عامة على حسابك.",
+    "summary": {
+      "role": "الدور",
+      "status": "حالة الحساب",
+      "email": "البريد الإلكتروني",
+      "verified": "تم التحقق",
+      "notVerified": "لم يتم التحقق",
+      "memberSince": "عضو منذ"
+    },
+    "profile": {
+      "title": "ملفك الشخصي",
+      "description": "اعرض تفاصيل حسابك وتحقق منها.",
+      "action": "عرض الملف الشخصي"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "الملف الشخصي",
+      "description": "تفاصيل الحساب الذي سجّلت الدخول به."
+    },
+    "sections": {
+      "personal": "البيانات الشخصية",
+      "account": "الحساب"
+    },
+    "fields": {
+      "name": "الاسم",
+      "userName": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "language": "اللغة المفضلة",
+      "country": "الدولة",
+      "role": "الدور",
+      "status": "الحالة",
+      "emailVerification": "التحقق من البريد الإلكتروني",
+      "createdAt": "عضو منذ",
+      "updatedAt": "آخر تحديث",
+      "id": "معرّف المستخدم"
+    },
+    "values": {
+      "verifiedOn": "تم التحقق في {date}",
+      "notVerified": "لم يتم التحقق"
+    }
+  },
+  "roles": {
+    "ADMIN": "مسؤول",
+    "USER": "مستخدم",
+    "GUEST": "ضيف",
+    "ORG_ADMIN": "مسؤول المؤسسة",
+    "ORG_MEMBER": "عضو المؤسسة"
+  },
+  "statuses": {
+    "ACTIVE": "نشط",
+    "INACTIVE": "غير نشط",
+    "SUSPENDED": "موقوف"
+  }
+}

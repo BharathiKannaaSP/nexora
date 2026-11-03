@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "入门步骤",
+  "signOut": "退出登录",
+  "steps": {
+    "basicInformation": {
+      "title": "基本信息",
+      "description": "告诉我们您的基本信息"
+    },
+    "choosePath": {
+      "title": "选择您的路径",
+      "description": "选择您希望如何继续"
+    },
+    "roleRequirements": {
+      "title": "角色要求",
+      "description": "提供角色相关的详细信息"
+    },
+    "review": {
+      "title": "审核并提交",
+      "description": "审核您的信息并提交"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "基本信息",
+      "description": "请简单介绍一下您自己。"
+    },
+    "choosePath": {
+      "title": "选择您的路径",
+      "description": "成为管理员、创建组织或加入组织。"
+    },
+    "becomeAdmin": {
+      "title": "成为管理员",
+      "description": "提供申请管理员权限所需的信息。"
+    },
+    "createOrganization": {
+      "title": "创建组织",
+      "description": "设置您将管理的组织。"
+    },
+    "joinOrganization": {
+      "title": "加入组织",
+      "description": "找到您想加入的组织。"
+    },
+    "review": {
+      "title": "审核",
+      "description": "核对您的信息并提交审批。"
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "这将是您在 Nexora 上的唯一标识。",
+    "passwordHint": "留空以保留当前密码，或输入 8 个或更多字符以更改密码。",
+    "emailHint": "如果您更改电子邮件地址，则需要重新验证。",
+    "verified": "已验证"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "选择您的路径",
+      "phoneNumber": "电话号码",
+      "dob": "出生日期",
+      "gender": "性别",
+      "bioCountry": "国家/地区",
+      "bio": "个人简介",
+      "addressLine1": "地址第 1 行",
+      "addressLine2": "地址第 2 行",
+      "city": "城市",
+      "state": "省/州",
+      "postalCode": "邮政编码",
+      "languageCode": "语言",
+      "timezone": "时区"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "成为管理员",
+        "description": "申请 Nexora 的管理员权限。"
+      },
+      "createOrganization": {
+        "label": "创建组织",
+        "description": "创建一个由您管理的组织。"
+      },
+      "joinOrganization": {
+        "label": "加入组织",
+        "description": "加入已在使用 Nexora 的组织。"
+      }
+    },
+    "genderOptions": {
+      "male": "男",
+      "female": "女",
+      "other": "其他",
+      "preferNotToSay": "不愿透露"
+    },
+    "validation": {
+      "selectedPathRequired": "请选择一条路径以继续",
+      "phoneNumberRequired": "电话号码为必填项",
+      "dobRequired": "请输入有效的出生日期",
+      "genderRequired": "请选择您的性别",
+      "bioCountryRequired": "国家/地区为必填项",
+      "bioRequired": "个人简介为必填项",
+      "bioTooLong": "个人简介不能超过 1000 个字符",
+      "addressLine1Required": "地址为必填项",
+      "cityRequired": "城市为必填项",
+      "stateRequired": "省/州为必填项",
+      "postalCodeRequired": "邮政编码为必填项",
+      "timeZoneRequired": "时区为必填项",
+      "postalCodeInvalid": "请输入所选国家/地区的有效邮政编码",
+      "phoneNumberInvalid": "请输入所选国家/地区的有效电话号码"
+    },
+    "hints": {
+      "selectCountryFirst": "请先选择您的国家/地区",
+      "countrySwitch": "您正在使用 Nexora {current}。继续后，我们将为您切换到 Nexora {next}。"
+    }
+  },
+  "becomeAdminForm": {
+    "title": "申请平台管理员权限",
+    "description": "选择您需要的国家/地区和管理权限。授权的平台管理员将审核您的申请。",
+    "sections": {
+      "role": {
+        "title": "您的职位",
+        "description": "请介绍您目前的职位，以便审核人员了解您的申请。"
+      },
+      "justification": {
+        "title": "申请理由",
+        "description": "请说明您为什么需要平台管理员权限，以及计划如何使用。"
+      },
+      "countries": {
+        "title": "选择国家/地区",
+        "description": "最多可选择 {max, number} 个支持的国家/地区。"
+      },
+      "permissions": {
+        "title": "为每个国家/地区配置权限",
+        "description": "为每个国家/地区选择您需要访问的管理模块和具体操作。"
+      }
+    },
+    "fields": {
+      "jobTitle": "职位名称",
+      "department": "部门",
+      "currentOrganizationName": "当前所在组织",
+      "justification": "理由",
+      "countries": "国家/地区",
+      "permissions": "权限"
+    },
+    "placeholders": {
+      "jobTitle": "例如：区域运营经理",
+      "department": "例如：运营部",
+      "currentOrganizationName": "例如：Acme 公司",
+      "justification": "请详细说明您为什么需要管理员权限、您的职责，以及这将如何帮助平台……"
+    },
+    "permissions": {
+      "module": "模块",
+      "modulesSelected": "{count, plural, =0 {未选择模块} other {已选择 # 个模块}}"
+    },
+    "modules": {
+      "country": {
+        "label": "国家/地区管理",
+        "description": "管理国家/地区的详细信息和设置"
+      },
+      "city": {
+        "label": "城市管理",
+        "description": "管理城市、区域和地点"
+      },
+      "user": {
+        "label": "用户管理",
+        "description": "管理平台用户及其访问权限"
+      },
+      "organization": {
+        "label": "组织管理",
+        "description": "审核并批准组织申请"
+      },
+      "product": {
+        "label": "产品管理",
+        "description": "管理产品和目录"
+      },
+      "inventory": {
+        "label": "库存管理",
+        "description": "管理库存和存货"
+      },
+      "billing": {
+        "label": "账单管理",
+        "description": "管理账单、套餐和付款"
+      },
+      "analytics": {
+        "label": "分析管理",
+        "description": "查看平台分析和报告"
+      }
+    },
+    "actions": {
+      "view": "查看",
+      "create": "创建",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "hints": {
+      "countriesSelected": "已选择 {count, number}/{max, number} 个",
+      "selectCountryFirst": "请选择一个国家/地区以配置其权限",
+      "ownCountryLocked": "您所在的国家/地区始终包含在内。",
+      "inactiveUntilApproved": "在您的申请获得批准之前，您的访问权限将保持未激活状态。"
+    },
+    "validation": {
+      "jobTitleRequired": "请输入您的职位名称",
+      "jobTitleTooLong": "职位名称不能超过 {max, number} 个字符",
+      "departmentRequired": "请输入您的部门",
+      "departmentTooLong": "部门名称不能超过 {max, number} 个字符",
+      "currentOrganizationNameRequired": "请输入您当前所在的组织",
+      "currentOrganizationNameTooLong": "组织名称不能超过 {max, number} 个字符",
+      "justificationRequired": "请告诉我们您为什么需要管理员权限",
+      "justificationTooLong": "理由不能超过 1000 个字符",
+      "countriesRequired": "请至少选择一个国家/地区",
+      "countriesTooMany": "最多可选择 {max, number} 个国家/地区",
+      "permissionsRequired": "请为此国家/地区至少选择一项权限"
+    },
+    "confirmSubmit": {
+      "title": "提交前请确认",
+      "description": "请仔细核对所有信息。提交后，您的申请将无法更改。"
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "创建您的组织",
+        "description": "请填写以下信息以注册您的组织。您的申请将由我们的管理团队审核。"
+      },
+      "location": {
+        "title": "所在地和税务信息",
+        "description": "您的组织的注册地。地址和税号将按此国家/地区进行校验。"
+      }
+    },
+    "fields": {
+      "name": "组织名称",
+      "slug": "组织网址",
+      "logo": "组织标志",
+      "industry": "行业",
+      "size": "组织规模",
+      "website": "网站",
+      "description": "组织描述",
+      "taxId": "税号（例如：GSTIN、VAT 或 EIN）"
+    },
+    "placeholders": {
+      "name": "例如：Acme Retail",
+      "industry": "请选择行业",
+      "size": "请选择规模",
+      "description": "您的组织从事什么业务？服务哪些对象？",
+      "taxId": "例如：GSTIN、VAT 或 EIN",
+      "logo": "上传标志"
+    },
+    "hints": {
+      "slug": "仅限小写字母、数字和连字符，将作为您组织网址的一部分。",
+      "logo": "PNG、JPEG 或 WebP，不超过 {maxMb, number} MB。",
+      "description": "{min, number}–{max, number} 个字符。",
+      "taxId": "您的组织在所选国家/地区使用的税务登记号。"
+    },
+    "sizeOption": "{range} 名员工",
+    "industries": {
+      "fashionApparel": "时尚与服装",
+      "retail": "零售",
+      "ecommerce": "电子商务",
+      "healthBeauty": "健康与美容",
+      "electronics": "电子产品",
+      "homeFurniture": "家居与家具",
+      "manufacturing": "制造业",
+      "technology": "科技",
+      "logistics": "物流",
+      "education": "教育",
+      "other": "其他"
+    },
+    "validation": {
+      "organizationNameRequired": "组织名称为必填项",
+      "organizationNameTooLong": "组织名称不得超过 {max, number} 个字符",
+      "organizationSlugRequired": "标识符为必填项",
+      "organizationSlugMinLength": "标识符至少需要 {min, number} 个字符",
+      "organizationSlugTooLong": "标识符不得超过 {max, number} 个字符",
+      "organizationSlugPattern": "请使用小写字母、数字和单个连字符，例如 acme-retail",
+      "organizationLogoRequired": "请上传组织的标志",
+      "organizationLogoTooLarge": "标志不得超过 {maxMb, number} MB",
+      "organizationLogoWrongFormat": "标志必须是 PNG、JPEG 或 WebP 图片",
+      "organizationSizeRequired": "请选择组织规模",
+      "organizationIndustryTypeRequired": "请选择所属行业",
+      "organizationCountryRequired": "国家/地区为必填项",
+      "organizationWebsiteInvalid": "请输入有效的网站，例如 https://example.com",
+      "organizationDescriptionRequired": "描述为必填项",
+      "organizationDescriptionMinLength": "描述至少需要 {min, number} 个字符",
+      "organizationDescriptionTooLong": "描述不得超过 {max, number} 个字符",
+      "organizationTaxDetailsRequired": "税号为必填项",
+      "organizationTaxDetailsInvalid": "请输入有效的税号",
+      "addressLine1Required": "地址为必填项",
+      "cityRequired": "城市为必填项",
+      "stateRequired": "省/州为必填项",
+      "postalCodeRequired": "邮政编码为必填项",
+      "postalCodeInvalid": "请输入所选国家/地区的有效邮政编码"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "请求已成功提交！",
+        "subtitle": "等待审批",
+        "description": "您的请求已提交，管理团队正在审核。一旦做出决定，我们会通知您。"
+      },
+      "approved": {
+        "title": "请求已批准！",
+        "subtitle": "正在激活您的账户",
+        "description": "您的请求已获批准。我们正在激活您的账户，您很快就可以开始使用 Nexora。"
+      },
+      "rejected": {
+        "title": "请求未获批准",
+        "subtitle": "您的请求已被拒绝",
+        "description": "很遗憾，您的请求这次未获批准。详情请查看下方审核人的意见。"
+      }
+    },
+    "stages": {
+      "submitted": "已提交",
+      "inReview": "审核中",
+      "underApproval": "审批中",
+      "completed": "已完成"
+    },
+    "stageStates": {
+      "done": "已完成",
+      "current": "进行中",
+      "pending": "待处理",
+      "rejected": "已拒绝"
+    },
+    "turnaround": "通常需要 1–2 个工作日。感谢您的耐心等待。",
+    "rejectionReason": "审核人意见",
+    "details": {
+      "title": "请求详情",
+      "requestId": "请求 ID",
+      "submittedOn": "提交时间",
+      "requestType": "请求类型",
+      "submittedBy": "提交人",
+      "you": "{name}（您）",
+      "currentStatus": "当前状态"
+    },
+    "statuses": {
+      "waiting": "等待审批",
+      "inReview": "审核中",
+      "approved": "已批准",
+      "rejected": "已拒绝"
+    },
+    "viewSubmitted": "查看已提交的信息",
+    "hideSubmitted": "隐藏已提交的信息",
+    "submittedInformation": {
+      "title": "已提交的信息",
+      "personal": "个人信息",
+      "name": "姓名",
+      "email": "电子邮件",
+      "permissions": "申请的权限",
+      "logoAlt": "{name} 的标志",
+      "logoUnavailable": "标志无法显示"
+    },
+    "next": {
+      "title": "接下来会怎样？",
+      "review": {
+        "title": "审核进行中",
+        "description": "管理团队正在审核您提交的信息。"
+      },
+      "notified": {
+        "title": "获取通知",
+        "description": "有更新时，您会收到电子邮件和应用内通知。"
+      },
+      "activation": {
+        "title": "账户激活",
+        "description": "获批后，您的账户将被激活，您即可开始使用 Nexora。"
+      }
+    },
+    "thanks": "感谢您选择 Nexora。很高兴您的加入！"
+  }
+}

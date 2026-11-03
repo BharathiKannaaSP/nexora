@@ -1,0 +1,195 @@
+[
+  {
+    "id": "table.UserProfile",
+    "label": "Create table \"UserProfile\"",
+    "summary": "Creates table \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"UserProfile\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"UserProfile\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"UserProfile\"",
+        "sql": "CREATE TABLE \"public\".\"UserProfile\" (\n  \"addressLine1\" text,\n  \"addressLine2\" text,\n  \"bio\" text,\n  \"bioCountry\" text,\n  \"city\" text,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"languageCode\" text DEFAULT 'en' NOT NULL,\n  \"phoneNumber\" text,\n  \"postalCode\" text,\n  \"profileStatus\" text DEFAULT 'INCOMPLETE' NOT NULL,\n  \"state\" text,\n  \"timezone\" text,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"UserProfile_profileStatus_check_36a9bbbb\" CHECK (\"profileStatus\" IN ('INCOMPLETE', 'COMPLETE'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"UserProfile\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"UserProfile\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.UserProfile.UserProfile_userId_key",
+    "label": "Add unique constraint on \"UserProfile\" (userId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "UserProfile_userId_key",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"UserProfile_userId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserProfile_userId_key",
+          "public",
+          "\"public\".\"UserProfile\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"UserProfile_userId_key\" on \"UserProfile\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"UserProfile_userId_key\"",
+        "sql": "ALTER TABLE \"public\".\"UserProfile\" ADD CONSTRAINT \"UserProfile_userId_key\" UNIQUE (\"userId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"UserProfile_userId_key\" exists on (userId)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "UserProfile_userId_key",
+          "public",
+          "\"public\".\"UserProfile\"",
+          "u",
+          "[\"userId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserProfile.UserProfile_bioCountry_idx_c4cc0997",
+    "label": "Create index \"UserProfile_bioCountry_idx_c4cc0997\" on \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserProfile_bioCountry_idx_c4cc0997",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserProfile_bioCountry_idx_c4cc0997\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile_bioCountry_idx_c4cc0997\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserProfile_bioCountry_idx_c4cc0997\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserProfile_bioCountry_idx_c4cc0997\"",
+        "sql": "CREATE INDEX \"UserProfile_bioCountry_idx_c4cc0997\" ON \"public\".\"UserProfile\" (\"bioCountry\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserProfile_bioCountry_idx_c4cc0997\" exists on \"UserProfile\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile_bioCountry_idx_c4cc0997\"",
+          "i",
+          "I",
+          "\"public\".\"UserProfile\"",
+          "btree",
+          "[\"bioCountry\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserProfile.UserProfile_profileStatus_idx_7ec1bae3",
+    "label": "Create index \"UserProfile_profileStatus_idx_7ec1bae3\" on \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserProfile_profileStatus_idx_7ec1bae3",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserProfile_profileStatus_idx_7ec1bae3\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile_profileStatus_idx_7ec1bae3\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserProfile_profileStatus_idx_7ec1bae3\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserProfile_profileStatus_idx_7ec1bae3\"",
+        "sql": "CREATE INDEX \"UserProfile_profileStatus_idx_7ec1bae3\" ON \"public\".\"UserProfile\" (\"profileStatus\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserProfile_profileStatus_idx_7ec1bae3\" exists on \"UserProfile\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserProfile_profileStatus_idx_7ec1bae3\"",
+          "i",
+          "I",
+          "\"public\".\"UserProfile\"",
+          "btree",
+          "[\"profileStatus\"]"
+        ]
+      }
+    ]
+  }
+]

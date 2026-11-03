@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Account creato correttamente"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "Email verificata correttamente"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Accesso effettuato"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sessione aggiornata"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Disconnessione effettuata"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "Email di verifica inviata"
+    },
+    "UPDATED": {
+      "SUCCESS": "Account aggiornato correttamente"
+    }
+  },
+  "VALIDATION_ERROR": "Alcuni dati non sono validi. Controlla il modulo.",
+  "EMAIL_ALREADY_EXISTS": "Esiste già un account con questa email",
+  "USERNAME_ALREADY_EXISTS": "Questo nome utente è già in uso",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Esiste già un account con questa email o questo nome utente",
+  "USER_NOT_FOUND": "Account non trovato",
+  "NOTHING_TO_UPDATE": "Non c'è nulla da aggiornare",
+  "ONBOARDING_NOT_FOUND": "Il tuo onboarding non è ancora pronto. Riprova tra un momento.",
+  "ONBOARDING_LOCKED": "Il tuo onboarding è stato inviato e non può più essere modificato.",
+  "ONBOARDING_STEP_SKIPPED": "Completa prima il passaggio corrente.",
+  "ONBOARDING_PATH_REQUIRED": "Scegli un percorso prima di continuare.",
+  "ONBOARDING_PATH_MISMATCH": "Scegli prima il percorso «Diventa amministratore».",
+  "ONBOARDING_STEP_MISMATCH": "Torna al passaggio dei requisiti del ruolo e riprova.",
+  "ONBOARDING_CHANGED": "Il tuo onboarding è stato modificato altrove. Aggiorna la pagina e riprova.",
+  "PASSWORD_TOO_LONG": "La password è troppo lunga",
+  "INVALID_CREDENTIALS": "Email/nome utente o password non validi",
+  "INVALID_VERIFICATION_TOKEN": "Questo link di verifica non è valido o è scaduto",
+  "EMAIL_NOT_VERIFIED": "Verifica la tua email prima di accedere",
+  "ACCOUNT_NOT_ACTIVE": "Il tuo account non è attivo. Contatta l'assistenza.",
+  "REFRESH_TOKEN_REQUIRED": "Accedi per continuare",
+  "INVALID_REFRESH_TOKEN": "La tua sessione non è più valida. Accedi di nuovo",
+  "REFRESH_TOKEN_EXPIRED": "La tua sessione è scaduta. Accedi di nuovo",
+  "REFRESH_TOKEN_REUSED": "Per la tua sicurezza, sei stato disconnesso. Accedi di nuovo",
+  "ACCESS_TOKEN_REQUIRED": "Accedi per continuare",
+  "INVALID_ACCESS_TOKEN": "La tua sessione è scaduta. Accedi di nuovo",
+  "FORBIDDEN": "Non hai l'autorizzazione per eseguire questa azione",
+  "ROUTE_NOT_FOUND": "La risorsa richiesta non è stata trovata",
+  "INTERNAL_SERVER_ERROR": "Si è verificato un problema da parte nostra. Riprova più tardi.",
+  "JWT_ACCESS_SECRET_INVALID": "Si è verificato un problema da parte nostra. Riprova più tardi.",
+  "TOO_MANY_REQUESTS": "Troppi tentativi. Attendi qualche minuto e riprova.",
+  "SERVICE_UNAVAILABLE": "Il servizio è temporaneamente non disponibile. Riprova tra un momento.",
+  "SERVICE_REQUEST_FAILED": "Non è stato possibile caricare i tuoi dati. Riprova.",
+  "USER_PROFILE_NOT_FOUND": "Il tuo profilo non è ancora pronto. Riprova tra un momento.",
+  "UNKNOWN_ERROR": "Si è verificato un errore. Riprova.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "La tua richiesta di accesso come amministratore è stata salvata"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Questo tipo di file non è consentito",
+    "FILE_TOO_LARGE": "Questo file è troppo grande",
+    "UPLOAD_NOT_FOUND": "Il caricamento non è stato trovato o è scaduto. Riprova",
+    "UPLOAD_FAILED": "Impossibile caricare il file. Riprova"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "La tua richiesta di organizzazione è stata inviata"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Richiesta di organizzazione approvata"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Richiesta di organizzazione rifiutata"
+    },
+    "SLUG_TAKEN": "Questo slug è già in uso. Scegline un altro",
+    "LOGO_INVALID": "Carica di nuovo il logo",
+    "REQUEST_LOCKED": "La tua richiesta è in revisione e non può essere modificata ora",
+    "REQUEST_ALREADY_REVIEWED": "Questa richiesta è già stata esaminata",
+    "REQUEST_NOT_FOUND": "Richiesta di organizzazione non trovata",
+    "REQUEST_INCOMPLETE": "Mancano dati obbligatori in questa richiesta",
+    "NOT_FOUND": "Organizzazione non trovata"
+  }
+}

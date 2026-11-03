@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "ಮುಖ್ಯ",
+    "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "profile": "ಪ್ರೊಫೈಲ್"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "ಅವಲೋಕನ",
+      "platform": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ನಿರ್ವಹಣೆ",
+      "access": "ಪ್ರವೇಶ ಮತ್ತು ಅನುಮೋದನೆಗಳು",
+      "commerce": "ವಾಣಿಜ್ಯ",
+      "insights": "ಒಳನೋಟಗಳು ಮತ್ತು ವ್ಯವಸ್ಥೆ"
+    },
+    "items": {
+      "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+      "countries": "ದೇಶಗಳು",
+      "languages": "ಭಾಷೆಗಳು",
+      "organizations": "ಸಂಸ್ಥೆಗಳು",
+      "users": "ಬಳಕೆದಾರರು",
+      "admins": "ನಿರ್ವಾಹಕರ ನಿರ್ವಹಣೆ",
+      "approvals": "ಅನುಮೋದನೆಗಳು",
+      "rolesPermissions": "ಪಾತ್ರಗಳು ಮತ್ತು ಅನುಮತಿಗಳು",
+      "products": "ಉತ್ಪನ್ನಗಳು",
+      "categories": "ವರ್ಗಗಳು",
+      "inventory": "ದಾಸ್ತಾನು",
+      "orders": "ಆರ್ಡರ್‌ಗಳು",
+      "promotions": "ಪ್ರಚಾರಗಳು",
+      "reports": "ವರದಿಗಳು",
+      "auditLogs": "ಆಡಿಟ್ ಲಾಗ್‌ಗಳು",
+      "notifications": "ಅಧಿಸೂಚನೆಗಳು",
+      "settings": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+    }
+  },
+  "userMenu": {
+    "signOut": "ಸೈನ್ ಔಟ್"
+  },
+  "home": {
+    "metadata": {
+      "title": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+      "description": "ನಿಮ್ಮ Nexora ಆಡ್ಮಿನ್ ಅವಲೋಕನ."
+    },
+    "greeting": "ಮರಳಿ ಸ್ವಾಗತ, {firstName}",
+    "description": "ನಿಮ್ಮ ಖಾತೆಯ ಅವಲೋಕನ ಇಲ್ಲಿದೆ.",
+    "summary": {
+      "role": "ಪಾತ್ರ",
+      "status": "ಖಾತೆ ಸ್ಥಿತಿ",
+      "email": "ಇಮೇಲ್",
+      "verified": "ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+      "notVerified": "ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ",
+      "memberSince": "ಸದಸ್ಯರಾದ ದಿನಾಂಕ"
+    },
+    "profile": {
+      "title": "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್",
+      "description": "ನಿಮ್ಮ ಖಾತೆಯ ವಿವರಗಳನ್ನು ನೋಡಿ ಮತ್ತು ಪರಿಶೀಲಿಸಿ.",
+      "action": "ಪ್ರೊಫೈಲ್ ನೋಡಿ"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "ಪ್ರೊಫೈಲ್",
+      "description": "ನೀವು ಸೈನ್ ಇನ್ ಆಗಿರುವ ಖಾತೆಯ ವಿವರಗಳು."
+    },
+    "sections": {
+      "personal": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು",
+      "account": "ಖಾತೆ"
+    },
+    "fields": {
+      "name": "ಹೆಸರು",
+      "userName": "ಬಳಕೆದಾರ ಹೆಸರು",
+      "email": "ಇಮೇಲ್",
+      "language": "ಆದ್ಯತೆಯ ಭಾಷೆ",
+      "country": "ದೇಶ",
+      "role": "ಪಾತ್ರ",
+      "status": "ಸ್ಥಿತಿ",
+      "emailVerification": "ಇಮೇಲ್ ಪರಿಶೀಲನೆ",
+      "createdAt": "ಸದಸ್ಯರಾದ ದಿನಾಂಕ",
+      "updatedAt": "ಕೊನೆಯ ನವೀಕರಣ",
+      "id": "ಬಳಕೆದಾರ ಐಡಿ"
+    },
+    "values": {
+      "verifiedOn": "{date} ರಂದು ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+      "notVerified": "ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ"
+    }
+  },
+  "roles": {
+    "ADMIN": "ನಿರ್ವಾಹಕ",
+    "USER": "ಬಳಕೆದಾರ",
+    "GUEST": "ಅತಿಥಿ",
+    "ORG_ADMIN": "ಸಂಸ್ಥೆಯ ನಿರ್ವಾಹಕ",
+    "ORG_MEMBER": "ಸಂಸ್ಥೆಯ ಸದಸ್ಯ"
+  },
+  "statuses": {
+    "ACTIVE": "ಸಕ್ರಿಯ",
+    "INACTIVE": "ನಿಷ್ಕ್ರಿಯ",
+    "SUSPENDED": "ಅಮಾನತುಗೊಳಿಸಲಾಗಿದೆ"
+  }
+}

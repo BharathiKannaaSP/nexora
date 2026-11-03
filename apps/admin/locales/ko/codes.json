@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "계정이 생성되었습니다"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "이메일이 인증되었습니다"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "로그인되었습니다"
+    },
+    "REFRESH": {
+      "SUCCESS": "세션이 갱신되었습니다"
+    },
+    "LOGOUT": {
+      "SUCCESS": "로그아웃되었습니다"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "인증 이메일을 보냈습니다"
+    },
+    "UPDATED": {
+      "SUCCESS": "계정이 업데이트되었습니다"
+    }
+  },
+  "VALIDATION_ERROR": "일부 정보가 올바르지 않습니다. 입력 내용을 확인해 주세요.",
+  "EMAIL_ALREADY_EXISTS": "이 이메일로 가입된 계정이 이미 있습니다",
+  "USERNAME_ALREADY_EXISTS": "이미 사용 중인 사용자 이름입니다",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "이 이메일 또는 사용자 이름으로 가입된 계정이 이미 있습니다",
+  "USER_NOT_FOUND": "계정을 찾을 수 없습니다",
+  "NOTHING_TO_UPDATE": "업데이트할 내용이 없습니다",
+  "ONBOARDING_NOT_FOUND": "온보딩이 아직 준비되지 않았습니다. 잠시 후 다시 시도해 주세요.",
+  "ONBOARDING_LOCKED": "온보딩이 이미 제출되어 더 이상 변경할 수 없습니다.",
+  "ONBOARDING_STEP_SKIPPED": "현재 단계를 먼저 완료해 주세요.",
+  "ONBOARDING_PATH_REQUIRED": "계속하기 전에 경로를 선택해 주세요.",
+  "ONBOARDING_PATH_MISMATCH": "먼저 관리자 되기 경로를 선택해 주세요.",
+  "ONBOARDING_STEP_MISMATCH": "역할 요건 단계로 돌아가서 다시 시도해 주세요.",
+  "ONBOARDING_CHANGED": "온보딩 정보가 다른 곳에서 변경되었습니다. 페이지를 새로고침한 후 다시 시도해 주세요.",
+  "PASSWORD_TOO_LONG": "비밀번호가 너무 깁니다",
+  "INVALID_CREDENTIALS": "이메일/사용자 이름 또는 비밀번호가 올바르지 않습니다",
+  "INVALID_VERIFICATION_TOKEN": "인증 링크가 유효하지 않거나 만료되었습니다",
+  "EMAIL_NOT_VERIFIED": "로그인하기 전에 이메일을 인증해 주세요",
+  "ACCOUNT_NOT_ACTIVE": "계정이 활성 상태가 아닙니다. 고객 지원팀에 문의해 주세요.",
+  "REFRESH_TOKEN_REQUIRED": "계속하려면 로그인해 주세요",
+  "INVALID_REFRESH_TOKEN": "세션이 더 이상 유효하지 않습니다. 다시 로그인해 주세요",
+  "REFRESH_TOKEN_EXPIRED": "세션이 만료되었습니다. 다시 로그인해 주세요",
+  "REFRESH_TOKEN_REUSED": "보안을 위해 로그아웃되었습니다. 다시 로그인해 주세요",
+  "ACCESS_TOKEN_REQUIRED": "계속하려면 로그인해 주세요",
+  "INVALID_ACCESS_TOKEN": "세션이 만료되었습니다. 다시 로그인해 주세요",
+  "FORBIDDEN": "이 작업을 수행할 권한이 없습니다",
+  "ROUTE_NOT_FOUND": "요청한 리소스를 찾을 수 없습니다",
+  "INTERNAL_SERVER_ERROR": "일시적인 서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+  "JWT_ACCESS_SECRET_INVALID": "일시적인 서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.",
+  "TOO_MANY_REQUESTS": "시도 횟수가 너무 많습니다. 몇 분 후에 다시 시도해 주세요.",
+  "SERVICE_UNAVAILABLE": "서비스를 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+  "SERVICE_REQUEST_FAILED": "정보를 불러오지 못했습니다. 다시 시도해 주세요.",
+  "USER_PROFILE_NOT_FOUND": "프로필이 아직 준비되지 않았습니다. 잠시 후 다시 시도해 주세요.",
+  "UNKNOWN_ERROR": "문제가 발생했습니다. 다시 시도해 주세요.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "관리자 권한 요청이 저장되었습니다"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "허용되지 않는 파일 형식입니다",
+    "FILE_TOO_LARGE": "파일이 너무 큽니다",
+    "UPLOAD_NOT_FOUND": "업로드를 찾을 수 없거나 만료되었습니다. 다시 시도해 주세요",
+    "UPLOAD_FAILED": "파일을 업로드하지 못했습니다. 다시 시도해 주세요"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "조직 요청이 제출되었습니다"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "조직 요청이 승인되었습니다"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "조직 요청이 거절되었습니다"
+    },
+    "SLUG_TAKEN": "이미 사용 중인 슬러그입니다. 다른 슬러그를 선택해 주세요",
+    "LOGO_INVALID": "로고를 다시 업로드해 주세요",
+    "REQUEST_LOCKED": "요청을 검토 중이므로 지금은 변경할 수 없습니다",
+    "REQUEST_ALREADY_REVIEWED": "이미 검토된 요청입니다",
+    "REQUEST_NOT_FOUND": "조직 요청을 찾을 수 없습니다",
+    "REQUEST_INCOMPLETE": "이 요청에 필수 정보가 없습니다",
+    "NOT_FOUND": "조직을 찾을 수 없습니다"
+  }
+}

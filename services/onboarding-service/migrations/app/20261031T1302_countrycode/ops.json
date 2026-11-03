@@ -1,0 +1,324 @@
+[
+  {
+    "id": "dropConstraint.AdminAccessRequestPermission.AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+    "label": "Drop constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" on \"AdminAccessRequestPermission\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\" DROP CONSTRAINT \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\""
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "dropDefault.AdminAccessRequestPermission.accessLevel",
+    "label": "Drop default on \"AdminAccessRequestPermission\".\"accessLevel\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "accessLevel",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"accessLevel\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "accessLevel"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"accessLevel\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop default on \"accessLevel\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\" ALTER COLUMN \"accessLevel\" DROP DEFAULT"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"accessLevel\" has no default",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"column_default\" IS NULL)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "accessLevel"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dropIndex.AdminAccessRequestPermission.AdminAccessRequestPermission_moduleCode_idx_b27c7c04",
+    "label": "Drop index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequestPermission_moduleCode_idx_b27c7c04",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\"",
+        "sql": "DROP INDEX \"public\".\"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\"",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "column.AdminAccessRequestPermission.countryCode",
+    "label": "Add column countryCode to AdminAccessRequestPermission",
+    "summary": "Adds column countryCode to table AdminAccessRequestPermission",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "countryCode",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"countryCode\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "countryCode"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "column \"countryCode\" on \"AdminAccessRequestPermission\""
+        }
+      },
+      {
+        "description": "ensure table \"AdminAccessRequestPermission\" is empty before adding NOT NULL column without default",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"public\".\"AdminAccessRequestPermission\" LIMIT 1) AS \"result\"",
+        "params": [],
+        "meta": {
+          "requiredColumn": {
+            "table": "AdminAccessRequestPermission",
+            "column": "countryCode",
+            "reason": "newField"
+          }
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"countryCode\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\" ADD COLUMN \"countryCode\" text NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"countryCode\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "countryCode"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"countryCode\" on \"AdminAccessRequestPermission\""
+        }
+      },
+      {
+        "description": "verify column \"countryCode\" is NOT NULL",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "countryCode",
+          "NO"
+        ]
+      },
+      {
+        "description": "verify column \"countryCode\" has type \"text\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_attribute\" AS \"a\" INNER JOIN \"pg_class\" AS \"c\" ON \"c\".\"oid\" = \"a\".\"attrelid\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"relnamespace\" WHERE (\"n\".\"nspname\" = $1 AND \"c\".\"relname\" = $2 AND \"a\".\"attname\" = $3 AND (format_type(\"a\".\"atttypid\", \"a\".\"atttypmod\")) = $4 AND NOT (\"a\".\"attisdropped\"))) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequestPermission",
+          "countryCode",
+          "text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.AdminAccessRequestPermission.AdminAccessReqPerm_req_country_module_access_key",
+    "label": "Add unique constraint on \"AdminAccessRequestPermission\" (requestId, countryCode, moduleCode, accessLevel)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "AdminAccessReqPerm_req_country_module_access_key",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"AdminAccessReqPerm_req_country_module_access_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessReqPerm_req_country_module_access_key",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"AdminAccessReqPerm_req_country_module_access_key\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"AdminAccessReqPerm_req_country_module_access_key\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\" ADD CONSTRAINT \"AdminAccessReqPerm_req_country_module_access_key\" UNIQUE (\"requestId\", \"countryCode\", \"moduleCode\", \"accessLevel\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"AdminAccessReqPerm_req_country_module_access_key\" exists on (requestId, countryCode, moduleCode, accessLevel)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "AdminAccessReqPerm_req_country_module_access_key",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "u",
+          "[\"requestId\",\"countryCode\",\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequestPermission.AdminAccessReqPerm_country_module_793def4d",
+    "label": "Create index \"AdminAccessReqPerm_country_module_793def4d\" on \"AdminAccessRequestPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessReqPerm_country_module_793def4d",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessReqPerm_country_module_793def4d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessReqPerm_country_module_793def4d\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessReqPerm_country_module_793def4d\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessReqPerm_country_module_793def4d\"",
+        "sql": "CREATE INDEX \"AdminAccessReqPerm_country_module_793def4d\" ON \"public\".\"AdminAccessRequestPermission\" (\"countryCode\", \"moduleCode\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessReqPerm_country_module_793def4d\" exists on \"AdminAccessRequestPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessReqPerm_country_module_793def4d\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "btree",
+          "[\"countryCode\",\"moduleCode\"]"
+        ]
+      }
+    ]
+  }
+]

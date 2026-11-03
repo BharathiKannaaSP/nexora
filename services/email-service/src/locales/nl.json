@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "Verifieer je e-mailadres voor Nexora",
+    "badge": "E-MAILVERIFICATIE",
+    "heading": "Welkom bij Nexora",
+    "intro": "Je bent er bijna. Verifieer je e-mailadres om je registratie te voltooien en aan de slag te gaan.",
+    "button": "E-mailadres verifiëren",
+    "expiry": "Deze verificatielink verloopt 3 dagen nadat hij is verstuurd.",
+    "fallback": "Werkt de knop niet? Kopieer deze link en plak hem in je browser:",
+    "ignore": "Heb je geen Nexora-account aangemaakt? Dan kun je deze e-mail negeren.",
+    "copyright": "© Nexora {year}. Alle rechten voorbehouden."
+  }
+}

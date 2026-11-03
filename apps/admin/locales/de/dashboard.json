@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Hauptmenü",
+    "dashboard": "Dashboard",
+    "profile": "Profil"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Übersicht",
+      "platform": "Plattformverwaltung",
+      "access": "Zugriff & Genehmigungen",
+      "commerce": "Handel",
+      "insights": "Einblicke & System"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "countries": "Länder",
+      "languages": "Sprachen",
+      "organizations": "Organisationen",
+      "users": "Benutzer",
+      "admins": "Adminverwaltung",
+      "approvals": "Genehmigungen",
+      "rolesPermissions": "Rollen & Berechtigungen",
+      "products": "Produkte",
+      "categories": "Kategorien",
+      "inventory": "Lagerbestand",
+      "orders": "Bestellungen",
+      "promotions": "Aktionen",
+      "reports": "Berichte",
+      "auditLogs": "Audit-Protokolle",
+      "notifications": "Benachrichtigungen",
+      "settings": "Plattformeinstellungen"
+    }
+  },
+  "userMenu": {
+    "signOut": "Abmelden"
+  },
+  "home": {
+    "metadata": {
+      "title": "Dashboard",
+      "description": "Deine Nexora-Verwaltungsübersicht."
+    },
+    "greeting": "Willkommen zurück, {firstName}",
+    "description": "Hier ist eine Übersicht über dein Konto.",
+    "summary": {
+      "role": "Rolle",
+      "status": "Kontostatus",
+      "email": "E-Mail",
+      "verified": "Bestätigt",
+      "notVerified": "Nicht bestätigt",
+      "memberSince": "Mitglied seit"
+    },
+    "profile": {
+      "title": "Dein Profil",
+      "description": "Sieh dir die Angaben zu deinem Konto an und prüfe sie.",
+      "action": "Profil ansehen"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Profil",
+      "description": "Angaben zu dem Konto, mit dem du angemeldet bist."
+    },
+    "sections": {
+      "personal": "Persönliche Angaben",
+      "account": "Konto"
+    },
+    "fields": {
+      "name": "Name",
+      "userName": "Benutzername",
+      "email": "E-Mail",
+      "language": "Bevorzugte Sprache",
+      "country": "Land",
+      "role": "Rolle",
+      "status": "Status",
+      "emailVerification": "E-Mail-Bestätigung",
+      "createdAt": "Mitglied seit",
+      "updatedAt": "Zuletzt aktualisiert",
+      "id": "Benutzer-ID"
+    },
+    "values": {
+      "verifiedOn": "Bestätigt am {date}",
+      "notVerified": "Nicht bestätigt"
+    }
+  },
+  "roles": {
+    "ADMIN": "Administrator",
+    "USER": "Benutzer",
+    "GUEST": "Gast",
+    "ORG_ADMIN": "Organisationsadministrator",
+    "ORG_MEMBER": "Organisationsmitglied"
+  },
+  "statuses": {
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv",
+    "SUSPENDED": "Gesperrt"
+  }
+}

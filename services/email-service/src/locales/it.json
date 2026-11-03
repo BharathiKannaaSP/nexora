@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "Verifica il tuo indirizzo email Nexora",
+    "badge": "VERIFICA EMAIL",
+    "heading": "Benvenuto in Nexora",
+    "intro": "Manca solo un passaggio. Verifica il tuo indirizzo email per completare la registrazione e iniziare.",
+    "button": "Verifica indirizzo email",
+    "expiry": "Questo link di verifica scade 3 giorni dopo l'emissione.",
+    "fallback": "Se il pulsante non funziona, copia e incolla questo link nel tuo browser:",
+    "ignore": "Se non hai creato un account Nexora, puoi ignorare questa email.",
+    "copyright": "© Nexora {year}. Tutti i diritti riservati."
+  }
+}

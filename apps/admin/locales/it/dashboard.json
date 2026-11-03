@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Principale",
+    "dashboard": "Dashboard",
+    "profile": "Profilo"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Panoramica",
+      "platform": "Gestione della piattaforma",
+      "access": "Accessi e approvazioni",
+      "commerce": "Commercio",
+      "insights": "Analisi e sistema"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "countries": "Paesi",
+      "languages": "Lingue",
+      "organizations": "Organizzazioni",
+      "users": "Utenti",
+      "admins": "Gestione amministratori",
+      "approvals": "Approvazioni",
+      "rolesPermissions": "Ruoli e autorizzazioni",
+      "products": "Prodotti",
+      "categories": "Categorie",
+      "inventory": "Inventario",
+      "orders": "Ordini",
+      "promotions": "Promozioni",
+      "reports": "Report",
+      "auditLogs": "Log di audit",
+      "notifications": "Notifiche",
+      "settings": "Impostazioni della piattaforma"
+    }
+  },
+  "userMenu": {
+    "signOut": "Esci"
+  },
+  "home": {
+    "metadata": {
+      "title": "Dashboard",
+      "description": "La tua panoramica di amministrazione Nexora."
+    },
+    "greeting": "Bentornato, {firstName}",
+    "description": "Ecco una panoramica del tuo account.",
+    "summary": {
+      "role": "Ruolo",
+      "status": "Stato dell'account",
+      "email": "Email",
+      "verified": "Verificato",
+      "notVerified": "Non verificato",
+      "memberSince": "Membro dal"
+    },
+    "profile": {
+      "title": "Il tuo profilo",
+      "description": "Visualizza e controlla i dati del tuo account.",
+      "action": "Visualizza profilo"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Profilo",
+      "description": "Dati dell'account con cui hai effettuato l'accesso."
+    },
+    "sections": {
+      "personal": "Dati personali",
+      "account": "Account"
+    },
+    "fields": {
+      "name": "Nome",
+      "userName": "Nome utente",
+      "email": "Email",
+      "language": "Lingua preferita",
+      "country": "Paese",
+      "role": "Ruolo",
+      "status": "Stato",
+      "emailVerification": "Verifica email",
+      "createdAt": "Membro dal",
+      "updatedAt": "Ultimo aggiornamento",
+      "id": "ID utente"
+    },
+    "values": {
+      "verifiedOn": "Verificato il {date}",
+      "notVerified": "Non verificato"
+    }
+  },
+  "roles": {
+    "ADMIN": "Amministratore",
+    "USER": "Utente",
+    "GUEST": "Ospite",
+    "ORG_ADMIN": "Amministratore dell'organizzazione",
+    "ORG_MEMBER": "Membro dell'organizzazione"
+  },
+  "statuses": {
+    "ACTIVE": "Attivo",
+    "INACTIVE": "Inattivo",
+    "SUSPENDED": "Sospeso"
+  }
+}

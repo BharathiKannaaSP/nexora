@@ -1,0 +1,147 @@
+[
+  {
+    "id": "table.PermissionModule",
+    "label": "Create table \"PermissionModule\"",
+    "summary": "Creates table \"PermissionModule\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "PermissionModule"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"PermissionModule\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PermissionModule\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"PermissionModule\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"PermissionModule\"",
+        "sql": "CREATE TABLE \"public\".\"PermissionModule\" (\n  \"code\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"isActive\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"PermissionModule\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"PermissionModule\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"PermissionModule\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.PermissionModule.PermissionModule_code_key",
+    "label": "Add unique constraint on \"PermissionModule\" (code)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "PermissionModule_code_key",
+        "table": "PermissionModule"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"PermissionModule_code_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "PermissionModule_code_key",
+          "public",
+          "\"public\".\"PermissionModule\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"PermissionModule_code_key\" on \"PermissionModule\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"PermissionModule_code_key\"",
+        "sql": "ALTER TABLE \"public\".\"PermissionModule\" ADD CONSTRAINT \"PermissionModule_code_key\" UNIQUE (\"code\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"PermissionModule_code_key\" exists on (code)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "PermissionModule_code_key",
+          "public",
+          "\"public\".\"PermissionModule\"",
+          "u",
+          "[\"code\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.PermissionModule.PermissionModule_isActive_idx_77fe3ba1",
+    "label": "Create index \"PermissionModule_isActive_idx_77fe3ba1\" on \"PermissionModule\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "PermissionModule_isActive_idx_77fe3ba1",
+        "table": "PermissionModule"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"PermissionModule_isActive_idx_77fe3ba1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"PermissionModule_isActive_idx_77fe3ba1\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"PermissionModule_isActive_idx_77fe3ba1\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"PermissionModule_isActive_idx_77fe3ba1\"",
+        "sql": "CREATE INDEX \"PermissionModule_isActive_idx_77fe3ba1\" ON \"public\".\"PermissionModule\" (\"isActive\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"PermissionModule_isActive_idx_77fe3ba1\" exists on \"PermissionModule\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"PermissionModule_isActive_idx_77fe3ba1\"",
+          "i",
+          "I",
+          "\"public\".\"PermissionModule\"",
+          "btree",
+          "[\"isActive\"]"
+        ]
+      }
+    ]
+  }
+]

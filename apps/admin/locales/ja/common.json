@@ -1,0 +1,39 @@
+{
+  "languageLabel": "言語",
+  "error": {
+    "title": "問題が発生しました",
+    "retry": "再試行"
+  },
+  "actions": {
+    "previous": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "continue": "続行",
+    "back": "戻る",
+    "close": "閉じる",
+    "edit": "編集",
+    "delete": "削除",
+    "confirm": "確認",
+    "search": "検索",
+    "skip": "スキップ",
+    "done": "完了"
+  },
+  "form": {
+    "invalidField": "この項目を確認してください。",
+    "noResults": "結果が見つかりません。"
+  },
+  "loading": "読み込み中",
+  "closeNotification": "通知を閉じる",
+  "fileUpload": {
+    "upload": "ファイルをアップロード",
+    "dragHint": "クリックして選択、またはここにファイルをドラッグ",
+    "dropHere": "ここにファイルをドロップ",
+    "browse": "参照",
+    "replace": "置き換え",
+    "clickToReplace": "クリックして置き換え",
+    "remove": "{name} を削除",
+    "noFile": "ファイルが選択されていません"
+  }
+}

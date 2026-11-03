@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "アカウントが作成されました"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "メールアドレスが確認されました"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "サインインしました"
+    },
+    "REFRESH": {
+      "SUCCESS": "セッションを更新しました"
+    },
+    "LOGOUT": {
+      "SUCCESS": "サインアウトしました"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "確認メールを送信しました"
+    },
+    "UPDATED": {
+      "SUCCESS": "アカウントを更新しました"
+    }
+  },
+  "VALIDATION_ERROR": "入力内容に誤りがあります。フォームをご確認ください。",
+  "EMAIL_ALREADY_EXISTS": "このメールアドレスのアカウントは既に存在します",
+  "USERNAME_ALREADY_EXISTS": "このユーザー名は既に使用されています",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "このメールアドレスまたはユーザー名のアカウントは既に存在します",
+  "USER_NOT_FOUND": "アカウントが見つかりません",
+  "NOTHING_TO_UPDATE": "更新する内容がありません",
+  "ONBOARDING_NOT_FOUND": "オンボーディングの準備がまだできていません。しばらくしてからもう一度お試しください。",
+  "ONBOARDING_LOCKED": "オンボーディングは送信済みのため、変更できません。",
+  "ONBOARDING_STEP_SKIPPED": "先に現在のステップを完了してください。",
+  "ONBOARDING_PATH_REQUIRED": "続行する前にパスを選択してください。",
+  "ONBOARDING_PATH_MISMATCH": "先に「管理者になる」を選択してください。",
+  "ONBOARDING_STEP_MISMATCH": "役割の要件のステップに戻って、もう一度お試しください。",
+  "ONBOARDING_CHANGED": "オンボーディングが別の場所で更新されました。ページを再読み込みしてもう一度お試しください。",
+  "PASSWORD_TOO_LONG": "パスワードが長すぎます",
+  "INVALID_CREDENTIALS": "メールアドレス/ユーザー名またはパスワードが正しくありません",
+  "INVALID_VERIFICATION_TOKEN": "この確認リンクは無効か、有効期限が切れています",
+  "EMAIL_NOT_VERIFIED": "サインインする前にメールアドレスを確認してください",
+  "ACCOUNT_NOT_ACTIVE": "アカウントが有効ではありません。サポートにお問い合わせください。",
+  "REFRESH_TOKEN_REQUIRED": "続行するにはサインインしてください",
+  "INVALID_REFRESH_TOKEN": "セッションが無効になりました。もう一度サインインしてください",
+  "REFRESH_TOKEN_EXPIRED": "セッションの有効期限が切れました。もう一度サインインしてください",
+  "REFRESH_TOKEN_REUSED": "セキュリティのためサインアウトしました。もう一度サインインしてください",
+  "ACCESS_TOKEN_REQUIRED": "続行するにはサインインしてください",
+  "INVALID_ACCESS_TOKEN": "セッションの有効期限が切れました。もう一度サインインしてください",
+  "FORBIDDEN": "この操作を行う権限がありません",
+  "ROUTE_NOT_FOUND": "リクエストされたリソースが見つかりません",
+  "INTERNAL_SERVER_ERROR": "サーバー側で問題が発生しました。しばらくしてから再度お試しください。",
+  "JWT_ACCESS_SECRET_INVALID": "サーバー側で問題が発生しました。しばらくしてから再度お試しください。",
+  "TOO_MANY_REQUESTS": "試行回数が多すぎます。数分待ってから再度お試しください。",
+  "SERVICE_UNAVAILABLE": "サービスは一時的に利用できません。しばらくしてからもう一度お試しください。",
+  "SERVICE_REQUEST_FAILED": "詳細を読み込めませんでした。もう一度お試しください。",
+  "USER_PROFILE_NOT_FOUND": "プロフィールはまだ準備できていません。しばらくしてからもう一度お試しください。",
+  "UNKNOWN_ERROR": "問題が発生しました。もう一度お試しください。",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "管理者アクセスのリクエストを保存しました"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "このファイル形式は使用できません",
+    "FILE_TOO_LARGE": "ファイルが大きすぎます",
+    "UPLOAD_NOT_FOUND": "アップロードが見つからないか、期限が切れました。もう一度お試しください",
+    "UPLOAD_FAILED": "ファイルをアップロードできませんでした。もう一度お試しください"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "組織の申請を送信しました"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "組織の申請を承認しました"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "組織の申請を却下しました"
+    },
+    "SLUG_TAKEN": "このスラッグは既に使われています。別のものを選んでください",
+    "LOGO_INVALID": "ロゴをもう一度アップロードしてください",
+    "REQUEST_LOCKED": "申請は審査中のため、今は変更できません",
+    "REQUEST_ALREADY_REVIEWED": "この申請は既に審査されています",
+    "REQUEST_NOT_FOUND": "組織の申請が見つかりません",
+    "REQUEST_INCOMPLETE": "この申請には必須の情報が不足しています",
+    "NOT_FOUND": "組織が見つかりません"
+  }
+}

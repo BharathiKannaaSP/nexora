@@ -1,0 +1,39 @@
+{
+  "languageLabel": "Taal",
+  "error": {
+    "title": "Er is iets misgegaan",
+    "retry": "Opnieuw proberen"
+  },
+  "actions": {
+    "previous": "Vorige",
+    "next": "Volgende",
+    "submit": "Indienen",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "continue": "Doorgaan",
+    "back": "Terug",
+    "close": "Sluiten",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "confirm": "Bevestigen",
+    "search": "Zoeken",
+    "skip": "Overslaan",
+    "done": "Gereed"
+  },
+  "form": {
+    "invalidField": "Controleer dit veld.",
+    "noResults": "Geen resultaten gevonden."
+  },
+  "loading": "Bezig met laden",
+  "closeNotification": "Melding sluiten",
+  "fileUpload": {
+    "upload": "Bestand uploaden",
+    "dragHint": "Klik om te bladeren of sleep een bestand hierheen",
+    "dropHere": "Zet het bestand hier neer",
+    "browse": "Bladeren",
+    "replace": "Vervangen",
+    "clickToReplace": "Klik om te vervangen",
+    "remove": "{name} verwijderen",
+    "noFile": "Geen bestand gekozen"
+  }
+}

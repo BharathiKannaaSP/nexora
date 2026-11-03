@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "验证您的 Nexora 电子邮件地址",
+    "badge": "电子邮件验证",
+    "heading": "欢迎加入 Nexora",
+    "intro": "只差一步。验证您的电子邮件地址即可完成注册并开始使用。",
+    "button": "验证电子邮件地址",
+    "expiry": "此验证链接将在发出 3 天后失效。",
+    "fallback": "如果按钮无法使用，请复制以下链接并粘贴到浏览器中：",
+    "ignore": "如果您没有创建 Nexora 帐户，可以忽略此邮件。",
+    "copyright": "© Nexora {year}。保留所有权利。"
+  }
+}

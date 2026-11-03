@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "പ്രധാനം",
+    "dashboard": "ഡാഷ്ബോർഡ്",
+    "profile": "പ്രൊഫൈൽ"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "അവലോകനം",
+      "platform": "പ്ലാറ്റ്‌ഫോം മാനേജ്‌മെന്റ്",
+      "access": "ആക്‌സസും അംഗീകാരങ്ങളും",
+      "commerce": "കൊമേഴ്‌സ്",
+      "insights": "ഇൻസൈറ്റുകളും സിസ്റ്റവും"
+    },
+    "items": {
+      "dashboard": "ഡാഷ്‌ബോർഡ്",
+      "countries": "രാജ്യങ്ങൾ",
+      "languages": "ഭാഷകൾ",
+      "organizations": "സ്ഥാപനങ്ങൾ",
+      "users": "ഉപയോക്താക്കൾ",
+      "admins": "അഡ്മിൻ മാനേജ്‌മെന്റ്",
+      "approvals": "അംഗീകാരങ്ങൾ",
+      "rolesPermissions": "റോളുകളും അനുമതികളും",
+      "products": "ഉൽപ്പന്നങ്ങൾ",
+      "categories": "വിഭാഗങ്ങൾ",
+      "inventory": "ഇൻവെന്ററി",
+      "orders": "ഓർഡറുകൾ",
+      "promotions": "പ്രമോഷനുകൾ",
+      "reports": "റിപ്പോർട്ടുകൾ",
+      "auditLogs": "ഓഡിറ്റ് ലോഗുകൾ",
+      "notifications": "അറിയിപ്പുകൾ",
+      "settings": "പ്ലാറ്റ്‌ഫോം ക്രമീകരണങ്ങൾ"
+    }
+  },
+  "userMenu": {
+    "signOut": "സൈൻ ഔട്ട്"
+  },
+  "home": {
+    "metadata": {
+      "title": "ഡാഷ്ബോർഡ്",
+      "description": "നിങ്ങളുടെ Nexora അഡ്മിൻ അവലോകനം."
+    },
+    "greeting": "തിരികെ സ്വാഗതം, {firstName}",
+    "description": "നിങ്ങളുടെ അക്കൗണ്ടിന്റെ ഒരു അവലോകനം ഇതാ.",
+    "summary": {
+      "role": "റോൾ",
+      "status": "അക്കൗണ്ട് നില",
+      "email": "ഇമെയിൽ",
+      "verified": "സ്ഥിരീകരിച്ചു",
+      "notVerified": "സ്ഥിരീകരിച്ചിട്ടില്ല",
+      "memberSince": "അംഗമായ തീയതി"
+    },
+    "profile": {
+      "title": "നിങ്ങളുടെ പ്രൊഫൈൽ",
+      "description": "നിങ്ങളുടെ അക്കൗണ്ട് വിവരങ്ങൾ കാണുകയും പരിശോധിക്കുകയും ചെയ്യുക.",
+      "action": "പ്രൊഫൈൽ കാണുക"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "പ്രൊഫൈൽ",
+      "description": "നിങ്ങൾ സൈൻ ഇൻ ചെയ്ത അക്കൗണ്ടിന്റെ വിവരങ്ങൾ."
+    },
+    "sections": {
+      "personal": "വ്യക്തിഗത വിവരങ്ങൾ",
+      "account": "അക്കൗണ്ട്"
+    },
+    "fields": {
+      "name": "പേര്",
+      "userName": "ഉപയോക്തൃനാമം",
+      "email": "ഇമെയിൽ",
+      "language": "ഇഷ്ട ഭാഷ",
+      "country": "രാജ്യം",
+      "role": "റോൾ",
+      "status": "നില",
+      "emailVerification": "ഇമെയിൽ സ്ഥിരീകരണം",
+      "createdAt": "അംഗമായ തീയതി",
+      "updatedAt": "അവസാനം പുതുക്കിയത്",
+      "id": "ഉപയോക്തൃ ഐഡി"
+    },
+    "values": {
+      "verifiedOn": "{date}-ന് സ്ഥിരീകരിച്ചു",
+      "notVerified": "സ്ഥിരീകരിച്ചിട്ടില്ല"
+    }
+  },
+  "roles": {
+    "ADMIN": "അഡ്മിനിസ്ട്രേറ്റർ",
+    "USER": "ഉപയോക്താവ്",
+    "GUEST": "അതിഥി",
+    "ORG_ADMIN": "സ്ഥാപന അഡ്മിൻ",
+    "ORG_MEMBER": "സ്ഥാപന അംഗം"
+  },
+  "statuses": {
+    "ACTIVE": "സജീവം",
+    "INACTIVE": "നിഷ്ക്രിയം",
+    "SUSPENDED": "താൽക്കാലികമായി നിർത്തി"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "@nexora/shared",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "express": "^5.3.0",
+    "zod": "^4.6.5"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    },
+    "zod": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nexora/eslint-config": "workspace:*",
+    "@nexora/typescript-config": "workspace:*",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "eslint": "^10",
+    "typescript": "^5",
+    "zod": "^4.6.5"
+  },
+  "exports": {
+    "./constants/*": "./src/constants/*.ts",
+    "./express/*": "./src/express/*.ts",
+    "./types/*": "./src/types/*.ts"
+  }
+}

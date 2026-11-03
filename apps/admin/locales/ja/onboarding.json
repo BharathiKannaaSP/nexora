@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "オンボーディングの手順",
+  "signOut": "サインアウト",
+  "steps": {
+    "basicInformation": {
+      "title": "基本情報",
+      "description": "基本情報を入力してください"
+    },
+    "choosePath": {
+      "title": "パスを選択",
+      "description": "続行方法を選択してください"
+    },
+    "roleRequirements": {
+      "title": "ロール要件",
+      "description": "ロールに必要な情報を入力してください"
+    },
+    "review": {
+      "title": "確認と送信",
+      "description": "内容を確認して送信してください"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "基本情報",
+      "description": "あなたについて少し教えてください。"
+    },
+    "choosePath": {
+      "title": "パスを選択",
+      "description": "管理者になる、組織を作成する、または組織に参加するを選びます。"
+    },
+    "becomeAdmin": {
+      "title": "管理者になる",
+      "description": "管理者権限の申請に必要な情報を入力してください。"
+    },
+    "createOrganization": {
+      "title": "組織を作成",
+      "description": "管理する組織を設定します。"
+    },
+    "joinOrganization": {
+      "title": "組織に参加",
+      "description": "参加したい組織を見つけます。"
+    },
+    "review": {
+      "title": "確認",
+      "description": "内容を確認して承認を申請してください。"
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "これが Nexora での一意の識別子になります。",
+    "passwordHint": "現在のパスワードを維持する場合は空欄のままにし、変更する場合は 8 文字以上で入力してください。",
+    "emailHint": "メールアドレスを変更した場合は、再度確認が必要です。",
+    "verified": "確認済み"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "進む道を選択",
+      "phoneNumber": "電話番号",
+      "dob": "生年月日",
+      "gender": "性別",
+      "bioCountry": "国",
+      "bio": "自己紹介",
+      "addressLine1": "住所 1",
+      "addressLine2": "住所 2",
+      "city": "市区町村",
+      "state": "都道府県・州",
+      "postalCode": "郵便番号",
+      "languageCode": "言語",
+      "timezone": "タイムゾーン"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "管理者になる",
+        "description": "Nexora の管理者権限をリクエストします。"
+      },
+      "createOrganization": {
+        "label": "組織を作成する",
+        "description": "自分が管理する組織を作成します。"
+      },
+      "joinOrganization": {
+        "label": "組織に参加する",
+        "description": "すでに Nexora を利用している組織に参加します。"
+      }
+    },
+    "genderOptions": {
+      "male": "男性",
+      "female": "女性",
+      "other": "その他",
+      "preferNotToSay": "回答しない"
+    },
+    "validation": {
+      "selectedPathRequired": "続行するには道を選択してください",
+      "phoneNumberRequired": "電話番号は必須です",
+      "dobRequired": "有効な生年月日を入力してください",
+      "genderRequired": "性別を選択してください",
+      "bioCountryRequired": "国は必須です",
+      "bioRequired": "自己紹介は必須です",
+      "bioTooLong": "自己紹介は 1000 文字以内で入力してください",
+      "addressLine1Required": "住所は必須です",
+      "cityRequired": "市区町村は必須です",
+      "stateRequired": "都道府県・州は必須です",
+      "postalCodeRequired": "郵便番号は必須です",
+      "timeZoneRequired": "タイムゾーンは必須です",
+      "postalCodeInvalid": "選択した国の有効な郵便番号を入力してください",
+      "phoneNumberInvalid": "選択した国の有効な電話番号を入力してください"
+    },
+    "hints": {
+      "selectCountryFirst": "先に国を選択してください",
+      "countrySwitch": "現在 Nexora {current} を利用しています。続行すると Nexora {next} に切り替わります。"
+    }
+  },
+  "becomeAdminForm": {
+    "title": "プラットフォーム管理者アクセスをリクエスト",
+    "description": "必要な国と管理権限を選択してください。権限のあるプラットフォーム管理者がリクエストを審査します。",
+    "sections": {
+      "role": {
+        "title": "あなたの役割",
+        "description": "審査担当者がリクエストを理解できるよう、現在の役職について教えてください。"
+      },
+      "justification": {
+        "title": "リクエストの理由",
+        "description": "プラットフォーム管理者アクセスが必要な理由と、その使い方を説明してください。"
+      },
+      "countries": {
+        "title": "国を選択",
+        "description": "対応している国から最大 {max, number} か国を選択してください。"
+      },
+      "permissions": {
+        "title": "国ごとの権限を設定",
+        "description": "国ごとに、アクセスが必要な管理モジュールと操作を選択してください。"
+      }
+    },
+    "fields": {
+      "jobTitle": "役職",
+      "department": "部署",
+      "currentOrganizationName": "現在の所属組織",
+      "justification": "理由",
+      "countries": "国",
+      "permissions": "権限"
+    },
+    "placeholders": {
+      "jobTitle": "例: 地域オペレーションマネージャー",
+      "department": "例: オペレーション",
+      "currentOrganizationName": "例: 株式会社アクメ",
+      "justification": "管理者アクセスが必要な理由、担当業務、プラットフォームにどう役立つかを詳しく記入してください…"
+    },
+    "permissions": {
+      "module": "モジュール",
+      "modulesSelected": "{count, plural, =0 {モジュールが選択されていません} other {# 個のモジュールを選択済み}}"
+    },
+    "modules": {
+      "country": {
+        "label": "国の管理",
+        "description": "国の詳細と設定を管理します"
+      },
+      "city": {
+        "label": "都市の管理",
+        "description": "都市、地域、拠点を管理します"
+      },
+      "user": {
+        "label": "ユーザーの管理",
+        "description": "プラットフォームのユーザーとアクセスを管理します"
+      },
+      "organization": {
+        "label": "組織管理",
+        "description": "組織の申請を確認して承認する"
+      },
+      "product": {
+        "label": "商品の管理",
+        "description": "商品とカタログを管理します"
+      },
+      "inventory": {
+        "label": "在庫の管理",
+        "description": "在庫と在庫数を管理します"
+      },
+      "billing": {
+        "label": "請求の管理",
+        "description": "請求、プラン、支払いを管理します"
+      },
+      "analytics": {
+        "label": "分析の管理",
+        "description": "プラットフォームの分析とレポートを表示します"
+      }
+    },
+    "actions": {
+      "view": "表示",
+      "create": "作成",
+      "edit": "編集",
+      "delete": "削除"
+    },
+    "hints": {
+      "countriesSelected": "{max, number} 件中 {count, number} 件を選択済み",
+      "selectCountryFirst": "権限を設定する国を選択してください",
+      "ownCountryLocked": "ご自身の国は常に含まれます。",
+      "inactiveUntilApproved": "リクエストが承認されるまで、アクセスは無効のままです。"
+    },
+    "validation": {
+      "jobTitleRequired": "役職を入力してください",
+      "jobTitleTooLong": "役職は {max, number} 文字以内で入力してください",
+      "departmentRequired": "部署を入力してください",
+      "departmentTooLong": "部署は {max, number} 文字以内で入力してください",
+      "currentOrganizationNameRequired": "現在の所属組織を入力してください",
+      "currentOrganizationNameTooLong": "組織名は {max, number} 文字以内で入力してください",
+      "justificationRequired": "管理者アクセスが必要な理由を入力してください",
+      "justificationTooLong": "理由は 1000 文字以内で入力してください",
+      "countriesRequired": "国を 1 つ以上選択してください",
+      "countriesTooMany": "選択できる国は最大 {max, number} か国です",
+      "permissionsRequired": "この国の権限を 1 つ以上選択してください"
+    },
+    "confirmSubmit": {
+      "title": "送信前に確認してください",
+      "description": "すべての内容をよくご確認ください。送信後はリクエストを変更できません。"
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "組織を作成",
+        "description": "以下の詳細を入力して組織を登録してください。リクエストは管理チームが審査します。"
+      },
+      "location": {
+        "title": "所在地と税務情報",
+        "description": "組織が登録されている国です。住所と税番号はこの国の形式で確認されます。"
+      }
+    },
+    "fields": {
+      "name": "組織名",
+      "slug": "組織のURL",
+      "logo": "組織のロゴ",
+      "industry": "業種",
+      "size": "組織の規模",
+      "website": "ウェブサイト",
+      "description": "組織の説明",
+      "taxId": "税番号（例: 法人番号、GSTIN、VAT、EIN）"
+    },
+    "placeholders": {
+      "name": "例: Acme Retail",
+      "industry": "業種を選択",
+      "size": "規模を選択",
+      "description": "組織の事業内容と、対象とする顧客を入力してください",
+      "taxId": "例: 法人番号、GSTIN、VAT、EIN",
+      "logo": "ロゴをアップロード"
+    },
+    "hints": {
+      "slug": "半角英小文字、数字、ハイフンを使用できます。組織のウェブアドレスの一部になります。",
+      "logo": "PNG、JPEG、WebP（{maxMb, number} MBまで）",
+      "description": "{min, number}～{max, number}文字",
+      "taxId": "選択した国で組織が使用している税務登録番号です。"
+    },
+    "sizeOption": "{range}名",
+    "industries": {
+      "fashionApparel": "ファッション・アパレル",
+      "retail": "小売",
+      "ecommerce": "Eコマース",
+      "healthBeauty": "ヘルス・ビューティー",
+      "electronics": "エレクトロニクス",
+      "homeFurniture": "住まい・家具",
+      "manufacturing": "製造",
+      "technology": "テクノロジー",
+      "logistics": "物流",
+      "education": "教育",
+      "other": "その他"
+    },
+    "validation": {
+      "organizationNameRequired": "組織名は必須です",
+      "organizationNameTooLong": "組織名は{max, number}文字以内で入力してください",
+      "organizationSlugRequired": "スラッグは必須です",
+      "organizationSlugMinLength": "スラッグは{min, number}文字以上で入力してください",
+      "organizationSlugTooLong": "スラッグは{max, number}文字以内で入力してください",
+      "organizationSlugPattern": "半角英小文字、数字、単一のハイフンを使用してください（例: acme-retail）",
+      "organizationLogoRequired": "組織のロゴをアップロードしてください",
+      "organizationLogoTooLarge": "ロゴは{maxMb, number} MB以下にしてください",
+      "organizationLogoWrongFormat": "ロゴはPNG、JPEG、WebPのいずれかの画像にしてください",
+      "organizationSizeRequired": "組織の規模を選択してください",
+      "organizationIndustryTypeRequired": "業種を選択してください",
+      "organizationCountryRequired": "国は必須です",
+      "organizationWebsiteInvalid": "有効なウェブサイトを入力してください（例: https://example.com）",
+      "organizationDescriptionRequired": "説明は必須です",
+      "organizationDescriptionMinLength": "説明は{min, number}文字以上で入力してください",
+      "organizationDescriptionTooLong": "説明は{max, number}文字以内で入力してください",
+      "organizationTaxDetailsRequired": "税番号は必須です",
+      "organizationTaxDetailsInvalid": "有効な税番号を入力してください",
+      "addressLine1Required": "住所は必須です",
+      "cityRequired": "市区町村は必須です",
+      "stateRequired": "都道府県・州は必須です",
+      "postalCodeRequired": "郵便番号は必須です",
+      "postalCodeInvalid": "選択した国の有効な郵便番号を入力してください"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "リクエストを送信しました！",
+        "subtitle": "承認待ち",
+        "description": "リクエストは送信され、現在管理チームが審査しています。結果が決まり次第お知らせします。"
+      },
+      "approved": {
+        "title": "リクエストが承認されました！",
+        "subtitle": "アカウントを有効化しています",
+        "description": "リクエストが承認されました。アカウントを有効化しています。まもなく Nexora をご利用いただけます。"
+      },
+      "rejected": {
+        "title": "リクエストは承認されませんでした",
+        "subtitle": "リクエストが却下されました",
+        "description": "残念ながら、今回はリクエストが承認されませんでした。詳細は下記の審査担当者のコメントをご確認ください。"
+      }
+    },
+    "stages": {
+      "submitted": "送信済み",
+      "inReview": "審査中",
+      "underApproval": "承認手続き中",
+      "completed": "完了"
+    },
+    "stageStates": {
+      "done": "完了",
+      "current": "進行中",
+      "pending": "保留中",
+      "rejected": "却下"
+    },
+    "turnaround": "通常 1～2 営業日かかります。今しばらくお待ちください。",
+    "rejectionReason": "審査担当者のコメント",
+    "details": {
+      "title": "リクエストの詳細",
+      "requestId": "リクエスト ID",
+      "submittedOn": "送信日時",
+      "requestType": "リクエストの種類",
+      "submittedBy": "送信者",
+      "you": "{name}（あなた）",
+      "currentStatus": "現在のステータス"
+    },
+    "statuses": {
+      "waiting": "承認待ち",
+      "inReview": "審査中",
+      "approved": "承認済み",
+      "rejected": "却下"
+    },
+    "viewSubmitted": "送信した情報を表示",
+    "hideSubmitted": "送信した情報を非表示",
+    "submittedInformation": {
+      "title": "送信した情報",
+      "personal": "個人情報",
+      "name": "氏名",
+      "email": "メールアドレス",
+      "permissions": "リクエストした権限",
+      "logoAlt": "{name} のロゴ",
+      "logoUnavailable": "ロゴを表示できません"
+    },
+    "next": {
+      "title": "今後の流れ",
+      "review": {
+        "title": "審査中",
+        "description": "管理チームが送信された情報を審査しています。"
+      },
+      "notified": {
+        "title": "通知を受け取る",
+        "description": "更新があると、メールとアプリ内通知でお知らせします。"
+      },
+      "activation": {
+        "title": "アカウントの有効化",
+        "description": "承認されるとアカウントが有効化され、Nexora をご利用いただけます。"
+      }
+    },
+    "thanks": "Nexora をお選びいただきありがとうございます。ご参加をお待ちしていました！"
+  }
+}

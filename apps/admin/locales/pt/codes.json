@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Conta criada com sucesso"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "E-mail verificado com sucesso"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Login realizado com sucesso"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sessão renovada"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Você saiu da sua conta"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "E-mail de verificação enviado"
+    },
+    "UPDATED": {
+      "SUCCESS": "Conta atualizada com sucesso"
+    }
+  },
+  "VALIDATION_ERROR": "Alguns dados são inválidos. Revise o formulário.",
+  "EMAIL_ALREADY_EXISTS": "Já existe uma conta com este e-mail",
+  "USERNAME_ALREADY_EXISTS": "Este nome de usuário já está em uso",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Já existe uma conta com este e-mail ou nome de usuário",
+  "USER_NOT_FOUND": "Conta não encontrada",
+  "NOTHING_TO_UPDATE": "Não há nada para atualizar",
+  "ONBOARDING_NOT_FOUND": "Seu cadastro inicial ainda não está pronto. Tente novamente em instantes.",
+  "ONBOARDING_LOCKED": "Seu cadastro inicial já foi enviado e não pode mais ser alterado.",
+  "ONBOARDING_STEP_SKIPPED": "Conclua a etapa atual primeiro.",
+  "ONBOARDING_PATH_REQUIRED": "Escolha um caminho antes de continuar.",
+  "ONBOARDING_PATH_MISMATCH": "Escolha primeiro o caminho para se tornar administrador.",
+  "ONBOARDING_STEP_MISMATCH": "Volte para a etapa de requisitos da função e tente novamente.",
+  "ONBOARDING_CHANGED": "Seu cadastro inicial foi atualizado em outro lugar. Atualize a página e tente novamente.",
+  "PASSWORD_TOO_LONG": "A senha é muito longa",
+  "INVALID_CREDENTIALS": "E-mail/nome de usuário ou senha inválidos",
+  "INVALID_VERIFICATION_TOKEN": "Este link de verificação é inválido ou expirou",
+  "EMAIL_NOT_VERIFIED": "Verifique seu e-mail antes de entrar",
+  "ACCOUNT_NOT_ACTIVE": "Sua conta não está ativa. Entre em contato com o suporte.",
+  "REFRESH_TOKEN_REQUIRED": "Entre para continuar",
+  "INVALID_REFRESH_TOKEN": "Sua sessão não é mais válida. Entre novamente",
+  "REFRESH_TOKEN_EXPIRED": "Sua sessão expirou. Entre novamente",
+  "REFRESH_TOKEN_REUSED": "Por segurança, você foi desconectado. Entre novamente",
+  "ACCESS_TOKEN_REQUIRED": "Entre para continuar",
+  "INVALID_ACCESS_TOKEN": "Sua sessão expirou. Entre novamente",
+  "FORBIDDEN": "Você não tem permissão para fazer isso",
+  "ROUTE_NOT_FOUND": "O recurso solicitado não foi encontrado",
+  "INTERNAL_SERVER_ERROR": "Algo deu errado do nosso lado. Tente novamente mais tarde.",
+  "JWT_ACCESS_SECRET_INVALID": "Algo deu errado do nosso lado. Tente novamente mais tarde.",
+  "TOO_MANY_REQUESTS": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
+  "SERVICE_UNAVAILABLE": "O serviço está temporariamente indisponível. Tente novamente em instantes.",
+  "SERVICE_REQUEST_FAILED": "Não foi possível carregar seus dados. Tente novamente.",
+  "USER_PROFILE_NOT_FOUND": "Seu perfil ainda não está pronto. Tente novamente em instantes.",
+  "UNKNOWN_ERROR": "Algo deu errado. Tente novamente.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Sua solicitação de acesso de administrador foi salva"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Este tipo de arquivo não é permitido",
+    "FILE_TOO_LARGE": "Este arquivo é muito grande",
+    "UPLOAD_NOT_FOUND": "O envio não foi encontrado ou expirou. Tente novamente",
+    "UPLOAD_FAILED": "Não foi possível enviar o arquivo. Tente novamente"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Sua solicitação de organização foi enviada"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Solicitação de organização aprovada"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Solicitação de organização rejeitada"
+    },
+    "SLUG_TAKEN": "Este slug já está em uso. Escolha outro",
+    "LOGO_INVALID": "Envie o logotipo novamente",
+    "REQUEST_LOCKED": "Sua solicitação está em análise e não pode ser alterada agora",
+    "REQUEST_ALREADY_REVIEWED": "Esta solicitação já foi analisada",
+    "REQUEST_NOT_FOUND": "Solicitação de organização não encontrada",
+    "REQUEST_INCOMPLETE": "Faltam dados obrigatórios nesta solicitação",
+    "NOT_FOUND": "Organização não encontrada"
+  }
+}

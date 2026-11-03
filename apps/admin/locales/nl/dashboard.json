@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Hoofdmenu",
+    "dashboard": "Dashboard",
+    "profile": "Profiel"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Overzicht",
+      "platform": "Platformbeheer",
+      "access": "Toegang & goedkeuringen",
+      "commerce": "Handel",
+      "insights": "Inzichten & systeem"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "countries": "Landen",
+      "languages": "Talen",
+      "organizations": "Organisaties",
+      "users": "Gebruikers",
+      "admins": "Beheerdersbeheer",
+      "approvals": "Goedkeuringen",
+      "rolesPermissions": "Rollen & rechten",
+      "products": "Producten",
+      "categories": "Categorieën",
+      "inventory": "Voorraad",
+      "orders": "Bestellingen",
+      "promotions": "Acties",
+      "reports": "Rapporten",
+      "auditLogs": "Auditlogboeken",
+      "notifications": "Meldingen",
+      "settings": "Platforminstellingen"
+    }
+  },
+  "userMenu": {
+    "signOut": "Uitloggen"
+  },
+  "home": {
+    "metadata": {
+      "title": "Dashboard",
+      "description": "Uw Nexora-beheeroverzicht."
+    },
+    "greeting": "Welkom terug, {firstName}",
+    "description": "Hier is een overzicht van uw account.",
+    "summary": {
+      "role": "Rol",
+      "status": "Accountstatus",
+      "email": "E-mail",
+      "verified": "Bevestigd",
+      "notVerified": "Niet bevestigd",
+      "memberSince": "Lid sinds"
+    },
+    "profile": {
+      "title": "Uw profiel",
+      "description": "Bekijk en controleer de gegevens van uw account.",
+      "action": "Profiel bekijken"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Profiel",
+      "description": "Gegevens van het account waarmee u bent ingelogd."
+    },
+    "sections": {
+      "personal": "Persoonlijke gegevens",
+      "account": "Account"
+    },
+    "fields": {
+      "name": "Naam",
+      "userName": "Gebruikersnaam",
+      "email": "E-mail",
+      "language": "Voorkeurstaal",
+      "country": "Land",
+      "role": "Rol",
+      "status": "Status",
+      "emailVerification": "E-mailverificatie",
+      "createdAt": "Lid sinds",
+      "updatedAt": "Laatst bijgewerkt",
+      "id": "Gebruikers-ID"
+    },
+    "values": {
+      "verifiedOn": "Bevestigd op {date}",
+      "notVerified": "Niet bevestigd"
+    }
+  },
+  "roles": {
+    "ADMIN": "Beheerder",
+    "USER": "Gebruiker",
+    "GUEST": "Gast",
+    "ORG_ADMIN": "Organisatiebeheerder",
+    "ORG_MEMBER": "Organisatielid"
+  },
+  "statuses": {
+    "ACTIVE": "Actief",
+    "INACTIVE": "Inactief",
+    "SUSPENDED": "Geschorst"
+  }
+}

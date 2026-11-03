@@ -1,0 +1,164 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.OutboxEvent",
+    "label": "Create table \"OutboxEvent\"",
+    "summary": "Creates table \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"OutboxEvent\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"OutboxEvent\"",
+        "sql": "CREATE TABLE \"public\".\"OutboxEvent\" (\n  \"aggregateId\" text NOT NULL,\n  \"attempts\" int4 DEFAULT 0 NOT NULL,\n  \"availableAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"eventType\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"lastError\" text,\n  \"payload\" json NOT NULL,\n  \"publishedAt\" timestamptz,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"OutboxEvent_status_check_a6e9acdb\" CHECK (\"status\" IN ('PENDING', 'PROCESSING', 'PUBLISHED', 'FAILED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"OutboxEvent\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_aggregateId_idx_c07c6552",
+    "label": "Create index \"OutboxEvent_aggregateId_idx_c07c6552\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_aggregateId_idx_c07c6552",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_aggregateId_idx_c07c6552\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_aggregateId_idx_c07c6552\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_aggregateId_idx_c07c6552\"",
+        "sql": "CREATE INDEX \"OutboxEvent_aggregateId_idx_c07c6552\" ON \"public\".\"OutboxEvent\" (\"aggregateId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_aggregateId_idx_c07c6552\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"aggregateId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_status_availableAt_idx_98697328",
+    "label": "Create index \"OutboxEvent_status_availableAt_idx_98697328\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_status_availableAt_idx_98697328",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_status_availableAt_idx_98697328\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_status_availableAt_idx_98697328\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_status_availableAt_idx_98697328\"",
+        "sql": "CREATE INDEX \"OutboxEvent_status_availableAt_idx_98697328\" ON \"public\".\"OutboxEvent\" (\"status\", \"availableAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_status_availableAt_idx_98697328\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"status\",\"availableAt\"]"
+        ]
+      }
+    ]
+  }
+]

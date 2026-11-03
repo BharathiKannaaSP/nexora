@@ -1,0 +1,109 @@
+[
+  {
+    "id": "column.public.UserProfile.gender",
+    "label": "Add column \"gender\" to \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "gender",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"gender\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "gender"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "column \"gender\" on \"UserProfile\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"gender\"",
+        "sql": "ALTER TABLE \"public\".\"UserProfile\" ADD COLUMN \"gender\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"gender\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "gender"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"gender\" on \"UserProfile\""
+        }
+      },
+      {
+        "description": "verify column \"gender\" has type \"text\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_attribute\" AS \"a\" INNER JOIN \"pg_class\" AS \"c\" ON \"c\".\"oid\" = \"a\".\"attrelid\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"relnamespace\" WHERE (\"n\".\"nspname\" = $1 AND \"c\".\"relname\" = $2 AND \"a\".\"attname\" = $3 AND (format_type(\"a\".\"atttypid\", \"a\".\"atttypmod\")) = $4 AND NOT (\"a\".\"attisdropped\"))) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "gender",
+          "text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.UserProfile.UserProfile_gender_check_87efb9de",
+    "label": "Add check constraint \"UserProfile_gender_check_87efb9de\" on \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "UserProfile_gender_check_87efb9de",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"UserProfile_gender_check_87efb9de\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserProfile_gender_check_87efb9de",
+          "public",
+          "\"public\".\"UserProfile\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"UserProfile_gender_check_87efb9de\" on \"UserProfile\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"UserProfile_gender_check_87efb9de\"",
+        "sql": "ALTER TABLE \"public\".\"UserProfile\" ADD CONSTRAINT \"UserProfile_gender_check_87efb9de\" CHECK (\"gender\" IN ('MALE', 'FEMALE', 'OTHER', 'PREFER_NOT_TO_SAY'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify check constraint \"UserProfile_gender_check_87efb9de\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4)) AS \"result\"",
+        "params": [
+          "UserProfile_gender_check_87efb9de",
+          "public",
+          "\"public\".\"UserProfile\"",
+          "c"
+        ]
+      }
+    ]
+  }
+]

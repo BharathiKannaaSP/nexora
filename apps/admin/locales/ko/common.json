@@ -1,0 +1,39 @@
+{
+  "languageLabel": "언어",
+  "error": {
+    "title": "문제가 발생했습니다",
+    "retry": "다시 시도"
+  },
+  "actions": {
+    "previous": "이전",
+    "next": "다음",
+    "submit": "제출",
+    "cancel": "취소",
+    "save": "저장",
+    "continue": "계속",
+    "back": "뒤로",
+    "close": "닫기",
+    "edit": "수정",
+    "delete": "삭제",
+    "confirm": "확인",
+    "search": "검색",
+    "skip": "건너뛰기",
+    "done": "완료"
+  },
+  "form": {
+    "invalidField": "이 항목을 확인해 주세요.",
+    "noResults": "검색 결과가 없습니다."
+  },
+  "loading": "로딩 중",
+  "closeNotification": "알림 닫기",
+  "fileUpload": {
+    "upload": "파일 업로드",
+    "dragHint": "클릭하여 찾아보거나 파일을 여기로 끌어 놓으세요",
+    "dropHere": "여기에 파일을 놓으세요",
+    "browse": "찾아보기",
+    "replace": "바꾸기",
+    "clickToReplace": "클릭하여 바꾸기",
+    "remove": "{name} 삭제",
+    "noFile": "선택된 파일 없음"
+  }
+}

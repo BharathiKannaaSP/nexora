@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Principal",
+    "dashboard": "Panel",
+    "profile": "Perfil"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Resumen",
+      "platform": "Gestión de la plataforma",
+      "access": "Acceso y aprobaciones",
+      "commerce": "Comercio",
+      "insights": "Análisis y sistema"
+    },
+    "items": {
+      "dashboard": "Panel",
+      "countries": "Países",
+      "languages": "Idiomas",
+      "organizations": "Organizaciones",
+      "users": "Usuarios",
+      "admins": "Gestión de administradores",
+      "approvals": "Aprobaciones",
+      "rolesPermissions": "Roles y permisos",
+      "products": "Productos",
+      "categories": "Categorías",
+      "inventory": "Inventario",
+      "orders": "Pedidos",
+      "promotions": "Promociones",
+      "reports": "Informes",
+      "auditLogs": "Registros de auditoría",
+      "notifications": "Notificaciones",
+      "settings": "Configuración de la plataforma"
+    }
+  },
+  "userMenu": {
+    "signOut": "Cerrar sesión"
+  },
+  "home": {
+    "metadata": {
+      "title": "Panel",
+      "description": "Tu resumen de administración de Nexora."
+    },
+    "greeting": "Hola de nuevo, {firstName}",
+    "description": "Este es un resumen de tu cuenta.",
+    "summary": {
+      "role": "Rol",
+      "status": "Estado de la cuenta",
+      "email": "Correo electrónico",
+      "verified": "Verificado",
+      "notVerified": "Sin verificar",
+      "memberSince": "Miembro desde"
+    },
+    "profile": {
+      "title": "Tu perfil",
+      "description": "Consulta y revisa los datos de tu cuenta.",
+      "action": "Ver perfil"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Perfil",
+      "description": "Datos de la cuenta con la que has iniciado sesión."
+    },
+    "sections": {
+      "personal": "Datos personales",
+      "account": "Cuenta"
+    },
+    "fields": {
+      "name": "Nombre",
+      "userName": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "language": "Idioma preferido",
+      "country": "País",
+      "role": "Rol",
+      "status": "Estado",
+      "emailVerification": "Verificación del correo",
+      "createdAt": "Miembro desde",
+      "updatedAt": "Última actualización",
+      "id": "ID de usuario"
+    },
+    "values": {
+      "verifiedOn": "Verificado el {date}",
+      "notVerified": "Sin verificar"
+    }
+  },
+  "roles": {
+    "ADMIN": "Administrador",
+    "USER": "Usuario",
+    "GUEST": "Invitado",
+    "ORG_ADMIN": "Administrador de la organización",
+    "ORG_MEMBER": "Miembro de la organización"
+  },
+  "statuses": {
+    "ACTIVE": "Activa",
+    "INACTIVE": "Inactiva",
+    "SUSPENDED": "Suspendida"
+  }
+}

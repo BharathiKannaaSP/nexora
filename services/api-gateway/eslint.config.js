@@ -1,4 +1,4 @@
-import { config } from "@workspace/eslint-config/base"
+import { config } from "@nexora/eslint-config/node"
 
-/** @type {import("eslint").Linter.Config} */
+/** @type {import("eslint").Linter.Config[]} */
 export default config

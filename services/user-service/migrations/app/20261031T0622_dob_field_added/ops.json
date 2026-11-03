@@ -1,0 +1,62 @@
+[
+  {
+    "id": "column.public.UserProfile.dob",
+    "label": "Add column \"dob\" to \"UserProfile\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "dob",
+        "table": "UserProfile"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"dob\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "dob"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "column \"dob\" on \"UserProfile\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"dob\"",
+        "sql": "ALTER TABLE \"public\".\"UserProfile\" ADD COLUMN \"dob\" timestamptz"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"dob\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "dob"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"dob\" on \"UserProfile\""
+        }
+      },
+      {
+        "description": "verify column \"dob\" has type \"timestamp with time zone\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_attribute\" AS \"a\" INNER JOIN \"pg_class\" AS \"c\" ON \"c\".\"oid\" = \"a\".\"attrelid\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"relnamespace\" WHERE (\"n\".\"nspname\" = $1 AND \"c\".\"relname\" = $2 AND \"a\".\"attname\" = $3 AND (format_type(\"a\".\"atttypid\", \"a\".\"atttypmod\")) = $4 AND NOT (\"a\".\"attisdropped\"))) AS \"result\"",
+        "params": [
+          "public",
+          "UserProfile",
+          "dob",
+          "timestamp with time zone"
+        ]
+      }
+    ]
+  }
+]

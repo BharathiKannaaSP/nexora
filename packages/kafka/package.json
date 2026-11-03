@@ -1,0 +1,33 @@
+{
+  "name": "@nexora/kafka",
+  "version": "1.0.0",
+  "description": "Nexora Kafka service",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "nexora",
+    "kafka",
+    "package"
+  ],
+  "author": "Bharathi Kannaa",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "eslint": "^10",
+    "kafkajs": "^2.2.4",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

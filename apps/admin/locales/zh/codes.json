@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "账户创建成功"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "邮箱验证成功"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "登录成功"
+    },
+    "REFRESH": {
+      "SUCCESS": "会话已刷新"
+    },
+    "LOGOUT": {
+      "SUCCESS": "已成功退出登录"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "验证邮件已发送"
+    },
+    "UPDATED": {
+      "SUCCESS": "账户更新成功"
+    }
+  },
+  "VALIDATION_ERROR": "部分信息无效，请检查表单。",
+  "EMAIL_ALREADY_EXISTS": "该邮箱已注册账户",
+  "USERNAME_ALREADY_EXISTS": "该用户名已被占用",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "使用此邮箱或用户名的账户已存在",
+  "USER_NOT_FOUND": "未找到账户",
+  "NOTHING_TO_UPDATE": "没有需要更新的内容",
+  "ONBOARDING_NOT_FOUND": "您的入职流程尚未准备好，请稍后再试。",
+  "ONBOARDING_LOCKED": "您的入职申请已提交，无法再更改。",
+  "ONBOARDING_STEP_SKIPPED": "请先完成当前步骤。",
+  "ONBOARDING_PATH_REQUIRED": "请先选择一个路径再继续。",
+  "ONBOARDING_PATH_MISMATCH": "请先选择“成为管理员”路径。",
+  "ONBOARDING_STEP_MISMATCH": "请返回角色要求步骤后重试。",
+  "ONBOARDING_CHANGED": "您的入职流程已在其他地方更新，请刷新页面后重试。",
+  "PASSWORD_TOO_LONG": "密码过长",
+  "INVALID_CREDENTIALS": "电子邮件/用户名或密码不正确",
+  "INVALID_VERIFICATION_TOKEN": "该验证链接无效或已过期",
+  "EMAIL_NOT_VERIFIED": "请先验证邮箱再登录",
+  "ACCOUNT_NOT_ACTIVE": "您的账户未激活，请联系客服。",
+  "REFRESH_TOKEN_REQUIRED": "请登录以继续",
+  "INVALID_REFRESH_TOKEN": "会话已失效，请重新登录",
+  "REFRESH_TOKEN_EXPIRED": "会话已过期，请重新登录",
+  "REFRESH_TOKEN_REUSED": "为了您的账户安全，您已被退出登录，请重新登录",
+  "ACCESS_TOKEN_REQUIRED": "请登录以继续",
+  "INVALID_ACCESS_TOKEN": "会话已过期，请重新登录",
+  "FORBIDDEN": "您无权执行此操作",
+  "ROUTE_NOT_FOUND": "未找到请求的资源",
+  "INTERNAL_SERVER_ERROR": "服务器出现问题，请稍后重试。",
+  "JWT_ACCESS_SECRET_INVALID": "服务器出现问题，请稍后重试。",
+  "TOO_MANY_REQUESTS": "尝试次数过多，请等待几分钟后重试。",
+  "SERVICE_UNAVAILABLE": "服务暂时不可用。请稍后再试。",
+  "SERVICE_REQUEST_FAILED": "无法加载您的详细信息。请重试。",
+  "USER_PROFILE_NOT_FOUND": "您的个人资料尚未准备好。请稍后再试。",
+  "UNKNOWN_ERROR": "出现问题，请重试。",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "您的管理员访问申请已保存"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "不允许此文件类型",
+    "FILE_TOO_LARGE": "文件过大",
+    "UPLOAD_NOT_FOUND": "未找到上传的文件或已过期，请重试",
+    "UPLOAD_FAILED": "文件上传失败，请重试"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "你的组织申请已提交"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "组织申请已批准"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "组织申请已拒绝"
+    },
+    "SLUG_TAKEN": "此标识已被使用，请换一个",
+    "LOGO_INVALID": "请重新上传标志",
+    "REQUEST_LOCKED": "你的申请正在审核中，暂时无法修改",
+    "REQUEST_ALREADY_REVIEWED": "此申请已审核",
+    "REQUEST_NOT_FOUND": "未找到组织申请",
+    "REQUEST_INCOMPLETE": "此申请缺少必填信息",
+    "NOT_FOUND": "未找到组织"
+  }
+}

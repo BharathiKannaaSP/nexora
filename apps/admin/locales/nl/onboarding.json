@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "Onboardingstappen",
+  "signOut": "Uitloggen",
+  "steps": {
+    "basicInformation": {
+      "title": "Basisgegevens",
+      "description": "Vul uw basisgegevens in"
+    },
+    "choosePath": {
+      "title": "Kies uw route",
+      "description": "Kies hoe u verder wilt gaan"
+    },
+    "roleRequirements": {
+      "title": "Rolvereisten",
+      "description": "Geef rolspecifieke gegevens op"
+    },
+    "review": {
+      "title": "Controleren & indienen",
+      "description": "Controleer uw gegevens en dien ze in"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "Basisgegevens",
+      "description": "Vertel ons iets over uzelf."
+    },
+    "choosePath": {
+      "title": "Kies uw route",
+      "description": "Word beheerder, maak een organisatie aan of sluit u aan bij een organisatie."
+    },
+    "becomeAdmin": {
+      "title": "Beheerder worden",
+      "description": "Geef de gegevens op die nodig zijn om beheerderstoegang aan te vragen."
+    },
+    "createOrganization": {
+      "title": "Organisatie aanmaken",
+      "description": "Stel de organisatie in die u gaat beheren."
+    },
+    "joinOrganization": {
+      "title": "Aansluiten bij een organisatie",
+      "description": "Zoek de organisatie waarbij u zich wilt aansluiten."
+    },
+    "review": {
+      "title": "Controleren",
+      "description": "Controleer uw gegevens en dien ze in ter goedkeuring."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "Dit wordt uw unieke ID op Nexora.",
+    "passwordHint": "Laat leeg om uw huidige wachtwoord te behouden, of gebruik 8 of meer tekens om het te wijzigen.",
+    "emailHint": "Als u uw e-mailadres wijzigt, moet u het opnieuw bevestigen.",
+    "verified": "Bevestigd"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "Kies uw route",
+      "phoneNumber": "Telefoonnummer",
+      "dob": "Geboortedatum",
+      "gender": "Geslacht",
+      "bioCountry": "Land",
+      "bio": "Over mij",
+      "addressLine1": "Adresregel 1",
+      "addressLine2": "Adresregel 2",
+      "city": "Plaats",
+      "state": "Provincie/regio",
+      "postalCode": "Postcode",
+      "languageCode": "Taal",
+      "timezone": "Tijdzone"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "Beheerder worden",
+        "description": "Vraag beheerderstoegang tot Nexora aan."
+      },
+      "createOrganization": {
+        "label": "Organisatie aanmaken",
+        "description": "Stel een organisatie in die u gaat beheren."
+      },
+      "joinOrganization": {
+        "label": "Aansluiten bij een organisatie",
+        "description": "Sluit u aan bij een organisatie die Nexora al gebruikt."
+      }
+    },
+    "genderOptions": {
+      "male": "Man",
+      "female": "Vrouw",
+      "other": "Anders",
+      "preferNotToSay": "Zeg ik liever niet"
+    },
+    "validation": {
+      "selectedPathRequired": "Kies een route om verder te gaan",
+      "phoneNumberRequired": "Telefoonnummer is verplicht",
+      "dobRequired": "Voer een geldige geboortedatum in",
+      "genderRequired": "Selecteer uw geslacht",
+      "bioCountryRequired": "Land is verplicht",
+      "bioRequired": "Over mij is verplicht",
+      "bioTooLong": "Over mij mag maximaal 1000 tekens bevatten",
+      "addressLine1Required": "Adres is verplicht",
+      "cityRequired": "Plaats is verplicht",
+      "stateRequired": "Provincie/regio is verplicht",
+      "postalCodeRequired": "Postcode is verplicht",
+      "timeZoneRequired": "Tijdzone is verplicht",
+      "postalCodeInvalid": "Voer een geldige postcode in voor het geselecteerde land",
+      "phoneNumberInvalid": "Voer een geldig telefoonnummer in voor het geselecteerde land"
+    },
+    "hints": {
+      "selectCountryFirst": "Selecteer eerst uw land",
+      "countrySwitch": "U gebruikt Nexora {current}. Zodra u verdergaat, schakelen we u over naar Nexora {next}."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "Platformbeheerderstoegang aanvragen",
+    "description": "Kies de landen en beheerrechten die u nodig heeft. Een bevoegde platformbeheerder beoordeelt uw aanvraag.",
+    "sections": {
+      "role": {
+        "title": "Uw rol",
+        "description": "Vertel ons over uw huidige functie, zodat beoordelaars uw aanvraag begrijpen."
+      },
+      "justification": {
+        "title": "Motivatie van de aanvraag",
+        "description": "Leg uit waarom u platformbeheerderstoegang nodig heeft en hoe u deze wilt gebruiken."
+      },
+      "countries": {
+        "title": "Landen selecteren",
+        "description": "Kies maximaal {max, number} ondersteunde landen."
+      },
+      "permissions": {
+        "title": "Rechten per land instellen",
+        "description": "Selecteer per land de beheermodules en specifieke acties waartoe u toegang nodig heeft."
+      }
+    },
+    "fields": {
+      "jobTitle": "Functietitel",
+      "department": "Afdeling",
+      "currentOrganizationName": "Huidige organisatie",
+      "justification": "Motivatie",
+      "countries": "Landen",
+      "permissions": "Rechten"
+    },
+    "placeholders": {
+      "jobTitle": "bijv. Regionaal operationeel manager",
+      "department": "bijv. Operations",
+      "currentOrganizationName": "bijv. Acme B.V.",
+      "justification": "Beschrijf uitgebreid waarom u beheerderstoegang nodig heeft, wat uw verantwoordelijkheden zijn en hoe dit het platform helpt…"
+    },
+    "permissions": {
+      "module": "Module",
+      "modulesSelected": "{count, plural, =0 {Geen modules geselecteerd} one {# module geselecteerd} other {# modules geselecteerd}}"
+    },
+    "modules": {
+      "country": {
+        "label": "Landenbeheer",
+        "description": "Landgegevens en -instellingen beheren"
+      },
+      "city": {
+        "label": "Stedenbeheer",
+        "description": "Steden, regio's en locaties beheren"
+      },
+      "user": {
+        "label": "Gebruikersbeheer",
+        "description": "Platformgebruikers en toegang beheren"
+      },
+      "organization": {
+        "label": "Organisatiebeheer",
+        "description": "Organisatieaanvragen beoordelen en goedkeuren"
+      },
+      "product": {
+        "label": "Productbeheer",
+        "description": "Producten en catalogus beheren"
+      },
+      "inventory": {
+        "label": "Voorraadbeheer",
+        "description": "Inventaris en voorraad beheren"
+      },
+      "billing": {
+        "label": "Facturatiebeheer",
+        "description": "Facturatie, abonnementen en betalingen beheren"
+      },
+      "analytics": {
+        "label": "Analysebeheer",
+        "description": "Platformanalyses en rapporten bekijken"
+      }
+    },
+    "actions": {
+      "view": "Bekijken",
+      "create": "Aanmaken",
+      "edit": "Bewerken",
+      "delete": "Verwijderen"
+    },
+    "hints": {
+      "countriesSelected": "{count, number} van {max, number} geselecteerd",
+      "selectCountryFirst": "Selecteer een land om de rechten ervoor in te stellen",
+      "ownCountryLocked": "Uw eigen land is altijd inbegrepen.",
+      "inactiveUntilApproved": "Uw toegang blijft inactief totdat uw aanvraag is goedgekeurd."
+    },
+    "validation": {
+      "jobTitleRequired": "Voer uw functietitel in",
+      "jobTitleTooLong": "De functietitel mag maximaal {max, number} tekens bevatten",
+      "departmentRequired": "Voer uw afdeling in",
+      "departmentTooLong": "De afdeling mag maximaal {max, number} tekens bevatten",
+      "currentOrganizationNameRequired": "Voer uw huidige organisatie in",
+      "currentOrganizationNameTooLong": "De organisatienaam mag maximaal {max, number} tekens bevatten",
+      "justificationRequired": "Vertel ons waarom u beheerderstoegang nodig heeft",
+      "justificationTooLong": "De motivatie mag maximaal 1000 tekens bevatten",
+      "countriesRequired": "Selecteer ten minste één land",
+      "countriesTooMany": "Selecteer maximaal {max, number} landen",
+      "permissionsRequired": "Selecteer ten minste één recht voor dit land"
+    },
+    "confirmSubmit": {
+      "title": "Controleren voor het indienen",
+      "description": "Controleer al uw gegevens zorgvuldig. Na het indienen kan uw aanvraag niet meer worden gewijzigd."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "Maak uw organisatie aan",
+        "description": "Vul de onderstaande gegevens in om uw organisatie te registreren. Uw aanvraag wordt beoordeeld door ons beheerteam."
+      },
+      "location": {
+        "title": "Locatie en fiscale gegevens",
+        "description": "Waar uw organisatie is geregistreerd. Het adres en het btw- of fiscaal nummer worden gecontroleerd voor dit land."
+      }
+    },
+    "fields": {
+      "name": "Naam van de organisatie",
+      "slug": "URL van de organisatie",
+      "logo": "Logo van de organisatie",
+      "industry": "Branche",
+      "size": "Grootte van de organisatie",
+      "website": "Website",
+      "description": "Beschrijving van de organisatie",
+      "taxId": "Btw- of fiscaal nummer (bijv. btw-nummer, GSTIN of EIN)"
+    },
+    "placeholders": {
+      "name": "bijv. Acme Retail",
+      "industry": "Selecteer een branche",
+      "size": "Selecteer een grootte",
+      "description": "Wat doet uw organisatie en voor wie?",
+      "taxId": "bijv. btw-nummer, GSTIN of EIN",
+      "logo": "Logo uploaden"
+    },
+    "hints": {
+      "slug": "Kleine letters, cijfers en koppeltekens. Dit wordt onderdeel van het webadres van uw organisatie.",
+      "logo": "PNG, JPEG of WebP, maximaal {maxMb, number} MB.",
+      "description": "{min, number}–{max, number} tekens.",
+      "taxId": "Het fiscale registratienummer dat uw organisatie in het geselecteerde land gebruikt."
+    },
+    "sizeOption": "{range} medewerkers",
+    "industries": {
+      "fashionApparel": "Mode en kleding",
+      "retail": "Detailhandel",
+      "ecommerce": "E-commerce",
+      "healthBeauty": "Gezondheid en verzorging",
+      "electronics": "Elektronica",
+      "homeFurniture": "Wonen en meubels",
+      "manufacturing": "Productie",
+      "technology": "Technologie",
+      "logistics": "Logistiek",
+      "education": "Onderwijs",
+      "other": "Anders"
+    },
+    "validation": {
+      "organizationNameRequired": "Naam van de organisatie is verplicht",
+      "organizationNameTooLong": "De naam van de organisatie mag maximaal {max, number} tekens bevatten",
+      "organizationSlugRequired": "Slug is verplicht",
+      "organizationSlugMinLength": "De slug moet minimaal {min, number} tekens bevatten",
+      "organizationSlugTooLong": "De slug mag maximaal {max, number} tekens bevatten",
+      "organizationSlugPattern": "Gebruik kleine letters, cijfers en enkele koppeltekens, bijv. acme-retail",
+      "organizationLogoRequired": "Upload het logo van uw organisatie",
+      "organizationLogoTooLarge": "Het logo mag maximaal {maxMb, number} MB groot zijn",
+      "organizationLogoWrongFormat": "Het logo moet een PNG-, JPEG- of WebP-afbeelding zijn",
+      "organizationSizeRequired": "Selecteer de grootte van uw organisatie",
+      "organizationIndustryTypeRequired": "Selecteer uw branche",
+      "organizationCountryRequired": "Land is verplicht",
+      "organizationWebsiteInvalid": "Voer een geldige website in, bijv. https://example.com",
+      "organizationDescriptionRequired": "Beschrijving is verplicht",
+      "organizationDescriptionMinLength": "De beschrijving moet minimaal {min, number} tekens bevatten",
+      "organizationDescriptionTooLong": "De beschrijving mag maximaal {max, number} tekens bevatten",
+      "organizationTaxDetailsRequired": "Btw- of fiscaal nummer is verplicht",
+      "organizationTaxDetailsInvalid": "Voer een geldig btw- of fiscaal nummer in",
+      "addressLine1Required": "Adres is verplicht",
+      "cityRequired": "Plaats is verplicht",
+      "stateRequired": "Provincie/regio is verplicht",
+      "postalCodeRequired": "Postcode is verplicht",
+      "postalCodeInvalid": "Voer een geldige postcode in voor het geselecteerde land"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "Aanvraag ingediend!",
+        "subtitle": "Wacht op goedkeuring",
+        "description": "Uw aanvraag is ingediend en wordt momenteel beoordeeld door ons beheerdersteam. U ontvangt een melding zodra er een beslissing is genomen."
+      },
+      "approved": {
+        "title": "Aanvraag goedgekeurd!",
+        "subtitle": "Uw account wordt geactiveerd",
+        "description": "Uw aanvraag is goedgekeurd. We activeren uw account en u kunt binnenkort aan de slag met Nexora."
+      },
+      "rejected": {
+        "title": "Aanvraag niet goedgekeurd",
+        "subtitle": "Uw aanvraag is afgewezen",
+        "description": "Helaas is uw aanvraag deze keer niet goedgekeurd. Bekijk de opmerking van de beoordelaar hieronder voor meer informatie."
+      }
+    },
+    "stages": {
+      "submitted": "Ingediend",
+      "inReview": "In beoordeling",
+      "underApproval": "Ter goedkeuring",
+      "completed": "Voltooid"
+    },
+    "stageStates": {
+      "done": "Gereed",
+      "current": "Bezig",
+      "pending": "In afwachting",
+      "rejected": "Afgewezen"
+    },
+    "turnaround": "Dit duurt meestal 1–2 werkdagen. Bedankt voor uw geduld.",
+    "rejectionReason": "Opmerking van de beoordelaar",
+    "details": {
+      "title": "Aanvraaggegevens",
+      "requestId": "Aanvraag-ID",
+      "submittedOn": "Ingediend op",
+      "requestType": "Type aanvraag",
+      "submittedBy": "Ingediend door",
+      "you": "{name} (u)",
+      "currentStatus": "Huidige status"
+    },
+    "statuses": {
+      "waiting": "Wacht op goedkeuring",
+      "inReview": "In beoordeling",
+      "approved": "Goedgekeurd",
+      "rejected": "Afgewezen"
+    },
+    "viewSubmitted": "Ingediende gegevens bekijken",
+    "hideSubmitted": "Ingediende gegevens verbergen",
+    "submittedInformation": {
+      "title": "Ingediende gegevens",
+      "personal": "Persoonlijke gegevens",
+      "name": "Naam",
+      "email": "E-mail",
+      "permissions": "Aangevraagde rechten",
+      "logoAlt": "Logo van {name}",
+      "logoUnavailable": "Logo niet beschikbaar"
+    },
+    "next": {
+      "title": "Wat gebeurt er nu?",
+      "review": {
+        "title": "Beoordeling bezig",
+        "description": "Ons beheerdersteam beoordeelt uw ingediende gegevens."
+      },
+      "notified": {
+        "title": "Ontvang een melding",
+        "description": "U ontvangt een e-mail en een melding in de app zodra er een update is."
+      },
+      "activation": {
+        "title": "Accountactivering",
+        "description": "Na goedkeuring wordt uw account geactiveerd en kunt u Nexora gaan gebruiken."
+      }
+    },
+    "thanks": "Bedankt dat u voor Nexora heeft gekozen. We zijn blij dat u erbij bent!"
+  }
+}

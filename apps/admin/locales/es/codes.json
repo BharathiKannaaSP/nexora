@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Cuenta creada correctamente"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "Correo electrónico verificado correctamente"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Sesión iniciada correctamente"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sesión actualizada"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Sesión cerrada correctamente"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "Correo de verificación enviado"
+    },
+    "UPDATED": {
+      "SUCCESS": "Cuenta actualizada correctamente"
+    }
+  },
+  "VALIDATION_ERROR": "Algunos datos no son válidos. Revisa el formulario.",
+  "EMAIL_ALREADY_EXISTS": "Ya existe una cuenta con este correo electrónico",
+  "USERNAME_ALREADY_EXISTS": "Este nombre de usuario ya está en uso",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Ya existe una cuenta con este correo electrónico o nombre de usuario",
+  "USER_NOT_FOUND": "No se encontró la cuenta",
+  "NOTHING_TO_UPDATE": "No hay nada que actualizar",
+  "ONBOARDING_NOT_FOUND": "Tu incorporación aún no está lista. Inténtalo de nuevo en un momento.",
+  "ONBOARDING_LOCKED": "Tu incorporación ya se envió y no se puede modificar.",
+  "ONBOARDING_STEP_SKIPPED": "Completa primero el paso actual.",
+  "ONBOARDING_PATH_REQUIRED": "Elige un camino antes de continuar.",
+  "ONBOARDING_PATH_MISMATCH": "Elige primero la opción de convertirte en administrador.",
+  "ONBOARDING_STEP_MISMATCH": "Vuelve al paso de requisitos del rol e inténtalo de nuevo.",
+  "ONBOARDING_CHANGED": "Tu incorporación se actualizó en otro lugar. Actualiza la página e inténtalo de nuevo.",
+  "PASSWORD_TOO_LONG": "La contraseña es demasiado larga",
+  "INVALID_CREDENTIALS": "Correo/nombre de usuario o contraseña incorrectos",
+  "INVALID_VERIFICATION_TOKEN": "Este enlace de verificación no es válido o ha caducado",
+  "EMAIL_NOT_VERIFIED": "Verifica tu correo electrónico antes de iniciar sesión",
+  "ACCOUNT_NOT_ACTIVE": "Tu cuenta no está activa. Ponte en contacto con el soporte.",
+  "REFRESH_TOKEN_REQUIRED": "Inicia sesión para continuar",
+  "INVALID_REFRESH_TOKEN": "Tu sesión ya no es válida. Vuelve a iniciar sesión",
+  "REFRESH_TOKEN_EXPIRED": "Tu sesión ha caducado. Vuelve a iniciar sesión",
+  "REFRESH_TOKEN_REUSED": "Por tu seguridad, se ha cerrado tu sesión. Vuelve a iniciar sesión",
+  "ACCESS_TOKEN_REQUIRED": "Inicia sesión para continuar",
+  "INVALID_ACCESS_TOKEN": "Tu sesión ha caducado. Vuelve a iniciar sesión",
+  "FORBIDDEN": "No tienes permiso para hacer esto",
+  "ROUTE_NOT_FOUND": "No se encontró el recurso solicitado",
+  "INTERNAL_SERVER_ERROR": "Algo salió mal por nuestra parte. Inténtalo de nuevo más tarde.",
+  "JWT_ACCESS_SECRET_INVALID": "Algo salió mal por nuestra parte. Inténtalo de nuevo más tarde.",
+  "TOO_MANY_REQUESTS": "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
+  "SERVICE_UNAVAILABLE": "El servicio no está disponible temporalmente. Inténtalo de nuevo en un momento.",
+  "SERVICE_REQUEST_FAILED": "No pudimos cargar tus datos. Inténtalo de nuevo.",
+  "USER_PROFILE_NOT_FOUND": "Tu perfil aún no está listo. Inténtalo de nuevo en un momento.",
+  "UNKNOWN_ERROR": "Algo salió mal. Inténtalo de nuevo.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Tu solicitud de acceso de administrador se ha guardado"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Este tipo de archivo no está permitido",
+    "FILE_TOO_LARGE": "Este archivo es demasiado grande",
+    "UPLOAD_NOT_FOUND": "No se encontró la subida o ha caducado. Inténtalo de nuevo",
+    "UPLOAD_FAILED": "No se pudo subir el archivo. Inténtalo de nuevo"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Tu solicitud de organización se ha enviado"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Solicitud de organización aprobada"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Solicitud de organización rechazada"
+    },
+    "SLUG_TAKEN": "Este slug ya está en uso. Elige otro",
+    "LOGO_INVALID": "Vuelve a subir el logotipo",
+    "REQUEST_LOCKED": "Tu solicitud está en revisión y no se puede cambiar ahora",
+    "REQUEST_ALREADY_REVIEWED": "Esta solicitud ya ha sido revisada",
+    "REQUEST_NOT_FOUND": "No se encontró la solicitud de organización",
+    "REQUEST_INCOMPLETE": "A esta solicitud le faltan datos obligatorios",
+    "NOT_FOUND": "No se encontró la organización"
+  }
+}

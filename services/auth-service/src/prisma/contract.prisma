@@ -1,29 +1,103 @@
-// use prisma-next
-
+// use prisma-8
 enum SystemRole {
-  SUPER_ADMIN
   ADMIN
-  ORGANIZATION_ADMIN
-  ORGANIZATION_MEMBER
   USER
+  GUEST
+  ORG_ADMIN
+  ORG_MEMBER
 }
 
-enum UserStatus {
+enum AccountStatus {
   ACTIVE
   INACTIVE
   SUSPENDED
-  DELETED
+}
+
+enum OutboxEventStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
 }
 
 model User {
-  id               String           @id @default(uuid())
-  clerkUserId      String           @unique
-  email            String           @unique
-  firstName        String?
-  lastName         String?
-  imageUrl         String?
-  systemRole       SystemRole       @default(USER)
-  status           UserStatus       @default(ACTIVE)
-  createdAt        TimestamptzString @default(now())
-  updatedAt        temporal.updatedAtString()
+  id                      String                   @id @onCreate(cuid(2))
+  email                   String                   @unique
+  userName                String                   @unique
+  passwordHash            String
+  firstName               String
+  lastName                String
+  preferredLocale         String                   @default("en")
+  countryCode             String                   @default("in")
+  systemRole              SystemRole               @default(USER)
+  accountStatus           AccountStatus            @default(ACTIVE)
+  isEmailVerified         Boolean                  @default(false)
+  emailVerifiedAt         DateTime?
+
+  emailVerificationTokens EmailVerificationToken[]
+  refreshSessions         RefreshSession[]
+
+  createdAt               DateTime                 @default(now())
+  updatedAt               temporal.updatedAt()
+
+  @@index([accountStatus])
+  @@index([systemRole])
+}
+
+model EmailVerificationToken {
+  id        String    @id @onCreate(cuid(2))
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model RefreshSession {
+  id         String    @id @onCreate(cuid(2))
+  tokenHash  String    @unique
+  userId     String
+  expiresAt  DateTime
+  lastUsedAt DateTime?
+  revokedAt  DateTime?
+  createdAt  DateTime  @default(now())
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([expiresAt])
+}
+
+model OutboxEvent {
+  id          String               @id @onCreate(cuid(2))
+  eventType   String
+  aggregateId String
+  payload     Json
+  status      OutboxEventStatus    @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  publishedAt DateTime?
+  lastError   String?
+  createdAt   DateTime             @default(now())
+  updatedAt   temporal.updatedAt()
+
+  @@index([status, availableAt])
+  @@index([aggregateId])
+}
+
+model PermissionModule {
+  id          String               @id @onCreate(cuid(2))
+  code        String               @unique
+  name        String
+  description String?
+  isActive    Boolean              @default(true)
+  createdAt   DateTime             @default(now())
+  updatedAt   temporal.updatedAt()
+
+  @@index([isActive])
 }

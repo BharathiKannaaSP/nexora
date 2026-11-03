@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "خطوات الإعداد",
+  "signOut": "تسجيل الخروج",
+  "steps": {
+    "basicInformation": {
+      "title": "المعلومات الأساسية",
+      "description": "أخبرنا بتفاصيلك الأساسية"
+    },
+    "choosePath": {
+      "title": "اختر مسارك",
+      "description": "اختر طريقة المتابعة"
+    },
+    "roleRequirements": {
+      "title": "متطلبات الدور",
+      "description": "قدّم التفاصيل الخاصة بالدور"
+    },
+    "review": {
+      "title": "المراجعة والإرسال",
+      "description": "راجع تفاصيلك وأرسلها"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "المعلومات الأساسية",
+      "description": "أخبرنا قليلًا عن نفسك."
+    },
+    "choosePath": {
+      "title": "اختر مسارك",
+      "description": "كن مسؤولًا، أو أنشئ مؤسسة، أو انضم إلى واحدة."
+    },
+    "becomeAdmin": {
+      "title": "كن مسؤولًا",
+      "description": "قدّم التفاصيل اللازمة لطلب صلاحيات المسؤول."
+    },
+    "createOrganization": {
+      "title": "إنشاء مؤسسة",
+      "description": "أعدّ المؤسسة التي ستديرها."
+    },
+    "joinOrganization": {
+      "title": "الانضمام إلى مؤسسة",
+      "description": "ابحث عن المؤسسة التي تريد الانضمام إليها."
+    },
+    "review": {
+      "title": "المراجعة",
+      "description": "تحقق من بياناتك وأرسلها للموافقة."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "سيكون هذا معرّفك الفريد على Nexora.",
+    "passwordHint": "اتركه فارغًا للاحتفاظ بكلمة المرور الحالية، أو استخدم 8 أحرف أو أكثر لتغييرها.",
+    "emailHint": "إذا غيّرت عنوان بريدك الإلكتروني، فستحتاج إلى التحقق منه مرة أخرى.",
+    "verified": "تم التحقق"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "اختر مسارك",
+      "phoneNumber": "رقم الهاتف",
+      "dob": "تاريخ الميلاد",
+      "gender": "الجنس",
+      "bioCountry": "الدولة",
+      "bio": "نبذة عنك",
+      "addressLine1": "العنوان - السطر 1",
+      "addressLine2": "العنوان - السطر 2",
+      "city": "المدينة",
+      "state": "الولاية/المنطقة",
+      "postalCode": "الرمز البريدي",
+      "languageCode": "اللغة",
+      "timezone": "المنطقة الزمنية"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "كن مسؤولًا",
+        "description": "اطلب صلاحية المسؤول في Nexora."
+      },
+      "createOrganization": {
+        "label": "أنشئ مؤسسة",
+        "description": "أعدّ مؤسسة تتولى إدارتها."
+      },
+      "joinOrganization": {
+        "label": "انضم إلى مؤسسة",
+        "description": "انضم إلى مؤسسة تستخدم Nexora بالفعل."
+      }
+    },
+    "genderOptions": {
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر",
+      "preferNotToSay": "أفضّل عدم الإفصاح"
+    },
+    "validation": {
+      "selectedPathRequired": "اختر مسارًا للمتابعة",
+      "phoneNumberRequired": "رقم الهاتف مطلوب",
+      "dobRequired": "أدخل تاريخ ميلاد صالحًا",
+      "genderRequired": "اختر جنسك",
+      "bioCountryRequired": "الدولة مطلوبة",
+      "bioRequired": "النبذة مطلوبة",
+      "bioTooLong": "يجب ألا تتجاوز النبذة 1000 حرف",
+      "addressLine1Required": "العنوان مطلوب",
+      "cityRequired": "المدينة مطلوبة",
+      "stateRequired": "الولاية/المنطقة مطلوبة",
+      "postalCodeRequired": "الرمز البريدي مطلوب",
+      "timeZoneRequired": "المنطقة الزمنية مطلوبة",
+      "postalCodeInvalid": "أدخل رمزًا بريديًا صالحًا للدولة المحددة",
+      "phoneNumberInvalid": "أدخل رقم هاتف صالحًا للدولة المحددة"
+    },
+    "hints": {
+      "selectCountryFirst": "اختر دولتك أولًا",
+      "countrySwitch": "أنت تستخدم Nexora {current}. عند المتابعة، سننقلك إلى Nexora {next}."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "طلب صلاحية مسؤول المنصة",
+    "description": "اختر الدول وصلاحيات الإدارة التي تحتاجها. سيراجع طلبك مسؤول منصة معتمد.",
+    "sections": {
+      "role": {
+        "title": "دورك",
+        "description": "أخبرنا عن منصبك الحالي ليفهم المراجعون طلبك."
+      },
+      "justification": {
+        "title": "مبرر الطلب",
+        "description": "اشرح سبب حاجتك إلى صلاحية مسؤول المنصة وكيف تخطط لاستخدامها."
+      },
+      "countries": {
+        "title": "اختر الدول",
+        "description": "اختر حتى {max, number} من الدول المدعومة."
+      },
+      "permissions": {
+        "title": "اضبط الصلاحيات لكل دولة",
+        "description": "اختر وحدات الإدارة والإجراءات المحددة التي تحتاج إليها لكل دولة."
+      }
+    },
+    "fields": {
+      "jobTitle": "المسمى الوظيفي",
+      "department": "القسم",
+      "currentOrganizationName": "المؤسسة الحالية",
+      "justification": "المبرر",
+      "countries": "الدول",
+      "permissions": "الصلاحيات"
+    },
+    "placeholders": {
+      "jobTitle": "مثال: مدير العمليات الإقليمية",
+      "department": "مثال: العمليات",
+      "currentOrganizationName": "مثال: شركة أكمي",
+      "justification": "اشرح بالتفصيل سبب حاجتك إلى صلاحية المسؤول ومسؤولياتك وكيف ستفيد المنصة…"
+    },
+    "permissions": {
+      "module": "الوحدة",
+      "modulesSelected": "{count, plural, =0 {لم يتم اختيار أي وحدة} one {تم اختيار # وحدة} two {تم اختيار # وحدتين} few {تم اختيار # وحدات} many {تم اختيار # وحدة} other {تم اختيار # وحدة}}"
+    },
+    "modules": {
+      "country": {
+        "label": "إدارة الدول",
+        "description": "إدارة تفاصيل الدول وإعداداتها"
+      },
+      "city": {
+        "label": "إدارة المدن",
+        "description": "إدارة المدن والمناطق والمواقع"
+      },
+      "user": {
+        "label": "إدارة المستخدمين",
+        "description": "إدارة مستخدمي المنصة وصلاحيات الوصول"
+      },
+      "organization": {
+        "label": "إدارة المؤسسات",
+        "description": "مراجعة طلبات المؤسسات والموافقة عليها"
+      },
+      "product": {
+        "label": "إدارة المنتجات",
+        "description": "إدارة المنتجات والكتالوج"
+      },
+      "inventory": {
+        "label": "إدارة المخزون",
+        "description": "إدارة المخزون والكميات المتوفرة"
+      },
+      "billing": {
+        "label": "إدارة الفوترة",
+        "description": "إدارة الفوترة والخطط والمدفوعات"
+      },
+      "analytics": {
+        "label": "إدارة التحليلات",
+        "description": "عرض تحليلات المنصة وتقاريرها"
+      }
+    },
+    "actions": {
+      "view": "عرض",
+      "create": "إنشاء",
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "hints": {
+      "countriesSelected": "تم اختيار {count, number} من {max, number}",
+      "selectCountryFirst": "اختر دولة لضبط صلاحياتها",
+      "ownCountryLocked": "دولتك مضمّنة دائمًا.",
+      "inactiveUntilApproved": "تظل صلاحياتك غير مفعّلة حتى تتم الموافقة على طلبك."
+    },
+    "validation": {
+      "jobTitleRequired": "أدخل مسماك الوظيفي",
+      "jobTitleTooLong": "يجب ألا يتجاوز المسمى الوظيفي {max, number} حرفًا",
+      "departmentRequired": "أدخل قسمك",
+      "departmentTooLong": "يجب ألا يتجاوز اسم القسم {max, number} حرفًا",
+      "currentOrganizationNameRequired": "أدخل مؤسستك الحالية",
+      "currentOrganizationNameTooLong": "يجب ألا يتجاوز اسم المؤسسة {max, number} حرفًا",
+      "justificationRequired": "أخبرنا لماذا تحتاج إلى صلاحية المسؤول",
+      "justificationTooLong": "يجب ألا يتجاوز المبرر 1000 حرف",
+      "countriesRequired": "اختر دولة واحدة على الأقل",
+      "countriesTooMany": "اختر حتى {max, number} من الدول",
+      "permissionsRequired": "اختر صلاحية واحدة على الأقل لهذه الدولة"
+    },
+    "confirmSubmit": {
+      "title": "راجع قبل الإرسال",
+      "description": "يُرجى مراجعة جميع بياناتك بعناية. بعد الإرسال، لا يمكن تغيير طلبك."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "أنشئ مؤسستك",
+        "description": "املأ التفاصيل أدناه لتسجيل مؤسستك. سيراجع فريق الإدارة لدينا طلبك."
+      },
+      "location": {
+        "title": "الموقع والتفاصيل الضريبية",
+        "description": "مكان تسجيل مؤسستك. يتم التحقق من العنوان والرقم الضريبي وفقًا لهذه الدولة."
+      }
+    },
+    "fields": {
+      "name": "اسم المؤسسة",
+      "slug": "رابط المؤسسة",
+      "logo": "شعار المؤسسة",
+      "industry": "مجال العمل",
+      "size": "حجم المؤسسة",
+      "website": "الموقع الإلكتروني",
+      "description": "وصف المؤسسة",
+      "taxId": "الرقم الضريبي (مثل رقم ضريبة القيمة المضافة أو GSTIN أو EIN)"
+    },
+    "placeholders": {
+      "name": "مثل Acme Retail",
+      "industry": "اختر مجال العمل",
+      "size": "اختر الحجم",
+      "description": "ما الذي تقدمه مؤسستك، ولمن؟",
+      "taxId": "مثل رقم ضريبة القيمة المضافة أو GSTIN أو EIN",
+      "logo": "رفع الشعار"
+    },
+    "hints": {
+      "slug": "أحرف إنجليزية صغيرة وأرقام وشرطات. سيصبح جزءًا من عنوان الويب لمؤسستك.",
+      "logo": "PNG أو JPEG أو WebP، بحد أقصى {maxMb, number} ميغابايت.",
+      "description": "من {min, number} إلى {max, number} حرف.",
+      "taxId": "رقم التسجيل الضريبي الذي تستخدمه مؤسستك في الدولة المحددة."
+    },
+    "sizeOption": "{range} موظف",
+    "industries": {
+      "fashionApparel": "الأزياء والملابس",
+      "retail": "البيع بالتجزئة",
+      "ecommerce": "التجارة الإلكترونية",
+      "healthBeauty": "الصحة والجمال",
+      "electronics": "الإلكترونيات",
+      "homeFurniture": "المنزل والأثاث",
+      "manufacturing": "التصنيع",
+      "technology": "التكنولوجيا",
+      "logistics": "الخدمات اللوجستية",
+      "education": "التعليم",
+      "other": "أخرى"
+    },
+    "validation": {
+      "organizationNameRequired": "اسم المؤسسة مطلوب",
+      "organizationNameTooLong": "يجب ألا يزيد اسم المؤسسة عن {max, number} حرفًا",
+      "organizationSlugRequired": "المعرّف المختصر مطلوب",
+      "organizationSlugMinLength": "يجب ألا يقل المعرّف المختصر عن {min, number} أحرف",
+      "organizationSlugTooLong": "يجب ألا يزيد المعرّف المختصر عن {max, number} حرفًا",
+      "organizationSlugPattern": "استخدم أحرفًا إنجليزية صغيرة وأرقامًا وشرطات مفردة، مثل acme-retail",
+      "organizationLogoRequired": "حمّل شعار مؤسستك",
+      "organizationLogoTooLarge": "يجب ألا يتجاوز حجم الشعار {maxMb, number} ميغابايت",
+      "organizationLogoWrongFormat": "يجب أن يكون الشعار صورة PNG أو JPEG أو WebP",
+      "organizationSizeRequired": "اختر حجم مؤسستك",
+      "organizationIndustryTypeRequired": "اختر مجال عملك",
+      "organizationCountryRequired": "الدولة مطلوبة",
+      "organizationWebsiteInvalid": "أدخل موقعًا إلكترونيًا صالحًا، مثل https://example.com",
+      "organizationDescriptionRequired": "الوصف مطلوب",
+      "organizationDescriptionMinLength": "يجب ألا يقل الوصف عن {min, number} حرفًا",
+      "organizationDescriptionTooLong": "يجب ألا يزيد الوصف عن {max, number} حرف",
+      "organizationTaxDetailsRequired": "الرقم الضريبي مطلوب",
+      "organizationTaxDetailsInvalid": "أدخل رقمًا ضريبيًا صالحًا",
+      "addressLine1Required": "العنوان مطلوب",
+      "cityRequired": "المدينة مطلوبة",
+      "stateRequired": "الولاية/المنطقة مطلوبة",
+      "postalCodeRequired": "الرمز البريدي مطلوب",
+      "postalCodeInvalid": "أدخل رمزًا بريديًا صالحًا للدولة المحددة"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "تم إرسال الطلب بنجاح!",
+        "subtitle": "في انتظار الموافقة",
+        "description": "تم إرسال طلبك ويقوم فريق الإدارة بمراجعته حاليًا. سنُعلمك فور اتخاذ القرار."
+      },
+      "approved": {
+        "title": "تمت الموافقة على الطلب!",
+        "subtitle": "جارٍ تفعيل حسابك",
+        "description": "تمت الموافقة على طلبك. نحن نفعّل حسابك الآن، وستتمكن من استخدام Nexora قريبًا."
+      },
+      "rejected": {
+        "title": "لم تتم الموافقة على الطلب",
+        "subtitle": "تم رفض طلبك",
+        "description": "للأسف، لم تتم الموافقة على طلبك هذه المرة. راجع تعليق المراجع أدناه للتفاصيل."
+      }
+    },
+    "stages": {
+      "submitted": "تم الإرسال",
+      "inReview": "قيد المراجعة",
+      "underApproval": "قيد الموافقة",
+      "completed": "مكتمل"
+    },
+    "stageStates": {
+      "done": "تم",
+      "current": "قيد التنفيذ",
+      "pending": "معلّق",
+      "rejected": "مرفوض"
+    },
+    "turnaround": "يستغرق هذا عادةً من يوم إلى يومي عمل. نشكرك على صبرك.",
+    "rejectionReason": "تعليق المراجع",
+    "details": {
+      "title": "تفاصيل الطلب",
+      "requestId": "معرّف الطلب",
+      "submittedOn": "تاريخ الإرسال",
+      "requestType": "نوع الطلب",
+      "submittedBy": "مقدّم الطلب",
+      "you": "{name} (أنت)",
+      "currentStatus": "الحالة الحالية"
+    },
+    "statuses": {
+      "waiting": "في انتظار الموافقة",
+      "inReview": "قيد المراجعة",
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوض"
+    },
+    "viewSubmitted": "عرض المعلومات المرسلة",
+    "hideSubmitted": "إخفاء المعلومات المرسلة",
+    "submittedInformation": {
+      "title": "المعلومات المرسلة",
+      "personal": "المعلومات الشخصية",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "permissions": "الأذونات المطلوبة",
+      "logoAlt": "شعار {name}",
+      "logoUnavailable": "الشعار غير متاح"
+    },
+    "next": {
+      "title": "ماذا بعد؟",
+      "review": {
+        "title": "المراجعة جارية",
+        "description": "يراجع فريق الإدارة المعلومات التي أرسلتها."
+      },
+      "notified": {
+        "title": "تلقَّ الإشعارات",
+        "description": "ستتلقى رسالة بريد إلكتروني وإشعارًا داخل التطبيق عند وجود أي تحديث."
+      },
+      "activation": {
+        "title": "تفعيل الحساب",
+        "description": "بعد الموافقة، سيتم تفعيل حسابك ويمكنك البدء في استخدام Nexora."
+      }
+    },
+    "thanks": "شكرًا لاختيارك Nexora. يسعدنا انضمامك إلينا!"
+  }
+}

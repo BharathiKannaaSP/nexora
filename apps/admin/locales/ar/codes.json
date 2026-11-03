@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "تم إنشاء الحساب بنجاح"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "تم التحقق من البريد الإلكتروني بنجاح"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "تم تسجيل الدخول بنجاح"
+    },
+    "REFRESH": {
+      "SUCCESS": "تم تحديث الجلسة"
+    },
+    "LOGOUT": {
+      "SUCCESS": "تم تسجيل الخروج بنجاح"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "تم إرسال رسالة التحقق"
+    },
+    "UPDATED": {
+      "SUCCESS": "تم تحديث الحساب بنجاح"
+    }
+  },
+  "VALIDATION_ERROR": "بعض البيانات غير صالحة. يرجى مراجعة النموذج.",
+  "EMAIL_ALREADY_EXISTS": "يوجد حساب مسجل بهذا البريد الإلكتروني بالفعل",
+  "USERNAME_ALREADY_EXISTS": "اسم المستخدم هذا مستخدم بالفعل",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "يوجد حساب بهذا البريد الإلكتروني أو اسم المستخدم بالفعل",
+  "USER_NOT_FOUND": "الحساب غير موجود",
+  "NOTHING_TO_UPDATE": "لا يوجد ما يتم تحديثه",
+  "ONBOARDING_NOT_FOUND": "إعدادك غير جاهز بعد. يُرجى المحاولة مرة أخرى بعد قليل.",
+  "ONBOARDING_LOCKED": "تم إرسال إعدادك ولا يمكن تغييره بعد الآن.",
+  "ONBOARDING_STEP_SKIPPED": "يُرجى إكمال الخطوة الحالية أولًا.",
+  "ONBOARDING_PATH_REQUIRED": "اختر مسارًا قبل المتابعة.",
+  "ONBOARDING_PATH_MISMATCH": "اختر مسار أن تصبح مسؤولاً أولاً.",
+  "ONBOARDING_STEP_MISMATCH": "يرجى الرجوع إلى خطوة متطلبات الدور والمحاولة مرة أخرى.",
+  "ONBOARDING_CHANGED": "تم تحديث إعدادك من مكان آخر. حدّث الصفحة وحاول مرة أخرى.",
+  "PASSWORD_TOO_LONG": "كلمة المرور طويلة جدًا",
+  "INVALID_CREDENTIALS": "البريد الإلكتروني/اسم المستخدم أو كلمة المرور غير صحيحة",
+  "INVALID_VERIFICATION_TOKEN": "رابط التحقق هذا غير صالح أو منتهي الصلاحية",
+  "EMAIL_NOT_VERIFIED": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول",
+  "ACCOUNT_NOT_ACTIVE": "حسابك غير نشط. يرجى التواصل مع الدعم.",
+  "REFRESH_TOKEN_REQUIRED": "يرجى تسجيل الدخول للمتابعة",
+  "INVALID_REFRESH_TOKEN": "جلستك لم تعد صالحة. يرجى تسجيل الدخول مرة أخرى",
+  "REFRESH_TOKEN_EXPIRED": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى",
+  "REFRESH_TOKEN_REUSED": "حرصًا على أمانك، تم تسجيل خروجك. يرجى تسجيل الدخول مرة أخرى",
+  "ACCESS_TOKEN_REQUIRED": "يرجى تسجيل الدخول للمتابعة",
+  "INVALID_ACCESS_TOKEN": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى",
+  "FORBIDDEN": "ليس لديك صلاحية للقيام بذلك",
+  "ROUTE_NOT_FOUND": "لم يتم العثور على المورد المطلوب",
+  "INTERNAL_SERVER_ERROR": "حدث خطأ من جانبنا. يرجى المحاولة لاحقًا.",
+  "JWT_ACCESS_SECRET_INVALID": "حدث خطأ من جانبنا. يرجى المحاولة لاحقًا.",
+  "TOO_MANY_REQUESTS": "محاولات كثيرة جدًا. يرجى الانتظار بضع دقائق ثم المحاولة مرة أخرى.",
+  "SERVICE_UNAVAILABLE": "الخدمة غير متاحة مؤقتًا. يُرجى المحاولة مرة أخرى بعد قليل.",
+  "SERVICE_REQUEST_FAILED": "تعذّر تحميل بياناتك. يُرجى المحاولة مرة أخرى.",
+  "USER_PROFILE_NOT_FOUND": "ملفك الشخصي غير جاهز بعد. يُرجى المحاولة مرة أخرى بعد قليل.",
+  "UNKNOWN_ERROR": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "تم حفظ طلب صلاحية المسؤول"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "نوع الملف هذا غير مسموح به",
+    "FILE_TOO_LARGE": "هذا الملف كبير جدًا",
+    "UPLOAD_NOT_FOUND": "لم يتم العثور على الملف المرفوع أو انتهت صلاحيته. يرجى المحاولة مرة أخرى",
+    "UPLOAD_FAILED": "تعذر رفع الملف. يرجى المحاولة مرة أخرى"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "تم إرسال طلب المؤسسة"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "تمت الموافقة على طلب المؤسسة"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "تم رفض طلب المؤسسة"
+    },
+    "SLUG_TAKEN": "هذا المعرّف مستخدم بالفعل. يرجى اختيار معرّف آخر",
+    "LOGO_INVALID": "يرجى رفع الشعار مرة أخرى",
+    "REQUEST_LOCKED": "طلبك قيد المراجعة ولا يمكن تغييره الآن",
+    "REQUEST_ALREADY_REVIEWED": "تمت مراجعة هذا الطلب بالفعل",
+    "REQUEST_NOT_FOUND": "لم يتم العثور على طلب المؤسسة",
+    "REQUEST_INCOMPLETE": "هذا الطلب يفتقد إلى بيانات مطلوبة",
+    "NOT_FOUND": "لم يتم العثور على المؤسسة"
+  }
+}

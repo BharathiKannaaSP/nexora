@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Account aangemaakt"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "E-mailadres bevestigd"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Ingelogd"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sessie vernieuwd"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Uitgelogd"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "Verificatie-e-mail verstuurd"
+    },
+    "UPDATED": {
+      "SUCCESS": "Account bijgewerkt"
+    }
+  },
+  "VALIDATION_ERROR": "Sommige gegevens zijn ongeldig. Controleer het formulier.",
+  "EMAIL_ALREADY_EXISTS": "Er bestaat al een account met dit e-mailadres",
+  "USERNAME_ALREADY_EXISTS": "Deze gebruikersnaam is al in gebruik",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Er bestaat al een account met dit e-mailadres of deze gebruikersnaam",
+  "USER_NOT_FOUND": "Account niet gevonden",
+  "NOTHING_TO_UPDATE": "Er is niets om bij te werken",
+  "ONBOARDING_NOT_FOUND": "Uw onboarding is nog niet klaar. Probeer het zo meteen opnieuw.",
+  "ONBOARDING_LOCKED": "Uw onboarding is ingediend en kan niet meer worden gewijzigd.",
+  "ONBOARDING_STEP_SKIPPED": "Voltooi eerst de huidige stap.",
+  "ONBOARDING_PATH_REQUIRED": "Kies een route voordat u verdergaat.",
+  "ONBOARDING_PATH_MISMATCH": "Kies eerst de route ‘Beheerder worden’.",
+  "ONBOARDING_STEP_MISMATCH": "Ga terug naar de stap ‘Rolvereisten’ en probeer het opnieuw.",
+  "ONBOARDING_CHANGED": "Uw onboarding is elders bijgewerkt. Vernieuw de pagina en probeer het opnieuw.",
+  "PASSWORD_TOO_LONG": "Het wachtwoord is te lang",
+  "INVALID_CREDENTIALS": "Ongeldig e-mailadres/gebruikersnaam of wachtwoord",
+  "INVALID_VERIFICATION_TOKEN": "Deze verificatielink is ongeldig of verlopen",
+  "EMAIL_NOT_VERIFIED": "Bevestig uw e-mailadres voordat u inlogt",
+  "ACCOUNT_NOT_ACTIVE": "Uw account is niet actief. Neem contact op met support.",
+  "REFRESH_TOKEN_REQUIRED": "Log in om verder te gaan",
+  "INVALID_REFRESH_TOKEN": "Uw sessie is niet meer geldig. Log opnieuw in",
+  "REFRESH_TOKEN_EXPIRED": "Uw sessie is verlopen. Log opnieuw in",
+  "REFRESH_TOKEN_REUSED": "Voor uw veiligheid bent u uitgelogd. Log opnieuw in",
+  "ACCESS_TOKEN_REQUIRED": "Log in om verder te gaan",
+  "INVALID_ACCESS_TOKEN": "Uw sessie is verlopen. Log opnieuw in",
+  "FORBIDDEN": "U heeft geen toestemming om dit te doen",
+  "ROUTE_NOT_FOUND": "De opgevraagde bron is niet gevonden",
+  "INTERNAL_SERVER_ERROR": "Er is bij ons iets misgegaan. Probeer het later opnieuw.",
+  "JWT_ACCESS_SECRET_INVALID": "Er is bij ons iets misgegaan. Probeer het later opnieuw.",
+  "TOO_MANY_REQUESTS": "Te veel pogingen. Wacht een paar minuten en probeer het opnieuw.",
+  "SERVICE_UNAVAILABLE": "De service is tijdelijk niet beschikbaar. Probeer het zo meteen opnieuw.",
+  "SERVICE_REQUEST_FAILED": "We konden uw gegevens niet laden. Probeer het opnieuw.",
+  "USER_PROFILE_NOT_FOUND": "Uw profiel is nog niet klaar. Probeer het zo meteen opnieuw.",
+  "UNKNOWN_ERROR": "Er is iets misgegaan. Probeer het opnieuw.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Uw aanvraag voor beheerderstoegang is opgeslagen"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Dit bestandstype is niet toegestaan",
+    "FILE_TOO_LARGE": "Dit bestand is te groot",
+    "UPLOAD_NOT_FOUND": "De upload is niet gevonden of verlopen. Probeer het opnieuw",
+    "UPLOAD_FAILED": "Het bestand kon niet worden geüpload. Probeer het opnieuw"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Je organisatieaanvraag is verzonden"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Organisatieaanvraag goedgekeurd"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Organisatieaanvraag afgewezen"
+    },
+    "SLUG_TAKEN": "Deze slug is al in gebruik. Kies een andere",
+    "LOGO_INVALID": "Upload het logo opnieuw",
+    "REQUEST_LOCKED": "Je aanvraag wordt beoordeeld en kan nu niet worden gewijzigd",
+    "REQUEST_ALREADY_REVIEWED": "Deze aanvraag is al beoordeeld",
+    "REQUEST_NOT_FOUND": "Organisatieaanvraag niet gevonden",
+    "REQUEST_INCOMPLETE": "Deze aanvraag mist verplichte gegevens",
+    "NOT_FOUND": "Organisatie niet gevonden"
+  }
+}

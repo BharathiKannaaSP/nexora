@@ -1,0 +1,943 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.EmailVerificationToken",
+    "label": "Create table \"EmailVerificationToken\"",
+    "summary": "Creates table \"EmailVerificationToken\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "EmailVerificationToken"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"EmailVerificationToken\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"EmailVerificationToken\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"EmailVerificationToken\"",
+        "sql": "CREATE TABLE \"public\".\"EmailVerificationToken\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"expiresAt\" timestamptz NOT NULL,\n  \"id\" text NOT NULL,\n  \"tokenHash\" text NOT NULL,\n  \"usedAt\" timestamptz,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"EmailVerificationToken\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"EmailVerificationToken\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.OutboxEvent",
+    "label": "Create table \"OutboxEvent\"",
+    "summary": "Creates table \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"OutboxEvent\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"OutboxEvent\"",
+        "sql": "CREATE TABLE \"public\".\"OutboxEvent\" (\n  \"aggregateId\" text NOT NULL,\n  \"attempts\" int4 DEFAULT 0 NOT NULL,\n  \"availableAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"eventType\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"lastError\" text,\n  \"payload\" json NOT NULL,\n  \"publishedAt\" timestamptz,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"OutboxEvent_status_check_a6e9acdb\" CHECK (\"status\" IN ('PENDING', 'PROCESSING', 'PUBLISHED', 'FAILED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"OutboxEvent\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.RefreshSession",
+    "label": "Create table \"RefreshSession\"",
+    "summary": "Creates table \"RefreshSession\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"RefreshSession\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"RefreshSession\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"RefreshSession\"",
+        "sql": "CREATE TABLE \"public\".\"RefreshSession\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"expiresAt\" timestamptz NOT NULL,\n  \"id\" text NOT NULL,\n  \"lastUsedAt\" timestamptz,\n  \"revokedAt\" timestamptz,\n  \"tokenHash\" text NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"RefreshSession\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"RefreshSession\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.User",
+    "label": "Create table \"User\"",
+    "summary": "Creates table \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"User\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"User\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"User\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"User\"",
+        "sql": "CREATE TABLE \"public\".\"User\" (\n  \"accountStatus\" text DEFAULT 'ACTIVE' NOT NULL,\n  \"countryCode\" text DEFAULT 'in' NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"email\" text NOT NULL,\n  \"emailVerifiedAt\" timestamptz,\n  \"firstName\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"isEmailVerified\" bool DEFAULT false NOT NULL,\n  \"lastName\" text NOT NULL,\n  \"passwordHash\" text NOT NULL,\n  \"preferredLocale\" text DEFAULT 'en' NOT NULL,\n  \"systemRole\" text DEFAULT 'USER' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userName\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"User_accountStatus_check_f586ef52\" CHECK (\"accountStatus\" IN ('ACTIVE', 'INACTIVE', 'SUSPENDED')),\n  CONSTRAINT \"User_systemRole_check_f89eb5ce\" CHECK (\"systemRole\" IN ('ADMIN', 'USER', 'GUEST', 'ORG_ADMIN', 'ORG_MEMBER'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"User\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"User\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"User\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.EmailVerificationToken.EmailVerificationToken_tokenHash_key",
+    "label": "Add unique constraint on \"EmailVerificationToken\" (tokenHash)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "EmailVerificationToken_tokenHash_key",
+        "table": "EmailVerificationToken"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"EmailVerificationToken_tokenHash_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "EmailVerificationToken_tokenHash_key",
+          "public",
+          "\"public\".\"EmailVerificationToken\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"EmailVerificationToken_tokenHash_key\" on \"EmailVerificationToken\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"EmailVerificationToken_tokenHash_key\"",
+        "sql": "ALTER TABLE \"public\".\"EmailVerificationToken\" ADD CONSTRAINT \"EmailVerificationToken_tokenHash_key\" UNIQUE (\"tokenHash\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"EmailVerificationToken_tokenHash_key\" exists on (tokenHash)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "EmailVerificationToken_tokenHash_key",
+          "public",
+          "\"public\".\"EmailVerificationToken\"",
+          "u",
+          "[\"tokenHash\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.RefreshSession.RefreshSession_tokenHash_key",
+    "label": "Add unique constraint on \"RefreshSession\" (tokenHash)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "RefreshSession_tokenHash_key",
+        "table": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"RefreshSession_tokenHash_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RefreshSession_tokenHash_key",
+          "public",
+          "\"public\".\"RefreshSession\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"RefreshSession_tokenHash_key\" on \"RefreshSession\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"RefreshSession_tokenHash_key\"",
+        "sql": "ALTER TABLE \"public\".\"RefreshSession\" ADD CONSTRAINT \"RefreshSession_tokenHash_key\" UNIQUE (\"tokenHash\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"RefreshSession_tokenHash_key\" exists on (tokenHash)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "RefreshSession_tokenHash_key",
+          "public",
+          "\"public\".\"RefreshSession\"",
+          "u",
+          "[\"tokenHash\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.User.User_email_key",
+    "label": "Add unique constraint on \"User\" (email)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "User_email_key",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"User_email_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_email_key",
+          "public",
+          "\"public\".\"User\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"User_email_key\" on \"User\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"User_email_key\"",
+        "sql": "ALTER TABLE \"public\".\"User\" ADD CONSTRAINT \"User_email_key\" UNIQUE (\"email\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"User_email_key\" exists on (email)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "User_email_key",
+          "public",
+          "\"public\".\"User\"",
+          "u",
+          "[\"email\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.User.User_userName_key",
+    "label": "Add unique constraint on \"User\" (userName)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "User_userName_key",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"User_userName_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_userName_key",
+          "public",
+          "\"public\".\"User\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"User_userName_key\" on \"User\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"User_userName_key\"",
+        "sql": "ALTER TABLE \"public\".\"User\" ADD CONSTRAINT \"User_userName_key\" UNIQUE (\"userName\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"User_userName_key\" exists on (userName)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "User_userName_key",
+          "public",
+          "\"public\".\"User\"",
+          "u",
+          "[\"userName\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.EmailVerificationToken.EmailVerificationToken_expiresAt_idx_6b6b8c10",
+    "label": "Create index \"EmailVerificationToken_expiresAt_idx_6b6b8c10\" on \"EmailVerificationToken\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "EmailVerificationToken_expiresAt_idx_6b6b8c10",
+        "table": "EmailVerificationToken"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"EmailVerificationToken_expiresAt_idx_6b6b8c10\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken_expiresAt_idx_6b6b8c10\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"EmailVerificationToken_expiresAt_idx_6b6b8c10\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"EmailVerificationToken_expiresAt_idx_6b6b8c10\"",
+        "sql": "CREATE INDEX \"EmailVerificationToken_expiresAt_idx_6b6b8c10\" ON \"public\".\"EmailVerificationToken\" (\"expiresAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"EmailVerificationToken_expiresAt_idx_6b6b8c10\" exists on \"EmailVerificationToken\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken_expiresAt_idx_6b6b8c10\"",
+          "i",
+          "I",
+          "\"public\".\"EmailVerificationToken\"",
+          "btree",
+          "[\"expiresAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.EmailVerificationToken.EmailVerificationToken_userId_idx_a489d58a",
+    "label": "Create index \"EmailVerificationToken_userId_idx_a489d58a\" on \"EmailVerificationToken\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "EmailVerificationToken_userId_idx_a489d58a",
+        "table": "EmailVerificationToken"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"EmailVerificationToken_userId_idx_a489d58a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken_userId_idx_a489d58a\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"EmailVerificationToken_userId_idx_a489d58a\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"EmailVerificationToken_userId_idx_a489d58a\"",
+        "sql": "CREATE INDEX \"EmailVerificationToken_userId_idx_a489d58a\" ON \"public\".\"EmailVerificationToken\" (\"userId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"EmailVerificationToken_userId_idx_a489d58a\" exists on \"EmailVerificationToken\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"EmailVerificationToken_userId_idx_a489d58a\"",
+          "i",
+          "I",
+          "\"public\".\"EmailVerificationToken\"",
+          "btree",
+          "[\"userId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_aggregateId_idx_c07c6552",
+    "label": "Create index \"OutboxEvent_aggregateId_idx_c07c6552\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_aggregateId_idx_c07c6552",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_aggregateId_idx_c07c6552\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_aggregateId_idx_c07c6552\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_aggregateId_idx_c07c6552\"",
+        "sql": "CREATE INDEX \"OutboxEvent_aggregateId_idx_c07c6552\" ON \"public\".\"OutboxEvent\" (\"aggregateId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_aggregateId_idx_c07c6552\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"aggregateId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_status_availableAt_idx_98697328",
+    "label": "Create index \"OutboxEvent_status_availableAt_idx_98697328\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_status_availableAt_idx_98697328",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_status_availableAt_idx_98697328\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_status_availableAt_idx_98697328\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_status_availableAt_idx_98697328\"",
+        "sql": "CREATE INDEX \"OutboxEvent_status_availableAt_idx_98697328\" ON \"public\".\"OutboxEvent\" (\"status\", \"availableAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_status_availableAt_idx_98697328\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"status\",\"availableAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RefreshSession.RefreshSession_expiresAt_idx_6b6b8c10",
+    "label": "Create index \"RefreshSession_expiresAt_idx_6b6b8c10\" on \"RefreshSession\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RefreshSession_expiresAt_idx_6b6b8c10",
+        "table": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RefreshSession_expiresAt_idx_6b6b8c10\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_expiresAt_idx_6b6b8c10\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"RefreshSession_expiresAt_idx_6b6b8c10\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RefreshSession_expiresAt_idx_6b6b8c10\"",
+        "sql": "CREATE INDEX \"RefreshSession_expiresAt_idx_6b6b8c10\" ON \"public\".\"RefreshSession\" (\"expiresAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RefreshSession_expiresAt_idx_6b6b8c10\" exists on \"RefreshSession\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_expiresAt_idx_6b6b8c10\"",
+          "i",
+          "I",
+          "\"public\".\"RefreshSession\"",
+          "btree",
+          "[\"expiresAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RefreshSession.RefreshSession_userId_idx_a489d58a",
+    "label": "Create index \"RefreshSession_userId_idx_a489d58a\" on \"RefreshSession\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RefreshSession_userId_idx_a489d58a",
+        "table": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RefreshSession_userId_idx_a489d58a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_userId_idx_a489d58a\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"RefreshSession_userId_idx_a489d58a\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RefreshSession_userId_idx_a489d58a\"",
+        "sql": "CREATE INDEX \"RefreshSession_userId_idx_a489d58a\" ON \"public\".\"RefreshSession\" (\"userId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RefreshSession_userId_idx_a489d58a\" exists on \"RefreshSession\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_userId_idx_a489d58a\"",
+          "i",
+          "I",
+          "\"public\".\"RefreshSession\"",
+          "btree",
+          "[\"userId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RefreshSession.RefreshSession_userId_revokedAt_idx_eae4cbef",
+    "label": "Create index \"RefreshSession_userId_revokedAt_idx_eae4cbef\" on \"RefreshSession\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RefreshSession_userId_revokedAt_idx_eae4cbef",
+        "table": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RefreshSession_userId_revokedAt_idx_eae4cbef\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_userId_revokedAt_idx_eae4cbef\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"RefreshSession_userId_revokedAt_idx_eae4cbef\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RefreshSession_userId_revokedAt_idx_eae4cbef\"",
+        "sql": "CREATE INDEX \"RefreshSession_userId_revokedAt_idx_eae4cbef\" ON \"public\".\"RefreshSession\" (\"userId\", \"revokedAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RefreshSession_userId_revokedAt_idx_eae4cbef\" exists on \"RefreshSession\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"RefreshSession_userId_revokedAt_idx_eae4cbef\"",
+          "i",
+          "I",
+          "\"public\".\"RefreshSession\"",
+          "btree",
+          "[\"userId\",\"revokedAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.User.User_accountStatus_idx_66d3289d",
+    "label": "Create index \"User_accountStatus_idx_66d3289d\" on \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "User_accountStatus_idx_66d3289d",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"User_accountStatus_idx_66d3289d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"User_accountStatus_idx_66d3289d\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"User_accountStatus_idx_66d3289d\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"User_accountStatus_idx_66d3289d\"",
+        "sql": "CREATE INDEX \"User_accountStatus_idx_66d3289d\" ON \"public\".\"User\" (\"accountStatus\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"User_accountStatus_idx_66d3289d\" exists on \"User\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"User_accountStatus_idx_66d3289d\"",
+          "i",
+          "I",
+          "\"public\".\"User\"",
+          "btree",
+          "[\"accountStatus\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.User.User_systemRole_idx_49d3bb02",
+    "label": "Create index \"User_systemRole_idx_49d3bb02\" on \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "User_systemRole_idx_49d3bb02",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"User_systemRole_idx_49d3bb02\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"User_systemRole_idx_49d3bb02\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"User_systemRole_idx_49d3bb02\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"User_systemRole_idx_49d3bb02\"",
+        "sql": "CREATE INDEX \"User_systemRole_idx_49d3bb02\" ON \"public\".\"User\" (\"systemRole\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"User_systemRole_idx_49d3bb02\" exists on \"User\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"User_systemRole_idx_49d3bb02\"",
+          "i",
+          "I",
+          "\"public\".\"User\"",
+          "btree",
+          "[\"systemRole\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.EmailVerificationToken.EmailVerificationToken_userId_fkey",
+    "label": "Add foreign key \"EmailVerificationToken_userId_fkey\" on \"EmailVerificationToken\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "EmailVerificationToken_userId_fkey",
+        "table": "EmailVerificationToken"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"EmailVerificationToken_userId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "EmailVerificationToken_userId_fkey",
+          "public",
+          "\"public\".\"EmailVerificationToken\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"EmailVerificationToken_userId_fkey\" on \"EmailVerificationToken\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"EmailVerificationToken_userId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"EmailVerificationToken\"\nADD CONSTRAINT \"EmailVerificationToken_userId_fkey\"\nFOREIGN KEY (\"userId\")\nREFERENCES \"public\".\"User\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"EmailVerificationToken_userId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
+        "params": [
+          "EmailVerificationToken_userId_fkey",
+          "public",
+          "\"public\".\"EmailVerificationToken\"",
+          "f",
+          "[\"userId\"]",
+          "\"public\".\"User\"",
+          "[\"id\"]",
+          "c",
+          "a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.RefreshSession.RefreshSession_userId_fkey",
+    "label": "Add foreign key \"RefreshSession_userId_fkey\" on \"RefreshSession\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "RefreshSession_userId_fkey",
+        "table": "RefreshSession"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"RefreshSession_userId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "RefreshSession_userId_fkey",
+          "public",
+          "\"public\".\"RefreshSession\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"RefreshSession_userId_fkey\" on \"RefreshSession\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"RefreshSession_userId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"RefreshSession\"\nADD CONSTRAINT \"RefreshSession_userId_fkey\"\nFOREIGN KEY (\"userId\")\nREFERENCES \"public\".\"User\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"RefreshSession_userId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
+        "params": [
+          "RefreshSession_userId_fkey",
+          "public",
+          "\"public\".\"RefreshSession\"",
+          "f",
+          "[\"userId\"]",
+          "\"public\".\"User\"",
+          "[\"id\"]",
+          "c",
+          "a"
+        ]
+      }
+    ]
+  }
+]

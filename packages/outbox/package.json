@@ -1,0 +1,32 @@
+{
+  "name": "@nexora/outbox",
+  "version": "1.0.0",
+  "description": "Nexora transactional outbox publisher",
+  "scripts": {
+    "lint": "eslint",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "nexora",
+    "outbox",
+    "package"
+  ],
+  "author": "Bharathi Kannaa",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@nexora/kafka": "workspace:*",
+    "@nexora/shared": "workspace:*",
+    "temporal-polyfill": "^1.0.6"
+  },
+  "devDependencies": {
+    "@nexora/eslint-config": "workspace:*",
+    "@types/node": "^26.6.5",
+    "eslint": "^10",
+    "typescript": "^7.0.2"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

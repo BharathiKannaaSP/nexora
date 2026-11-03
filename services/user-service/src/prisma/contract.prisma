@@ -1,0 +1,64 @@
+// use prisma-8
+enum OutboxEventStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
+}
+
+enum ProfileStatus {
+  INCOMPLETE
+  COMPLETE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+model UserProfile {
+  id            String               @id @onCreate(cuid(2))
+  userId        String               @unique
+
+  phoneNumber   String?
+  bioCountry    String?
+  bio           String?
+  gender        Gender?
+  dob           DateTime?
+
+  addressLine1  String?
+  addressLine2  String?
+  city          String?
+  state         String?
+  postalCode    String?
+
+  languageCode  String               @default("en")
+  timezone      String?
+
+  profileStatus ProfileStatus        @default(INCOMPLETE)
+
+  createdAt     DateTime             @default(now())
+  updatedAt     temporal.updatedAt()
+
+  @@index([bioCountry])
+  @@index([profileStatus])
+}
+
+model OutboxEvent {
+  id          String               @id @onCreate(cuid(2))
+  eventType   String
+  aggregateId String
+  payload     Json
+  status      OutboxEventStatus    @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  publishedAt DateTime?
+  lastError   String?
+  createdAt   DateTime             @default(now())
+  updatedAt   temporal.updatedAt()
+
+  @@index([status, availableAt])
+  @@index([aggregateId])
+}

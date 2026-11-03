@@ -1,0 +1,781 @@
+[
+  {
+    "id": "table.AdminAccessRequest",
+    "label": "Create table \"AdminAccessRequest\"",
+    "summary": "Creates table \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"AdminAccessRequest\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"AdminAccessRequest\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"AdminAccessRequest\"",
+        "sql": "CREATE TABLE \"public\".\"AdminAccessRequest\" (\n  \"applicationRevision\" int4 DEFAULT 1 NOT NULL,\n  \"currentOrganizationName\" text,\n  \"department\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"jobTitle\" text NOT NULL,\n  \"justification\" text NOT NULL,\n  \"onboardingId\" text NOT NULL,\n  \"reviewComment\" text,\n  \"reviewedAt\" timestamptz,\n  \"reviewedByUserId\" text,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"submittedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"AdminAccessRequest_status_check_5ccde6d9\" CHECK (\"status\" IN ('PENDING', 'UNDER_REVIEW', 'APPROVED', 'REJECTED', 'WITHDRAWN'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"AdminAccessRequest\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"AdminAccessRequest\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.AdminAccessRequestPermission",
+    "label": "Create table \"AdminAccessRequestPermission\"",
+    "summary": "Creates table \"AdminAccessRequestPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"AdminAccessRequestPermission\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"AdminAccessRequestPermission\"",
+        "sql": "CREATE TABLE \"public\".\"AdminAccessRequestPermission\" (\n  \"accessLevel\" text DEFAULT 'READ' NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"moduleCode\" text NOT NULL,\n  \"moduleNameSnapshot\" text,\n  \"requestId\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"AdminAccessRequestPermission\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"AdminAccessRequestPermission\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.Onboarding",
+    "label": "Create table \"Onboarding\"",
+    "summary": "Creates table \"Onboarding\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Onboarding\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Onboarding\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Onboarding\"",
+        "sql": "CREATE TABLE \"public\".\"Onboarding\" (\n  \"completedAt\" timestamptz,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"currentStep\" text DEFAULT 'BASIC_INFORMATION' NOT NULL,\n  \"id\" text NOT NULL,\n  \"rejectedAt\" timestamptz,\n  \"rejectionReason\" text,\n  \"revision\" int4 DEFAULT 1 NOT NULL,\n  \"selectedPath\" text,\n  \"startedAt\" timestamptz,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"submittedAt\" timestamptz,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"Onboarding_currentStep_check_3b21c466\" CHECK (\"currentStep\" IN ('BASIC_INFORMATION', 'CHOOSE_PATH', 'ROLE_REQUIREMENTS', 'REVIEW', 'COMPLETED')),\n  CONSTRAINT \"Onboarding_selectedPath_check_6f2c7f99\" CHECK (\"selectedPath\" IN ('BECOME_ADMIN', 'CREATE_ORGANIZATION', 'JOIN_ORGANIZATION')),\n  CONSTRAINT \"Onboarding_status_check_8658aca4\" CHECK (\"status\" IN ('PENDING', 'IN_PROGRESS', 'WAITING_APPROVAL', 'COMPLETED', 'REJECTED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Onboarding\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Onboarding\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.AdminAccessRequest.AdminAccessRequest_onboardingId_applicationRevision_key",
+    "label": "Add unique constraint on \"AdminAccessRequest\" (onboardingId, applicationRevision)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "AdminAccessRequest_onboardingId_applicationRevision_key",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"AdminAccessRequest_onboardingId_applicationRevision_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequest_onboardingId_applicationRevision_key",
+          "public",
+          "\"public\".\"AdminAccessRequest\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"AdminAccessRequest_onboardingId_applicationRevision_key\" on \"AdminAccessRequest\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"AdminAccessRequest_onboardingId_applicationRevision_key\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequest\" ADD CONSTRAINT \"AdminAccessRequest_onboardingId_applicationRevision_key\" UNIQUE (\"onboardingId\", \"applicationRevision\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"AdminAccessRequest_onboardingId_applicationRevision_key\" exists on (onboardingId, applicationRevision)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "AdminAccessRequest_onboardingId_applicationRevision_key",
+          "public",
+          "\"public\".\"AdminAccessRequest\"",
+          "u",
+          "[\"onboardingId\",\"applicationRevision\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.AdminAccessRequestPermission.AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+    "label": "Add unique constraint on \"AdminAccessRequestPermission\" (requestId, moduleCode, accessLevel)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\" ADD CONSTRAINT \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" UNIQUE (\"requestId\", \"moduleCode\", \"accessLevel\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k\" exists on (requestId, moduleCode, accessLevel)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_moduleCode_accessLevel_k",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "u",
+          "[\"requestId\",\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.Onboarding.Onboarding_userId_key",
+    "label": "Add unique constraint on \"Onboarding\" (userId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "Onboarding_userId_key",
+        "table": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Onboarding_userId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Onboarding_userId_key",
+          "public",
+          "\"public\".\"Onboarding\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Onboarding_userId_key\" on \"Onboarding\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"Onboarding_userId_key\"",
+        "sql": "ALTER TABLE \"public\".\"Onboarding\" ADD CONSTRAINT \"Onboarding_userId_key\" UNIQUE (\"userId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"Onboarding_userId_key\" exists on (userId)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "Onboarding_userId_key",
+          "public",
+          "\"public\".\"Onboarding\"",
+          "u",
+          "[\"userId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequest.AdminAccessRequest_onboardingId_idx_68e25417",
+    "label": "Create index \"AdminAccessRequest_onboardingId_idx_68e25417\" on \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequest_onboardingId_idx_68e25417",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequest_onboardingId_idx_68e25417\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_onboardingId_idx_68e25417\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequest_onboardingId_idx_68e25417\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequest_onboardingId_idx_68e25417\"",
+        "sql": "CREATE INDEX \"AdminAccessRequest_onboardingId_idx_68e25417\" ON \"public\".\"AdminAccessRequest\" (\"onboardingId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequest_onboardingId_idx_68e25417\" exists on \"AdminAccessRequest\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_onboardingId_idx_68e25417\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequest\"",
+          "btree",
+          "[\"onboardingId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequest.AdminAccessRequest_reviewedByUserId_idx_e62d4e38",
+    "label": "Create index \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\" on \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequest_reviewedByUserId_idx_e62d4e38",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\"",
+        "sql": "CREATE INDEX \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\" ON \"public\".\"AdminAccessRequest\" (\"reviewedByUserId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\" exists on \"AdminAccessRequest\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_reviewedByUserId_idx_e62d4e38\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequest\"",
+          "btree",
+          "[\"reviewedByUserId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequest.AdminAccessRequest_status_submittedAt_idx_0938dd64",
+    "label": "Create index \"AdminAccessRequest_status_submittedAt_idx_0938dd64\" on \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequest_status_submittedAt_idx_0938dd64",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequest_status_submittedAt_idx_0938dd64\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_status_submittedAt_idx_0938dd64\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequest_status_submittedAt_idx_0938dd64\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequest_status_submittedAt_idx_0938dd64\"",
+        "sql": "CREATE INDEX \"AdminAccessRequest_status_submittedAt_idx_0938dd64\" ON \"public\".\"AdminAccessRequest\" (\"status\", \"submittedAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequest_status_submittedAt_idx_0938dd64\" exists on \"AdminAccessRequest\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_status_submittedAt_idx_0938dd64\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequest\"",
+          "btree",
+          "[\"status\",\"submittedAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequest.AdminAccessRequest_userId_status_idx_e4a128ba",
+    "label": "Create index \"AdminAccessRequest_userId_status_idx_e4a128ba\" on \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequest_userId_status_idx_e4a128ba",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequest_userId_status_idx_e4a128ba\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_userId_status_idx_e4a128ba\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequest_userId_status_idx_e4a128ba\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequest_userId_status_idx_e4a128ba\"",
+        "sql": "CREATE INDEX \"AdminAccessRequest_userId_status_idx_e4a128ba\" ON \"public\".\"AdminAccessRequest\" (\"userId\", \"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequest_userId_status_idx_e4a128ba\" exists on \"AdminAccessRequest\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequest_userId_status_idx_e4a128ba\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequest\"",
+          "btree",
+          "[\"userId\",\"status\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequestPermission.AdminAccessRequestPermission_moduleCode_idx_b27c7c04",
+    "label": "Create index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" on \"AdminAccessRequestPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequestPermission_moduleCode_idx_b27c7c04",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\"",
+        "sql": "CREATE INDEX \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" ON \"public\".\"AdminAccessRequestPermission\" (\"moduleCode\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\" exists on \"AdminAccessRequestPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_moduleCode_idx_b27c7c04\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "btree",
+          "[\"moduleCode\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.AdminAccessRequestPermission.AdminAccessRequestPermission_requestId_idx_fd667f92",
+    "label": "Create index \"AdminAccessRequestPermission_requestId_idx_fd667f92\" on \"AdminAccessRequestPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "AdminAccessRequestPermission_requestId_idx_fd667f92",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"AdminAccessRequestPermission_requestId_idx_fd667f92\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_requestId_idx_fd667f92\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"AdminAccessRequestPermission_requestId_idx_fd667f92\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"AdminAccessRequestPermission_requestId_idx_fd667f92\"",
+        "sql": "CREATE INDEX \"AdminAccessRequestPermission_requestId_idx_fd667f92\" ON \"public\".\"AdminAccessRequestPermission\" (\"requestId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"AdminAccessRequestPermission_requestId_idx_fd667f92\" exists on \"AdminAccessRequestPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"AdminAccessRequestPermission_requestId_idx_fd667f92\"",
+          "i",
+          "I",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "btree",
+          "[\"requestId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Onboarding.Onboarding_selectedPath_idx_a9f810ab",
+    "label": "Create index \"Onboarding_selectedPath_idx_a9f810ab\" on \"Onboarding\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Onboarding_selectedPath_idx_a9f810ab",
+        "table": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Onboarding_selectedPath_idx_a9f810ab\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding_selectedPath_idx_a9f810ab\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Onboarding_selectedPath_idx_a9f810ab\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Onboarding_selectedPath_idx_a9f810ab\"",
+        "sql": "CREATE INDEX \"Onboarding_selectedPath_idx_a9f810ab\" ON \"public\".\"Onboarding\" (\"selectedPath\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Onboarding_selectedPath_idx_a9f810ab\" exists on \"Onboarding\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding_selectedPath_idx_a9f810ab\"",
+          "i",
+          "I",
+          "\"public\".\"Onboarding\"",
+          "btree",
+          "[\"selectedPath\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Onboarding.Onboarding_status_currentStep_idx_e7419174",
+    "label": "Create index \"Onboarding_status_currentStep_idx_e7419174\" on \"Onboarding\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Onboarding_status_currentStep_idx_e7419174",
+        "table": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Onboarding_status_currentStep_idx_e7419174\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding_status_currentStep_idx_e7419174\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Onboarding_status_currentStep_idx_e7419174\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Onboarding_status_currentStep_idx_e7419174\"",
+        "sql": "CREATE INDEX \"Onboarding_status_currentStep_idx_e7419174\" ON \"public\".\"Onboarding\" (\"status\", \"currentStep\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Onboarding_status_currentStep_idx_e7419174\" exists on \"Onboarding\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"Onboarding_status_currentStep_idx_e7419174\"",
+          "i",
+          "I",
+          "\"public\".\"Onboarding\"",
+          "btree",
+          "[\"status\",\"currentStep\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.AdminAccessRequest.AdminAccessRequest_onboardingId_fkey",
+    "label": "Add foreign key \"AdminAccessRequest_onboardingId_fkey\" on \"AdminAccessRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "AdminAccessRequest_onboardingId_fkey",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"AdminAccessRequest_onboardingId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequest_onboardingId_fkey",
+          "public",
+          "\"public\".\"AdminAccessRequest\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"AdminAccessRequest_onboardingId_fkey\" on \"AdminAccessRequest\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"AdminAccessRequest_onboardingId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequest\"\nADD CONSTRAINT \"AdminAccessRequest_onboardingId_fkey\"\nFOREIGN KEY (\"onboardingId\")\nREFERENCES \"public\".\"Onboarding\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"AdminAccessRequest_onboardingId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
+        "params": [
+          "AdminAccessRequest_onboardingId_fkey",
+          "public",
+          "\"public\".\"AdminAccessRequest\"",
+          "f",
+          "[\"onboardingId\"]",
+          "\"public\".\"Onboarding\"",
+          "[\"id\"]",
+          "c",
+          "a"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.AdminAccessRequestPermission.AdminAccessRequestPermission_requestId_fkey",
+    "label": "Add foreign key \"AdminAccessRequestPermission_requestId_fkey\" on \"AdminAccessRequestPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "AdminAccessRequestPermission_requestId_fkey",
+        "table": "AdminAccessRequestPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"AdminAccessRequestPermission_requestId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_fkey",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"AdminAccessRequestPermission_requestId_fkey\" on \"AdminAccessRequestPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"AdminAccessRequestPermission_requestId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequestPermission\"\nADD CONSTRAINT \"AdminAccessRequestPermission_requestId_fkey\"\nFOREIGN KEY (\"requestId\")\nREFERENCES \"public\".\"AdminAccessRequest\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"AdminAccessRequestPermission_requestId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
+        "params": [
+          "AdminAccessRequestPermission_requestId_fkey",
+          "public",
+          "\"public\".\"AdminAccessRequestPermission\"",
+          "f",
+          "[\"requestId\"]",
+          "\"public\".\"AdminAccessRequest\"",
+          "[\"id\"]",
+          "c",
+          "a"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "id": "dropCheckConstraint.Onboarding.Onboarding_currentStep_check_3b21c466",
+    "label": "Drop check constraint \"Onboarding_currentStep_check_3b21c466\" on \"Onboarding\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "Onboarding_currentStep_check_3b21c466",
+        "table": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Onboarding_currentStep_check_3b21c466\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Onboarding_currentStep_check_3b21c466",
+          "public",
+          "\"public\".\"Onboarding\""
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "constraint \"Onboarding_currentStep_check_3b21c466\" on \"Onboarding\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop check constraint \"Onboarding_currentStep_check_3b21c466\"",
+        "sql": "ALTER TABLE \"public\".\"Onboarding\" DROP CONSTRAINT \"Onboarding_currentStep_check_3b21c466\""
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"Onboarding_currentStep_check_3b21c466\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Onboarding_currentStep_check_3b21c466",
+          "public",
+          "\"public\".\"Onboarding\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Onboarding_currentStep_check_3b21c466\" on \"Onboarding\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "alterNullability.setNotNull.AdminAccessRequest.currentOrganizationName",
+    "label": "Set NOT NULL on \"AdminAccessRequest\".\"currentOrganizationName\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "currentOrganizationName",
+        "table": "AdminAccessRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"currentOrganizationName\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequest",
+          "currentOrganizationName"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"currentOrganizationName\" on \"AdminAccessRequest\""
+        }
+      },
+      {
+        "description": "ensure no NULL values in \"currentOrganizationName\"",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"public\".\"AdminAccessRequest\" WHERE \"currentOrganizationName\" IS NULL) AS \"result\"",
+        "params": [],
+        "meta": {
+          "requiredColumn": {
+            "table": "AdminAccessRequest",
+            "column": "currentOrganizationName",
+            "reason": "nullValues"
+          }
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "set NOT NULL on \"currentOrganizationName\"",
+        "sql": "ALTER TABLE \"public\".\"AdminAccessRequest\" ALTER COLUMN \"currentOrganizationName\" SET NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"currentOrganizationName\" is NOT NULL",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "AdminAccessRequest",
+          "currentOrganizationName",
+          "NO"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.Onboarding.Onboarding_currentStep_check_091f2e1e",
+    "label": "Add check constraint \"Onboarding_currentStep_check_091f2e1e\" on \"Onboarding\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "Onboarding_currentStep_check_091f2e1e",
+        "table": "Onboarding"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Onboarding_currentStep_check_091f2e1e\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Onboarding_currentStep_check_091f2e1e",
+          "public",
+          "\"public\".\"Onboarding\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Onboarding_currentStep_check_091f2e1e\" on \"Onboarding\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"Onboarding_currentStep_check_091f2e1e\"",
+        "sql": "ALTER TABLE \"public\".\"Onboarding\" ADD CONSTRAINT \"Onboarding_currentStep_check_091f2e1e\" CHECK (\"currentStep\" IN ('BASIC_INFORMATION', 'CHOOSE_PATH', 'ROLE_REQUIREMENTS', 'REVIEW', 'REJECTED', 'COMPLETED'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify check constraint \"Onboarding_currentStep_check_091f2e1e\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4)) AS \"result\"",
+        "params": [
+          "Onboarding_currentStep_check_091f2e1e",
+          "public",
+          "\"public\".\"Onboarding\"",
+          "c"
+        ]
+      }
+    ]
+  }
+]

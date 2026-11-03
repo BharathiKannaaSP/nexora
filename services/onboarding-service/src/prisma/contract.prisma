@@ -1,0 +1,131 @@
+// use prisma-8
+enum OutboxEventStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
+}
+
+enum OnboardingStatus {
+  PENDING
+  IN_PROGRESS
+  WAITING_APPROVAL
+  COMPLETED
+  REJECTED
+}
+
+enum OnboardingStep {
+  BASIC_INFORMATION
+  CHOOSE_PATH
+  ROLE_REQUIREMENTS
+  REVIEW
+  COMPLETED
+}
+
+enum OnboardingPath {
+  BECOME_ADMIN
+  CREATE_ORGANIZATION
+  JOIN_ORGANIZATION
+}
+
+enum AdminAccessRequestStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+model Onboarding {
+  id                  String               @id @onCreate(cuid(2))
+  userId              String               @unique
+
+  status              OnboardingStatus     @default(PENDING)
+  currentStep         OnboardingStep       @default(BASIC_INFORMATION)
+  selectedPath        OnboardingPath?
+
+  startedAt           DateTime?
+  submittedAt         DateTime?
+  completedAt         DateTime?
+  rejectedAt          DateTime?
+  rejectionReason     String?
+
+  revision            Int                  @default(1)
+
+  adminAccessRequests AdminAccessRequest[]
+
+  createdAt           DateTime             @default(now())
+  updatedAt           temporal.updatedAt()
+
+  @@index([status, currentStep])
+  @@index([selectedPath])
+}
+
+model AdminAccessRequest {
+  id                      String                         @id @onCreate(cuid(2))
+  onboardingId            String
+  userId                  String
+
+  status                  AdminAccessRequestStatus       @default(PENDING)
+
+  justification           String
+  jobTitle                String
+  department              String
+  currentOrganizationName String
+
+  reviewedByUserId        String?
+  reviewedAt              DateTime?
+  reviewComment           String?
+
+  applicationRevision     Int                            @default(1)
+
+  submittedAt             DateTime                       @default(now())
+  updatedAt               temporal.updatedAt()
+
+  onboarding              Onboarding                     @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  requestedPermissions    RequestPermission[]
+
+  @@unique([onboardingId, applicationRevision])
+  @@index([userId, status])
+  @@index([status, submittedAt])
+  @@index([reviewedByUserId])
+}
+
+model RequestPermission {
+  id                 String             @id @onCreate(cuid(2))
+  requestId          String
+
+  // ISO 3166-1 alpha-2, e.g. "IN": the country this permission is asked for.
+  countryCode        String
+  // Match the permission catalog (PERMISSION_MODULES / PERMISSION_ACTIONS
+  // in @nexora/schemas/onboarding/become-admin).
+  moduleCode         String
+  accessLevel        String
+  // Optional historical display-name snapshot.
+  moduleNameSnapshot String?
+
+  createdAt          DateTime           @default(now())
+
+  request            AdminAccessRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@unique([requestId, countryCode, moduleCode, accessLevel], map: "AdminAccessReqPerm_req_country_module_access_key")
+  @@index([countryCode, moduleCode], name: "AdminAccessReqPerm_country_module")
+}
+
+model OutboxEvent {
+  id          String               @id @onCreate(cuid(2))
+  eventType   String
+  aggregateId String
+  payload     Json
+  status      OutboxEventStatus    @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  publishedAt DateTime?
+  lastError   String?
+  createdAt   DateTime             @default(now())
+  updatedAt   temporal.updatedAt()
+
+  @@index([status, availableAt])
+  @@index([aggregateId])
+}

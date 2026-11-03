@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Akaun berjaya dicipta"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "E-mel berjaya disahkan"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Berjaya log masuk"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sesi telah dimuat semula"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Berjaya log keluar"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "E-mel pengesahan telah dihantar"
+    },
+    "UPDATED": {
+      "SUCCESS": "Akaun berjaya dikemas kini"
+    }
+  },
+  "VALIDATION_ERROR": "Sesetengah butiran tidak sah. Sila semak borang.",
+  "EMAIL_ALREADY_EXISTS": "Akaun dengan e-mel ini sudah wujud",
+  "USERNAME_ALREADY_EXISTS": "Nama pengguna ini telah digunakan",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Akaun dengan e-mel atau nama pengguna ini sudah wujud",
+  "USER_NOT_FOUND": "Akaun tidak ditemui",
+  "NOTHING_TO_UPDATE": "Tiada apa-apa untuk dikemas kini",
+  "ONBOARDING_NOT_FOUND": "Proses orientasi anda belum sedia. Sila cuba lagi sebentar lagi.",
+  "ONBOARDING_LOCKED": "Proses orientasi anda telah dihantar dan tidak boleh diubah lagi.",
+  "ONBOARDING_STEP_SKIPPED": "Sila lengkapkan langkah semasa terlebih dahulu.",
+  "ONBOARDING_PATH_REQUIRED": "Pilih laluan sebelum meneruskan.",
+  "ONBOARDING_PATH_MISMATCH": "Pilih laluan menjadi pentadbir terlebih dahulu.",
+  "ONBOARDING_STEP_MISMATCH": "Sila kembali ke langkah keperluan peranan dan cuba lagi.",
+  "ONBOARDING_CHANGED": "Proses orientasi anda telah dikemas kini di tempat lain. Muat semula halaman dan cuba lagi.",
+  "PASSWORD_TOO_LONG": "Kata laluan terlalu panjang",
+  "INVALID_CREDENTIALS": "E-mel/nama pengguna atau kata laluan tidak sah",
+  "INVALID_VERIFICATION_TOKEN": "Pautan pengesahan ini tidak sah atau telah tamat tempoh",
+  "EMAIL_NOT_VERIFIED": "Sila sahkan e-mel anda sebelum log masuk",
+  "ACCOUNT_NOT_ACTIVE": "Akaun anda tidak aktif. Sila hubungi sokongan.",
+  "REFRESH_TOKEN_REQUIRED": "Sila log masuk untuk meneruskan",
+  "INVALID_REFRESH_TOKEN": "Sesi anda tidak lagi sah. Sila log masuk semula",
+  "REFRESH_TOKEN_EXPIRED": "Sesi anda telah tamat tempoh. Sila log masuk semula",
+  "REFRESH_TOKEN_REUSED": "Demi keselamatan anda, anda telah dilog keluar. Sila log masuk semula",
+  "ACCESS_TOKEN_REQUIRED": "Sila log masuk untuk meneruskan",
+  "INVALID_ACCESS_TOKEN": "Sesi anda telah tamat tempoh. Sila log masuk semula",
+  "FORBIDDEN": "Anda tidak mempunyai kebenaran untuk melakukan ini",
+  "ROUTE_NOT_FOUND": "Sumber yang diminta tidak ditemui",
+  "INTERNAL_SERVER_ERROR": "Berlaku ralat di pihak kami. Sila cuba lagi kemudian.",
+  "JWT_ACCESS_SECRET_INVALID": "Berlaku ralat di pihak kami. Sila cuba lagi kemudian.",
+  "TOO_MANY_REQUESTS": "Terlalu banyak percubaan. Sila tunggu beberapa minit dan cuba lagi.",
+  "SERVICE_UNAVAILABLE": "Perkhidmatan tidak tersedia buat sementara waktu. Sila cuba lagi sebentar lagi.",
+  "SERVICE_REQUEST_FAILED": "Kami tidak dapat memuatkan butiran anda. Sila cuba lagi.",
+  "USER_PROFILE_NOT_FOUND": "Profil anda belum sedia. Sila cuba lagi sebentar lagi.",
+  "UNKNOWN_ERROR": "Berlaku ralat. Sila cuba lagi.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Permintaan akses pentadbir anda telah disimpan"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Jenis fail ini tidak dibenarkan",
+    "FILE_TOO_LARGE": "Fail ini terlalu besar",
+    "UPLOAD_NOT_FOUND": "Muat naik tidak ditemui atau telah tamat tempoh. Sila cuba lagi",
+    "UPLOAD_FAILED": "Fail tidak dapat dimuat naik. Sila cuba lagi"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Permintaan organisasi anda telah dihantar"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Permintaan organisasi diluluskan"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Permintaan organisasi ditolak"
+    },
+    "SLUG_TAKEN": "Slug ini sudah digunakan. Sila pilih yang lain",
+    "LOGO_INVALID": "Sila muat naik logo sekali lagi",
+    "REQUEST_LOCKED": "Permintaan anda sedang disemak dan tidak boleh diubah sekarang",
+    "REQUEST_ALREADY_REVIEWED": "Permintaan ini telah disemak",
+    "REQUEST_NOT_FOUND": "Permintaan organisasi tidak ditemui",
+    "REQUEST_INCOMPLETE": "Permintaan ini tiada butiran yang diperlukan",
+    "NOT_FOUND": "Organisasi tidak ditemui"
+  }
+}

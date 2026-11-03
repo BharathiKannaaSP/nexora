@@ -1,0 +1,39 @@
+{
+  "languageLabel": "Bahasa",
+  "error": {
+    "title": "Berlaku ralat",
+    "retry": "Cuba lagi"
+  },
+  "actions": {
+    "previous": "Sebelumnya",
+    "next": "Seterusnya",
+    "submit": "Hantar",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "continue": "Teruskan",
+    "back": "Kembali",
+    "close": "Tutup",
+    "edit": "Edit",
+    "delete": "Padam",
+    "confirm": "Sahkan",
+    "search": "Cari",
+    "skip": "Langkau",
+    "done": "Selesai"
+  },
+  "form": {
+    "invalidField": "Sila semak medan ini.",
+    "noResults": "Tiada hasil ditemui."
+  },
+  "loading": "Memuatkan",
+  "closeNotification": "Tutup pemberitahuan",
+  "fileUpload": {
+    "upload": "Muat naik fail",
+    "dragHint": "Klik untuk semak imbas atau seret fail ke sini",
+    "dropHere": "Lepaskan fail di sini",
+    "browse": "Semak imbas",
+    "replace": "Ganti",
+    "clickToReplace": "Klik untuk ganti",
+    "remove": "Alih keluar {name}",
+    "noFile": "Tiada fail dipilih"
+  }
+}

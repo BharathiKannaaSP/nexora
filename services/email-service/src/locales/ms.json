@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "Sahkan alamat e-mel Nexora anda",
+    "badge": "PENGESAHAN E-MEL",
+    "heading": "Selamat datang ke Nexora",
+    "intro": "Tinggal satu langkah lagi. Sahkan alamat e-mel anda untuk melengkapkan pendaftaran dan bermula.",
+    "button": "Sahkan alamat e-mel",
+    "expiry": "Pautan pengesahan ini tamat tempoh 3 hari selepas ia dikeluarkan.",
+    "fallback": "Jika butang tidak berfungsi, salin dan tampal pautan ini ke dalam pelayar anda:",
+    "ignore": "Jika anda tidak mencipta akaun Nexora, anda boleh abaikan e-mel ini.",
+    "copyright": "© Nexora {year}. Hak cipta terpelihara."
+  }
+}

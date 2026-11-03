@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "主导航",
+    "dashboard": "仪表板",
+    "profile": "个人资料"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "概览",
+      "platform": "平台管理",
+      "access": "访问与审批",
+      "commerce": "商务",
+      "insights": "洞察与系统"
+    },
+    "items": {
+      "dashboard": "仪表板",
+      "countries": "国家/地区",
+      "languages": "语言",
+      "organizations": "组织",
+      "users": "用户",
+      "admins": "管理员管理",
+      "approvals": "审批",
+      "rolesPermissions": "角色与权限",
+      "products": "产品",
+      "categories": "类别",
+      "inventory": "库存",
+      "orders": "订单",
+      "promotions": "促销",
+      "reports": "报告",
+      "auditLogs": "审计日志",
+      "notifications": "通知",
+      "settings": "平台设置"
+    }
+  },
+  "userMenu": {
+    "signOut": "退出登录"
+  },
+  "home": {
+    "metadata": {
+      "title": "仪表板",
+      "description": "您的 Nexora 管理概览。"
+    },
+    "greeting": "欢迎回来，{firstName}",
+    "description": "以下是您的账户概览。",
+    "summary": {
+      "role": "角色",
+      "status": "账户状态",
+      "email": "电子邮箱",
+      "verified": "已验证",
+      "notVerified": "未验证",
+      "memberSince": "注册时间"
+    },
+    "profile": {
+      "title": "您的个人资料",
+      "description": "查看并核对您的账户信息。",
+      "action": "查看个人资料"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "个人资料",
+      "description": "您当前登录账户的详细信息。"
+    },
+    "sections": {
+      "personal": "个人信息",
+      "account": "账户"
+    },
+    "fields": {
+      "name": "姓名",
+      "userName": "用户名",
+      "email": "电子邮箱",
+      "language": "首选语言",
+      "country": "国家/地区",
+      "role": "角色",
+      "status": "状态",
+      "emailVerification": "邮箱验证",
+      "createdAt": "注册时间",
+      "updatedAt": "最后更新",
+      "id": "用户 ID"
+    },
+    "values": {
+      "verifiedOn": "已于 {date} 验证",
+      "notVerified": "未验证"
+    }
+  },
+  "roles": {
+    "ADMIN": "管理员",
+    "USER": "用户",
+    "GUEST": "访客",
+    "ORG_ADMIN": "组织管理员",
+    "ORG_MEMBER": "组织成员"
+  },
+  "statuses": {
+    "ACTIVE": "活跃",
+    "INACTIVE": "未激活",
+    "SUSPENDED": "已停用"
+  }
+}

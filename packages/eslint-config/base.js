@@ -1,31 +1,34 @@
+import { createRequire } from "node:module"
+import babelParser from "@babel/eslint-parser"
 import js from "@eslint/js"
 import eslintConfigPrettier from "eslint-config-prettier"
 import onlyWarn from "eslint-plugin-only-warn"
 import turboPlugin from "eslint-plugin-turbo"
-import tseslint from "typescript-eslint"
+
+const require = createRequire(import.meta.url)
 
 /**
  * A shared ESLint configuration for the repository.
  *
- * @type {import("eslint").Linter.Config}
- * */
+ * @type {import("eslint").Linter.Config[]}
+ */
 export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
-  ...tseslint.configs.recommended,
   {
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+          presets: [require.resolve("@babel/preset-typescript")],
+        },
+      },
+    },
     plugins: {
       turbo: turboPlugin,
     },
     rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "warn",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
       "turbo/no-undeclared-env-vars": "warn",
     },
   },
@@ -35,6 +38,6 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**", "**/contract.d.ts", "**/convex/_generated/**"],
+    ignores: ["dist/**"],
   },
 ]

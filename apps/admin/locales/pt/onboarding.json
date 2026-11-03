@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "Etapas do cadastro inicial",
+  "signOut": "Sair",
+  "steps": {
+    "basicInformation": {
+      "title": "Informações básicas",
+      "description": "Conte-nos seus dados básicos"
+    },
+    "choosePath": {
+      "title": "Escolha seu caminho",
+      "description": "Selecione como deseja continuar"
+    },
+    "roleRequirements": {
+      "title": "Requisitos da função",
+      "description": "Informe os dados específicos da função"
+    },
+    "review": {
+      "title": "Revisar e enviar",
+      "description": "Revise seus dados e envie"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "Informações básicas",
+      "description": "Conte-nos um pouco sobre você."
+    },
+    "choosePath": {
+      "title": "Escolha seu caminho",
+      "description": "Torne-se administrador, crie uma organização ou participe de uma."
+    },
+    "becomeAdmin": {
+      "title": "Tornar-se administrador",
+      "description": "Informe os dados necessários para solicitar acesso de administrador."
+    },
+    "createOrganization": {
+      "title": "Criar uma organização",
+      "description": "Configure a organização que você vai gerenciar."
+    },
+    "joinOrganization": {
+      "title": "Participar de uma organização",
+      "description": "Encontre a organização da qual deseja participar."
+    },
+    "review": {
+      "title": "Revisão",
+      "description": "Confira seus dados e envie-os para aprovação."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "Este será seu identificador exclusivo na Nexora.",
+    "passwordHint": "Deixe em branco para manter sua senha atual ou use 8 ou mais caracteres para alterá-la.",
+    "emailHint": "Se você alterar seu endereço de e-mail, precisará verificá-lo novamente.",
+    "verified": "Verificado"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "Escolha seu caminho",
+      "phoneNumber": "Número de telefone",
+      "dob": "Data de nascimento",
+      "gender": "Gênero",
+      "bioCountry": "País",
+      "bio": "Biografia",
+      "addressLine1": "Endereço (linha 1)",
+      "addressLine2": "Endereço (linha 2)",
+      "city": "Cidade",
+      "state": "Estado",
+      "postalCode": "CEP",
+      "languageCode": "Idioma",
+      "timezone": "Fuso horário"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "Tornar-se administrador",
+        "description": "Solicite acesso de administrador à Nexora."
+      },
+      "createOrganization": {
+        "label": "Criar uma organização",
+        "description": "Configure uma organização que você vai gerenciar."
+      },
+      "joinOrganization": {
+        "label": "Participar de uma organização",
+        "description": "Participe de uma organização que já usa a Nexora."
+      }
+    },
+    "genderOptions": {
+      "male": "Masculino",
+      "female": "Feminino",
+      "other": "Outro",
+      "preferNotToSay": "Prefiro não informar"
+    },
+    "validation": {
+      "selectedPathRequired": "Escolha um caminho para continuar",
+      "phoneNumberRequired": "O número de telefone é obrigatório",
+      "dobRequired": "Informe uma data de nascimento válida",
+      "genderRequired": "Selecione seu gênero",
+      "bioCountryRequired": "O país é obrigatório",
+      "bioRequired": "A biografia é obrigatória",
+      "bioTooLong": "A biografia deve ter no máximo 1000 caracteres",
+      "addressLine1Required": "O endereço é obrigatório",
+      "cityRequired": "A cidade é obrigatória",
+      "stateRequired": "O estado é obrigatório",
+      "postalCodeRequired": "O CEP é obrigatório",
+      "timeZoneRequired": "O fuso horário é obrigatório",
+      "postalCodeInvalid": "Informe um CEP válido para o país selecionado",
+      "phoneNumberInvalid": "Informe um número de telefone válido para o país selecionado"
+    },
+    "hints": {
+      "selectCountryFirst": "Selecione seu país primeiro",
+      "countrySwitch": "Você está usando a Nexora {current}. Quando continuar, vamos mudar você para a Nexora {next}."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "Solicitar acesso de administrador da plataforma",
+    "description": "Escolha os países e as permissões de gestão de que você precisa. Um administrador autorizado da plataforma vai analisar sua solicitação.",
+    "sections": {
+      "role": {
+        "title": "Sua função",
+        "description": "Conte-nos sobre seu cargo atual para que os revisores entendam sua solicitação."
+      },
+      "justification": {
+        "title": "Justificativa da solicitação",
+        "description": "Explique por que você precisa de acesso de administrador da plataforma e como pretende usá-lo."
+      },
+      "countries": {
+        "title": "Selecionar países",
+        "description": "Escolha até {max, number} países disponíveis."
+      },
+      "permissions": {
+        "title": "Configurar permissões para cada país",
+        "description": "Selecione os módulos de gestão e as ações específicas a que você precisa de acesso em cada país."
+      }
+    },
+    "fields": {
+      "jobTitle": "Cargo",
+      "department": "Departamento",
+      "currentOrganizationName": "Organização atual",
+      "justification": "Justificativa",
+      "countries": "Países",
+      "permissions": "Permissões"
+    },
+    "placeholders": {
+      "jobTitle": "ex.: Gerente Regional de Operações",
+      "department": "ex.: Operações",
+      "currentOrganizationName": "ex.: Acme Corporation",
+      "justification": "Descreva em detalhes por que você precisa de acesso de administrador, suas responsabilidades e como isso vai ajudar a plataforma…"
+    },
+    "permissions": {
+      "module": "Módulo",
+      "modulesSelected": "{count, plural, =0 {Nenhum módulo selecionado} one {# módulo selecionado} other {# módulos selecionados}}"
+    },
+    "modules": {
+      "country": {
+        "label": "Gestão de países",
+        "description": "Gerencie os dados e as configurações dos países"
+      },
+      "city": {
+        "label": "Gestão de cidades",
+        "description": "Gerencie cidades, regiões e locais"
+      },
+      "user": {
+        "label": "Gestão de usuários",
+        "description": "Gerencie os usuários e o acesso à plataforma"
+      },
+      "organization": {
+        "label": "Gestão de organizações",
+        "description": "Revisar e aprovar solicitações de organizações"
+      },
+      "product": {
+        "label": "Gestão de produtos",
+        "description": "Gerencie produtos e o catálogo"
+      },
+      "inventory": {
+        "label": "Gestão de estoque",
+        "description": "Gerencie o inventário e o estoque"
+      },
+      "billing": {
+        "label": "Gestão de faturamento",
+        "description": "Gerencie faturamento, planos e pagamentos"
+      },
+      "analytics": {
+        "label": "Gestão de análises",
+        "description": "Veja as análises e os relatórios da plataforma"
+      }
+    },
+    "actions": {
+      "view": "Visualizar",
+      "create": "Criar",
+      "edit": "Editar",
+      "delete": "Excluir"
+    },
+    "hints": {
+      "countriesSelected": "{count, number} de {max, number} selecionados",
+      "selectCountryFirst": "Selecione um país para configurar as permissões dele",
+      "ownCountryLocked": "Seu próprio país está sempre incluído.",
+      "inactiveUntilApproved": "Seu acesso permanece inativo até que sua solicitação seja aprovada."
+    },
+    "validation": {
+      "jobTitleRequired": "Informe seu cargo",
+      "jobTitleTooLong": "O cargo deve ter no máximo {max, number} caracteres",
+      "departmentRequired": "Informe seu departamento",
+      "departmentTooLong": "O departamento deve ter no máximo {max, number} caracteres",
+      "currentOrganizationNameRequired": "Informe sua organização atual",
+      "currentOrganizationNameTooLong": "O nome da organização deve ter no máximo {max, number} caracteres",
+      "justificationRequired": "Conte-nos por que você precisa de acesso de administrador",
+      "justificationTooLong": "A justificativa deve ter no máximo 1000 caracteres",
+      "countriesRequired": "Selecione pelo menos um país",
+      "countriesTooMany": "Selecione até {max, number} países",
+      "permissionsRequired": "Selecione pelo menos uma permissão para este país"
+    },
+    "confirmSubmit": {
+      "title": "Revise antes de enviar",
+      "description": "Revise todos os seus dados com atenção. Depois de enviada, sua solicitação não poderá ser alterada."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "Crie sua organização",
+        "description": "Preencha os dados abaixo para cadastrar sua organização. Sua solicitação será analisada pela nossa equipe de administração."
+      },
+      "location": {
+        "title": "Localização e dados fiscais",
+        "description": "Onde sua organização está registrada. O endereço e a identificação fiscal são validados de acordo com este país."
+      }
+    },
+    "fields": {
+      "name": "Nome da organização",
+      "slug": "URL da organização",
+      "logo": "Logotipo da organização",
+      "industry": "Setor",
+      "size": "Porte da organização",
+      "website": "Site",
+      "description": "Descrição da organização",
+      "taxId": "Identificação fiscal (ex.: CNPJ, VAT ou EIN)"
+    },
+    "placeholders": {
+      "name": "ex.: Acme Retail",
+      "industry": "Selecione um setor",
+      "size": "Selecione um porte",
+      "description": "O que sua organização faz e a quem ela atende?",
+      "taxId": "ex.: CNPJ, VAT ou EIN",
+      "logo": "Enviar logotipo"
+    },
+    "hints": {
+      "slug": "Letras minúsculas, números e hifens. Isso fará parte do endereço web da sua organização.",
+      "logo": "PNG, JPEG ou WebP, até {maxMb, number} MB.",
+      "description": "{min, number}–{max, number} caracteres.",
+      "taxId": "O número de registro fiscal que sua organização usa no país selecionado."
+    },
+    "sizeOption": "{range} funcionários",
+    "industries": {
+      "fashionApparel": "Moda e vestuário",
+      "retail": "Varejo",
+      "ecommerce": "E-commerce",
+      "healthBeauty": "Saúde e beleza",
+      "electronics": "Eletrônicos",
+      "homeFurniture": "Casa e móveis",
+      "manufacturing": "Indústria",
+      "technology": "Tecnologia",
+      "logistics": "Logística",
+      "education": "Educação",
+      "other": "Outro"
+    },
+    "validation": {
+      "organizationNameRequired": "O nome da organização é obrigatório",
+      "organizationNameTooLong": "O nome da organização deve ter no máximo {max, number} caracteres",
+      "organizationSlugRequired": "O slug é obrigatório",
+      "organizationSlugMinLength": "O slug deve ter pelo menos {min, number} caracteres",
+      "organizationSlugTooLong": "O slug deve ter no máximo {max, number} caracteres",
+      "organizationSlugPattern": "Use letras minúsculas, números e hifens simples, ex.: acme-retail",
+      "organizationLogoRequired": "Envie o logotipo da sua organização",
+      "organizationLogoTooLarge": "O logotipo deve ter no máximo {maxMb, number} MB",
+      "organizationLogoWrongFormat": "O logotipo deve ser uma imagem PNG, JPEG ou WebP",
+      "organizationSizeRequired": "Selecione o porte da sua organização",
+      "organizationIndustryTypeRequired": "Selecione seu setor",
+      "organizationCountryRequired": "O país é obrigatório",
+      "organizationWebsiteInvalid": "Informe um site válido, ex.: https://example.com",
+      "organizationDescriptionRequired": "A descrição é obrigatória",
+      "organizationDescriptionMinLength": "A descrição deve ter pelo menos {min, number} caracteres",
+      "organizationDescriptionTooLong": "A descrição deve ter no máximo {max, number} caracteres",
+      "organizationTaxDetailsRequired": "O CNPJ ou identificação fiscal é obrigatório",
+      "organizationTaxDetailsInvalid": "Informe uma identificação fiscal válida",
+      "addressLine1Required": "O endereço é obrigatório",
+      "cityRequired": "A cidade é obrigatória",
+      "stateRequired": "O estado é obrigatório",
+      "postalCodeRequired": "O CEP é obrigatório",
+      "postalCodeInvalid": "Informe um CEP válido para o país selecionado"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "Solicitação enviada com sucesso!",
+        "subtitle": "Aguardando aprovação",
+        "description": "Sua solicitação foi enviada e está sendo analisada pela nossa equipe de administração. Você será notificado assim que uma decisão for tomada."
+      },
+      "approved": {
+        "title": "Solicitação aprovada!",
+        "subtitle": "Ativando sua conta",
+        "description": "Sua solicitação foi aprovada. Estamos ativando sua conta e, em breve, você poderá começar a usar a Nexora."
+      },
+      "rejected": {
+        "title": "Solicitação não aprovada",
+        "subtitle": "Sua solicitação foi rejeitada",
+        "description": "Infelizmente, sua solicitação não foi aprovada desta vez. Veja o comentário do revisor abaixo para mais detalhes."
+      }
+    },
+    "stages": {
+      "submitted": "Enviada",
+      "inReview": "Em análise",
+      "underApproval": "Em aprovação",
+      "completed": "Concluída"
+    },
+    "stageStates": {
+      "done": "Concluído",
+      "current": "Em andamento",
+      "pending": "Pendente",
+      "rejected": "Rejeitado"
+    },
+    "turnaround": "Isso costuma levar de 1 a 2 dias úteis. Agradecemos sua paciência.",
+    "rejectionReason": "Comentário do revisor",
+    "details": {
+      "title": "Detalhes da solicitação",
+      "requestId": "ID da solicitação",
+      "submittedOn": "Enviada em",
+      "requestType": "Tipo de solicitação",
+      "submittedBy": "Enviada por",
+      "you": "{name} (você)",
+      "currentStatus": "Status atual"
+    },
+    "statuses": {
+      "waiting": "Aguardando aprovação",
+      "inReview": "Em análise",
+      "approved": "Aprovada",
+      "rejected": "Rejeitada"
+    },
+    "viewSubmitted": "Ver informações enviadas",
+    "hideSubmitted": "Ocultar informações enviadas",
+    "submittedInformation": {
+      "title": "Informações enviadas",
+      "personal": "Informações pessoais",
+      "name": "Nome",
+      "email": "E-mail",
+      "permissions": "Permissões solicitadas",
+      "logoAlt": "Logotipo de {name}",
+      "logoUnavailable": "Logotipo indisponível"
+    },
+    "next": {
+      "title": "O que acontece agora?",
+      "review": {
+        "title": "Análise em andamento",
+        "description": "Nossa equipe de administração está analisando as informações que você enviou."
+      },
+      "notified": {
+        "title": "Receba notificações",
+        "description": "Você vai receber um e-mail e uma notificação no app assim que houver uma atualização."
+      },
+      "activation": {
+        "title": "Ativação da conta",
+        "description": "Depois da aprovação, sua conta será ativada e você poderá começar a usar a Nexora."
+      }
+    },
+    "thanks": "Obrigado por escolher a Nexora. Estamos muito felizes em ter você com a gente!"
+  }
+}

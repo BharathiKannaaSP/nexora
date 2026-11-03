@@ -1,0 +1,37 @@
+{
+  "name": "@nexora/aggregate-service",
+  "version": "1.0.0",
+  "description": "Nexora Aggregate service",
+  "main": "src/aggregate-server.ts",
+  "scripts": {
+    "dev": "tsx watch src/aggregate-server.ts",
+    "start": "node dist/aggregate-server.js",
+    "build": "tsc",
+    "lint": "eslint",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "nexora",
+    "aggregate",
+    "service"
+  ],
+  "author": "Bharathi Kannaa",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@nexora/shared": "workspace:*",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "helmet": "^8.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@nexora/eslint-config": "workspace:*",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "eslint": "^10",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

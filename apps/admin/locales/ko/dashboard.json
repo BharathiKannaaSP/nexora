@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "메인",
+    "dashboard": "대시보드",
+    "profile": "프로필"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "개요",
+      "platform": "플랫폼 관리",
+      "access": "액세스 및 승인",
+      "commerce": "커머스",
+      "insights": "인사이트 및 시스템"
+    },
+    "items": {
+      "dashboard": "대시보드",
+      "countries": "국가",
+      "languages": "언어",
+      "organizations": "조직",
+      "users": "사용자",
+      "admins": "관리자 관리",
+      "approvals": "승인",
+      "rolesPermissions": "역할 및 권한",
+      "products": "상품",
+      "categories": "카테고리",
+      "inventory": "재고",
+      "orders": "주문",
+      "promotions": "프로모션",
+      "reports": "보고서",
+      "auditLogs": "감사 로그",
+      "notifications": "알림",
+      "settings": "플랫폼 설정"
+    }
+  },
+  "userMenu": {
+    "signOut": "로그아웃"
+  },
+  "home": {
+    "metadata": {
+      "title": "대시보드",
+      "description": "Nexora 관리자 개요입니다."
+    },
+    "greeting": "다시 오신 것을 환영합니다, {firstName}님",
+    "description": "계정 개요입니다.",
+    "summary": {
+      "role": "역할",
+      "status": "계정 상태",
+      "email": "이메일",
+      "verified": "인증됨",
+      "notVerified": "인증되지 않음",
+      "memberSince": "가입일"
+    },
+    "profile": {
+      "title": "내 프로필",
+      "description": "계정의 세부 정보를 확인할 수 있습니다.",
+      "action": "프로필 보기"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "프로필",
+      "description": "현재 로그인한 계정의 세부 정보입니다."
+    },
+    "sections": {
+      "personal": "개인 정보",
+      "account": "계정"
+    },
+    "fields": {
+      "name": "이름",
+      "userName": "사용자 이름",
+      "email": "이메일",
+      "language": "선호 언어",
+      "country": "국가",
+      "role": "역할",
+      "status": "상태",
+      "emailVerification": "이메일 인증",
+      "createdAt": "가입일",
+      "updatedAt": "최종 업데이트",
+      "id": "사용자 ID"
+    },
+    "values": {
+      "verifiedOn": "{date}에 인증됨",
+      "notVerified": "인증되지 않음"
+    }
+  },
+  "roles": {
+    "ADMIN": "관리자",
+    "USER": "사용자",
+    "GUEST": "게스트",
+    "ORG_ADMIN": "조직 관리자",
+    "ORG_MEMBER": "조직 구성원"
+  },
+  "statuses": {
+    "ACTIVE": "활성",
+    "INACTIVE": "비활성",
+    "SUSPENDED": "정지됨"
+  }
+}

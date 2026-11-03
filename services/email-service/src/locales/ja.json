@@ -1,0 +1,13 @@
+{
+  "verification": {
+    "subject": "Nexora のメールアドレスを確認してください",
+    "badge": "メールアドレスの確認",
+    "heading": "Nexora へようこそ",
+    "intro": "あと少しで完了です。メールアドレスを確認して、登録を完了しましょう。",
+    "button": "メールアドレスを確認",
+    "expiry": "この確認リンクの有効期限は発行から 3 日間です。",
+    "fallback": "ボタンが機能しない場合は、次のリンクをコピーしてブラウザに貼り付けてください：",
+    "ignore": "Nexora のアカウントを作成していない場合は、このメールを無視してください。",
+    "copyright": "© Nexora {year}. All rights reserved."
+  }
+}

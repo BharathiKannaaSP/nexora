@@ -1,27 +1,11 @@
 {
-  "$schema": "https://turbo.build/schema.json",
+  "$schema": "https://v2-11-10.turborepo.dev/schema.json",
+  "concurrency": "20",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"],
-      "env": [
-        "NODE_ENV",
-        "PORT",
-        "CLERK_SECRET_KEY",
-        "CLIENT_URL",
-        "ADMIN_URL",
-        "AUTH_SERVICE_URL",
-        "ONBOARDING_SERVICE_URL",
-        "INTERNAL_SERVICE_SECRET",
-        "RATE_LIMIT_WINDOW_MS",
-        "RATE_LIMIT_MAX",
-        "CLERK_WEBHOOK_SIGNING_SECRET",
-        "DATABASE_URL",
-        "KAFKA_GROUP_ID",
-        "CONVEX_URL",
-        "CLERK_FRONTEND_API_URL"
-      ]
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -33,6 +17,28 @@
       "dependsOn": ["^typecheck"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@nexora/auth-service#dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["AUTH_DATABASE_URL"],
+      "with": ["@nexora/auth-service#outbox:dev"]
+    },
+    "@nexora/onboarding-service#dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["ONBOARDING_DATABASE_URL"],
+      "with": ["@nexora/onboarding-service#outbox:dev"]
+    },
+    "@nexora/user-service#dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["USER_DATABASE_URL"],
+      "with": ["@nexora/user-service#outbox:dev"]
+    },
+    "outbox:dev": {
       "cache": false,
       "persistent": true
     }

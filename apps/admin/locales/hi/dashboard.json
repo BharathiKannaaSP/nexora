@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "मुख्य",
+    "dashboard": "डैशबोर्ड",
+    "profile": "प्रोफ़ाइल"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "अवलोकन",
+      "platform": "प्लेटफ़ॉर्म प्रबंधन",
+      "access": "एक्सेस और अनुमोदन",
+      "commerce": "कॉमर्स",
+      "insights": "इनसाइट्स और सिस्टम"
+    },
+    "items": {
+      "dashboard": "डैशबोर्ड",
+      "countries": "देश",
+      "languages": "भाषाएँ",
+      "organizations": "संगठन",
+      "users": "उपयोगकर्ता",
+      "admins": "एडमिन प्रबंधन",
+      "approvals": "अनुमोदन",
+      "rolesPermissions": "भूमिकाएँ और अनुमतियाँ",
+      "products": "उत्पाद",
+      "categories": "श्रेणियाँ",
+      "inventory": "इन्वेंटरी",
+      "orders": "ऑर्डर",
+      "promotions": "प्रमोशन",
+      "reports": "रिपोर्ट",
+      "auditLogs": "ऑडिट लॉग",
+      "notifications": "सूचनाएँ",
+      "settings": "प्लेटफ़ॉर्म सेटिंग्स"
+    }
+  },
+  "userMenu": {
+    "signOut": "साइन आउट"
+  },
+  "home": {
+    "metadata": {
+      "title": "डैशबोर्ड",
+      "description": "आपका Nexora एडमिन अवलोकन।"
+    },
+    "greeting": "फिर से स्वागत है, {firstName}",
+    "description": "यह रहा आपके खाते का अवलोकन।",
+    "summary": {
+      "role": "भूमिका",
+      "status": "खाते की स्थिति",
+      "email": "ईमेल",
+      "verified": "सत्यापित",
+      "notVerified": "सत्यापित नहीं",
+      "memberSince": "सदस्य बनने की तिथि"
+    },
+    "profile": {
+      "title": "आपकी प्रोफ़ाइल",
+      "description": "अपने खाते का विवरण देखें और जाँचें।",
+      "action": "प्रोफ़ाइल देखें"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "प्रोफ़ाइल",
+      "description": "जिस खाते से आपने साइन इन किया है, उसका विवरण।"
+    },
+    "sections": {
+      "personal": "व्यक्तिगत विवरण",
+      "account": "खाता"
+    },
+    "fields": {
+      "name": "नाम",
+      "userName": "उपयोगकर्ता नाम",
+      "email": "ईमेल",
+      "language": "पसंदीदा भाषा",
+      "country": "देश",
+      "role": "भूमिका",
+      "status": "स्थिति",
+      "emailVerification": "ईमेल सत्यापन",
+      "createdAt": "सदस्य बनने की तिथि",
+      "updatedAt": "अंतिम अपडेट",
+      "id": "उपयोगकर्ता आईडी"
+    },
+    "values": {
+      "verifiedOn": "{date} को सत्यापित",
+      "notVerified": "सत्यापित नहीं"
+    }
+  },
+  "roles": {
+    "ADMIN": "व्यवस्थापक",
+    "USER": "उपयोगकर्ता",
+    "GUEST": "अतिथि",
+    "ORG_ADMIN": "संगठन व्यवस्थापक",
+    "ORG_MEMBER": "संगठन सदस्य"
+  },
+  "statuses": {
+    "ACTIVE": "सक्रिय",
+    "INACTIVE": "निष्क्रिय",
+    "SUSPENDED": "निलंबित"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Compte créé avec succès"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "E-mail vérifié avec succès"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Connexion réussie"
+    },
+    "REFRESH": {
+      "SUCCESS": "Session actualisée"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Déconnexion réussie"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "E-mail de vérification envoyé"
+    },
+    "UPDATED": {
+      "SUCCESS": "Compte mis à jour avec succès"
+    }
+  },
+  "VALIDATION_ERROR": "Certaines informations sont invalides. Veuillez vérifier le formulaire.",
+  "EMAIL_ALREADY_EXISTS": "Un compte existe déjà avec cet e-mail",
+  "USERNAME_ALREADY_EXISTS": "Ce nom d'utilisateur est déjà pris",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Un compte avec cette adresse e-mail ou ce nom d'utilisateur existe déjà",
+  "USER_NOT_FOUND": "Compte introuvable",
+  "NOTHING_TO_UPDATE": "Il n'y a rien à mettre à jour",
+  "ONBOARDING_NOT_FOUND": "Votre intégration n'est pas encore prête. Veuillez réessayer dans un instant.",
+  "ONBOARDING_LOCKED": "Votre intégration a été envoyée et ne peut plus être modifiée.",
+  "ONBOARDING_STEP_SKIPPED": "Veuillez d'abord terminer l'étape en cours.",
+  "ONBOARDING_PATH_REQUIRED": "Choisissez un parcours avant de continuer.",
+  "ONBOARDING_PATH_MISMATCH": "Choisissez d’abord le parcours « Devenir administrateur ».",
+  "ONBOARDING_STEP_MISMATCH": "Revenez à l’étape des exigences du rôle et réessayez.",
+  "ONBOARDING_CHANGED": "Votre intégration a été modifiée ailleurs. Actualisez la page et réessayez.",
+  "PASSWORD_TOO_LONG": "Le mot de passe est trop long",
+  "INVALID_CREDENTIALS": "E-mail/nom d'utilisateur ou mot de passe incorrect",
+  "INVALID_VERIFICATION_TOKEN": "Ce lien de vérification est invalide ou a expiré",
+  "EMAIL_NOT_VERIFIED": "Veuillez vérifier votre e-mail avant de vous connecter",
+  "ACCOUNT_NOT_ACTIVE": "Votre compte n'est pas actif. Veuillez contacter le support.",
+  "REFRESH_TOKEN_REQUIRED": "Veuillez vous connecter pour continuer",
+  "INVALID_REFRESH_TOKEN": "Votre session n'est plus valide. Veuillez vous reconnecter",
+  "REFRESH_TOKEN_EXPIRED": "Votre session a expiré. Veuillez vous reconnecter",
+  "REFRESH_TOKEN_REUSED": "Pour votre sécurité, vous avez été déconnecté. Veuillez vous reconnecter",
+  "ACCESS_TOKEN_REQUIRED": "Veuillez vous connecter pour continuer",
+  "INVALID_ACCESS_TOKEN": "Votre session a expiré. Veuillez vous reconnecter",
+  "FORBIDDEN": "Vous n'avez pas l'autorisation d'effectuer cette action",
+  "ROUTE_NOT_FOUND": "La ressource demandée est introuvable",
+  "INTERNAL_SERVER_ERROR": "Un problème est survenu de notre côté. Veuillez réessayer plus tard.",
+  "JWT_ACCESS_SECRET_INVALID": "Un problème est survenu de notre côté. Veuillez réessayer plus tard.",
+  "TOO_MANY_REQUESTS": "Trop de tentatives. Veuillez patienter quelques minutes et réessayer.",
+  "SERVICE_UNAVAILABLE": "Le service est temporairement indisponible. Veuillez réessayer dans un instant.",
+  "SERVICE_REQUEST_FAILED": "Impossible de charger vos informations. Veuillez réessayer.",
+  "USER_PROFILE_NOT_FOUND": "Votre profil n'est pas encore prêt. Veuillez réessayer dans un instant.",
+  "UNKNOWN_ERROR": "Une erreur s'est produite. Veuillez réessayer.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Votre demande d’accès administrateur a été enregistrée"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Ce type de fichier n'est pas autorisé",
+    "FILE_TOO_LARGE": "Ce fichier est trop volumineux",
+    "UPLOAD_NOT_FOUND": "Le fichier envoyé est introuvable ou a expiré. Veuillez réessayer",
+    "UPLOAD_FAILED": "Le fichier n'a pas pu être envoyé. Veuillez réessayer"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Votre demande d'organisation a été envoyée"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Demande d'organisation approuvée"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Demande d'organisation refusée"
+    },
+    "SLUG_TAKEN": "Ce slug est déjà utilisé. Veuillez en choisir un autre",
+    "LOGO_INVALID": "Veuillez téléverser à nouveau le logo",
+    "REQUEST_LOCKED": "Votre demande est en cours d'examen et ne peut pas être modifiée",
+    "REQUEST_ALREADY_REVIEWED": "Cette demande a déjà été examinée",
+    "REQUEST_NOT_FOUND": "Demande d'organisation introuvable",
+    "REQUEST_INCOMPLETE": "Il manque des informations obligatoires à cette demande",
+    "NOT_FOUND": "Organisation introuvable"
+  }
+}

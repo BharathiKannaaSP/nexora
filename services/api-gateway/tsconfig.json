@@ -1,14 +1,8 @@
 {
+  "extends": "../../packages/typescript-config/base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "preserve",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "types": ["node"],
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "rootDir": "./src",
     "outDir": "./dist"
   },

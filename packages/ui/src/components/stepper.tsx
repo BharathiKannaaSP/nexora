@@ -1,19 +1,19 @@
 import * as React from "react"
 import { CheckIcon } from "lucide-react"
 import { cn } from "cn"
-import { useMobile } from "@workspace/ui/hooks/use-mobile"
+import { useMobile, useWide } from "../hooks/use-mobile"
 
 type StepperOrientation = "horizontal" | "vertical"
 
 interface StepperContextValue {
-  value?: number
+  value?: number | string
   orientation: StepperOrientation
 }
 
 const StepperContext = React.createContext<StepperContextValue | null>(null)
 
 interface StepperItemContextValue {
-  value: number
+  value: number | string
   status: "completed" | "current" | "upcoming"
 }
 
@@ -44,7 +44,7 @@ function useStepperItem() {
 }
 
 interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
-  value?: number
+  value?: number | string
   orientation?: StepperOrientation
 }
 
@@ -54,9 +54,9 @@ function Stepper({
   className,
   ...props
 }: StepperProps) {
-  const isMobile = useMobile()
+  const wide = useWide()
 
-  const resolvedOrientation = isMobile ? "horizontal" : orientation
+  const resolvedOrientation = !wide ? "horizontal" : orientation
   return (
     <StepperContext.Provider
       value={{ value, orientation: resolvedOrientation }}
@@ -78,7 +78,7 @@ function Stepper({
 }
 
 interface StepperItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  value: number
+  value: number | string
 }
 
 function StepperItem({
@@ -92,11 +92,15 @@ function StepperItem({
   const status =
     currentValue === undefined
       ? "upcoming"
-      : value < currentValue
-        ? "completed"
-        : value === currentValue
+      : typeof value === "string" || typeof currentValue === "string"
+        ? value === currentValue
           ? "current"
           : "upcoming"
+        : value < currentValue
+          ? "completed"
+          : value === currentValue
+            ? "current"
+            : "upcoming"
 
   return (
     <StepperItemContext.Provider value={{ value, status }}>
@@ -108,7 +112,7 @@ function StepperItem({
           "group relative",
           orientation === "horizontal"
             ? "flex min-w-0 flex-1 flex-col items-center"
-            : "flex flex-col min-h-28",
+            : "flex min-h-28 flex-col",
           className
         )}
         {...props}
@@ -119,32 +123,63 @@ function StepperItem({
   )
 }
 
+function stepLayoutClasses(orientation: StepperOrientation) {
+  return cn(
+    "relative z-10 flex rounded-md text-start outline-none",
+    "focus-visible:ring-3 focus-visible:ring-ring/50",
+    orientation === "horizontal"
+      ? "flex-col items-center text-center"
+      : "w-full items-start gap-3"
+  )
+}
+
 type StepperTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
+/** Clickable step, for steppers that let users jump between steps. */
 function StepperTrigger({
   className,
   children,
   ...props
 }: StepperTriggerProps) {
   const { orientation } = useStepper()
+  const { status } = useStepperItem()
 
   return (
     <button
       type="button"
       data-slot="stepper-trigger"
+      aria-current={status === "current" ? "step" : undefined}
       className={cn(
-        "relative z-10  flex text-left outline-none",
-        "focus-visible:ring-3 focus-visible:ring-ring/50",
+        stepLayoutClasses(orientation),
         "disabled:pointer-events-none disabled:opacity-50",
-        orientation === "horizontal"
-          ? "flex-col items-center text-center"
-          : "w-full items-start gap-3",
         className
       )}
       {...props}
     >
       {children}
     </button>
+  )
+}
+
+/**
+ * Read-only step: same layout as StepperTrigger and reachable with Tab so
+ * screen readers announce it, but it is not a button and does nothing on click.
+ */
+function StepperStep({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  const { orientation } = useStepper()
+  const { status } = useStepperItem()
+
+  return (
+    <div
+      data-slot="stepper-step"
+      tabIndex={0}
+      aria-current={status === "current" ? "step" : undefined}
+      className={cn(stepLayoutClasses(orientation), className)}
+      {...props}
+    />
   )
 }
 
@@ -195,6 +230,7 @@ function StepperTitle({
         "text-muted-foreground",
         "group-data-[state=current]:text-primary",
         "group-data-[state=completed]:text-foreground",
+        "hidden md:block",
         className
       )}
       {...props}
@@ -209,7 +245,10 @@ function StepperDescription({
   return (
     <span
       data-slot="stepper-description"
-      className={cn("text-xs leading-5 text-muted-foreground hidden md:block", className)}
+      className={cn(
+        "hidden text-xs leading-5 text-muted-foreground md:block",
+        className
+      )}
       {...props}
     />
   )
@@ -229,8 +268,8 @@ function StepperConnector({
       className={cn(
         "absolute bg-border",
         orientation === "horizontal"
-          ? "top-4 right-[calc(-50%+1rem)] left-[calc(50%+1rem)] h-px"
-          : "top-8 bottom-0 left-4 w-px",
+          ? "inset-s-[calc(50%+1rem)] inset-e-[calc(-50%+1rem)] top-4 h-px"
+          : "inset-s-4 top-8 bottom-0 w-px",
         className
       )}
       {...props}
@@ -242,6 +281,7 @@ export {
   Stepper,
   StepperItem,
   StepperTrigger,
+  StepperStep,
   StepperIndicator,
   StepperTitle,
   StepperDescription,

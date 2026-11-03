@@ -1,11 +1,15 @@
-import React from "react"
+import { cn } from "@nexora/ui/lib/utils"
+import { Loader2Icon } from "lucide-react"
 
-const Spinner = () => {
+function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-current border-t-transparent" />
-    </main>
+    <Loader2Icon
+      role="status"
+      aria-label="Loading"
+      className={cn("size-4 animate-spin", className)}
+      {...props}
+    />
   )
 }
 
-export default Spinner
+export { Spinner }

@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "Langkah orientasi",
+  "signOut": "Log keluar",
+  "steps": {
+    "basicInformation": {
+      "title": "Maklumat asas",
+      "description": "Beritahu kami butiran asas anda"
+    },
+    "choosePath": {
+      "title": "Pilih laluan anda",
+      "description": "Pilih cara anda mahu meneruskan"
+    },
+    "roleRequirements": {
+      "title": "Keperluan peranan",
+      "description": "Berikan butiran khusus peranan"
+    },
+    "review": {
+      "title": "Semak & hantar",
+      "description": "Semak butiran anda dan hantar"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "Maklumat asas",
+      "description": "Beritahu kami serba sedikit tentang diri anda."
+    },
+    "choosePath": {
+      "title": "Pilih laluan anda",
+      "description": "Jadi pentadbir, cipta organisasi atau sertai organisasi."
+    },
+    "becomeAdmin": {
+      "title": "Jadi pentadbir",
+      "description": "Berikan butiran yang diperlukan untuk meminta akses pentadbir."
+    },
+    "createOrganization": {
+      "title": "Cipta organisasi",
+      "description": "Sediakan organisasi yang akan anda urus."
+    },
+    "joinOrganization": {
+      "title": "Sertai organisasi",
+      "description": "Cari organisasi yang ingin anda sertai."
+    },
+    "review": {
+      "title": "Semakan",
+      "description": "Semak butiran anda dan hantar untuk kelulusan."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "Ini akan menjadi pengecam unik anda di Nexora.",
+    "passwordHint": "Biarkan kosong untuk mengekalkan kata laluan semasa anda, atau gunakan 8 aksara atau lebih untuk menukarnya.",
+    "emailHint": "Jika anda menukar alamat e-mel anda, anda perlu mengesahkannya semula.",
+    "verified": "Disahkan"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "Pilih laluan anda",
+      "phoneNumber": "Nombor telefon",
+      "dob": "Tarikh lahir",
+      "gender": "Jantina",
+      "bioCountry": "Negara",
+      "bio": "Bio",
+      "addressLine1": "Alamat baris 1",
+      "addressLine2": "Alamat baris 2",
+      "city": "Bandar",
+      "state": "Negeri",
+      "postalCode": "Poskod",
+      "languageCode": "Bahasa",
+      "timezone": "Zon waktu"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "Jadi pentadbir",
+        "description": "Minta akses pentadbir ke Nexora."
+      },
+      "createOrganization": {
+        "label": "Cipta organisasi",
+        "description": "Sediakan organisasi yang akan anda urus."
+      },
+      "joinOrganization": {
+        "label": "Sertai organisasi",
+        "description": "Sertai organisasi yang sudah menggunakan Nexora."
+      }
+    },
+    "genderOptions": {
+      "male": "Lelaki",
+      "female": "Perempuan",
+      "other": "Lain-lain",
+      "preferNotToSay": "Memilih untuk tidak menyatakan"
+    },
+    "validation": {
+      "selectedPathRequired": "Pilih laluan untuk meneruskan",
+      "phoneNumberRequired": "Nombor telefon diperlukan",
+      "dobRequired": "Masukkan tarikh lahir yang sah",
+      "genderRequired": "Pilih jantina anda",
+      "bioCountryRequired": "Negara diperlukan",
+      "bioRequired": "Bio diperlukan",
+      "bioTooLong": "Bio mestilah tidak melebihi 1000 aksara",
+      "addressLine1Required": "Alamat diperlukan",
+      "cityRequired": "Bandar diperlukan",
+      "stateRequired": "Negeri diperlukan",
+      "postalCodeRequired": "Poskod diperlukan",
+      "timeZoneRequired": "Zon waktu diperlukan",
+      "postalCodeInvalid": "Masukkan poskod yang sah untuk negara yang dipilih",
+      "phoneNumberInvalid": "Masukkan nombor telefon yang sah untuk negara yang dipilih"
+    },
+    "hints": {
+      "selectCountryFirst": "Pilih negara anda terlebih dahulu",
+      "countrySwitch": "Anda sedang menggunakan Nexora {current}. Selepas anda meneruskan, kami akan menukar anda ke Nexora {next}."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "Minta akses pentadbir platform",
+    "description": "Pilih negara dan kebenaran pengurusan yang anda perlukan. Pentadbir platform yang diberi kuasa akan menyemak permintaan anda.",
+    "sections": {
+      "role": {
+        "title": "Peranan anda",
+        "description": "Beritahu kami tentang jawatan semasa anda supaya penyemak memahami permintaan anda."
+      },
+      "justification": {
+        "title": "Justifikasi permintaan",
+        "description": "Terangkan sebab anda memerlukan akses pentadbir platform dan cara anda bercadang menggunakannya."
+      },
+      "countries": {
+        "title": "Pilih negara",
+        "description": "Pilih sehingga {max, number} negara yang disokong."
+      },
+      "permissions": {
+        "title": "Konfigurasikan kebenaran bagi setiap negara",
+        "description": "Pilih modul pengurusan dan tindakan khusus yang anda perlukan akses bagi setiap negara."
+      }
+    },
+    "fields": {
+      "jobTitle": "Jawatan",
+      "department": "Jabatan",
+      "currentOrganizationName": "Organisasi semasa",
+      "justification": "Justifikasi",
+      "countries": "Negara",
+      "permissions": "Kebenaran"
+    },
+    "placeholders": {
+      "jobTitle": "cth. Pengurus Operasi Serantau",
+      "department": "cth. Operasi",
+      "currentOrganizationName": "cth. Acme Corporation",
+      "justification": "Terangkan secara terperinci sebab anda memerlukan akses pentadbir, tanggungjawab anda dan bagaimana ia akan membantu platform…"
+    },
+    "permissions": {
+      "module": "Modul",
+      "modulesSelected": "{count, plural, =0 {Tiada modul dipilih} one {# modul dipilih} other {# modul dipilih}}"
+    },
+    "modules": {
+      "country": {
+        "label": "Pengurusan negara",
+        "description": "Urus butiran dan tetapan negara"
+      },
+      "city": {
+        "label": "Pengurusan bandar",
+        "description": "Urus bandar, wilayah dan lokasi"
+      },
+      "user": {
+        "label": "Pengurusan pengguna",
+        "description": "Urus pengguna dan akses platform"
+      },
+      "organization": {
+        "label": "Pengurusan organisasi",
+        "description": "Semak dan luluskan permintaan organisasi"
+      },
+      "product": {
+        "label": "Pengurusan produk",
+        "description": "Urus produk dan katalog"
+      },
+      "inventory": {
+        "label": "Pengurusan inventori",
+        "description": "Urus inventori dan stok"
+      },
+      "billing": {
+        "label": "Pengurusan pengebilan",
+        "description": "Urus pengebilan, pelan dan pembayaran"
+      },
+      "analytics": {
+        "label": "Pengurusan analitik",
+        "description": "Lihat analitik dan laporan platform"
+      }
+    },
+    "actions": {
+      "view": "Lihat",
+      "create": "Cipta",
+      "edit": "Edit",
+      "delete": "Padam"
+    },
+    "hints": {
+      "countriesSelected": "{count, number} daripada {max, number} dipilih",
+      "selectCountryFirst": "Pilih negara untuk mengkonfigurasikan kebenarannya",
+      "ownCountryLocked": "Negara anda sendiri sentiasa disertakan.",
+      "inactiveUntilApproved": "Akses anda kekal tidak aktif sehingga permintaan anda diluluskan."
+    },
+    "validation": {
+      "jobTitleRequired": "Masukkan jawatan anda",
+      "jobTitleTooLong": "Jawatan mestilah tidak melebihi {max, number} aksara",
+      "departmentRequired": "Masukkan jabatan anda",
+      "departmentTooLong": "Jabatan mestilah tidak melebihi {max, number} aksara",
+      "currentOrganizationNameRequired": "Masukkan organisasi semasa anda",
+      "currentOrganizationNameTooLong": "Nama organisasi mestilah tidak melebihi {max, number} aksara",
+      "justificationRequired": "Beritahu kami sebab anda memerlukan akses pentadbir",
+      "justificationTooLong": "Justifikasi mestilah tidak melebihi 1000 aksara",
+      "countriesRequired": "Pilih sekurang-kurangnya satu negara",
+      "countriesTooMany": "Pilih sehingga {max, number} negara",
+      "permissionsRequired": "Pilih sekurang-kurangnya satu kebenaran untuk negara ini"
+    },
+    "confirmSubmit": {
+      "title": "Semak sebelum menghantar",
+      "description": "Sila semak semua butiran anda dengan teliti. Selepas dihantar, permintaan anda tidak boleh diubah."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "Cipta organisasi anda",
+        "description": "Isikan butiran di bawah untuk mendaftarkan organisasi anda. Permintaan anda akan disemak oleh pasukan pentadbir kami."
+      },
+      "location": {
+        "title": "Lokasi dan butiran cukai",
+        "description": "Tempat organisasi anda didaftarkan. Alamat dan ID cukai disemak berdasarkan negara ini."
+      }
+    },
+    "fields": {
+      "name": "Nama organisasi",
+      "slug": "URL organisasi",
+      "logo": "Logo organisasi",
+      "industry": "Industri",
+      "size": "Saiz organisasi",
+      "website": "Laman web",
+      "description": "Penerangan organisasi",
+      "taxId": "ID cukai (cth. TIN, SST atau GSTIN)"
+    },
+    "placeholders": {
+      "name": "cth. Acme Retail",
+      "industry": "Pilih industri",
+      "size": "Pilih saiz",
+      "description": "Apakah yang dilakukan oleh organisasi anda, dan siapakah yang dilayaninya?",
+      "taxId": "cth. TIN, SST atau GSTIN",
+      "logo": "Muat naik logo"
+    },
+    "hints": {
+      "slug": "Huruf kecil, nombor dan tanda sempang. Ia menjadi sebahagian daripada alamat web organisasi anda.",
+      "logo": "PNG, JPEG atau WebP, sehingga {maxMb, number} MB.",
+      "description": "{min, number}–{max, number} aksara.",
+      "taxId": "Nombor pendaftaran cukai yang digunakan oleh organisasi anda di negara yang dipilih."
+    },
+    "sizeOption": "{range} pekerja",
+    "industries": {
+      "fashionApparel": "Fesyen dan pakaian",
+      "retail": "Runcit",
+      "ecommerce": "E-dagang",
+      "healthBeauty": "Kesihatan dan kecantikan",
+      "electronics": "Elektronik",
+      "homeFurniture": "Kediaman dan perabot",
+      "manufacturing": "Pembuatan",
+      "technology": "Teknologi",
+      "logistics": "Logistik",
+      "education": "Pendidikan",
+      "other": "Lain-lain"
+    },
+    "validation": {
+      "organizationNameRequired": "Nama organisasi diperlukan",
+      "organizationNameTooLong": "Nama organisasi mestilah {max, number} aksara atau kurang",
+      "organizationSlugRequired": "Slug diperlukan",
+      "organizationSlugMinLength": "Slug mestilah sekurang-kurangnya {min, number} aksara",
+      "organizationSlugTooLong": "Slug mestilah {max, number} aksara atau kurang",
+      "organizationSlugPattern": "Gunakan huruf kecil, nombor dan tanda sempang tunggal, cth. acme-retail",
+      "organizationLogoRequired": "Muat naik logo organisasi anda",
+      "organizationLogoTooLarge": "Logo mestilah {maxMb, number} MB atau lebih kecil",
+      "organizationLogoWrongFormat": "Logo mestilah imej PNG, JPEG atau WebP",
+      "organizationSizeRequired": "Pilih saiz organisasi anda",
+      "organizationIndustryTypeRequired": "Pilih industri anda",
+      "organizationCountryRequired": "Negara diperlukan",
+      "organizationWebsiteInvalid": "Masukkan laman web yang sah, cth. https://example.com",
+      "organizationDescriptionRequired": "Penerangan diperlukan",
+      "organizationDescriptionMinLength": "Penerangan mestilah sekurang-kurangnya {min, number} aksara",
+      "organizationDescriptionTooLong": "Penerangan mestilah {max, number} aksara atau kurang",
+      "organizationTaxDetailsRequired": "ID cukai diperlukan",
+      "organizationTaxDetailsInvalid": "Masukkan ID cukai yang sah",
+      "addressLine1Required": "Alamat diperlukan",
+      "cityRequired": "Bandar diperlukan",
+      "stateRequired": "Negeri diperlukan",
+      "postalCodeRequired": "Poskod diperlukan",
+      "postalCodeInvalid": "Masukkan poskod yang sah untuk negara yang dipilih"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "Permintaan berjaya dihantar!",
+        "subtitle": "Menunggu kelulusan",
+        "description": "Permintaan anda telah dihantar dan sedang disemak oleh pasukan pentadbir kami. Anda akan dimaklumkan sebaik sahaja keputusan dibuat."
+      },
+      "approved": {
+        "title": "Permintaan diluluskan!",
+        "subtitle": "Mengaktifkan akaun anda",
+        "description": "Permintaan anda telah diluluskan. Kami sedang mengaktifkan akaun anda dan anda akan dapat mula menggunakan Nexora tidak lama lagi."
+      },
+      "rejected": {
+        "title": "Permintaan tidak diluluskan",
+        "subtitle": "Permintaan anda telah ditolak",
+        "description": "Malangnya, permintaan anda tidak diluluskan kali ini. Lihat ulasan penyemak di bawah untuk butiran."
+      }
+    },
+    "stages": {
+      "submitted": "Dihantar",
+      "inReview": "Dalam semakan",
+      "underApproval": "Dalam proses kelulusan",
+      "completed": "Selesai"
+    },
+    "stageStates": {
+      "done": "Selesai",
+      "current": "Sedang berjalan",
+      "pending": "Belum selesai",
+      "rejected": "Ditolak"
+    },
+    "turnaround": "Proses ini biasanya mengambil masa 1–2 hari bekerja. Terima kasih atas kesabaran anda.",
+    "rejectionReason": "Ulasan penyemak",
+    "details": {
+      "title": "Butiran permintaan",
+      "requestId": "ID permintaan",
+      "submittedOn": "Dihantar pada",
+      "requestType": "Jenis permintaan",
+      "submittedBy": "Dihantar oleh",
+      "you": "{name} (anda)",
+      "currentStatus": "Status semasa"
+    },
+    "statuses": {
+      "waiting": "Menunggu kelulusan",
+      "inReview": "Dalam semakan",
+      "approved": "Diluluskan",
+      "rejected": "Ditolak"
+    },
+    "viewSubmitted": "Lihat maklumat yang dihantar",
+    "hideSubmitted": "Sembunyikan maklumat yang dihantar",
+    "submittedInformation": {
+      "title": "Maklumat yang dihantar",
+      "personal": "Maklumat peribadi",
+      "name": "Nama",
+      "email": "E-mel",
+      "permissions": "Kebenaran yang diminta",
+      "logoAlt": "Logo {name}",
+      "logoUnavailable": "Logo tidak tersedia"
+    },
+    "next": {
+      "title": "Apa yang berlaku seterusnya?",
+      "review": {
+        "title": "Semakan sedang dijalankan",
+        "description": "Pasukan pentadbir kami sedang menyemak maklumat yang anda hantar."
+      },
+      "notified": {
+        "title": "Terima pemberitahuan",
+        "description": "Anda akan menerima e-mel dan pemberitahuan dalam aplikasi sebaik sahaja terdapat kemas kini."
+      },
+      "activation": {
+        "title": "Pengaktifan akaun",
+        "description": "Setelah diluluskan, akaun anda akan diaktifkan dan anda boleh mula menggunakan Nexora."
+      }
+    },
+    "thanks": "Terima kasih kerana memilih Nexora. Kami gembira menyambut anda!"
+  }
+}

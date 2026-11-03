@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "ऑनबोर्डिंग चरण",
+  "signOut": "साइन आउट",
+  "steps": {
+    "basicInformation": {
+      "title": "बुनियादी जानकारी",
+      "description": "हमें अपनी बुनियादी जानकारी बताएँ"
+    },
+    "choosePath": {
+      "title": "अपना मार्ग चुनें",
+      "description": "चुनें कि आप कैसे आगे बढ़ना चाहते हैं"
+    },
+    "roleRequirements": {
+      "title": "भूमिका आवश्यकताएँ",
+      "description": "भूमिका से संबंधित विवरण दें"
+    },
+    "review": {
+      "title": "समीक्षा करें और सबमिट करें",
+      "description": "अपने विवरण की समीक्षा करें और सबमिट करें"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "बुनियादी जानकारी",
+      "description": "हमें अपने बारे में थोड़ा बताएँ।"
+    },
+    "choosePath": {
+      "title": "अपना मार्ग चुनें",
+      "description": "एडमिन बनें, संगठन बनाएँ या किसी संगठन से जुड़ें।"
+    },
+    "becomeAdmin": {
+      "title": "एडमिन बनें",
+      "description": "एडमिन एक्सेस का अनुरोध करने के लिए आवश्यक विवरण दें।"
+    },
+    "createOrganization": {
+      "title": "संगठन बनाएँ",
+      "description": "वह संगठन सेट अप करें जिसे आप प्रबंधित करेंगे।"
+    },
+    "joinOrganization": {
+      "title": "संगठन से जुड़ें",
+      "description": "वह संगठन खोजें जिससे आप जुड़ना चाहते हैं।"
+    },
+    "review": {
+      "title": "समीक्षा",
+      "description": "अपने विवरण जाँचें और अनुमोदन के लिए सबमिट करें।"
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "यह Nexora पर आपकी विशिष्ट पहचान होगी।",
+    "passwordHint": "अपना मौजूदा पासवर्ड रखने के लिए खाली छोड़ें, या इसे बदलने के लिए 8 या अधिक वर्णों का उपयोग करें।",
+    "emailHint": "यदि आप अपना ईमेल पता बदलते हैं, तो आपको इसे फिर से सत्यापित करना होगा।",
+    "verified": "सत्यापित"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "अपना रास्ता चुनें",
+      "phoneNumber": "फ़ोन नंबर",
+      "dob": "जन्म तिथि",
+      "gender": "लिंग",
+      "bioCountry": "देश",
+      "bio": "परिचय",
+      "addressLine1": "पता पंक्ति 1",
+      "addressLine2": "पता पंक्ति 2",
+      "city": "शहर",
+      "state": "राज्य",
+      "postalCode": "पिन कोड",
+      "languageCode": "भाषा",
+      "timezone": "समय क्षेत्र"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "एडमिन बनें",
+        "description": "Nexora पर एडमिन एक्सेस का अनुरोध करें।"
+      },
+      "createOrganization": {
+        "label": "संगठन बनाएँ",
+        "description": "एक संगठन सेट अप करें जिसे आप प्रबंधित करेंगे।"
+      },
+      "joinOrganization": {
+        "label": "संगठन से जुड़ें",
+        "description": "ऐसे संगठन से जुड़ें जो पहले से Nexora का उपयोग करता है।"
+      }
+    },
+    "genderOptions": {
+      "male": "पुरुष",
+      "female": "महिला",
+      "other": "अन्य",
+      "preferNotToSay": "बताना नहीं चाहते"
+    },
+    "validation": {
+      "selectedPathRequired": "जारी रखने के लिए एक रास्ता चुनें",
+      "phoneNumberRequired": "फ़ोन नंबर आवश्यक है",
+      "dobRequired": "मान्य जन्म तिथि दर्ज करें",
+      "genderRequired": "अपना लिंग चुनें",
+      "bioCountryRequired": "देश आवश्यक है",
+      "bioRequired": "परिचय आवश्यक है",
+      "bioTooLong": "परिचय 1000 वर्णों से अधिक नहीं हो सकता",
+      "addressLine1Required": "पता आवश्यक है",
+      "cityRequired": "शहर आवश्यक है",
+      "stateRequired": "राज्य आवश्यक है",
+      "postalCodeRequired": "पिन कोड आवश्यक है",
+      "timeZoneRequired": "समय क्षेत्र आवश्यक है",
+      "postalCodeInvalid": "चुने गए देश के लिए मान्य पिन कोड दर्ज करें",
+      "phoneNumberInvalid": "चुने गए देश के लिए मान्य फ़ोन नंबर दर्ज करें"
+    },
+    "hints": {
+      "selectCountryFirst": "पहले अपना देश चुनें",
+      "countrySwitch": "आप Nexora {current} का उपयोग कर रहे हैं। जारी रखने पर हम आपको Nexora {next} पर ले जाएँगे।"
+    }
+  },
+  "becomeAdminForm": {
+    "title": "प्लेटफ़ॉर्म एडमिन एक्सेस का अनुरोध करें",
+    "description": "अपनी ज़रूरत के देश और प्रबंधन अनुमतियाँ चुनें। एक अधिकृत प्लेटफ़ॉर्म एडमिन आपके अनुरोध की समीक्षा करेगा।",
+    "sections": {
+      "role": {
+        "title": "आपकी भूमिका",
+        "description": "अपने मौजूदा पद के बारे में बताएँ ताकि समीक्षक आपका अनुरोध समझ सकें।"
+      },
+      "justification": {
+        "title": "अनुरोध का कारण",
+        "description": "बताएँ कि आपको प्लेटफ़ॉर्म एडमिन एक्सेस क्यों चाहिए और आप इसका उपयोग कैसे करेंगे।"
+      },
+      "countries": {
+        "title": "देश चुनें",
+        "description": "अधिकतम {max, number} समर्थित देश चुनें।"
+      },
+      "permissions": {
+        "title": "हर देश के लिए अनुमतियाँ सेट करें",
+        "description": "हर देश के लिए वे प्रबंधन मॉड्यूल और कार्य चुनें जिनकी आपको एक्सेस चाहिए।"
+      }
+    },
+    "fields": {
+      "jobTitle": "पद का नाम",
+      "department": "विभाग",
+      "currentOrganizationName": "वर्तमान संगठन",
+      "justification": "कारण",
+      "countries": "देश",
+      "permissions": "अनुमतियाँ"
+    },
+    "placeholders": {
+      "jobTitle": "जैसे, क्षेत्रीय संचालन प्रबंधक",
+      "department": "जैसे, संचालन",
+      "currentOrganizationName": "जैसे, Acme कॉर्पोरेशन",
+      "justification": "विस्तार से बताएँ कि आपको एडमिन एक्सेस क्यों चाहिए, आपकी ज़िम्मेदारियाँ क्या हैं और इससे प्लेटफ़ॉर्म को कैसे मदद मिलेगी…"
+    },
+    "permissions": {
+      "module": "मॉड्यूल",
+      "modulesSelected": "{count, plural, =0 {कोई मॉड्यूल नहीं चुना गया} one {# मॉड्यूल चुना गया} other {# मॉड्यूल चुने गए}}"
+    },
+    "modules": {
+      "country": {
+        "label": "देश प्रबंधन",
+        "description": "देशों की जानकारी और सेटिंग्स प्रबंधित करें"
+      },
+      "city": {
+        "label": "शहर प्रबंधन",
+        "description": "शहर, क्षेत्र और स्थान प्रबंधित करें"
+      },
+      "user": {
+        "label": "उपयोगकर्ता प्रबंधन",
+        "description": "प्लेटफ़ॉर्म उपयोगकर्ता और एक्सेस प्रबंधित करें"
+      },
+      "organization": {
+        "label": "संगठन प्रबंधन",
+        "description": "संगठन अनुरोधों की समीक्षा करें और उन्हें स्वीकृत करें"
+      },
+      "product": {
+        "label": "उत्पाद प्रबंधन",
+        "description": "उत्पाद और कैटलॉग प्रबंधित करें"
+      },
+      "inventory": {
+        "label": "इन्वेंटरी प्रबंधन",
+        "description": "इन्वेंटरी और स्टॉक प्रबंधित करें"
+      },
+      "billing": {
+        "label": "बिलिंग प्रबंधन",
+        "description": "बिलिंग, प्लान और भुगतान प्रबंधित करें"
+      },
+      "analytics": {
+        "label": "एनालिटिक्स प्रबंधन",
+        "description": "प्लेटफ़ॉर्म एनालिटिक्स और रिपोर्ट देखें"
+      }
+    },
+    "actions": {
+      "view": "देखें",
+      "create": "बनाएँ",
+      "edit": "संपादित करें",
+      "delete": "हटाएँ"
+    },
+    "hints": {
+      "countriesSelected": "{max, number} में से {count, number} चुने गए",
+      "selectCountryFirst": "अनुमतियाँ सेट करने के लिए कोई देश चुनें",
+      "ownCountryLocked": "आपका अपना देश हमेशा शामिल रहता है।",
+      "inactiveUntilApproved": "आपका अनुरोध स्वीकृत होने तक आपकी एक्सेस निष्क्रिय रहेगी।"
+    },
+    "validation": {
+      "jobTitleRequired": "अपने पद का नाम दर्ज करें",
+      "jobTitleTooLong": "पद का नाम {max, number} वर्णों या उससे कम का होना चाहिए",
+      "departmentRequired": "अपना विभाग दर्ज करें",
+      "departmentTooLong": "विभाग {max, number} वर्णों या उससे कम का होना चाहिए",
+      "currentOrganizationNameRequired": "अपना वर्तमान संगठन दर्ज करें",
+      "currentOrganizationNameTooLong": "संगठन का नाम {max, number} वर्णों या उससे कम का होना चाहिए",
+      "justificationRequired": "बताएँ कि आपको एडमिन एक्सेस क्यों चाहिए",
+      "justificationTooLong": "कारण 1000 वर्णों या उससे कम का होना चाहिए",
+      "countriesRequired": "कम से कम एक देश चुनें",
+      "countriesTooMany": "अधिकतम {max, number} देश चुनें",
+      "permissionsRequired": "इस देश के लिए कम से कम एक अनुमति चुनें"
+    },
+    "confirmSubmit": {
+      "title": "सबमिट करने से पहले समीक्षा करें",
+      "description": "कृपया अपने सभी विवरण ध्यान से जाँच लें। सबमिट करने के बाद आपका अनुरोध बदला नहीं जा सकता।"
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "अपना संगठन बनाएँ",
+        "description": "अपने संगठन को पंजीकृत करने के लिए नीचे दिए गए विवरण भरें। आपके अनुरोध की समीक्षा हमारी एडमिन टीम करेगी।"
+      },
+      "location": {
+        "title": "स्थान और टैक्स विवरण",
+        "description": "आपका संगठन कहाँ पंजीकृत है। पता और टैक्स आईडी इसी देश के अनुसार जाँचे जाते हैं।"
+      }
+    },
+    "fields": {
+      "name": "संगठन का नाम",
+      "slug": "संगठन का URL",
+      "logo": "संगठन का लोगो",
+      "industry": "उद्योग",
+      "size": "संगठन का आकार",
+      "website": "वेबसाइट",
+      "description": "संगठन का विवरण",
+      "taxId": "टैक्स आईडी (जैसे GSTIN, VAT या EIN)"
+    },
+    "placeholders": {
+      "name": "जैसे Acme Retail",
+      "industry": "उद्योग चुनें",
+      "size": "आकार चुनें",
+      "description": "आपका संगठन क्या करता है और किसे सेवा देता है?",
+      "taxId": "जैसे GSTIN, VAT या EIN",
+      "logo": "लोगो अपलोड करें"
+    },
+    "hints": {
+      "slug": "छोटे अंग्रेज़ी अक्षर, अंक और हाइफ़न। यह आपके संगठन के वेब पते का हिस्सा बनेगा।",
+      "logo": "PNG, JPEG या WebP, अधिकतम {maxMb, number} MB।",
+      "description": "{min, number}–{max, number} अक्षर।",
+      "taxId": "चुने गए देश में आपके संगठन द्वारा उपयोग किया जाने वाला टैक्स पंजीकरण नंबर।"
+    },
+    "sizeOption": "{range} कर्मचारी",
+    "industries": {
+      "fashionApparel": "फ़ैशन और परिधान",
+      "retail": "खुदरा",
+      "ecommerce": "ई-कॉमर्स",
+      "healthBeauty": "स्वास्थ्य और सौंदर्य",
+      "electronics": "इलेक्ट्रॉनिक्स",
+      "homeFurniture": "घर और फ़र्नीचर",
+      "manufacturing": "विनिर्माण",
+      "technology": "प्रौद्योगिकी",
+      "logistics": "लॉजिस्टिक्स",
+      "education": "शिक्षा",
+      "other": "अन्य"
+    },
+    "validation": {
+      "organizationNameRequired": "संगठन का नाम आवश्यक है",
+      "organizationNameTooLong": "संगठन का नाम {max, number} अक्षरों या उससे कम का होना चाहिए",
+      "organizationSlugRequired": "स्लग आवश्यक है",
+      "organizationSlugMinLength": "स्लग कम से कम {min, number} अक्षरों का होना चाहिए",
+      "organizationSlugTooLong": "स्लग {max, number} अक्षरों या उससे कम का होना चाहिए",
+      "organizationSlugPattern": "छोटे अंग्रेज़ी अक्षर, अंक और एकल हाइफ़न का उपयोग करें, जैसे acme-retail",
+      "organizationLogoRequired": "अपने संगठन का लोगो अपलोड करें",
+      "organizationLogoTooLarge": "लोगो {maxMb, number} MB या उससे छोटा होना चाहिए",
+      "organizationLogoWrongFormat": "लोगो PNG, JPEG या WebP छवि होना चाहिए",
+      "organizationSizeRequired": "अपने संगठन का आकार चुनें",
+      "organizationIndustryTypeRequired": "अपना उद्योग चुनें",
+      "organizationCountryRequired": "देश आवश्यक है",
+      "organizationWebsiteInvalid": "मान्य वेबसाइट दर्ज करें, जैसे https://example.com",
+      "organizationDescriptionRequired": "विवरण आवश्यक है",
+      "organizationDescriptionMinLength": "विवरण कम से कम {min, number} अक्षरों का होना चाहिए",
+      "organizationDescriptionTooLong": "विवरण {max, number} अक्षरों या उससे कम का होना चाहिए",
+      "organizationTaxDetailsRequired": "टैक्स आईडी आवश्यक है",
+      "organizationTaxDetailsInvalid": "मान्य टैक्स आईडी दर्ज करें",
+      "addressLine1Required": "पता आवश्यक है",
+      "cityRequired": "शहर आवश्यक है",
+      "stateRequired": "राज्य आवश्यक है",
+      "postalCodeRequired": "पिन कोड आवश्यक है",
+      "postalCodeInvalid": "चुने गए देश के लिए मान्य पिन कोड दर्ज करें"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "अनुरोध सफलतापूर्वक भेजा गया!",
+        "subtitle": "स्वीकृति की प्रतीक्षा है",
+        "description": "आपका अनुरोध भेज दिया गया है और हमारी एडमिन टीम इसकी समीक्षा कर रही है। निर्णय होते ही आपको सूचित किया जाएगा।"
+      },
+      "approved": {
+        "title": "अनुरोध स्वीकृत!",
+        "subtitle": "आपका खाता सक्रिय किया जा रहा है",
+        "description": "आपका अनुरोध स्वीकृत हो गया है। हम आपका खाता सक्रिय कर रहे हैं, और आप जल्द ही Nexora का उपयोग शुरू कर सकेंगे।"
+      },
+      "rejected": {
+        "title": "अनुरोध स्वीकृत नहीं हुआ",
+        "subtitle": "आपका अनुरोध अस्वीकार कर दिया गया",
+        "description": "दुर्भाग्य से, इस बार आपका अनुरोध स्वीकृत नहीं हुआ। विवरण के लिए नीचे समीक्षक की टिप्पणी देखें।"
+      }
+    },
+    "stages": {
+      "submitted": "भेजा गया",
+      "inReview": "समीक्षा में",
+      "underApproval": "स्वीकृति में",
+      "completed": "पूर्ण"
+    },
+    "stageStates": {
+      "done": "पूर्ण",
+      "current": "प्रगति में",
+      "pending": "लंबित",
+      "rejected": "अस्वीकृत"
+    },
+    "turnaround": "इसमें आमतौर पर 1–2 कार्यदिवस लगते हैं। आपके धैर्य के लिए धन्यवाद।",
+    "rejectionReason": "समीक्षक की टिप्पणी",
+    "details": {
+      "title": "अनुरोध विवरण",
+      "requestId": "अनुरोध ID",
+      "submittedOn": "भेजने की तारीख",
+      "requestType": "अनुरोध प्रकार",
+      "submittedBy": "भेजने वाले",
+      "you": "{name} (आप)",
+      "currentStatus": "वर्तमान स्थिति"
+    },
+    "statuses": {
+      "waiting": "स्वीकृति की प्रतीक्षा है",
+      "inReview": "समीक्षा में",
+      "approved": "स्वीकृत",
+      "rejected": "अस्वीकृत"
+    },
+    "viewSubmitted": "भेजी गई जानकारी देखें",
+    "hideSubmitted": "भेजी गई जानकारी छिपाएँ",
+    "submittedInformation": {
+      "title": "भेजी गई जानकारी",
+      "personal": "व्यक्तिगत जानकारी",
+      "name": "नाम",
+      "email": "ईमेल",
+      "permissions": "अनुरोधित अनुमतियाँ",
+      "logoAlt": "{name} का लोगो",
+      "logoUnavailable": "लोगो उपलब्ध नहीं है"
+    },
+    "next": {
+      "title": "आगे क्या होगा?",
+      "review": {
+        "title": "समीक्षा जारी है",
+        "description": "हमारी एडमिन टीम आपकी भेजी गई जानकारी की समीक्षा कर रही है।"
+      },
+      "notified": {
+        "title": "सूचना पाएँ",
+        "description": "कोई अपडेट होने पर आपको ईमेल और ऐप में सूचना मिलेगी।"
+      },
+      "activation": {
+        "title": "खाता सक्रियण",
+        "description": "स्वीकृति के बाद आपका खाता सक्रिय हो जाएगा और आप Nexora का उपयोग शुरू कर सकेंगे।"
+      }
+    },
+    "thanks": "Nexora चुनने के लिए धन्यवाद। आपको अपने साथ पाकर हम उत्साहित हैं!"
+  }
+}

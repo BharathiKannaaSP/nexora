@@ -1,0 +1,87 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "SUCCESS": "Konto erfolgreich erstellt"
+    },
+    "VERIFY_EMAIL": {
+      "SUCCESS": "E-Mail erfolgreich bestätigt"
+    },
+    "SIGN_IN": {
+      "SUCCESS": "Erfolgreich angemeldet"
+    },
+    "REFRESH": {
+      "SUCCESS": "Sitzung aktualisiert"
+    },
+    "LOGOUT": {
+      "SUCCESS": "Erfolgreich abgemeldet"
+    },
+    "RESEND_VERIFICATION": {
+      "SUCCESS": "Bestätigungs-E-Mail gesendet"
+    },
+    "UPDATED": {
+      "SUCCESS": "Konto erfolgreich aktualisiert"
+    }
+  },
+  "VALIDATION_ERROR": "Einige Angaben sind ungültig. Bitte überprüfe das Formular.",
+  "EMAIL_ALREADY_EXISTS": "Für diese E-Mail-Adresse existiert bereits ein Konto",
+  "USERNAME_ALREADY_EXISTS": "Dieser Benutzername ist bereits vergeben",
+  "EMAIL_OR_USERNAME_ALREADY_EXISTS": "Ein Konto mit dieser E-Mail-Adresse oder diesem Benutzernamen existiert bereits",
+  "USER_NOT_FOUND": "Konto nicht gefunden",
+  "NOTHING_TO_UPDATE": "Es gibt nichts zu aktualisieren",
+  "ONBOARDING_NOT_FOUND": "Ihr Onboarding ist noch nicht bereit. Bitte versuchen Sie es gleich noch einmal.",
+  "ONBOARDING_LOCKED": "Ihr Onboarding wurde eingereicht und kann nicht mehr geändert werden.",
+  "ONBOARDING_STEP_SKIPPED": "Bitte schließen Sie zuerst den aktuellen Schritt ab.",
+  "ONBOARDING_PATH_REQUIRED": "Wählen Sie einen Weg, bevor Sie fortfahren.",
+  "ONBOARDING_PATH_MISMATCH": "Wählen Sie zuerst den Pfad „Administrator werden“.",
+  "ONBOARDING_STEP_MISMATCH": "Bitte kehren Sie zum Schritt „Rollenanforderungen“ zurück und versuchen Sie es erneut.",
+  "ONBOARDING_CHANGED": "Ihr Onboarding wurde an anderer Stelle aktualisiert. Laden Sie die Seite neu und versuchen Sie es erneut.",
+  "PASSWORD_TOO_LONG": "Das Passwort ist zu lang",
+  "INVALID_CREDENTIALS": "E-Mail/Benutzername oder Passwort ist falsch",
+  "INVALID_VERIFICATION_TOKEN": "Dieser Bestätigungslink ist ungültig oder abgelaufen",
+  "EMAIL_NOT_VERIFIED": "Bitte bestätige deine E-Mail-Adresse, bevor du dich anmeldest",
+  "ACCOUNT_NOT_ACTIVE": "Dein Konto ist nicht aktiv. Bitte wende dich an den Support.",
+  "REFRESH_TOKEN_REQUIRED": "Bitte melde dich an, um fortzufahren",
+  "INVALID_REFRESH_TOKEN": "Deine Sitzung ist nicht mehr gültig. Bitte melde dich erneut an",
+  "REFRESH_TOKEN_EXPIRED": "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an",
+  "REFRESH_TOKEN_REUSED": "Zu deiner Sicherheit wurdest du abgemeldet. Bitte melde dich erneut an",
+  "ACCESS_TOKEN_REQUIRED": "Bitte melde dich an, um fortzufahren",
+  "INVALID_ACCESS_TOKEN": "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an",
+  "FORBIDDEN": "Du hast keine Berechtigung dafür",
+  "ROUTE_NOT_FOUND": "Die angeforderte Ressource wurde nicht gefunden",
+  "INTERNAL_SERVER_ERROR": "Bei uns ist etwas schiefgelaufen. Bitte versuche es später erneut.",
+  "JWT_ACCESS_SECRET_INVALID": "Bei uns ist etwas schiefgelaufen. Bitte versuche es später erneut.",
+  "TOO_MANY_REQUESTS": "Zu viele Versuche. Bitte warte ein paar Minuten und versuche es erneut.",
+  "SERVICE_UNAVAILABLE": "Der Dienst ist vorübergehend nicht verfügbar. Bitte versuchen Sie es gleich noch einmal.",
+  "SERVICE_REQUEST_FAILED": "Ihre Daten konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+  "USER_PROFILE_NOT_FOUND": "Ihr Profil ist noch nicht bereit. Bitte versuchen Sie es gleich noch einmal.",
+  "UNKNOWN_ERROR": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  "ONBOARDING": {
+    "BECOME_ADMIN_REQUEST": {
+      "SUCCESS": "Ihre Anfrage auf Administratorzugriff wurde gespeichert"
+    }
+  },
+  "MEDIA": {
+    "UNSUPPORTED_TYPE": "Dieser Dateityp ist nicht erlaubt",
+    "FILE_TOO_LARGE": "Diese Datei ist zu groß",
+    "UPLOAD_NOT_FOUND": "Der Upload wurde nicht gefunden oder ist abgelaufen. Bitte versuche es erneut",
+    "UPLOAD_FAILED": "Die Datei konnte nicht hochgeladen werden. Bitte versuche es erneut"
+  },
+  "ORGANIZATION": {
+    "REQUEST_SUBMITTED": {
+      "SUCCESS": "Deine Organisationsanfrage wurde gesendet"
+    },
+    "REQUEST_APPROVED": {
+      "SUCCESS": "Organisationsanfrage genehmigt"
+    },
+    "REQUEST_REJECTED": {
+      "SUCCESS": "Organisationsanfrage abgelehnt"
+    },
+    "SLUG_TAKEN": "Dieser Slug ist bereits vergeben. Bitte wähle einen anderen",
+    "LOGO_INVALID": "Bitte lade das Logo erneut hoch",
+    "REQUEST_LOCKED": "Deine Anfrage wird geprüft und kann jetzt nicht geändert werden",
+    "REQUEST_ALREADY_REVIEWED": "Diese Anfrage wurde bereits geprüft",
+    "REQUEST_NOT_FOUND": "Organisationsanfrage nicht gefunden",
+    "REQUEST_INCOMPLETE": "Dieser Anfrage fehlen erforderliche Angaben",
+    "NOT_FOUND": "Organisation nicht gefunden"
+  }
+}

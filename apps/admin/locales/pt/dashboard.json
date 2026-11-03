@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Principal",
+    "dashboard": "Painel",
+    "profile": "Perfil"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Visão geral",
+      "platform": "Gestão da plataforma",
+      "access": "Acesso e aprovações",
+      "commerce": "Comércio",
+      "insights": "Análises e sistema"
+    },
+    "items": {
+      "dashboard": "Painel",
+      "countries": "Países",
+      "languages": "Idiomas",
+      "organizations": "Organizações",
+      "users": "Usuários",
+      "admins": "Gestão de administradores",
+      "approvals": "Aprovações",
+      "rolesPermissions": "Funções e permissões",
+      "products": "Produtos",
+      "categories": "Categorias",
+      "inventory": "Estoque",
+      "orders": "Pedidos",
+      "promotions": "Promoções",
+      "reports": "Relatórios",
+      "auditLogs": "Logs de auditoria",
+      "notifications": "Notificações",
+      "settings": "Configurações da plataforma"
+    }
+  },
+  "userMenu": {
+    "signOut": "Sair"
+  },
+  "home": {
+    "metadata": {
+      "title": "Painel",
+      "description": "Sua visão geral de administração da Nexora."
+    },
+    "greeting": "Olá de novo, {firstName}",
+    "description": "Esta é uma visão geral da sua conta.",
+    "summary": {
+      "role": "Função",
+      "status": "Status da conta",
+      "email": "E-mail",
+      "verified": "Verificado",
+      "notVerified": "Não verificado",
+      "memberSince": "Membro desde"
+    },
+    "profile": {
+      "title": "Seu perfil",
+      "description": "Consulte e confira os dados da sua conta.",
+      "action": "Ver perfil"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Perfil",
+      "description": "Dados da conta com a qual você entrou."
+    },
+    "sections": {
+      "personal": "Dados pessoais",
+      "account": "Conta"
+    },
+    "fields": {
+      "name": "Nome",
+      "userName": "Nome de usuário",
+      "email": "E-mail",
+      "language": "Idioma preferido",
+      "country": "País",
+      "role": "Função",
+      "status": "Status",
+      "emailVerification": "Verificação de e-mail",
+      "createdAt": "Membro desde",
+      "updatedAt": "Última atualização",
+      "id": "ID do usuário"
+    },
+    "values": {
+      "verifiedOn": "Verificado em {date}",
+      "notVerified": "Não verificado"
+    }
+  },
+  "roles": {
+    "ADMIN": "Administrador",
+    "USER": "Usuário",
+    "GUEST": "Convidado",
+    "ORG_ADMIN": "Administrador da organização",
+    "ORG_MEMBER": "Membro da organização"
+  },
+  "statuses": {
+    "ACTIVE": "Ativa",
+    "INACTIVE": "Inativa",
+    "SUSPENDED": "Suspensa"
+  }
+}

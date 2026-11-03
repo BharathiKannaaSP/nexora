@@ -1,0 +1,39 @@
+{
+  "languageLabel": "اللغة",
+  "error": {
+    "title": "حدث خطأ ما",
+    "retry": "حاول مرة أخرى"
+  },
+  "actions": {
+    "previous": "السابق",
+    "next": "التالي",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "continue": "متابعة",
+    "back": "رجوع",
+    "close": "إغلاق",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "confirm": "تأكيد",
+    "search": "بحث",
+    "skip": "تخطي",
+    "done": "تم"
+  },
+  "form": {
+    "invalidField": "يُرجى التحقق من هذا الحقل.",
+    "noResults": "لم يتم العثور على نتائج."
+  },
+  "loading": "جارٍ التحميل",
+  "closeNotification": "إغلاق الإشعار",
+  "fileUpload": {
+    "upload": "رفع ملف",
+    "dragHint": "انقر للتصفح أو اسحب ملفًا إلى هنا",
+    "dropHere": "أفلت الملف هنا",
+    "browse": "تصفح",
+    "replace": "استبدال",
+    "clickToReplace": "انقر للاستبدال",
+    "remove": "إزالة {name}",
+    "noFile": "لم يتم اختيار ملف"
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "stepsLabel": "Étapes d'intégration",
+  "signOut": "Se déconnecter",
+  "steps": {
+    "basicInformation": {
+      "title": "Informations de base",
+      "description": "Indiquez-nous vos informations de base"
+    },
+    "choosePath": {
+      "title": "Choisissez votre parcours",
+      "description": "Choisissez comment vous souhaitez continuer"
+    },
+    "roleRequirements": {
+      "title": "Exigences du rôle",
+      "description": "Fournissez les informations propres au rôle"
+    },
+    "review": {
+      "title": "Vérifier et envoyer",
+      "description": "Vérifiez vos informations et envoyez-les"
+    }
+  },
+  "pages": {
+    "basicInformation": {
+      "title": "Informations de base",
+      "description": "Parlez-nous un peu de vous."
+    },
+    "choosePath": {
+      "title": "Choisissez votre parcours",
+      "description": "Devenez administrateur, créez une organisation ou rejoignez-en une."
+    },
+    "becomeAdmin": {
+      "title": "Devenir administrateur",
+      "description": "Fournissez les informations nécessaires pour demander l'accès administrateur."
+    },
+    "createOrganization": {
+      "title": "Créer une organisation",
+      "description": "Configurez l'organisation que vous allez gérer."
+    },
+    "joinOrganization": {
+      "title": "Rejoindre une organisation",
+      "description": "Trouvez l'organisation que vous souhaitez rejoindre."
+    },
+    "review": {
+      "title": "Vérification",
+      "description": "Vérifiez vos informations et soumettez-les pour approbation."
+    }
+  },
+  "basicInformationForm": {
+    "usernameHint": "Ce sera votre identifiant unique sur Nexora.",
+    "passwordHint": "Laissez vide pour conserver votre mot de passe actuel, ou utilisez au moins 8 caractères pour le modifier.",
+    "emailHint": "Si vous modifiez votre adresse e-mail, vous devrez la vérifier à nouveau.",
+    "verified": "Vérifié"
+  },
+  "chooseYourPathForm": {
+    "fields": {
+      "selectedPath": "Choisissez votre parcours",
+      "phoneNumber": "Numéro de téléphone",
+      "dob": "Date de naissance",
+      "gender": "Genre",
+      "bioCountry": "Pays",
+      "bio": "Bio",
+      "addressLine1": "Adresse ligne 1",
+      "addressLine2": "Adresse ligne 2",
+      "city": "Ville",
+      "state": "État/Région",
+      "postalCode": "Code postal",
+      "languageCode": "Langue",
+      "timezone": "Fuseau horaire"
+    },
+    "paths": {
+      "becomeAdmin": {
+        "label": "Devenir administrateur",
+        "description": "Demandez un accès administrateur à Nexora."
+      },
+      "createOrganization": {
+        "label": "Créer une organisation",
+        "description": "Configurez une organisation que vous gérerez."
+      },
+      "joinOrganization": {
+        "label": "Rejoindre une organisation",
+        "description": "Rejoignez une organisation qui utilise déjà Nexora."
+      }
+    },
+    "genderOptions": {
+      "male": "Homme",
+      "female": "Femme",
+      "other": "Autre",
+      "preferNotToSay": "Je préfère ne pas répondre"
+    },
+    "validation": {
+      "selectedPathRequired": "Choisissez un parcours pour continuer",
+      "phoneNumberRequired": "Le numéro de téléphone est requis",
+      "dobRequired": "Saisissez une date de naissance valide",
+      "genderRequired": "Sélectionnez votre genre",
+      "bioCountryRequired": "Le pays est requis",
+      "bioRequired": "La bio est requise",
+      "bioTooLong": "La bio ne doit pas dépasser 1000 caractères",
+      "addressLine1Required": "L'adresse est requise",
+      "cityRequired": "La ville est requise",
+      "stateRequired": "L'état/la région est requis",
+      "postalCodeRequired": "Le code postal est requis",
+      "timeZoneRequired": "Le fuseau horaire est requis",
+      "postalCodeInvalid": "Saisissez un code postal valide pour le pays sélectionné",
+      "phoneNumberInvalid": "Saisissez un numéro de téléphone valide pour le pays sélectionné"
+    },
+    "hints": {
+      "selectCountryFirst": "Sélectionnez d'abord votre pays",
+      "countrySwitch": "Vous utilisez Nexora {current}. Lorsque vous continuerez, nous passerons à Nexora {next}."
+    }
+  },
+  "becomeAdminForm": {
+    "title": "Demander un accès administrateur à la plateforme",
+    "description": "Choisissez les pays et les autorisations de gestion dont vous avez besoin. Un administrateur habilité de la plateforme examinera votre demande.",
+    "sections": {
+      "role": {
+        "title": "Votre poste",
+        "description": "Présentez votre poste actuel pour aider les évaluateurs à comprendre votre demande."
+      },
+      "justification": {
+        "title": "Justification de la demande",
+        "description": "Expliquez pourquoi vous avez besoin d’un accès administrateur à la plateforme et comment vous comptez l’utiliser."
+      },
+      "countries": {
+        "title": "Sélectionnez des pays",
+        "description": "Choisissez jusqu’à {max, number} pays pris en charge."
+      },
+      "permissions": {
+        "title": "Configurez les autorisations pour chaque pays",
+        "description": "Sélectionnez les modules de gestion et les actions précises auxquels vous avez besoin d’accéder pour chaque pays."
+      }
+    },
+    "fields": {
+      "jobTitle": "Intitulé du poste",
+      "department": "Service",
+      "currentOrganizationName": "Organisation actuelle",
+      "justification": "Justification",
+      "countries": "Pays",
+      "permissions": "Autorisations"
+    },
+    "placeholders": {
+      "jobTitle": "p. ex. Responsable des opérations régionales",
+      "department": "p. ex. Opérations",
+      "currentOrganizationName": "p. ex. Acme SA",
+      "justification": "Décrivez en détail pourquoi vous avez besoin d’un accès administrateur, vos responsabilités et en quoi cela aidera la plateforme…"
+    },
+    "permissions": {
+      "module": "Module",
+      "modulesSelected": "{count, plural, =0 {Aucun module sélectionné} one {# module sélectionné} other {# modules sélectionnés}}"
+    },
+    "modules": {
+      "country": {
+        "label": "Gestion des pays",
+        "description": "Gérer les informations et les paramètres des pays"
+      },
+      "city": {
+        "label": "Gestion des villes",
+        "description": "Gérer les villes, les régions et les sites"
+      },
+      "user": {
+        "label": "Gestion des utilisateurs",
+        "description": "Gérer les utilisateurs de la plateforme et leurs accès"
+      },
+      "organization": {
+        "label": "Gestion des organisations",
+        "description": "Examiner et approuver les demandes d'organisation"
+      },
+      "product": {
+        "label": "Gestion des produits",
+        "description": "Gérer les produits et le catalogue"
+      },
+      "inventory": {
+        "label": "Gestion des stocks",
+        "description": "Gérer l’inventaire et les stocks"
+      },
+      "billing": {
+        "label": "Gestion de la facturation",
+        "description": "Gérer la facturation, les offres et les paiements"
+      },
+      "analytics": {
+        "label": "Gestion des analyses",
+        "description": "Consulter les analyses et les rapports de la plateforme"
+      }
+    },
+    "actions": {
+      "view": "Voir",
+      "create": "Créer",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "hints": {
+      "countriesSelected": "{count, number} sur {max, number} sélectionné(s)",
+      "selectCountryFirst": "Sélectionnez un pays pour configurer ses autorisations",
+      "ownCountryLocked": "Votre propre pays est toujours inclus.",
+      "inactiveUntilApproved": "Votre accès reste inactif jusqu’à l’approbation de votre demande."
+    },
+    "validation": {
+      "jobTitleRequired": "Saisissez l’intitulé de votre poste",
+      "jobTitleTooLong": "L’intitulé du poste ne doit pas dépasser {max, number} caractères",
+      "departmentRequired": "Saisissez votre service",
+      "departmentTooLong": "Le service ne doit pas dépasser {max, number} caractères",
+      "currentOrganizationNameRequired": "Saisissez votre organisation actuelle",
+      "currentOrganizationNameTooLong": "Le nom de l’organisation ne doit pas dépasser {max, number} caractères",
+      "justificationRequired": "Dites-nous pourquoi vous avez besoin d’un accès administrateur",
+      "justificationTooLong": "La justification ne doit pas dépasser 1000 caractères",
+      "countriesRequired": "Sélectionnez au moins un pays",
+      "countriesTooMany": "Sélectionnez jusqu’à {max, number} pays",
+      "permissionsRequired": "Sélectionnez au moins une autorisation pour ce pays"
+    },
+    "confirmSubmit": {
+      "title": "Vérifiez avant d'envoyer",
+      "description": "Veuillez vérifier attentivement toutes vos informations. Une fois envoyée, votre demande ne pourra plus être modifiée."
+    }
+  },
+  "createOrganizationForm": {
+    "sections": {
+      "details": {
+        "title": "Créez votre organisation",
+        "description": "Remplissez les informations ci-dessous pour enregistrer votre organisation. Votre demande sera examinée par notre équipe d'administration."
+      },
+      "location": {
+        "title": "Localisation et informations fiscales",
+        "description": "Le pays où votre organisation est immatriculée. L'adresse et le numéro fiscal sont vérifiés pour ce pays."
+      }
+    },
+    "fields": {
+      "name": "Nom de l'organisation",
+      "slug": "URL de l'organisation",
+      "logo": "Logo de l'organisation",
+      "industry": "Secteur",
+      "size": "Taille de l'organisation",
+      "website": "Site web",
+      "description": "Description de l'organisation",
+      "taxId": "Numéro fiscal (p. ex. numéro de TVA, GSTIN ou EIN)"
+    },
+    "placeholders": {
+      "name": "p. ex. Acme Retail",
+      "industry": "Sélectionnez un secteur",
+      "size": "Sélectionnez une taille",
+      "description": "Que fait votre organisation et à qui s'adresse-t-elle ?",
+      "taxId": "p. ex. numéro de TVA, GSTIN ou EIN",
+      "logo": "Téléverser le logo"
+    },
+    "hints": {
+      "slug": "Minuscules, chiffres et tirets. Fait partie de l'adresse web de votre organisation.",
+      "logo": "PNG, JPEG ou WebP, jusqu'à {maxMb, number} Mo.",
+      "description": "{min, number} à {max, number} caractères.",
+      "taxId": "Le numéro d'immatriculation fiscale utilisé par votre organisation dans le pays sélectionné."
+    },
+    "sizeOption": "{range} employés",
+    "industries": {
+      "fashionApparel": "Mode et habillement",
+      "retail": "Commerce de détail",
+      "ecommerce": "E-commerce",
+      "healthBeauty": "Santé et beauté",
+      "electronics": "Électronique",
+      "homeFurniture": "Maison et ameublement",
+      "manufacturing": "Industrie manufacturière",
+      "technology": "Technologie",
+      "logistics": "Logistique",
+      "education": "Éducation",
+      "other": "Autre"
+    },
+    "validation": {
+      "organizationNameRequired": "Le nom de l'organisation est obligatoire",
+      "organizationNameTooLong": "Le nom de l'organisation ne doit pas dépasser {max, number} caractères",
+      "organizationSlugRequired": "Le slug est obligatoire",
+      "organizationSlugMinLength": "Le slug doit contenir au moins {min, number} caractères",
+      "organizationSlugTooLong": "Le slug ne doit pas dépasser {max, number} caractères",
+      "organizationSlugPattern": "Utilisez des minuscules, des chiffres et des tirets simples, p. ex. acme-retail",
+      "organizationLogoRequired": "Importez le logo de votre organisation",
+      "organizationLogoTooLarge": "Le logo ne doit pas dépasser {maxMb, number} Mo",
+      "organizationLogoWrongFormat": "Le logo doit être une image PNG, JPEG ou WebP",
+      "organizationSizeRequired": "Sélectionnez la taille de votre organisation",
+      "organizationIndustryTypeRequired": "Sélectionnez votre secteur",
+      "organizationCountryRequired": "Le pays est obligatoire",
+      "organizationWebsiteInvalid": "Saisissez un site web valide, p. ex. https://example.com",
+      "organizationDescriptionRequired": "La description est obligatoire",
+      "organizationDescriptionMinLength": "La description doit contenir au moins {min, number} caractères",
+      "organizationDescriptionTooLong": "La description ne doit pas dépasser {max, number} caractères",
+      "organizationTaxDetailsRequired": "Le numéro fiscal est obligatoire",
+      "organizationTaxDetailsInvalid": "Saisissez un numéro fiscal valide",
+      "addressLine1Required": "L'adresse est requise",
+      "cityRequired": "La ville est requise",
+      "stateRequired": "L'état/la région est requis",
+      "postalCodeRequired": "Le code postal est requis",
+      "postalCodeInvalid": "Saisissez un code postal valide pour le pays sélectionné"
+    }
+  },
+  "review": {
+    "hero": {
+      "submitted": {
+        "title": "Demande envoyée avec succès !",
+        "subtitle": "En attente d'approbation",
+        "description": "Votre demande a été envoyée et est en cours d'examen par notre équipe d'administration. Vous serez averti dès qu'une décision sera prise."
+      },
+      "approved": {
+        "title": "Demande approuvée !",
+        "subtitle": "Activation de votre compte",
+        "description": "Votre demande a été approuvée. Nous activons votre compte et vous pourrez bientôt utiliser Nexora."
+      },
+      "rejected": {
+        "title": "Demande non approuvée",
+        "subtitle": "Votre demande a été refusée",
+        "description": "Malheureusement, votre demande n'a pas été approuvée cette fois-ci. Consultez le commentaire de l'examinateur ci-dessous."
+      }
+    },
+    "stages": {
+      "submitted": "Envoyée",
+      "inReview": "En examen",
+      "underApproval": "En approbation",
+      "completed": "Terminée"
+    },
+    "stageStates": {
+      "done": "Terminé",
+      "current": "En cours",
+      "pending": "En attente",
+      "rejected": "Refusée"
+    },
+    "turnaround": "Cela prend généralement 1 à 2 jours ouvrés. Merci de votre patience.",
+    "rejectionReason": "Commentaire de l'examinateur",
+    "details": {
+      "title": "Détails de la demande",
+      "requestId": "ID de la demande",
+      "submittedOn": "Envoyée le",
+      "requestType": "Type de demande",
+      "submittedBy": "Envoyée par",
+      "you": "{name} (vous)",
+      "currentStatus": "Statut actuel"
+    },
+    "statuses": {
+      "waiting": "En attente d'approbation",
+      "inReview": "En examen",
+      "approved": "Approuvée",
+      "rejected": "Refusée"
+    },
+    "viewSubmitted": "Voir les informations envoyées",
+    "hideSubmitted": "Masquer les informations envoyées",
+    "submittedInformation": {
+      "title": "Informations envoyées",
+      "personal": "Informations personnelles",
+      "name": "Nom",
+      "email": "E-mail",
+      "permissions": "Autorisations demandées",
+      "logoAlt": "Logo de {name}",
+      "logoUnavailable": "Logo indisponible"
+    },
+    "next": {
+      "title": "Et ensuite ?",
+      "review": {
+        "title": "Examen en cours",
+        "description": "Notre équipe d'administration examine les informations que vous avez envoyées."
+      },
+      "notified": {
+        "title": "Soyez averti",
+        "description": "Vous recevrez un e-mail et une notification dans l'application dès qu'il y aura du nouveau."
+      },
+      "activation": {
+        "title": "Activation du compte",
+        "description": "Une fois la demande approuvée, votre compte sera activé et vous pourrez utiliser Nexora."
+      }
+    },
+    "thanks": "Merci d'avoir choisi Nexora. Nous sommes ravis de vous compter parmi nous !"
+  }
+}

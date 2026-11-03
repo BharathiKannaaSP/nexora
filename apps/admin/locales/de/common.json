@@ -1,0 +1,39 @@
+{
+  "languageLabel": "Sprache",
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "retry": "Erneut versuchen"
+  },
+  "actions": {
+    "previous": "Zurück",
+    "next": "Weiter",
+    "submit": "Absenden",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "continue": "Fortfahren",
+    "back": "Zurück",
+    "close": "Schließen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "confirm": "Bestätigen",
+    "search": "Suchen",
+    "skip": "Überspringen",
+    "done": "Fertig"
+  },
+  "form": {
+    "invalidField": "Bitte überprüfen Sie dieses Feld.",
+    "noResults": "Keine Ergebnisse gefunden."
+  },
+  "loading": "Wird geladen",
+  "closeNotification": "Benachrichtigung schließen",
+  "fileUpload": {
+    "upload": "Datei hochladen",
+    "dragHint": "Klicken zum Auswählen oder Datei hierher ziehen",
+    "dropHere": "Datei hier ablegen",
+    "browse": "Durchsuchen",
+    "replace": "Ersetzen",
+    "clickToReplace": "Zum Ersetzen klicken",
+    "remove": "{name} entfernen",
+    "noFile": "Keine Datei ausgewählt"
+  }
+}

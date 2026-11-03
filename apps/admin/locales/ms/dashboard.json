@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "label": "Utama",
+    "dashboard": "Papan pemuka",
+    "profile": "Profil"
+  },
+  "sidebar": {
+    "groups": {
+      "overview": "Gambaran keseluruhan",
+      "platform": "Pengurusan platform",
+      "access": "Akses & kelulusan",
+      "commerce": "Perdagangan",
+      "insights": "Cerapan & sistem"
+    },
+    "items": {
+      "dashboard": "Papan pemuka",
+      "countries": "Negara",
+      "languages": "Bahasa",
+      "organizations": "Organisasi",
+      "users": "Pengguna",
+      "admins": "Pengurusan pentadbir",
+      "approvals": "Kelulusan",
+      "rolesPermissions": "Peranan & kebenaran",
+      "products": "Produk",
+      "categories": "Kategori",
+      "inventory": "Inventori",
+      "orders": "Pesanan",
+      "promotions": "Promosi",
+      "reports": "Laporan",
+      "auditLogs": "Log audit",
+      "notifications": "Pemberitahuan",
+      "settings": "Tetapan platform"
+    }
+  },
+  "userMenu": {
+    "signOut": "Log keluar"
+  },
+  "home": {
+    "metadata": {
+      "title": "Papan pemuka",
+      "description": "Gambaran keseluruhan pentadbir Nexora anda."
+    },
+    "greeting": "Selamat kembali, {firstName}",
+    "description": "Berikut ialah gambaran keseluruhan akaun anda.",
+    "summary": {
+      "role": "Peranan",
+      "status": "Status akaun",
+      "email": "E-mel",
+      "verified": "Disahkan",
+      "notVerified": "Belum disahkan",
+      "memberSince": "Ahli sejak"
+    },
+    "profile": {
+      "title": "Profil anda",
+      "description": "Lihat dan semak butiran akaun anda.",
+      "action": "Lihat profil"
+    }
+  },
+  "profile": {
+    "metadata": {
+      "title": "Profil",
+      "description": "Butiran akaun yang anda gunakan untuk log masuk."
+    },
+    "sections": {
+      "personal": "Butiran peribadi",
+      "account": "Akaun"
+    },
+    "fields": {
+      "name": "Nama",
+      "userName": "Nama pengguna",
+      "email": "E-mel",
+      "language": "Bahasa pilihan",
+      "country": "Negara",
+      "role": "Peranan",
+      "status": "Status",
+      "emailVerification": "Pengesahan e-mel",
+      "createdAt": "Ahli sejak",
+      "updatedAt": "Kali terakhir dikemas kini",
+      "id": "ID pengguna"
+    },
+    "values": {
+      "verifiedOn": "Disahkan pada {date}",
+      "notVerified": "Belum disahkan"
+    }
+  },
+  "roles": {
+    "ADMIN": "Pentadbir",
+    "USER": "Pengguna",
+    "GUEST": "Tetamu",
+    "ORG_ADMIN": "Pentadbir organisasi",
+    "ORG_MEMBER": "Ahli organisasi"
+  },
+  "statuses": {
+    "ACTIVE": "Aktif",
+    "INACTIVE": "Tidak aktif",
+    "SUSPENDED": "Digantung"
+  }
+}
