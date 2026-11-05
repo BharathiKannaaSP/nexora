@@ -1,0 +1,44 @@
+{
+  "name": "@nexora/media-service",
+  "version": "1.0.0",
+  "description": "Nexora Media service: S3 uploads, CloudFront delivery",
+  "main": "src/media-server.ts",
+  "scripts": {
+    "dev": "tsx watch src/media-server.ts",
+    "start": "node dist/media-server.js",
+    "build": "tsc",
+    "lint": "eslint",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "nexora",
+    "media",
+    "service"
+  ],
+  "author": "Bharathi Kannaa",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1161.0",
+    "@aws-sdk/cloudfront-signer": "^3.1161.0",
+    "@aws-sdk/s3-request-presigner": "^3.1161.0",
+    "@nexora/schemas": "workspace:*",
+    "@nexora/shared": "workspace:*",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "file-type": "^22.3.0",
+    "helmet": "^8.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@nexora/eslint-config": "workspace:*",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "eslint": "^10",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

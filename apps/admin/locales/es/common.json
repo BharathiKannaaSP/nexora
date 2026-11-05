@@ -35,5 +35,19 @@
     "clickToReplace": "Haz clic para reemplazar",
     "remove": "Quitar {name}",
     "noFile": "Ningún archivo seleccionado"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Tipo",
+      "file": "Archivo",
+      "size": "Tamaño",
+      "actions": "Acciones"
+    },
+    "view": "Ver",
+    "download": "Descargar",
+    "viewFile": "Ver {name}",
+    "downloadFile": "Descargar {name}",
+    "deleteTitle": "¿Eliminar {name}?",
+    "deleteDescription": "El archivo se eliminará de forma permanente. Esta acción no se puede deshacer."
   }
 }

@@ -35,5 +35,19 @@
     "clickToReplace": "点击替换",
     "remove": "移除 {name}",
     "noFile": "未选择文件"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "类型",
+      "file": "文件",
+      "size": "大小",
+      "actions": "操作"
+    },
+    "view": "查看",
+    "download": "下载",
+    "viewFile": "查看 {name}",
+    "downloadFile": "下载 {name}",
+    "deleteTitle": "删除 {name}？",
+    "deleteDescription": "该文件将被永久删除，且无法撤消。"
   }
 }

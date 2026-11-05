@@ -1,0 +1,291 @@
+[
+  {
+    "id": "table.UserPermission",
+    "label": "Create table \"UserPermission\"",
+    "summary": "Creates table \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"UserPermission\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"UserPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"UserPermission\"",
+        "sql": "CREATE TABLE \"public\".\"UserPermission\" (\n  \"accessLevel\" text NOT NULL,\n  \"countryCode\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"grantedByUserId\" text,\n  \"id\" text NOT NULL,\n  \"moduleCode\" text NOT NULL,\n  \"moduleNameSnapshot\" text,\n  \"organizationId\" text,\n  \"sourceRequestId\" text,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"UserPermission_accessLevel_check_a8881806\" CHECK (\"accessLevel\" IN ('VIEW', 'CREATE', 'EDIT', 'DELETE')),\n  CONSTRAINT \"UserPermission_moduleCode_check_715d8229\" CHECK (\"moduleCode\" IN ('COUNTRY_MANAGEMENT', 'USER_MANAGEMENT', 'ORGANIZATION_MANAGEMENT', 'PRODUCT_MANAGEMENT', 'INVENTORY_MANAGEMENT', 'BILLING_MANAGEMENT', 'ANALYTICS_MANAGEMENT'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"UserPermission\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"UserPermission\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "index.UserPermission.UserPermission_country_module_793def4d",
+    "label": "Create index \"UserPermission_country_module_793def4d\" on \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserPermission_country_module_793def4d",
+        "table": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPermission_country_module_793def4d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_country_module_793def4d\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserPermission_country_module_793def4d\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPermission_country_module_793def4d\"",
+        "sql": "CREATE INDEX \"UserPermission_country_module_793def4d\" ON \"public\".\"UserPermission\" (\"countryCode\", \"moduleCode\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPermission_country_module_793def4d\" exists on \"UserPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_country_module_793def4d\"",
+          "i",
+          "I",
+          "\"public\".\"UserPermission\"",
+          "btree",
+          "[\"countryCode\",\"moduleCode\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserPermission.UserPermission_organizationId_idx_2e17ef41",
+    "label": "Create index \"UserPermission_organizationId_idx_2e17ef41\" on \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserPermission_organizationId_idx_2e17ef41",
+        "table": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPermission_organizationId_idx_2e17ef41\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_organizationId_idx_2e17ef41\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserPermission_organizationId_idx_2e17ef41\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPermission_organizationId_idx_2e17ef41\"",
+        "sql": "CREATE INDEX \"UserPermission_organizationId_idx_2e17ef41\" ON \"public\".\"UserPermission\" (\"organizationId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPermission_organizationId_idx_2e17ef41\" exists on \"UserPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_organizationId_idx_2e17ef41\"",
+          "i",
+          "I",
+          "\"public\".\"UserPermission\"",
+          "btree",
+          "[\"organizationId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserPermission.UserPermission_organization_key_0360ee30",
+    "label": "Create index \"UserPermission_organization_key_0360ee30\" on \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserPermission_organization_key_0360ee30",
+        "table": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPermission_organization_key_0360ee30\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_organization_key_0360ee30\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserPermission_organization_key_0360ee30\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPermission_organization_key_0360ee30\"",
+        "sql": "CREATE UNIQUE INDEX \"UserPermission_organization_key_0360ee30\" ON \"public\".\"UserPermission\" (\"userId\", \"organizationId\", \"moduleCode\", \"accessLevel\") WHERE (\"organizationId\" IS NOT NULL)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPermission_organization_key_0360ee30\" exists on \"UserPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND \"i\".\"indisunique\" AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NOT NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_organization_key_0360ee30\"",
+          "i",
+          "I",
+          "\"public\".\"UserPermission\"",
+          "btree",
+          "[\"userId\",\"organizationId\",\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserPermission.UserPermission_platform_key_0dd62f6d",
+    "label": "Create index \"UserPermission_platform_key_0dd62f6d\" on \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserPermission_platform_key_0dd62f6d",
+        "table": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPermission_platform_key_0dd62f6d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_platform_key_0dd62f6d\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserPermission_platform_key_0dd62f6d\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPermission_platform_key_0dd62f6d\"",
+        "sql": "CREATE UNIQUE INDEX \"UserPermission_platform_key_0dd62f6d\" ON \"public\".\"UserPermission\" (\"userId\", \"countryCode\", \"moduleCode\", \"accessLevel\") WHERE (\"organizationId\" IS NULL)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPermission_platform_key_0dd62f6d\" exists on \"UserPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND \"i\".\"indisunique\" AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NOT NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_platform_key_0dd62f6d\"",
+          "i",
+          "I",
+          "\"public\".\"UserPermission\"",
+          "btree",
+          "[\"userId\",\"countryCode\",\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserPermission.UserPermission_sourceRequestId_idx_949a5766",
+    "label": "Create index \"UserPermission_sourceRequestId_idx_949a5766\" on \"UserPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "UserPermission_sourceRequestId_idx_949a5766",
+        "table": "UserPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPermission_sourceRequestId_idx_949a5766\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_sourceRequestId_idx_949a5766\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"UserPermission_sourceRequestId_idx_949a5766\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPermission_sourceRequestId_idx_949a5766\"",
+        "sql": "CREATE INDEX \"UserPermission_sourceRequestId_idx_949a5766\" ON \"public\".\"UserPermission\" (\"sourceRequestId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPermission_sourceRequestId_idx_949a5766\" exists on \"UserPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"UserPermission_sourceRequestId_idx_949a5766\"",
+          "i",
+          "I",
+          "\"public\".\"UserPermission\"",
+          "btree",
+          "[\"sourceRequestId\"]"
+        ]
+      }
+    ]
+  }
+]

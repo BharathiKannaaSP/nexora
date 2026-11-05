@@ -38,6 +38,12 @@
       "env": ["USER_DATABASE_URL"],
       "with": ["@nexora/user-service#outbox:dev"]
     },
+    "@nexora/organization-service#dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["ORGANIZATION_DATABASE_URL"],
+      "with": ["@nexora/organization-service#outbox:dev"]
+    },
     "outbox:dev": {
       "cache": false,
       "persistent": true

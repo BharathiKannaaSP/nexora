@@ -108,6 +108,9 @@ If this project lives inside a pnpm workspace, a few things are worth knowing:
 
 ## Steps to Prisma re schema workflow:
 
+For every service at once, from the repo root, see
+[`docs/prisma.md`](../../docs/prisma.md): `pnpm prisma migrate --name <name>`.
+
 pnpm prisma contract emit
 pnpm prisma migration plan --name 'Org prisma changes'
 pnpm prisma db migrate --advance-ref db

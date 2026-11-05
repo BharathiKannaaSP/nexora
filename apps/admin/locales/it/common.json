@@ -35,5 +35,19 @@
     "clickToReplace": "Fai clic per sostituire",
     "remove": "Rimuovi {name}",
     "noFile": "Nessun file selezionato"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Tipo",
+      "file": "File",
+      "size": "Dimensione",
+      "actions": "Azioni"
+    },
+    "view": "Visualizza",
+    "download": "Scarica",
+    "viewFile": "Visualizza {name}",
+    "downloadFile": "Scarica {name}",
+    "deleteTitle": "Eliminare {name}?",
+    "deleteDescription": "Il file verrà eliminato definitivamente. L'operazione non può essere annullata."
   }
 }

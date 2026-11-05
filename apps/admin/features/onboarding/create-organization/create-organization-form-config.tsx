@@ -2,21 +2,27 @@ import {
   createCreateOrganizationSchema,
   ORGANIZATION_DESCRIPTION_MAX_LENGTH,
   ORGANIZATION_DESCRIPTION_MIN_LENGTH,
+  ORGANIZATION_DOCUMENTS_ALLOWED_MIME_TYPES,
+  ORGANIZATION_DOCUMENTS_MAX_FILE_SIZE,
   ORGANIZATION_INDUSTRIES,
   ORGANIZATION_LOGO_MAX_SIZE_BYTES,
   ORGANIZATION_LOGO_MIME_TYPES,
   ORGANIZATION_NAME_MAX_LENGTH,
+  ORGANIZATION_REGISTRATION_NUMBER_MAX_LENGTH,
   ORGANIZATION_SIZES,
   ORGANIZATION_SLUG_MAX_LENGTH,
   ORGANIZATION_SLUG_MIN_LENGTH,
+  type CreateOrganizationFormValues,
   type OrganizationIndustry,
-} from "@nexora/schemas/organization/create-organization"
+} from "@nexora/schemas/onboarding/create-organization"
 import { countryUsesPostalCode } from "@nexora/schemas/user-details/user-details-update"
 import type { Country } from "@nexora/shared/types/country"
 import {
   Building2,
+  Calendar,
   Factory,
   FileText,
+  FileUp,
   Globe,
   Hash,
   Home,
@@ -39,6 +45,8 @@ interface CreateOrganizationFormFieldOptions extends CreateOrganizationFormConfi
   /** The page's language; country names are shown and sorted in it. */
   lang: string
   regionNames: Intl.DisplayNames
+  /** Deletes a saved logo or document for good when its X is clicked. */
+  onDeleteSavedFile?: (value: unknown) => Promise<boolean>
 }
 
 // Labels live in onboarding.json under createOrganizationForm.industries.*.
@@ -57,6 +65,20 @@ export const INDUSTRY_KEYS = {
 } as const satisfies Record<OrganizationIndustry, string>
 
 const LOGO_MAX_SIZE_MB = ORGANIZATION_LOGO_MAX_SIZE_BYTES / (1024 * 1024)
+const DOCUMENT_MAX_SIZE_MB =
+  ORGANIZATION_DOCUMENTS_MAX_FILE_SIZE / (1024 * 1024)
+
+// The upload cards, in order. Labels live in onboarding.json under
+// createOrganizationForm.documents.*.
+export const DOCUMENT_FIELDS = [
+  { name: "businessRegistration", required: true },
+  { name: "taxRegistrationCertificate", required: true },
+  { name: "addressProof", required: true },
+  { name: "additionalDocument", required: false },
+] as const satisfies readonly {
+  name: keyof CreateOrganizationFormValues["proposedDocuments"]
+  required: boolean
+}[]
 
 // One collator for the whole sort; localeCompare(…, lang) builds one per call.
 const byName = (lang: string) => {
@@ -71,6 +93,7 @@ export const createOrganizationFormConfig = ({
   selectedCountryCode,
   lang,
   regionNames,
+  onDeleteSavedFile,
 }: CreateOrganizationFormFieldOptions): EntityFormConfig => ({
   sections: [
     {
@@ -89,16 +112,24 @@ export const createOrganizationFormConfig = ({
     {
       title: t("createOrganizationForm.sections.location.title"),
       description: t("createOrganizationForm.sections.location.description"),
-      isLastField: true,
       fields: [
         "proposedCountryCode",
         "proposedTaxDetails.taxId",
+        "proposedTaxDetails.registrationNumber",
+        "proposedTaxDetails.incorporationDate",
         "proposedAddress.addressLine1",
         "proposedAddress.addressLine2",
         "proposedAddress.city",
         "proposedAddress.state",
         "proposedAddress.postalCode",
       ],
+    },
+    {
+      title: t("createOrganizationForm.sections.documents.title"),
+      description: t("createOrganizationForm.sections.documents.description"),
+      isLastField: true,
+      columns: 4,
+      fields: DOCUMENT_FIELDS.map(({ name }) => `proposedDocuments.${name}`),
     },
   ],
   fields: [
@@ -140,6 +171,7 @@ export const createOrganizationFormConfig = ({
       maxFiles: 1,
       maxFileSize: ORGANIZATION_LOGO_MAX_SIZE_BYTES,
       accept: [...ORGANIZATION_LOGO_MIME_TYPES],
+      onDeleteSavedFile,
     },
     {
       name: "proposedIndustry",
@@ -217,6 +249,25 @@ export const createOrganizationFormConfig = ({
       inputProps: { autoComplete: "off", spellCheck: false },
     },
     {
+      name: "proposedTaxDetails.registrationNumber",
+      label: t("createOrganizationForm.fields.registrationNumber"),
+      type: "text",
+      icon: FileText,
+      placeholder: t("createOrganizationForm.placeholders.registrationNumber"),
+      inputProps: {
+        autoComplete: "off",
+        spellCheck: false,
+        maxLength: ORGANIZATION_REGISTRATION_NUMBER_MAX_LENGTH,
+      },
+    },
+    {
+      name: "proposedTaxDetails.incorporationDate",
+      label: t("createOrganizationForm.fields.incorporationDate"),
+      type: "date",
+      icon: Calendar,
+      placeholder: "YYYY-MM-DD",
+    },
+    {
       name: "proposedAddress.addressLine1",
       label: t("chooseYourPathForm.fields.addressLine1"),
       type: "text",
@@ -258,6 +309,22 @@ export const createOrganizationFormConfig = ({
       icon: Hash,
       inputProps: { autoComplete: "organization postal-code" },
     },
+    ...DOCUMENT_FIELDS.map(({ name, required }) => ({
+      name: `proposedDocuments.${name}`,
+      label: t(`createOrganizationForm.documents.${name}.label`),
+      type: "file-upload" as const,
+      required,
+      uploadVariant: "compact" as const,
+      uploadIcon: FileUp,
+      placeholder: t(`createOrganizationForm.documents.${name}.hint`),
+      description: t("createOrganizationForm.hints.document", {
+        maxMb: DOCUMENT_MAX_SIZE_MB,
+      }),
+      maxFiles: 1,
+      maxFileSize: ORGANIZATION_DOCUMENTS_MAX_FILE_SIZE,
+      accept: [...ORGANIZATION_DOCUMENTS_ALLOWED_MIME_TYPES],
+      onDeleteSavedFile,
+    })),
   ],
 })
 
@@ -335,4 +402,21 @@ export const createCreateOrganizationFormSchema = (
       "createOrganizationForm.validation.postalCodeRequired"
     ),
     postalCodeInvalid: t("createOrganizationForm.validation.postalCodeInvalid"),
+    organizationRegistrationNumberTooLong: t(
+      "createOrganizationForm.validation.organizationRegistrationNumberTooLong",
+      { max: ORGANIZATION_REGISTRATION_NUMBER_MAX_LENGTH }
+    ),
+    organizationIncorporationDateInvalid: t(
+      "createOrganizationForm.validation.organizationIncorporationDateInvalid"
+    ),
+    organizationDocumentRequired: t(
+      "createOrganizationForm.validation.organizationDocumentRequired"
+    ),
+    organizationDocumentTooLarge: t(
+      "createOrganizationForm.validation.organizationDocumentTooLarge",
+      { maxMb: DOCUMENT_MAX_SIZE_MB }
+    ),
+    organizationDocumentWrongFormat: t(
+      "createOrganizationForm.validation.organizationDocumentWrongFormat"
+    ),
   })

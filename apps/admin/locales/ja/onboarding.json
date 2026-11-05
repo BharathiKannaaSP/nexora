@@ -220,6 +220,10 @@
       "location": {
         "title": "所在地と税務情報",
         "description": "組織が登録されている国です。住所と税番号はこの国の形式で確認されます。"
+      },
+      "documents": {
+        "title": "書類のアップロード",
+        "description": "組織の確認のため、法的書類をアップロードしてください。"
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "組織の規模",
       "website": "ウェブサイト",
       "description": "組織の説明",
-      "taxId": "税番号（例: 法人番号、GSTIN、VAT、EIN）"
+      "taxId": "税番号（例: 法人番号、GSTIN、VAT、EIN）",
+      "registrationNumber": "登記番号",
+      "incorporationDate": "設立日"
     },
     "placeholders": {
       "name": "例: Acme Retail",
@@ -238,13 +244,15 @@
       "size": "規模を選択",
       "description": "組織の事業内容と、対象とする顧客を入力してください",
       "taxId": "例: 法人番号、GSTIN、VAT、EIN",
-      "logo": "ロゴをアップロード"
+      "logo": "ロゴをアップロード",
+      "registrationNumber": "登記番号を入力"
     },
     "hints": {
       "slug": "半角英小文字、数字、ハイフンを使用できます。組織のウェブアドレスの一部になります。",
       "logo": "PNG、JPEG、WebP（{maxMb, number} MBまで）",
       "description": "{min, number}～{max, number}文字",
-      "taxId": "選択した国で組織が使用している税務登録番号です。"
+      "taxId": "選択した国で組織が使用している税務登録番号です。",
+      "document": "PDF、Word、PNG、JPEG、WebP（{maxMb, number} MBまで）"
     },
     "sizeOption": "{range}名",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "市区町村は必須です",
       "stateRequired": "都道府県・州は必須です",
       "postalCodeRequired": "郵便番号は必須です",
-      "postalCodeInvalid": "選択した国の有効な郵便番号を入力してください"
+      "postalCodeInvalid": "選択した国の有効な郵便番号を入力してください",
+      "organizationRegistrationNumberTooLong": "登記番号は{max, number}文字以内にしてください",
+      "organizationIncorporationDateInvalid": "有効な日付を入力してください",
+      "organizationDocumentRequired": "この書類をアップロードしてください",
+      "organizationDocumentTooLarge": "ファイルは{maxMb, number} MB以下にしてください",
+      "organizationDocumentWrongFormat": "PDF、Wordファイル、または画像（PNG、JPEG、WebP）をアップロードしてください"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "事業登記",
+        "hint": "設立証明書"
+      },
+      "taxRegistrationCertificate": {
+        "label": "税務登録証明書",
+        "hint": "GST、VAT、または税務証明書"
+      },
+      "addressProof": {
+        "label": "住所証明",
+        "hint": "公共料金の請求書または賃貸契約書"
+      },
+      "additionalDocument": {
+        "label": "追加書類（任意）",
+        "hint": "その他の補足書類"
+      }
+    },
+    "uploadedFiles": {
+      "title": "アップロード済みファイル",
+      "description": "続行する前にロゴと書類を確認してください。"
     }
   },
   "review": {

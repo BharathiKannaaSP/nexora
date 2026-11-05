@@ -35,5 +35,19 @@
     "clickToReplace": "ಬದಲಾಯಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ",
     "remove": "{name} ತೆಗೆದುಹಾಕಿ",
     "noFile": "ಯಾವುದೇ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "ಪ್ರಕಾರ",
+      "file": "ಫೈಲ್",
+      "size": "ಗಾತ್ರ",
+      "actions": "ಕ್ರಿಯೆಗಳು"
+    },
+    "view": "ವೀಕ್ಷಿಸಿ",
+    "download": "ಡೌನ್‌ಲೋಡ್",
+    "viewFile": "{name} ವೀಕ್ಷಿಸಿ",
+    "downloadFile": "{name} ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    "deleteTitle": "{name} ಅಳಿಸಬೇಕೆ?",
+    "deleteDescription": "ಫೈಲ್ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
   }
 }

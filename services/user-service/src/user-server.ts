@@ -1,6 +1,7 @@
 import app from "./user-app"
 import { env } from "./config/user-env"
 import { startCreateUserProfileConsumer } from "./consumers/create-user-profile.consumer"
+import { startAdminAccessApprovedConsumer } from "./consumers/admin-access-approved.consumer"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora User service running on", env.PORT)
@@ -10,6 +11,13 @@ startCreateUserProfileConsumer()
   .then(() => console.info("Create user profile consumer started"))
   .catch((error: unknown) => {
     console.error("Create user profile consumer failed to start", error)
+    process.exitCode = 1
+  })
+
+startAdminAccessApprovedConsumer()
+  .then(() => console.info("Admin access approved consumer started"))
+  .catch((error: unknown) => {
+    console.error("Admin access approved consumer failed to start", error)
     process.exitCode = 1
   })
 

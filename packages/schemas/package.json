@@ -21,6 +21,8 @@
   },
   "exports": {
     "./auth/*": "./src/auth/*.ts",
+    "./events/*": "./src/events/*.ts",
+    "./media/*": "./src/media/*.ts",
     "./onboarding/*": "./src/onboarding/*.ts",
     "./organization/*": "./src/organization/*.ts",
     "./user-details/*": "./src/user-details/*.ts"

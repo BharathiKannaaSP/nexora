@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "നിങ്ങളുടെ അഡ്മിൻ ആക്സസ് അഭ്യർത്ഥന സംരക്ഷിച്ചു"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "നിങ്ങളുടെ സ്ഥാപന അഭ്യർത്ഥന സമർപ്പിച്ചു"
+    },
+    "ORGANIZATION_FILE_INVALID": "ഒരു ഫയൽ ഉപയോഗിക്കാൻ കഴിഞ്ഞില്ല. ദയവായി അത് വീണ്ടും അപ്‌ലോഡ് ചെയ്യുക",
+    "ORGANIZATION_FILE_DUPLICATE": "ഓരോ ഫയലും ഒരിക്കൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "ഈ ഫയൽ തരം അനുവദനീയമല്ല",
     "FILE_TOO_LARGE": "ഈ ഫയൽ വളരെ വലുതാണ്",
     "UPLOAD_NOT_FOUND": "അപ്‌ലോഡ് കണ്ടെത്തിയില്ല അല്ലെങ്കിൽ കാലഹരണപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക",
-    "UPLOAD_FAILED": "ഫയൽ അപ്‌ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക"
+    "UPLOAD_FAILED": "ഫയൽ അപ്‌ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക",
+    "UPLOAD": {
+      "DELETED": "ഫയൽ ഇല്ലാതാക്കി"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

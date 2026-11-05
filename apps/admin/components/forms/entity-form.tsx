@@ -39,6 +39,8 @@ interface EntityFormProps<TValues extends FieldValues> {
   isSubmitting?: boolean
   actions?: EntityFormAction[]
   countryCode?: Country
+  /** Shown after the sections, above the footer, e.g. an uploaded-files table. */
+  children?: React.ReactNode
 }
 
 export function EntityForm<TValues extends FieldValues>({
@@ -47,6 +49,7 @@ export function EntityForm<TValues extends FieldValues>({
   onSubmit,
   actions = [],
   countryCode,
+  children,
 }: EntityFormProps<TValues>) {
   const tCommon = useTranslations("common")
   async function handleSubmit(values: TValues) {
@@ -107,7 +110,12 @@ export function EntityForm<TValues extends FieldValues>({
             </CardHeader>
 
             <CardContent>
-              <FieldGroup className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <FieldGroup
+                className={cn(
+                  "grid grid-cols-1 gap-6 md:grid-cols-2",
+                  section.columns === 4 && "lg:grid-cols-4"
+                )}
+              >
                 {section.fields.map((name) => {
                   const fieldConfig = getField(name)
 
@@ -137,6 +145,8 @@ export function EntityForm<TValues extends FieldValues>({
           </Card>
         ))}
       </div>
+
+      {children}
 
       {/* FOOTER ACTIONS */}
       {actions.length > 0 && (

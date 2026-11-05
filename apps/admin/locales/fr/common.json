@@ -35,5 +35,19 @@
     "clickToReplace": "Cliquez pour remplacer",
     "remove": "Retirer {name}",
     "noFile": "Aucun fichier choisi"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Type",
+      "file": "Fichier",
+      "size": "Taille",
+      "actions": "Actions"
+    },
+    "view": "Voir",
+    "download": "Télécharger",
+    "viewFile": "Voir {name}",
+    "downloadFile": "Télécharger {name}",
+    "deleteTitle": "Supprimer {name} ?",
+    "deleteDescription": "Le fichier sera définitivement supprimé. Cette action est irréversible."
   }
 }

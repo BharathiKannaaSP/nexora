@@ -23,9 +23,9 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'9a5179665df6d3bf225e7a4da060e22e7a4b2bee203fda738c700a92cf3c447e'>;
+  StorageHashBase<'eb6ec3aa2ab526b970aae66cd47426df7f325c22919896ec560034940595cec7'>;
 export type ExecutionHash =
-  ExecutionHashBase<'1faed32122610987d2b5f949b7fc9e9dbb7f6323a7c8b57c48b8e5ebe5d62c1b'>;
+  ExecutionHashBase<'f1be750274fa630d2d8b65f0d989d8c69cda18c0ae8bedfd668a336a12fe4652'>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
 
@@ -247,6 +247,30 @@ type FieldTypeOverrides = {
           readonly input: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
         };
       };
+      readonly AdminAccessRequestPermission: {
+        readonly accessLevel: {
+          readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+          readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        };
+        readonly moduleCode: {
+          readonly output:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
+          readonly input:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
+        };
+      };
       readonly Onboarding: {
         readonly currentStep: {
           readonly output:
@@ -264,10 +288,119 @@ type FieldTypeOverrides = {
           readonly input: 'PENDING' | 'IN_PROGRESS' | 'WAITING_APPROVAL' | 'COMPLETED' | 'REJECTED';
         };
       };
+      readonly OrganizationDocumentRequirement: {
+        readonly documentType: {
+          readonly output:
+            | 'ORGANIZATION_LOGO'
+            | 'TAX_DOCUMENT'
+            | 'BUSINESS_REGISTRATION'
+            | 'PROOF_OF_ADDRESS'
+            | 'IDENTITY_DOCUMENT'
+            | 'RESIDENCE_PERMIT'
+            | 'EMPLOYMENT_PROOF'
+            | 'OTHER';
+          readonly input:
+            | 'ORGANIZATION_LOGO'
+            | 'TAX_DOCUMENT'
+            | 'BUSINESS_REGISTRATION'
+            | 'PROOF_OF_ADDRESS'
+            | 'IDENTITY_DOCUMENT'
+            | 'RESIDENCE_PERMIT'
+            | 'EMPLOYMENT_PROOF'
+            | 'OTHER';
+        };
+        readonly scope: {
+          readonly output: 'CREATE_ORGANIZATION' | 'JOIN_ORGANIZATION';
+          readonly input: 'CREATE_ORGANIZATION' | 'JOIN_ORGANIZATION';
+        };
+      };
+      readonly OrganizationRequest: {
+        readonly status: {
+          readonly output: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
+          readonly input: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
+        };
+        readonly type: { readonly output: 'CREATE' | 'JOIN'; readonly input: 'CREATE' | 'JOIN' };
+      };
+      readonly OrganizationRequestDocument: {
+        readonly documentType: {
+          readonly output:
+            | 'ORGANIZATION_LOGO'
+            | 'TAX_DOCUMENT'
+            | 'BUSINESS_REGISTRATION'
+            | 'PROOF_OF_ADDRESS'
+            | 'IDENTITY_DOCUMENT'
+            | 'RESIDENCE_PERMIT'
+            | 'EMPLOYMENT_PROOF'
+            | 'OTHER';
+          readonly input:
+            | 'ORGANIZATION_LOGO'
+            | 'TAX_DOCUMENT'
+            | 'BUSINESS_REGISTRATION'
+            | 'PROOF_OF_ADDRESS'
+            | 'IDENTITY_DOCUMENT'
+            | 'RESIDENCE_PERMIT'
+            | 'EMPLOYMENT_PROOF'
+            | 'OTHER';
+        };
+        readonly status: {
+          readonly output:
+            'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'REUPLOAD_REQUIRED';
+          readonly input:
+            'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'REUPLOAD_REQUIRED';
+        };
+      };
+      readonly OrganizationRequestPermission: {
+        readonly accessLevel: {
+          readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+          readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        };
+        readonly moduleCode: {
+          readonly output:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
+          readonly input:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
+        };
+      };
       readonly OutboxEvent: {
         readonly status: {
           readonly output: 'PENDING' | 'PROCESSING' | 'PUBLISHED' | 'FAILED';
           readonly input: 'PENDING' | 'PROCESSING' | 'PUBLISHED' | 'FAILED';
+        };
+      };
+      readonly ReviewerPermission: {
+        readonly accessLevel: {
+          readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+          readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        };
+        readonly moduleCode: {
+          readonly output:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
+          readonly input:
+            | 'COUNTRY_MANAGEMENT'
+            | 'USER_MANAGEMENT'
+            | 'ORGANIZATION_MANAGEMENT'
+            | 'PRODUCT_MANAGEMENT'
+            | 'INVENTORY_MANAGEMENT'
+            | 'BILLING_MANAGEMENT'
+            | 'ANALYTICS_MANAGEMENT';
         };
       };
     };
@@ -295,6 +428,30 @@ type ColumnTypeOverrides = {
         readonly input: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
       };
     };
+    readonly AdminAccessRequestPermission: {
+      readonly accessLevel: {
+        readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+      };
+      readonly moduleCode: {
+        readonly output:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
+        readonly input:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
+      };
+    };
     readonly Onboarding: {
       readonly currentStep: {
         readonly output:
@@ -311,10 +468,117 @@ type ColumnTypeOverrides = {
         readonly input: 'PENDING' | 'IN_PROGRESS' | 'WAITING_APPROVAL' | 'COMPLETED' | 'REJECTED';
       };
     };
+    readonly OrganizationDocumentRequirement: {
+      readonly documentType: {
+        readonly output:
+          | 'ORGANIZATION_LOGO'
+          | 'TAX_DOCUMENT'
+          | 'BUSINESS_REGISTRATION'
+          | 'PROOF_OF_ADDRESS'
+          | 'IDENTITY_DOCUMENT'
+          | 'RESIDENCE_PERMIT'
+          | 'EMPLOYMENT_PROOF'
+          | 'OTHER';
+        readonly input:
+          | 'ORGANIZATION_LOGO'
+          | 'TAX_DOCUMENT'
+          | 'BUSINESS_REGISTRATION'
+          | 'PROOF_OF_ADDRESS'
+          | 'IDENTITY_DOCUMENT'
+          | 'RESIDENCE_PERMIT'
+          | 'EMPLOYMENT_PROOF'
+          | 'OTHER';
+      };
+      readonly scope: {
+        readonly output: 'CREATE_ORGANIZATION' | 'JOIN_ORGANIZATION';
+        readonly input: 'CREATE_ORGANIZATION' | 'JOIN_ORGANIZATION';
+      };
+    };
+    readonly OrganizationRequest: {
+      readonly status: {
+        readonly output: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
+        readonly input: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'WITHDRAWN';
+      };
+      readonly type: { readonly output: 'CREATE' | 'JOIN'; readonly input: 'CREATE' | 'JOIN' };
+    };
+    readonly OrganizationRequestDocument: {
+      readonly documentType: {
+        readonly output:
+          | 'ORGANIZATION_LOGO'
+          | 'TAX_DOCUMENT'
+          | 'BUSINESS_REGISTRATION'
+          | 'PROOF_OF_ADDRESS'
+          | 'IDENTITY_DOCUMENT'
+          | 'RESIDENCE_PERMIT'
+          | 'EMPLOYMENT_PROOF'
+          | 'OTHER';
+        readonly input:
+          | 'ORGANIZATION_LOGO'
+          | 'TAX_DOCUMENT'
+          | 'BUSINESS_REGISTRATION'
+          | 'PROOF_OF_ADDRESS'
+          | 'IDENTITY_DOCUMENT'
+          | 'RESIDENCE_PERMIT'
+          | 'EMPLOYMENT_PROOF'
+          | 'OTHER';
+      };
+      readonly status: {
+        readonly output: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'REUPLOAD_REQUIRED';
+        readonly input: 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED' | 'REUPLOAD_REQUIRED';
+      };
+    };
+    readonly OrganizationRequestPermission: {
+      readonly accessLevel: {
+        readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+      };
+      readonly moduleCode: {
+        readonly output:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
+        readonly input:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
+      };
+    };
     readonly OutboxEvent: {
       readonly status: {
         readonly output: 'PENDING' | 'PROCESSING' | 'PUBLISHED' | 'FAILED';
         readonly input: 'PENDING' | 'PROCESSING' | 'PUBLISHED' | 'FAILED';
+      };
+    };
+    readonly ReviewerPermission: {
+      readonly accessLevel: {
+        readonly output: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+        readonly input: 'VIEW' | 'CREATE' | 'EDIT' | 'DELETE';
+      };
+      readonly moduleCode: {
+        readonly output:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
+        readonly input:
+          | 'COUNTRY_MANAGEMENT'
+          | 'USER_MANAGEMENT'
+          | 'ORGANIZATION_MANAGEMENT'
+          | 'PRODUCT_MANAGEMENT'
+          | 'INVENTORY_MANAGEMENT'
+          | 'BILLING_MANAGEMENT'
+          | 'ANALYTICS_MANAGEMENT';
       };
     };
   };
@@ -380,7 +644,90 @@ export namespace Models {
     updatedAt: FieldOutputTypes['public']['Onboarding']['updatedAt'];
     userId: FieldOutputTypes['public']['Onboarding']['userId'];
     adminAccessRequests: public_AdminAccessRequest[];
-    readonly [RelationKeys]?: 'adminAccessRequests';
+    organizationRequests: public_OrganizationRequest[];
+    readonly [RelationKeys]?: 'adminAccessRequests' | 'organizationRequests';
+  };
+  export type public_OrganizationDocumentRequirement = {
+    allowedMimeTypes: FieldOutputTypes['public']['OrganizationDocumentRequirement']['allowedMimeTypes'];
+    code: FieldOutputTypes['public']['OrganizationDocumentRequirement']['code'];
+    countryCode: FieldOutputTypes['public']['OrganizationDocumentRequirement']['countryCode'];
+    createdAt: FieldOutputTypes['public']['OrganizationDocumentRequirement']['createdAt'];
+    description: FieldOutputTypes['public']['OrganizationDocumentRequirement']['description'];
+    documentType: FieldOutputTypes['public']['OrganizationDocumentRequirement']['documentType'];
+    id: FieldOutputTypes['public']['OrganizationDocumentRequirement']['id'];
+    isActive: FieldOutputTypes['public']['OrganizationDocumentRequirement']['isActive'];
+    isRequired: FieldOutputTypes['public']['OrganizationDocumentRequirement']['isRequired'];
+    maxFileSizeBytes: FieldOutputTypes['public']['OrganizationDocumentRequirement']['maxFileSizeBytes'];
+    name: FieldOutputTypes['public']['OrganizationDocumentRequirement']['name'];
+    scope: FieldOutputTypes['public']['OrganizationDocumentRequirement']['scope'];
+    updatedAt: FieldOutputTypes['public']['OrganizationDocumentRequirement']['updatedAt'];
+    submissions: public_OrganizationRequestDocument[];
+    readonly [RelationKeys]?: 'submissions';
+  };
+  export type public_OrganizationRequest = {
+    applicationRevision: FieldOutputTypes['public']['OrganizationRequest']['applicationRevision'];
+    department: FieldOutputTypes['public']['OrganizationRequest']['department'];
+    employeeId: FieldOutputTypes['public']['OrganizationRequest']['employeeId'];
+    id: FieldOutputTypes['public']['OrganizationRequest']['id'];
+    jobTitle: FieldOutputTypes['public']['OrganizationRequest']['jobTitle'];
+    joiningDate: FieldOutputTypes['public']['OrganizationRequest']['joiningDate'];
+    message: FieldOutputTypes['public']['OrganizationRequest']['message'];
+    onboardingId: FieldOutputTypes['public']['OrganizationRequest']['onboardingId'];
+    organizationId: FieldOutputTypes['public']['OrganizationRequest']['organizationId'];
+    proposedAddress: FieldOutputTypes['public']['OrganizationRequest']['proposedAddress'];
+    proposedCountryCode: FieldOutputTypes['public']['OrganizationRequest']['proposedCountryCode'];
+    proposedDescription: FieldOutputTypes['public']['OrganizationRequest']['proposedDescription'];
+    proposedIndustry: FieldOutputTypes['public']['OrganizationRequest']['proposedIndustry'];
+    proposedLogoObjectKey: FieldOutputTypes['public']['OrganizationRequest']['proposedLogoObjectKey'];
+    proposedName: FieldOutputTypes['public']['OrganizationRequest']['proposedName'];
+    proposedSize: FieldOutputTypes['public']['OrganizationRequest']['proposedSize'];
+    proposedSlug: FieldOutputTypes['public']['OrganizationRequest']['proposedSlug'];
+    proposedTaxDetails: FieldOutputTypes['public']['OrganizationRequest']['proposedTaxDetails'];
+    proposedWebsite: FieldOutputTypes['public']['OrganizationRequest']['proposedWebsite'];
+    reportingManager: FieldOutputTypes['public']['OrganizationRequest']['reportingManager'];
+    reviewComment: FieldOutputTypes['public']['OrganizationRequest']['reviewComment'];
+    reviewedAt: FieldOutputTypes['public']['OrganizationRequest']['reviewedAt'];
+    reviewedByUserId: FieldOutputTypes['public']['OrganizationRequest']['reviewedByUserId'];
+    status: FieldOutputTypes['public']['OrganizationRequest']['status'];
+    submittedAt: FieldOutputTypes['public']['OrganizationRequest']['submittedAt'];
+    type: FieldOutputTypes['public']['OrganizationRequest']['type'];
+    updatedAt: FieldOutputTypes['public']['OrganizationRequest']['updatedAt'];
+    userId: FieldOutputTypes['public']['OrganizationRequest']['userId'];
+    workEmail: FieldOutputTypes['public']['OrganizationRequest']['workEmail'];
+    onboarding: public_Onboarding;
+    proposedDocuments: public_OrganizationRequestDocument[];
+    requestedPermissions: public_OrganizationRequestPermission[];
+    readonly [RelationKeys]?: 'onboarding' | 'proposedDocuments' | 'requestedPermissions';
+  };
+  export type public_OrganizationRequestDocument = {
+    checksumSha256: FieldOutputTypes['public']['OrganizationRequestDocument']['checksumSha256'];
+    contentType: FieldOutputTypes['public']['OrganizationRequestDocument']['contentType'];
+    createdAt: FieldOutputTypes['public']['OrganizationRequestDocument']['createdAt'];
+    documentType: FieldOutputTypes['public']['OrganizationRequestDocument']['documentType'];
+    id: FieldOutputTypes['public']['OrganizationRequestDocument']['id'];
+    objectKey: FieldOutputTypes['public']['OrganizationRequestDocument']['objectKey'];
+    originalFileName: FieldOutputTypes['public']['OrganizationRequestDocument']['originalFileName'];
+    requestId: FieldOutputTypes['public']['OrganizationRequestDocument']['requestId'];
+    requirementId: FieldOutputTypes['public']['OrganizationRequestDocument']['requirementId'];
+    reviewComment: FieldOutputTypes['public']['OrganizationRequestDocument']['reviewComment'];
+    reviewedAt: FieldOutputTypes['public']['OrganizationRequestDocument']['reviewedAt'];
+    reviewedByUserId: FieldOutputTypes['public']['OrganizationRequestDocument']['reviewedByUserId'];
+    sizeBytes: FieldOutputTypes['public']['OrganizationRequestDocument']['sizeBytes'];
+    status: FieldOutputTypes['public']['OrganizationRequestDocument']['status'];
+    updatedAt: FieldOutputTypes['public']['OrganizationRequestDocument']['updatedAt'];
+    request: public_OrganizationRequest;
+    requirement: public_OrganizationDocumentRequirement | null;
+    readonly [RelationKeys]?: 'request' | 'requirement';
+  };
+  export type public_OrganizationRequestPermission = {
+    accessLevel: FieldOutputTypes['public']['OrganizationRequestPermission']['accessLevel'];
+    createdAt: FieldOutputTypes['public']['OrganizationRequestPermission']['createdAt'];
+    id: FieldOutputTypes['public']['OrganizationRequestPermission']['id'];
+    moduleCode: FieldOutputTypes['public']['OrganizationRequestPermission']['moduleCode'];
+    moduleNameSnapshot: FieldOutputTypes['public']['OrganizationRequestPermission']['moduleNameSnapshot'];
+    requestId: FieldOutputTypes['public']['OrganizationRequestPermission']['requestId'];
+    request: public_OrganizationRequest;
+    readonly [RelationKeys]?: 'request';
   };
   export type public_OutboxEvent = {
     aggregateId: FieldOutputTypes['public']['OutboxEvent']['aggregateId'];
@@ -396,6 +743,32 @@ export namespace Models {
     updatedAt: FieldOutputTypes['public']['OutboxEvent']['updatedAt'];
     readonly [RelationKeys]?: never;
   };
+  export type public_RequestAssignment = {
+    assignedAt: FieldOutputTypes['public']['RequestAssignment']['assignedAt'];
+    assignedByUserId: FieldOutputTypes['public']['RequestAssignment']['assignedByUserId'];
+    assignedToUserId: FieldOutputTypes['public']['RequestAssignment']['assignedToUserId'];
+    createdAt: FieldOutputTypes['public']['RequestAssignment']['createdAt'];
+    id: FieldOutputTypes['public']['RequestAssignment']['id'];
+    reason: FieldOutputTypes['public']['RequestAssignment']['reason'];
+    requestId: FieldOutputTypes['public']['RequestAssignment']['requestId'];
+    requestType: FieldOutputTypes['public']['RequestAssignment']['requestType'];
+    readonly [RelationKeys]?: never;
+  };
+  export type public_ReviewerPermission = {
+    accessLevel: FieldOutputTypes['public']['ReviewerPermission']['accessLevel'];
+    countryCode: FieldOutputTypes['public']['ReviewerPermission']['countryCode'];
+    createdAt: FieldOutputTypes['public']['ReviewerPermission']['createdAt'];
+    id: FieldOutputTypes['public']['ReviewerPermission']['id'];
+    moduleCode: FieldOutputTypes['public']['ReviewerPermission']['moduleCode'];
+    userId: FieldOutputTypes['public']['ReviewerPermission']['userId'];
+    readonly [RelationKeys]?: never;
+  };
+  export type public_ReviewerPermissionSync = {
+    snapshotAt: FieldOutputTypes['public']['ReviewerPermissionSync']['snapshotAt'];
+    updatedAt: FieldOutputTypes['public']['ReviewerPermissionSync']['updatedAt'];
+    userId: FieldOutputTypes['public']['ReviewerPermissionSync']['userId'];
+    readonly [RelationKeys]?: never;
+  };
 }
 
 export declare const models: {
@@ -403,7 +776,14 @@ export declare const models: {
     AdminAccessRequest: Models.public_AdminAccessRequest;
     AdminAccessRequestPermission: Models.public_AdminAccessRequestPermission;
     Onboarding: Models.public_Onboarding;
+    OrganizationDocumentRequirement: Models.public_OrganizationDocumentRequirement;
+    OrganizationRequest: Models.public_OrganizationRequest;
+    OrganizationRequestDocument: Models.public_OrganizationRequestDocument;
+    OrganizationRequestPermission: Models.public_OrganizationRequestPermission;
     OutboxEvent: Models.public_OutboxEvent;
+    RequestAssignment: Models.public_RequestAssignment;
+    ReviewerPermission: Models.public_ReviewerPermission;
+    ReviewerPermissionSync: Models.public_ReviewerPermissionSync;
   };
 };
 
@@ -765,6 +1145,568 @@ type ContractBase = Omit<
               ];
               foreignKeys: readonly [];
             };
+            readonly OrganizationDocumentRequirement: {
+              columns: {
+                readonly allowedMimeTypes: {
+                  readonly dataType: 'pg/json';
+                  readonly codecId: 'pg/json@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly code: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly countryCode: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly description: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly documentType: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly isActive: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                  readonly many: false;
+                };
+                readonly isRequired: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                  readonly many: false;
+                };
+                readonly maxFileSizeBytes: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly name: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly scope: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['countryCode', 'scope', 'code'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'OrgDocRequirement_countryCode_scope_isActive_idx_8b70a113';
+                  readonly prefix: 'OrgDocRequirement_countryCode_scope_isActive_idx';
+                  readonly columns: readonly ['countryCode', 'scope', 'isActive'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly OrganizationRequest: {
+              columns: {
+                readonly applicationRevision: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 1>;
+                  };
+                  readonly many: false;
+                };
+                readonly department: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly employeeId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly jobTitle: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly joiningDate: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly message: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly onboardingId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly organizationId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedAddress: {
+                  readonly dataType: 'pg/json';
+                  readonly codecId: 'pg/json@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedCountryCode: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedDescription: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedIndustry: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedLogoObjectKey: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedName: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedSize: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedSlug: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedTaxDetails: {
+                  readonly dataType: 'pg/json';
+                  readonly codecId: 'pg/json@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly proposedWebsite: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reportingManager: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewComment: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewedByUserId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly status: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'PENDING'>;
+                  };
+                  readonly many: false;
+                };
+                readonly submittedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly type: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly userId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly workEmail: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['onboardingId', 'applicationRevision'] },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'OrganizationRequest_onboardingId_idx_68e25417';
+                  readonly prefix: 'OrganizationRequest_onboardingId_idx';
+                  readonly columns: readonly ['onboardingId'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequest_organizationId_status_idx_21af5e82';
+                  readonly prefix: 'OrganizationRequest_organizationId_status_idx';
+                  readonly columns: readonly ['organizationId', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequest_reviewedByUserId_idx_e62d4e38';
+                  readonly prefix: 'OrganizationRequest_reviewedByUserId_idx';
+                  readonly columns: readonly ['reviewedByUserId'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequest_type_status_submittedAt_idx_9c385713';
+                  readonly prefix: 'OrganizationRequest_type_status_submittedAt_idx';
+                  readonly columns: readonly ['type', 'status', 'submittedAt'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequest_userId_status_idx_e4a128ba';
+                  readonly prefix: 'OrganizationRequest_userId_status_idx';
+                  readonly columns: readonly ['userId', 'status'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequest';
+                    readonly columns: readonly ['onboardingId'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'Onboarding';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly OrganizationRequestDocument: {
+              columns: {
+                readonly checksumSha256: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly contentType: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly documentType: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly objectKey: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly originalFileName: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly requestId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly requirementId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewComment: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly reviewedByUserId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly sizeBytes: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly status: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'PENDING'>;
+                  };
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'OrganizationRequestDocument_requestId_idx_fd667f92';
+                  readonly prefix: 'OrganizationRequestDocument_requestId_idx';
+                  readonly columns: readonly ['requestId'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequestDocument_requestId_status_idx_176fef0f';
+                  readonly prefix: 'OrganizationRequestDocument_requestId_status_idx';
+                  readonly columns: readonly ['requestId', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequestDocument_requirementId_idx_fb134ad7';
+                  readonly prefix: 'OrganizationRequestDocument_requirementId_idx';
+                  readonly columns: readonly ['requirementId'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'OrganizationRequestDocument_reviewedByUserId_idx_e62d4e38';
+                  readonly prefix: 'OrganizationRequestDocument_reviewedByUserId_idx';
+                  readonly columns: readonly ['reviewedByUserId'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequestDocument';
+                    readonly columns: readonly ['requestId'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequest';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequestDocument';
+                    readonly columns: readonly ['requirementId'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationDocumentRequirement';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly OrganizationRequestPermission: {
+              columns: {
+                readonly accessLevel: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly moduleCode: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly moduleNameSnapshot: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly requestId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['requestId', 'moduleCode', 'accessLevel'];
+                  readonly name: 'OrgReqPerm_req_module_access_key';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'OrganizationRequestPermission_requestId_idx_fd667f92';
+                  readonly prefix: 'OrganizationRequestPermission_requestId_idx';
+                  readonly columns: readonly ['requestId'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequestPermission';
+                    readonly columns: readonly ['requestId'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'OrganizationRequest';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
             readonly OutboxEvent: {
               columns: {
                 readonly aggregateId: {
@@ -862,8 +1804,165 @@ type ContractBase = Omit<
               ];
               foreignKeys: readonly [];
             };
+            readonly RequestAssignment: {
+              columns: {
+                readonly assignedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly assignedByUserId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly assignedToUserId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly reason: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly requestId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly requestType: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'RequestAssignment_assignedToUserId_assignedAt_idx_1777e945';
+                  readonly prefix: 'RequestAssignment_assignedToUserId_assignedAt_idx';
+                  readonly columns: readonly ['assignedToUserId', 'assignedAt'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'RequestAssignment_requestType_requestId_idx_6d279741';
+                  readonly prefix: 'RequestAssignment_requestType_requestId_idx';
+                  readonly columns: readonly ['requestType', 'requestId'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly ReviewerPermission: {
+              columns: {
+                readonly accessLevel: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly countryCode: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly moduleCode: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly userId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['userId', 'countryCode', 'moduleCode', 'accessLevel'];
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ReviewerPermission_moduleCode_accessLevel_idx_c568861c';
+                  readonly prefix: 'ReviewerPermission_moduleCode_accessLevel_idx';
+                  readonly columns: readonly ['moduleCode', 'accessLevel'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly ReviewerPermissionSync: {
+              columns: {
+                readonly snapshotAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly updatedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly userId: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['userId'] };
+              uniques: readonly [];
+              indexes: readonly [];
+              foreignKeys: readonly [];
+            };
           };
           readonly valueSet: {
+            readonly AccessLevel: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['VIEW', 'CREATE', 'EDIT', 'DELETE'];
+            };
             readonly AdminAccessRequestStatus: {
               readonly kind: 'valueSet';
               readonly values: readonly [
@@ -872,6 +1971,18 @@ type ContractBase = Omit<
                 'APPROVED',
                 'REJECTED',
                 'WITHDRAWN',
+              ];
+            };
+            readonly ModuleCode: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'COUNTRY_MANAGEMENT',
+                'USER_MANAGEMENT',
+                'ORGANIZATION_MANAGEMENT',
+                'PRODUCT_MANAGEMENT',
+                'INVENTORY_MANAGEMENT',
+                'BILLING_MANAGEMENT',
+                'ANALYTICS_MANAGEMENT',
               ];
             };
             readonly OnboardingPath: {
@@ -902,6 +2013,47 @@ type ContractBase = Omit<
                 'COMPLETED',
               ];
             };
+            readonly OrganizationDocumentScope: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['CREATE_ORGANIZATION', 'JOIN_ORGANIZATION'];
+            };
+            readonly OrganizationDocumentStatus: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'PENDING',
+                'UNDER_REVIEW',
+                'APPROVED',
+                'REJECTED',
+                'REUPLOAD_REQUIRED',
+              ];
+            };
+            readonly OrganizationDocumentType: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'ORGANIZATION_LOGO',
+                'TAX_DOCUMENT',
+                'BUSINESS_REGISTRATION',
+                'PROOF_OF_ADDRESS',
+                'IDENTITY_DOCUMENT',
+                'RESIDENCE_PERMIT',
+                'EMPLOYMENT_PROOF',
+                'OTHER',
+              ];
+            };
+            readonly OrganizationRequestStatus: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'PENDING',
+                'UNDER_REVIEW',
+                'APPROVED',
+                'REJECTED',
+                'WITHDRAWN',
+              ];
+            };
+            readonly OrganizationRequestType: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['CREATE', 'JOIN'];
+            };
             readonly OutboxEventStatus: {
               readonly kind: 'valueSet';
               readonly values: readonly ['PENDING', 'PROCESSING', 'PUBLISHED', 'FAILED'];
@@ -929,9 +2081,37 @@ type ContractBase = Omit<
       readonly namespace: 'public' & NamespaceId;
       readonly model: 'Onboarding';
     };
+    readonly OrganizationDocumentRequirement: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'OrganizationDocumentRequirement';
+    };
+    readonly OrganizationRequest: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'OrganizationRequest';
+    };
+    readonly OrganizationRequestDocument: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'OrganizationRequestDocument';
+    };
+    readonly OrganizationRequestPermission: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'OrganizationRequestPermission';
+    };
     readonly OutboxEvent: {
       readonly namespace: 'public' & NamespaceId;
       readonly model: 'OutboxEvent';
+    };
+    readonly RequestAssignment: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'RequestAssignment';
+    };
+    readonly ReviewerPermission: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'ReviewerPermission';
+    };
+    readonly ReviewerPermissionSync: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'ReviewerPermissionSync';
     };
   };
   readonly domain: {
@@ -1199,6 +2379,17 @@ type ContractBase = Omit<
                   readonly targetFields: readonly ['onboardingId'];
                 };
               };
+              readonly organizationRequests: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequest';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['onboardingId'];
+                };
+              };
             };
             readonly storage: {
               readonly table: 'Onboarding';
@@ -1217,6 +2408,480 @@ type ContractBase = Omit<
                 readonly submittedAt: { readonly column: 'submittedAt' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
                 readonly userId: { readonly column: 'userId' };
+              };
+            };
+          };
+          readonly OrganizationDocumentRequirement: {
+            readonly fields: {
+              readonly allowedMimeTypes: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/json@1' };
+              };
+              readonly code: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly countryCode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly description: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly documentType: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly isActive: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly isRequired: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly maxFileSizeBytes: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly name: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly scope: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly updatedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+            };
+            readonly relations: {
+              readonly submissions: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequestDocument';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['requirementId'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'OrganizationDocumentRequirement';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly allowedMimeTypes: { readonly column: 'allowedMimeTypes' };
+                readonly code: { readonly column: 'code' };
+                readonly countryCode: { readonly column: 'countryCode' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly description: { readonly column: 'description' };
+                readonly documentType: { readonly column: 'documentType' };
+                readonly id: { readonly column: 'id' };
+                readonly isActive: { readonly column: 'isActive' };
+                readonly isRequired: { readonly column: 'isRequired' };
+                readonly maxFileSizeBytes: { readonly column: 'maxFileSizeBytes' };
+                readonly name: { readonly column: 'name' };
+                readonly scope: { readonly column: 'scope' };
+                readonly updatedAt: { readonly column: 'updatedAt' };
+              };
+            };
+          };
+          readonly OrganizationRequest: {
+            readonly fields: {
+              readonly applicationRevision: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly department: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly employeeId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly jobTitle: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly joiningDate: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly message: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly onboardingId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly organizationId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedAddress: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/json@1' };
+              };
+              readonly proposedCountryCode: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedDescription: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedIndustry: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedLogoObjectKey: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedName: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedSize: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedSlug: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly proposedTaxDetails: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/json@1' };
+              };
+              readonly proposedWebsite: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reportingManager: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reviewComment: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reviewedAt: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly reviewedByUserId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly submittedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly type: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly updatedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly userId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly workEmail: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly onboarding: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'Onboarding';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['onboardingId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly proposedDocuments: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequestDocument';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['requestId'];
+                };
+              };
+              readonly requestedPermissions: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequestPermission';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['requestId'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'OrganizationRequest';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly applicationRevision: { readonly column: 'applicationRevision' };
+                readonly department: { readonly column: 'department' };
+                readonly employeeId: { readonly column: 'employeeId' };
+                readonly id: { readonly column: 'id' };
+                readonly jobTitle: { readonly column: 'jobTitle' };
+                readonly joiningDate: { readonly column: 'joiningDate' };
+                readonly message: { readonly column: 'message' };
+                readonly onboardingId: { readonly column: 'onboardingId' };
+                readonly organizationId: { readonly column: 'organizationId' };
+                readonly proposedAddress: { readonly column: 'proposedAddress' };
+                readonly proposedCountryCode: { readonly column: 'proposedCountryCode' };
+                readonly proposedDescription: { readonly column: 'proposedDescription' };
+                readonly proposedIndustry: { readonly column: 'proposedIndustry' };
+                readonly proposedLogoObjectKey: { readonly column: 'proposedLogoObjectKey' };
+                readonly proposedName: { readonly column: 'proposedName' };
+                readonly proposedSize: { readonly column: 'proposedSize' };
+                readonly proposedSlug: { readonly column: 'proposedSlug' };
+                readonly proposedTaxDetails: { readonly column: 'proposedTaxDetails' };
+                readonly proposedWebsite: { readonly column: 'proposedWebsite' };
+                readonly reportingManager: { readonly column: 'reportingManager' };
+                readonly reviewComment: { readonly column: 'reviewComment' };
+                readonly reviewedAt: { readonly column: 'reviewedAt' };
+                readonly reviewedByUserId: { readonly column: 'reviewedByUserId' };
+                readonly status: { readonly column: 'status' };
+                readonly submittedAt: { readonly column: 'submittedAt' };
+                readonly type: { readonly column: 'type' };
+                readonly updatedAt: { readonly column: 'updatedAt' };
+                readonly userId: { readonly column: 'userId' };
+                readonly workEmail: { readonly column: 'workEmail' };
+              };
+            };
+          };
+          readonly OrganizationRequestDocument: {
+            readonly fields: {
+              readonly checksumSha256: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly contentType: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly documentType: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly objectKey: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly originalFileName: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly requestId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly requirementId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reviewComment: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reviewedAt: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly reviewedByUserId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly sizeBytes: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly updatedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+            };
+            readonly relations: {
+              readonly request: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequest';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['requestId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly requirement: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationDocumentRequirement';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['requirementId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'OrganizationRequestDocument';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly checksumSha256: { readonly column: 'checksumSha256' };
+                readonly contentType: { readonly column: 'contentType' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly documentType: { readonly column: 'documentType' };
+                readonly id: { readonly column: 'id' };
+                readonly objectKey: { readonly column: 'objectKey' };
+                readonly originalFileName: { readonly column: 'originalFileName' };
+                readonly requestId: { readonly column: 'requestId' };
+                readonly requirementId: { readonly column: 'requirementId' };
+                readonly reviewComment: { readonly column: 'reviewComment' };
+                readonly reviewedAt: { readonly column: 'reviewedAt' };
+                readonly reviewedByUserId: { readonly column: 'reviewedByUserId' };
+                readonly sizeBytes: { readonly column: 'sizeBytes' };
+                readonly status: { readonly column: 'status' };
+                readonly updatedAt: { readonly column: 'updatedAt' };
+              };
+            };
+          };
+          readonly OrganizationRequestPermission: {
+            readonly fields: {
+              readonly accessLevel: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly moduleCode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly moduleNameSnapshot: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly requestId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly request: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'OrganizationRequest';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['requestId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'OrganizationRequestPermission';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly accessLevel: { readonly column: 'accessLevel' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly id: { readonly column: 'id' };
+                readonly moduleCode: { readonly column: 'moduleCode' };
+                readonly moduleNameSnapshot: { readonly column: 'moduleNameSnapshot' };
+                readonly requestId: { readonly column: 'requestId' };
               };
             };
           };
@@ -1298,8 +2963,150 @@ type ContractBase = Omit<
               };
             };
           };
+          readonly RequestAssignment: {
+            readonly fields: {
+              readonly assignedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly assignedByUserId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly assignedToUserId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly reason: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly requestId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly requestType: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'RequestAssignment';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly assignedAt: { readonly column: 'assignedAt' };
+                readonly assignedByUserId: { readonly column: 'assignedByUserId' };
+                readonly assignedToUserId: { readonly column: 'assignedToUserId' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly id: { readonly column: 'id' };
+                readonly reason: { readonly column: 'reason' };
+                readonly requestId: { readonly column: 'requestId' };
+                readonly requestType: { readonly column: 'requestType' };
+              };
+            };
+          };
+          readonly ReviewerPermission: {
+            readonly fields: {
+              readonly accessLevel: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly countryCode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly moduleCode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly userId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'ReviewerPermission';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly accessLevel: { readonly column: 'accessLevel' };
+                readonly countryCode: { readonly column: 'countryCode' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly id: { readonly column: 'id' };
+                readonly moduleCode: { readonly column: 'moduleCode' };
+                readonly userId: { readonly column: 'userId' };
+              };
+            };
+          };
+          readonly ReviewerPermissionSync: {
+            readonly fields: {
+              readonly snapshotAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly updatedAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-temporal@1';
+                };
+              };
+              readonly userId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'ReviewerPermissionSync';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly snapshotAt: { readonly column: 'snapshotAt' };
+                readonly updatedAt: { readonly column: 'updatedAt' };
+                readonly userId: { readonly column: 'userId' };
+              };
+            };
+          };
         };
         readonly enum: {
+          readonly AccessLevel: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'VIEW'; readonly value: 'VIEW' },
+              { readonly name: 'CREATE'; readonly value: 'CREATE' },
+              { readonly name: 'EDIT'; readonly value: 'EDIT' },
+              { readonly name: 'DELETE'; readonly value: 'DELETE' },
+            ];
+          };
           readonly AdminAccessRequestStatus: {
             readonly codecId: 'pg/text@1';
             readonly members: readonly [
@@ -1308,6 +3115,21 @@ type ContractBase = Omit<
               { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
               { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
               { readonly name: 'WITHDRAWN'; readonly value: 'WITHDRAWN' },
+            ];
+          };
+          readonly ModuleCode: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'COUNTRY_MANAGEMENT'; readonly value: 'COUNTRY_MANAGEMENT' },
+              { readonly name: 'USER_MANAGEMENT'; readonly value: 'USER_MANAGEMENT' },
+              {
+                readonly name: 'ORGANIZATION_MANAGEMENT';
+                readonly value: 'ORGANIZATION_MANAGEMENT';
+              },
+              { readonly name: 'PRODUCT_MANAGEMENT'; readonly value: 'PRODUCT_MANAGEMENT' },
+              { readonly name: 'INVENTORY_MANAGEMENT'; readonly value: 'INVENTORY_MANAGEMENT' },
+              { readonly name: 'BILLING_MANAGEMENT'; readonly value: 'BILLING_MANAGEMENT' },
+              { readonly name: 'ANALYTICS_MANAGEMENT'; readonly value: 'ANALYTICS_MANAGEMENT' },
             ];
           };
           readonly OnboardingPath: {
@@ -1338,6 +3160,53 @@ type ContractBase = Omit<
               { readonly name: 'COMPLETED'; readonly value: 'COMPLETED' },
             ];
           };
+          readonly OrganizationDocumentScope: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'CREATE_ORGANIZATION'; readonly value: 'CREATE_ORGANIZATION' },
+              { readonly name: 'JOIN_ORGANIZATION'; readonly value: 'JOIN_ORGANIZATION' },
+            ];
+          };
+          readonly OrganizationDocumentStatus: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'PENDING'; readonly value: 'PENDING' },
+              { readonly name: 'UNDER_REVIEW'; readonly value: 'UNDER_REVIEW' },
+              { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
+              { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
+              { readonly name: 'REUPLOAD_REQUIRED'; readonly value: 'REUPLOAD_REQUIRED' },
+            ];
+          };
+          readonly OrganizationDocumentType: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'ORGANIZATION_LOGO'; readonly value: 'ORGANIZATION_LOGO' },
+              { readonly name: 'TAX_DOCUMENT'; readonly value: 'TAX_DOCUMENT' },
+              { readonly name: 'BUSINESS_REGISTRATION'; readonly value: 'BUSINESS_REGISTRATION' },
+              { readonly name: 'PROOF_OF_ADDRESS'; readonly value: 'PROOF_OF_ADDRESS' },
+              { readonly name: 'IDENTITY_DOCUMENT'; readonly value: 'IDENTITY_DOCUMENT' },
+              { readonly name: 'RESIDENCE_PERMIT'; readonly value: 'RESIDENCE_PERMIT' },
+              { readonly name: 'EMPLOYMENT_PROOF'; readonly value: 'EMPLOYMENT_PROOF' },
+              { readonly name: 'OTHER'; readonly value: 'OTHER' },
+            ];
+          };
+          readonly OrganizationRequestStatus: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'PENDING'; readonly value: 'PENDING' },
+              { readonly name: 'UNDER_REVIEW'; readonly value: 'UNDER_REVIEW' },
+              { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
+              { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
+              { readonly name: 'WITHDRAWN'; readonly value: 'WITHDRAWN' },
+            ];
+          };
+          readonly OrganizationRequestType: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'CREATE'; readonly value: 'CREATE' },
+              { readonly name: 'JOIN'; readonly value: 'JOIN' },
+            ];
+          };
           readonly OutboxEventStatus: {
             readonly codecId: 'pg/text@1';
             readonly members: readonly [
@@ -1349,12 +3218,27 @@ type ContractBase = Omit<
           };
         };
         readonly enumMemberTypes?: {
+          readonly AccessLevel: readonly [
+            { readonly name: 'VIEW'; readonly value: 'VIEW' },
+            { readonly name: 'CREATE'; readonly value: 'CREATE' },
+            { readonly name: 'EDIT'; readonly value: 'EDIT' },
+            { readonly name: 'DELETE'; readonly value: 'DELETE' },
+          ];
           readonly AdminAccessRequestStatus: readonly [
             { readonly name: 'PENDING'; readonly value: 'PENDING' },
             { readonly name: 'UNDER_REVIEW'; readonly value: 'UNDER_REVIEW' },
             { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
             { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
             { readonly name: 'WITHDRAWN'; readonly value: 'WITHDRAWN' },
+          ];
+          readonly ModuleCode: readonly [
+            { readonly name: 'COUNTRY_MANAGEMENT'; readonly value: 'COUNTRY_MANAGEMENT' },
+            { readonly name: 'USER_MANAGEMENT'; readonly value: 'USER_MANAGEMENT' },
+            { readonly name: 'ORGANIZATION_MANAGEMENT'; readonly value: 'ORGANIZATION_MANAGEMENT' },
+            { readonly name: 'PRODUCT_MANAGEMENT'; readonly value: 'PRODUCT_MANAGEMENT' },
+            { readonly name: 'INVENTORY_MANAGEMENT'; readonly value: 'INVENTORY_MANAGEMENT' },
+            { readonly name: 'BILLING_MANAGEMENT'; readonly value: 'BILLING_MANAGEMENT' },
+            { readonly name: 'ANALYTICS_MANAGEMENT'; readonly value: 'ANALYTICS_MANAGEMENT' },
           ];
           readonly OnboardingPath: readonly [
             { readonly name: 'BECOME_ADMIN'; readonly value: 'BECOME_ADMIN' },
@@ -1374,6 +3258,38 @@ type ContractBase = Omit<
             { readonly name: 'ROLE_REQUIREMENTS'; readonly value: 'ROLE_REQUIREMENTS' },
             { readonly name: 'REVIEW'; readonly value: 'REVIEW' },
             { readonly name: 'COMPLETED'; readonly value: 'COMPLETED' },
+          ];
+          readonly OrganizationDocumentScope: readonly [
+            { readonly name: 'CREATE_ORGANIZATION'; readonly value: 'CREATE_ORGANIZATION' },
+            { readonly name: 'JOIN_ORGANIZATION'; readonly value: 'JOIN_ORGANIZATION' },
+          ];
+          readonly OrganizationDocumentStatus: readonly [
+            { readonly name: 'PENDING'; readonly value: 'PENDING' },
+            { readonly name: 'UNDER_REVIEW'; readonly value: 'UNDER_REVIEW' },
+            { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
+            { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
+            { readonly name: 'REUPLOAD_REQUIRED'; readonly value: 'REUPLOAD_REQUIRED' },
+          ];
+          readonly OrganizationDocumentType: readonly [
+            { readonly name: 'ORGANIZATION_LOGO'; readonly value: 'ORGANIZATION_LOGO' },
+            { readonly name: 'TAX_DOCUMENT'; readonly value: 'TAX_DOCUMENT' },
+            { readonly name: 'BUSINESS_REGISTRATION'; readonly value: 'BUSINESS_REGISTRATION' },
+            { readonly name: 'PROOF_OF_ADDRESS'; readonly value: 'PROOF_OF_ADDRESS' },
+            { readonly name: 'IDENTITY_DOCUMENT'; readonly value: 'IDENTITY_DOCUMENT' },
+            { readonly name: 'RESIDENCE_PERMIT'; readonly value: 'RESIDENCE_PERMIT' },
+            { readonly name: 'EMPLOYMENT_PROOF'; readonly value: 'EMPLOYMENT_PROOF' },
+            { readonly name: 'OTHER'; readonly value: 'OTHER' },
+          ];
+          readonly OrganizationRequestStatus: readonly [
+            { readonly name: 'PENDING'; readonly value: 'PENDING' },
+            { readonly name: 'UNDER_REVIEW'; readonly value: 'UNDER_REVIEW' },
+            { readonly name: 'APPROVED'; readonly value: 'APPROVED' },
+            { readonly name: 'REJECTED'; readonly value: 'REJECTED' },
+            { readonly name: 'WITHDRAWN'; readonly value: 'WITHDRAWN' },
+          ];
+          readonly OrganizationRequestType: readonly [
+            { readonly name: 'CREATE'; readonly value: 'CREATE' },
+            { readonly name: 'JOIN'; readonly value: 'JOIN' },
           ];
           readonly OutboxEventStatus: readonly [
             { readonly name: 'PENDING'; readonly value: 'PENDING' },
@@ -1462,6 +3378,65 @@ type ContractBase = Omit<
         {
           readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
           readonly ref: {
+            readonly entry: 'OrganizationDocumentRequirement';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationDocumentRequirement';
+            readonly field: 'updatedAt';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationRequest';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationRequest';
+            readonly field: 'updatedAt';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationRequestDocument';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationRequestDocument';
+            readonly field: 'updatedAt';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'OrganizationRequestPermission';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
             readonly entry: 'OutboxEvent';
             readonly field: 'id';
             readonly namespace: 'public';
@@ -1472,6 +3447,31 @@ type ContractBase = Omit<
           readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
           readonly ref: {
             readonly entry: 'OutboxEvent';
+            readonly field: 'updatedAt';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'RequestAssignment';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'cuid2'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'ReviewerPermission';
+            readonly field: 'id';
+            readonly namespace: 'public';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly entry: 'ReviewerPermissionSync';
             readonly field: 'updatedAt';
             readonly namespace: 'public';
           };

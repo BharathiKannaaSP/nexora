@@ -48,7 +48,7 @@ export interface BecomeAdminValidationMessages {
  * The actions picked per module, e.g. { USER_MANAGEMENT: ["VIEW", "EDIT"] }.
  * Modules with nothing picked may be left out.
  */
-const modulePermissionsSchema = z.partialRecord(
+export const modulePermissionsSchema = z.partialRecord(
   z.enum(PERMISSION_MODULES),
   z.array(z.enum(PERMISSION_ACTIONS))
 )

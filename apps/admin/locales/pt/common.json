@@ -35,5 +35,19 @@
     "clickToReplace": "Clique para substituir",
     "remove": "Remover {name}",
     "noFile": "Nenhum arquivo selecionado"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Tipo",
+      "file": "Arquivo",
+      "size": "Tamanho",
+      "actions": "Ações"
+    },
+    "view": "Ver",
+    "download": "Baixar",
+    "viewFile": "Ver {name}",
+    "downloadFile": "Baixar {name}",
+    "deleteTitle": "Excluir {name}?",
+    "deleteDescription": "O arquivo será excluído permanentemente. Essa ação não pode ser desfeita."
   }
 }

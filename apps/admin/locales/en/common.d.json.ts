@@ -38,6 +38,20 @@ declare const messages: {
     "clickToReplace": "Click to replace",
     "remove": "Remove {name}",
     "noFile": "No file chosen"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Type",
+      "file": "File",
+      "size": "Size",
+      "actions": "Actions"
+    },
+    "view": "View",
+    "download": "Download",
+    "viewFile": "View {name}",
+    "downloadFile": "Download {name}",
+    "deleteTitle": "Delete {name}?",
+    "deleteDescription": "The file will be permanently deleted. This can't be undone."
   }
 };
 export default messages;

@@ -1,0 +1,196 @@
+[
+  {
+    "id": "table.ReviewerPermission",
+    "label": "Create table \"ReviewerPermission\"",
+    "summary": "Creates table \"ReviewerPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ReviewerPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ReviewerPermission\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"ReviewerPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ReviewerPermission\"",
+        "sql": "CREATE TABLE \"public\".\"ReviewerPermission\" (\n  \"accessLevel\" text NOT NULL,\n  \"countryCode\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"moduleCode\" text NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"ReviewerPermission_accessLevel_check_a8881806\" CHECK (\"accessLevel\" IN ('VIEW', 'CREATE', 'EDIT', 'DELETE')),\n  CONSTRAINT \"ReviewerPermission_moduleCode_check_715d8229\" CHECK (\"moduleCode\" IN ('COUNTRY_MANAGEMENT', 'USER_MANAGEMENT', 'ORGANIZATION_MANAGEMENT', 'PRODUCT_MANAGEMENT', 'INVENTORY_MANAGEMENT', 'BILLING_MANAGEMENT', 'ANALYTICS_MANAGEMENT'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ReviewerPermission\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermission\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"ReviewerPermission\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.ReviewerPermissionSync",
+    "label": "Create table \"ReviewerPermissionSync\"",
+    "summary": "Creates table \"ReviewerPermissionSync\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "ReviewerPermissionSync"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"ReviewerPermissionSync\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermissionSync\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"ReviewerPermissionSync\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"ReviewerPermissionSync\"",
+        "sql": "CREATE TABLE \"public\".\"ReviewerPermissionSync\" (\n  \"snapshotAt\" timestamptz NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userId\" text NOT NULL,\n  PRIMARY KEY (\"userId\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"ReviewerPermissionSync\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermissionSync\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"ReviewerPermissionSync\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.ReviewerPermission.ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke",
+    "label": "Add unique constraint on \"ReviewerPermission\" (userId, countryCode, moduleCode, accessLevel)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke",
+        "table": "ReviewerPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke",
+          "public",
+          "\"public\".\"ReviewerPermission\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke\" on \"ReviewerPermission\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke\"",
+        "sql": "ALTER TABLE \"public\".\"ReviewerPermission\" ADD CONSTRAINT \"ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke\" UNIQUE (\"userId\", \"countryCode\", \"moduleCode\", \"accessLevel\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke\" exists on (userId, countryCode, moduleCode, accessLevel)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "ReviewerPermission_userId_countryCode_moduleCode_accessLevel_ke",
+          "public",
+          "\"public\".\"ReviewerPermission\"",
+          "u",
+          "[\"userId\",\"countryCode\",\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.ReviewerPermission.ReviewerPermission_moduleCode_accessLevel_idx_c568861c",
+    "label": "Create index \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\" on \"ReviewerPermission\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "ReviewerPermission_moduleCode_accessLevel_idx_c568861c",
+        "table": "ReviewerPermission"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\"",
+        "sql": "CREATE INDEX \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\" ON \"public\".\"ReviewerPermission\" (\"moduleCode\", \"accessLevel\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\" exists on \"ReviewerPermission\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"ReviewerPermission_moduleCode_accessLevel_idx_c568861c\"",
+          "i",
+          "I",
+          "\"public\".\"ReviewerPermission\"",
+          "btree",
+          "[\"moduleCode\",\"accessLevel\"]"
+        ]
+      }
+    ]
+  }
+]

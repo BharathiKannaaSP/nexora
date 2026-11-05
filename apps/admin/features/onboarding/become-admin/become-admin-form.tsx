@@ -36,7 +36,7 @@ import type { Country } from "@nexora/shared/types/country"
 import type { Country as PhoneCountry } from "react-phone-number-input"
 import { EntityForm } from "@/components/forms/entity-form"
 import { updateMe } from "@/lib/api/auth/update-me"
-import { submitBecomeAdminRequest } from "@/lib/api/auth/submit-become-admin-request"
+import { submitBecomeAdminRequest } from "@/lib/api/onboarding/submit-become-admin-request"
 import { updateOnboardingStep } from "@/lib/api/auth/update-onboarding-step"
 import { updateUserDetails } from "@/lib/api/user-service/user-details-update"
 import {

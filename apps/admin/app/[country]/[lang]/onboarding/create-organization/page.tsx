@@ -2,6 +2,7 @@ import CreateOrganizationForm from "@/features/onboarding/create-organization/cr
 import { onboardingMetadata } from "@/features/onboarding/onboarding-metadata"
 import { OnboardingPageGuard } from "@/features/onboarding/onboarding-page-guard"
 import { getCountries } from "@/lib/api/auth/countries"
+import { getCreateOrganizationFormDetails } from "@/lib/api/onboarding/create-organization-request-get"
 import { isCountry } from "@/lib/i18n/config"
 import type { LocaleParams } from "@/lib/i18n/locale-params"
 
@@ -14,6 +15,7 @@ export const generateMetadata = ({ params }: CreateOrganizationPageProps) =>
 
 const CreateOrganizationFormWithCountries = async () => {
   const result = await getCountries()
+  const createOrganizationFormDetails = await getCreateOrganizationFormDetails()
 
   if (!result.success) {
     throw new Error(`Failed to load countries: ${result.code}`)
@@ -23,7 +25,7 @@ const CreateOrganizationFormWithCountries = async () => {
     isCountry(code.toLowerCase())
   )
 
-  return <CreateOrganizationForm countries={countries} />
+  return <CreateOrganizationForm countries={countries} createOrganizationFormDetails={createOrganizationFormDetails} />
 }
 
 

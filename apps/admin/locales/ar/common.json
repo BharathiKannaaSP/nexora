@@ -35,5 +35,19 @@
     "clickToReplace": "انقر للاستبدال",
     "remove": "إزالة {name}",
     "noFile": "لم يتم اختيار ملف"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "النوع",
+      "file": "الملف",
+      "size": "الحجم",
+      "actions": "الإجراءات"
+    },
+    "view": "عرض",
+    "download": "تنزيل",
+    "viewFile": "عرض {name}",
+    "downloadFile": "تنزيل {name}",
+    "deleteTitle": "حذف {name}؟",
+    "deleteDescription": "سيتم حذف الملف نهائيًا. لا يمكن التراجع عن ذلك."
   }
 }

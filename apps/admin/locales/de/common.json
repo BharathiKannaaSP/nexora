@@ -35,5 +35,19 @@
     "clickToReplace": "Zum Ersetzen klicken",
     "remove": "{name} entfernen",
     "noFile": "Keine Datei ausgewählt"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Typ",
+      "file": "Datei",
+      "size": "Größe",
+      "actions": "Aktionen"
+    },
+    "view": "Ansehen",
+    "download": "Herunterladen",
+    "viewFile": "{name} ansehen",
+    "downloadFile": "{name} herunterladen",
+    "deleteTitle": "{name} löschen?",
+    "deleteDescription": "Die Datei wird dauerhaft gelöscht. Dies kann nicht rückgängig gemacht werden."
   }
 }

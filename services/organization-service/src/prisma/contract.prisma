@@ -1,0 +1,110 @@
+// use prisma-8
+enum OutboxEventStatus {
+  PENDING
+  PROCESSING
+  PUBLISHED
+  FAILED
+}
+
+enum OrganizationStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum MembershipStatus {
+  ACTIVE
+  SUSPENDED
+  LEFT
+  REMOVED
+}
+
+// Created when an onboarding CREATE OrganizationRequest is approved.
+model Organization {
+  id              String                   @id @onCreate(cuid(2))
+
+  name            String
+  // Part of the organization's URL, e.g. "acme-retail".
+  slug            String                   @unique
+  description     String?
+  // ISO 3166-1 alpha-2, e.g. "IN".
+  countryCode     String
+
+  industry        String
+  size            String
+  website         String?
+
+  // Private S3 key, not a public URL.
+  logoObjectKey   String
+
+  // Country-specific, as on OrganizationRequest.
+  taxDetails      Json
+  address         Json
+
+  status          OrganizationStatus       @default(ACTIVE)
+
+  createdByUserId String
+  // The onboarding OrganizationRequest it came from; unique so a redelivered
+  // approval event can't create it twice.
+  sourceRequestId String?                  @unique
+
+  memberships     OrganizationMembership[]
+
+  createdAt       DateTime                 @default(now())
+  updatedAt       temporal.updatedAt()
+
+  @@index([countryCode, status])
+  @@index([createdByUserId])
+}
+
+// A user's place in an organization: its creator (ORG_ADMIN) on CREATE, or a
+// member (ORG_MEMBER) once an onboarding JOIN OrganizationRequest is approved.
+// The role is User.systemRole in auth-service and what they may do is
+// UserPermission in user-service, so neither is stored here.
+model OrganizationMembership {
+  id               String               @id @onCreate(cuid(2))
+  organizationId   String
+  userId           String
+
+  status           MembershipStatus     @default(ACTIVE)
+
+  // From the JOIN request.
+  employeeId       String?
+  jobTitle         String?
+  department       String?
+  workEmail        String?
+  reportingManager String?
+
+  // Unique for the same reason as Organization.sourceRequestId.
+  sourceRequestId  String?              @unique
+  approvedByUserId String?
+
+  joinedAt         DateTime             @default(now())
+  leftAt           DateTime?
+
+  createdAt        DateTime             @default(now())
+  updatedAt        temporal.updatedAt()
+
+  organization     Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([userId, status])
+  @@index([organizationId, status])
+}
+
+model OutboxEvent {
+  id          String               @id @onCreate(cuid(2))
+  eventType   String
+  aggregateId String
+  payload     Json
+  status      OutboxEventStatus    @default(PENDING)
+  attempts    Int                  @default(0)
+  availableAt DateTime             @default(now())
+  publishedAt DateTime?
+  lastError   String?
+  createdAt   DateTime             @default(now())
+  updatedAt   temporal.updatedAt()
+
+  @@index([status, availableAt])
+  @@index([aggregateId])
+}

@@ -1,4 +1,12 @@
 // use prisma-8
+// Match PERMISSION_ACTIONS in @nexora/schemas/onboarding/become-admin.
+enum AccessLevel {
+  VIEW
+  CREATE
+  EDIT
+  DELETE
+}
+
 enum OutboxEventStatus {
   PENDING
   PROCESSING
@@ -36,26 +44,75 @@ enum AdminAccessRequestStatus {
   WITHDRAWN
 }
 
+enum OrganizationRequestStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+enum OrganizationRequestType {
+  CREATE
+  JOIN
+}
+
+enum OrganizationDocumentScope {
+  CREATE_ORGANIZATION
+  JOIN_ORGANIZATION
+}
+
+enum OrganizationDocumentStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  REUPLOAD_REQUIRED
+}
+
+enum OrganizationDocumentType {
+  ORGANIZATION_LOGO
+  TAX_DOCUMENT
+  BUSINESS_REGISTRATION
+  PROOF_OF_ADDRESS
+  IDENTITY_DOCUMENT
+  RESIDENCE_PERMIT
+  EMPLOYMENT_PROOF
+  OTHER
+}
+
+// Match PERMISSION_MODULES in @nexora/schemas/onboarding/become-admin.
+enum ModuleCode {
+  COUNTRY_MANAGEMENT
+  USER_MANAGEMENT
+  ORGANIZATION_MANAGEMENT
+  PRODUCT_MANAGEMENT
+  INVENTORY_MANAGEMENT
+  BILLING_MANAGEMENT
+  ANALYTICS_MANAGEMENT
+}
+
 model Onboarding {
-  id                  String               @id @onCreate(cuid(2))
-  userId              String               @unique
+  id                   String                @id @onCreate(cuid(2))
+  userId               String                @unique
 
-  status              OnboardingStatus     @default(PENDING)
-  currentStep         OnboardingStep       @default(BASIC_INFORMATION)
-  selectedPath        OnboardingPath?
+  status               OnboardingStatus      @default(PENDING)
+  currentStep          OnboardingStep        @default(BASIC_INFORMATION)
+  selectedPath         OnboardingPath?
 
-  startedAt           DateTime?
-  submittedAt         DateTime?
-  completedAt         DateTime?
-  rejectedAt          DateTime?
-  rejectionReason     String?
+  startedAt            DateTime?
+  submittedAt          DateTime?
+  completedAt          DateTime?
+  rejectedAt           DateTime?
+  rejectionReason      String?
 
-  revision            Int                  @default(1)
+  revision             Int                   @default(1)
 
-  adminAccessRequests AdminAccessRequest[]
+  adminAccessRequests  AdminAccessRequest[]
+  organizationRequests OrganizationRequest[]
 
-  createdAt           DateTime             @default(now())
-  updatedAt           temporal.updatedAt()
+  createdAt            DateTime              @default(now())
+  updatedAt            temporal.updatedAt()
 
   @@index([status, currentStep])
   @@index([selectedPath])
@@ -84,7 +141,7 @@ model AdminAccessRequest {
 
   onboarding              Onboarding                     @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
 
-  requestedPermissions    RequestPermission[]
+  requestedPermissions    AdminAccessRequestPermission[]
 
   @@unique([onboardingId, applicationRevision])
   @@index([userId, status])
@@ -92,16 +149,13 @@ model AdminAccessRequest {
   @@index([reviewedByUserId])
 }
 
-model RequestPermission {
+model AdminAccessRequestPermission {
   id                 String             @id @onCreate(cuid(2))
   requestId          String
 
-  // ISO 3166-1 alpha-2, e.g. "IN": the country this permission is asked for.
   countryCode        String
-  // Match the permission catalog (PERMISSION_MODULES / PERMISSION_ACTIONS
-  // in @nexora/schemas/onboarding/become-admin).
-  moduleCode         String
-  accessLevel        String
+  moduleCode         ModuleCode
+  accessLevel        AccessLevel
   // Optional historical display-name snapshot.
   moduleNameSnapshot String?
 
@@ -111,6 +165,188 @@ model RequestPermission {
 
   @@unique([requestId, countryCode, moduleCode, accessLevel], map: "AdminAccessReqPerm_req_country_module_access_key")
   @@index([countryCode, moduleCode], name: "AdminAccessReqPerm_country_module")
+}
+
+// One per onboarding revision, like AdminAccessRequest. On approval,
+// organization-service creates the Organization (CREATE) or the
+// OrganizationMembership (JOIN).
+model OrganizationRequest {
+  id                    String                          @id @onCreate(cuid(2))
+  onboardingId          String
+  userId                String
+
+  // JOIN: the organization being joined.
+  // CREATE: null until the organization is created.
+  organizationId        String?
+
+  type                  OrganizationRequestType
+  status                OrganizationRequestStatus       @default(PENDING)
+
+  // For joining an existing organization.
+  message               String?
+  employeeId            String?
+  jobTitle              String?
+  department            String?
+  workEmail             String?
+  joiningDate           DateTime?
+  reportingManager      String?
+
+  // For creating an organization.
+  proposedName          String?
+  proposedSlug          String?
+  proposedDescription   String?
+  proposedCountryCode   String?
+  proposedIndustry      String?
+  proposedSize          String?
+  proposedWebsite       String?
+  proposedLogoObjectKey String?
+
+  // Country-specific fields validated by the backend.
+  proposedTaxDetails    Json?
+  proposedAddress       Json?
+
+  reviewedByUserId      String?
+  reviewedAt            DateTime?
+  reviewComment         String?
+
+  applicationRevision   Int                             @default(1)
+
+  submittedAt           DateTime                        @default(now())
+  updatedAt             temporal.updatedAt()
+
+  onboarding            Onboarding                      @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  proposedDocuments             OrganizationRequestDocument[]
+  // JOIN only: what the member asks for in the organization. CREATE makes
+  // the requester ORG_ADMIN with every permission, so it asks for none.
+  requestedPermissions  OrganizationRequestPermission[]
+
+  @@unique([onboardingId, applicationRevision])
+  @@index([type, status, submittedAt], name: "OrganizationRequest_type_status_submittedAt_idx")
+  @@index([userId, status], name: "OrganizationRequest_userId_status_idx")
+  @@index([organizationId, status], name: "OrganizationRequest_organizationId_status_idx")
+  @@index([reviewedByUserId])
+}
+
+model OrganizationRequestPermission {
+  id                 String              @id @onCreate(cuid(2))
+  requestId          String
+
+  // No countryCode: the organization's country applies.
+  moduleCode         ModuleCode
+  accessLevel        AccessLevel
+  // Optional historical display-name snapshot.
+  moduleNameSnapshot String?
+
+  createdAt          DateTime            @default(now())
+
+  request            OrganizationRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@unique([requestId, moduleCode, accessLevel], map: "OrgReqPerm_req_module_access_key")
+}
+
+// Configurable document rules per country and workflow.
+model OrganizationDocumentRequirement {
+  id               String                        @id @onCreate(cuid(2))
+
+  // Unique within the country and scope, e.g. "IN_GST_CERTIFICATE".
+  code             String
+  name             String
+  description      String?
+
+  countryCode      String
+  scope            OrganizationDocumentScope
+  documentType     OrganizationDocumentType
+
+  isRequired       Boolean                       @default(true)
+  isActive         Boolean                       @default(true)
+
+  // Example: ["application/pdf", "image/jpeg", "image/png"]
+  allowedMimeTypes Json
+  maxFileSizeBytes Int?
+
+  createdAt        DateTime                      @default(now())
+  updatedAt        temporal.updatedAt()
+
+  submissions      OrganizationRequestDocument[]
+
+  @@unique([countryCode, scope, code])
+  @@index([countryCode, scope, isActive], name: "OrgDocRequirement_countryCode_scope_isActive_idx")
+}
+
+model OrganizationRequestDocument {
+  id               String                           @id @onCreate(cuid(2))
+
+  requestId        String
+  requirementId    String?
+
+  documentType     OrganizationDocumentType
+  status           OrganizationDocumentStatus       @default(PENDING)
+
+  // Private S3 key, not a public URL.
+  objectKey        String
+  originalFileName String
+  contentType      String
+  sizeBytes        Int
+  checksumSha256   String?
+
+  reviewedByUserId String?
+  reviewedAt       DateTime?
+  reviewComment    String?
+
+  createdAt        DateTime                         @default(now())
+  updatedAt        temporal.updatedAt()
+
+  request          OrganizationRequest              @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requirement      OrganizationDocumentRequirement? @relation(fields: [requirementId], references: [id], onDelete: Restrict)
+
+  @@index([requestId, status])
+  @@index([requirementId])
+  @@index([reviewedByUserId])
+}
+
+model RequestAssignment {
+  id               String   @id @onCreate(cuid(2))
+
+  requestId        String
+  requestType      String // ADMIN_ACCESS or CREATE_ORG or JOIN_ORG
+
+  assignedToUserId String
+  assignedByUserId String?
+
+  assignedAt       DateTime @default(now())
+
+  reason           String?
+
+  createdAt        DateTime @default(now())
+
+  @@index([requestType, requestId])
+  @@index([assignedToUserId, assignedAt])
+}
+
+// A copy of users' platform permissions (user-service UserPermission rows
+// with no organization), kept in sync by user.platform-permissions.changed.
+// Read to find who can review a request.
+model ReviewerPermission {
+  id          String      @id @onCreate(cuid(2))
+  userId      String
+
+  countryCode String
+  moduleCode  ModuleCode
+  accessLevel AccessLevel
+
+  createdAt   DateTime    @default(now())
+
+  @@unique([userId, countryCode, moduleCode, accessLevel])
+  @@index([moduleCode, accessLevel])
+}
+
+// The snapshot each user's ReviewerPermission rows came from; an older
+// snapshot arriving late is ignored.
+model ReviewerPermissionSync {
+  userId     String   @id
+  snapshotAt DateTime
+  updatedAt  temporal.updatedAt()
 }
 
 model OutboxEvent {

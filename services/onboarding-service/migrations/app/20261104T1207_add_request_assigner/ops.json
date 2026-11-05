@@ -1,0 +1,147 @@
+[
+  {
+    "id": "table.RequestAssignment",
+    "label": "Create table \"RequestAssignment\"",
+    "summary": "Creates table \"RequestAssignment\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "RequestAssignment"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"RequestAssignment\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"RequestAssignment\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"RequestAssignment\"",
+        "sql": "CREATE TABLE \"public\".\"RequestAssignment\" (\n  \"assignedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"assignedByUserId\" text,\n  \"assignedToUserId\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" text NOT NULL,\n  \"reason\" text,\n  \"requestId\" text NOT NULL,\n  \"requestType\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"RequestAssignment\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"RequestAssignment\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "index.RequestAssignment.RequestAssignment_assignedToUserId_assignedAt_idx_1777e945",
+    "label": "Create index \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\" on \"RequestAssignment\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RequestAssignment_assignedToUserId_assignedAt_idx_1777e945",
+        "table": "RequestAssignment"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\"",
+        "sql": "CREATE INDEX \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\" ON \"public\".\"RequestAssignment\" (\"assignedToUserId\", \"assignedAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\" exists on \"RequestAssignment\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment_assignedToUserId_assignedAt_idx_1777e945\"",
+          "i",
+          "I",
+          "\"public\".\"RequestAssignment\"",
+          "btree",
+          "[\"assignedToUserId\",\"assignedAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.RequestAssignment.RequestAssignment_requestType_requestId_idx_6d279741",
+    "label": "Create index \"RequestAssignment_requestType_requestId_idx_6d279741\" on \"RequestAssignment\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "RequestAssignment_requestType_requestId_idx_6d279741",
+        "table": "RequestAssignment"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"RequestAssignment_requestType_requestId_idx_6d279741\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment_requestType_requestId_idx_6d279741\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"RequestAssignment_requestType_requestId_idx_6d279741\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"RequestAssignment_requestType_requestId_idx_6d279741\"",
+        "sql": "CREATE INDEX \"RequestAssignment_requestType_requestId_idx_6d279741\" ON \"public\".\"RequestAssignment\" (\"requestType\", \"requestId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"RequestAssignment_requestType_requestId_idx_6d279741\" exists on \"RequestAssignment\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"RequestAssignment_requestType_requestId_idx_6d279741\"",
+          "i",
+          "I",
+          "\"public\".\"RequestAssignment\"",
+          "btree",
+          "[\"requestType\",\"requestId\"]"
+        ]
+      }
+    ]
+  }
+]

@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "您的管理员访问申请已保存"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "您的组织申请已提交"
+    },
+    "ORGANIZATION_FILE_INVALID": "有文件无法使用，请重新上传",
+    "ORGANIZATION_FILE_DUPLICATE": "每个文件只能使用一次"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "不允许此文件类型",
     "FILE_TOO_LARGE": "文件过大",
     "UPLOAD_NOT_FOUND": "未找到上传的文件或已过期，请重试",
-    "UPLOAD_FAILED": "文件上传失败，请重试"
+    "UPLOAD_FAILED": "文件上传失败，请重试",
+    "UPLOAD": {
+      "DELETED": "文件已删除"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

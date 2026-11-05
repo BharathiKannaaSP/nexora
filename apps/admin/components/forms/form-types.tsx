@@ -68,6 +68,12 @@ export interface FieldConfig {
   /** Width or height overrides for the box, e.g. "h-48" or "max-w-xs". */
   uploadClassName?: string
   uploadIcon?: LucideIcon
+  /**
+   * Deletes a saved file (one that isn't a File, e.g. a SavedFile) for good
+   * when the user removes it. Its X then asks first, and the field is only
+   * cleared when this resolves true. Newly picked files are just cleared.
+   */
+  onDeleteSavedFile?: (value: unknown) => Promise<boolean>
   // Links, Checkbox Group
   maxItems?: number
   // Checkbox Group
@@ -95,6 +101,8 @@ export interface FormSection {
   fields: string[]
   isLastField?: boolean
   icon?: React.ComponentType
+  /** Fields per row on wide screens: 2 (default), or 4 for rows of cards. */
+  columns?: 2 | 4
 }
 
 export interface EntityFormConfig {

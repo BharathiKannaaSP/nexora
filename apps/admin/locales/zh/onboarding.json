@@ -220,6 +220,10 @@
       "location": {
         "title": "所在地和税务信息",
         "description": "您的组织的注册地。地址和税号将按此国家/地区进行校验。"
+      },
+      "documents": {
+        "title": "文件上传",
+        "description": "上传法律文件，帮助我们验证您的组织。"
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "组织规模",
       "website": "网站",
       "description": "组织描述",
-      "taxId": "税号（例如：GSTIN、VAT 或 EIN）"
+      "taxId": "税号（例如：GSTIN、VAT 或 EIN）",
+      "registrationNumber": "注册号",
+      "incorporationDate": "成立日期"
     },
     "placeholders": {
       "name": "例如：Acme Retail",
@@ -238,13 +244,15 @@
       "size": "请选择规模",
       "description": "您的组织从事什么业务？服务哪些对象？",
       "taxId": "例如：GSTIN、VAT 或 EIN",
-      "logo": "上传标志"
+      "logo": "上传标志",
+      "registrationNumber": "输入注册号"
     },
     "hints": {
       "slug": "仅限小写字母、数字和连字符，将作为您组织网址的一部分。",
       "logo": "PNG、JPEG 或 WebP，不超过 {maxMb, number} MB。",
       "description": "{min, number}–{max, number} 个字符。",
-      "taxId": "您的组织在所选国家/地区使用的税务登记号。"
+      "taxId": "您的组织在所选国家/地区使用的税务登记号。",
+      "document": "PDF、Word、PNG、JPEG 或 WebP，不超过 {maxMb, number} MB"
     },
     "sizeOption": "{range} 名员工",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "城市为必填项",
       "stateRequired": "省/州为必填项",
       "postalCodeRequired": "邮政编码为必填项",
-      "postalCodeInvalid": "请输入所选国家/地区的有效邮政编码"
+      "postalCodeInvalid": "请输入所选国家/地区的有效邮政编码",
+      "organizationRegistrationNumberTooLong": "注册号不得超过 {max, number} 个字符",
+      "organizationIncorporationDateInvalid": "请输入有效日期",
+      "organizationDocumentRequired": "请上传此文件",
+      "organizationDocumentTooLarge": "文件不得超过 {maxMb, number} MB",
+      "organizationDocumentWrongFormat": "请上传 PDF、Word 文件或图片（PNG、JPEG 或 WebP）"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "营业登记",
+        "hint": "公司注册证书"
+      },
+      "taxRegistrationCertificate": {
+        "label": "税务登记证明",
+        "hint": "GST、增值税或税务证明"
+      },
+      "addressProof": {
+        "label": "地址证明",
+        "hint": "水电费账单或租赁合同"
+      },
+      "additionalDocument": {
+        "label": "其他文件（可选）",
+        "hint": "任何其他证明文件"
+      }
+    },
+    "uploadedFiles": {
+      "title": "已上传的文件",
+      "description": "继续之前，请检查您的徽标和文件。"
     }
   },
   "review": {

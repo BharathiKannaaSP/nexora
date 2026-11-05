@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "Uw aanvraag voor beheerderstoegang is opgeslagen"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Uw organisatieaanvraag is ingediend"
+    },
+    "ORGANIZATION_FILE_INVALID": "Een bestand kon niet worden gebruikt. Upload het opnieuw",
+    "ORGANIZATION_FILE_DUPLICATE": "Elk bestand kan maar één keer worden gebruikt"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dit bestandstype is niet toegestaan",
     "FILE_TOO_LARGE": "Dit bestand is te groot",
     "UPLOAD_NOT_FOUND": "De upload is niet gevonden of verlopen. Probeer het opnieuw",
-    "UPLOAD_FAILED": "Het bestand kon niet worden geüpload. Probeer het opnieuw"
+    "UPLOAD_FAILED": "Het bestand kon niet worden geüpload. Probeer het opnieuw",
+    "UPLOAD": {
+      "DELETED": "Bestand verwijderd"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

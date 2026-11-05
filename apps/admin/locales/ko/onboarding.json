@@ -220,6 +220,10 @@
       "location": {
         "title": "위치 및 세금 정보",
         "description": "조직이 등록된 국가입니다. 주소와 세금 번호는 이 국가를 기준으로 확인됩니다."
+      },
+      "documents": {
+        "title": "서류 업로드",
+        "description": "조직 확인을 위해 법적 서류를 업로드하세요."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "조직 규모",
       "website": "웹사이트",
       "description": "조직 설명",
-      "taxId": "세금 번호(예: 사업자등록번호, GSTIN, VAT, EIN)"
+      "taxId": "세금 번호(예: 사업자등록번호, GSTIN, VAT, EIN)",
+      "registrationNumber": "등록 번호",
+      "incorporationDate": "설립일"
     },
     "placeholders": {
       "name": "예: Acme Retail",
@@ -238,13 +244,15 @@
       "size": "규모 선택",
       "description": "조직이 하는 일과 서비스 대상을 알려 주세요",
       "taxId": "예: 사업자등록번호, GSTIN, VAT, EIN",
-      "logo": "로고 업로드"
+      "logo": "로고 업로드",
+      "registrationNumber": "등록 번호 입력"
     },
     "hints": {
       "slug": "영문 소문자, 숫자, 하이픈을 사용할 수 있습니다. 조직 웹 주소의 일부가 됩니다.",
       "logo": "PNG, JPEG 또는 WebP, 최대 {maxMb, number}MB.",
       "description": "{min, number}~{max, number}자.",
-      "taxId": "선택한 국가에서 조직이 사용하는 세금 등록 번호입니다."
+      "taxId": "선택한 국가에서 조직이 사용하는 세금 등록 번호입니다.",
+      "document": "PDF, Word, PNG, JPEG 또는 WebP, 최대 {maxMb, number}MB"
     },
     "sizeOption": "직원 {range}명",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "시/군/구를 입력해 주세요",
       "stateRequired": "시/도를 입력해 주세요",
       "postalCodeRequired": "우편번호를 입력해 주세요",
-      "postalCodeInvalid": "선택한 국가에 맞는 올바른 우편번호를 입력해 주세요"
+      "postalCodeInvalid": "선택한 국가에 맞는 올바른 우편번호를 입력해 주세요",
+      "organizationRegistrationNumberTooLong": "등록 번호는 {max, number}자 이하여야 합니다",
+      "organizationIncorporationDateInvalid": "올바른 날짜를 입력하세요",
+      "organizationDocumentRequired": "이 서류를 업로드하세요",
+      "organizationDocumentTooLarge": "파일은 {maxMb, number}MB 이하여야 합니다",
+      "organizationDocumentWrongFormat": "PDF, Word 파일 또는 이미지(PNG, JPEG, WebP)를 업로드하세요"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "사업자 등록",
+        "hint": "법인 설립 증명서"
+      },
+      "taxRegistrationCertificate": {
+        "label": "세무 등록 증명서",
+        "hint": "GST, VAT 또는 세무 증명서"
+      },
+      "addressProof": {
+        "label": "주소 증명",
+        "hint": "공과금 고지서 또는 임대 계약서"
+      },
+      "additionalDocument": {
+        "label": "추가 서류(선택)",
+        "hint": "기타 증빙 서류"
+      }
+    },
+    "uploadedFiles": {
+      "title": "업로드한 파일",
+      "description": "계속하기 전에 로고와 서류를 확인하세요."
     }
   },
   "review": {

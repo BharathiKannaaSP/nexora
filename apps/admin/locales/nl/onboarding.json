@@ -220,6 +220,10 @@
       "location": {
         "title": "Locatie en fiscale gegevens",
         "description": "Waar uw organisatie is geregistreerd. Het adres en het btw- of fiscaal nummer worden gecontroleerd voor dit land."
+      },
+      "documents": {
+        "title": "Documenten uploaden",
+        "description": "Upload juridische documenten zodat we je organisatie kunnen verifiëren."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "Grootte van de organisatie",
       "website": "Website",
       "description": "Beschrijving van de organisatie",
-      "taxId": "Btw- of fiscaal nummer (bijv. btw-nummer, GSTIN of EIN)"
+      "taxId": "Btw- of fiscaal nummer (bijv. btw-nummer, GSTIN of EIN)",
+      "registrationNumber": "Registratienummer",
+      "incorporationDate": "Oprichtingsdatum"
     },
     "placeholders": {
       "name": "bijv. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "Selecteer een grootte",
       "description": "Wat doet uw organisatie en voor wie?",
       "taxId": "bijv. btw-nummer, GSTIN of EIN",
-      "logo": "Logo uploaden"
+      "logo": "Logo uploaden",
+      "registrationNumber": "Voer het registratienummer in"
     },
     "hints": {
       "slug": "Kleine letters, cijfers en koppeltekens. Dit wordt onderdeel van het webadres van uw organisatie.",
       "logo": "PNG, JPEG of WebP, maximaal {maxMb, number} MB.",
       "description": "{min, number}–{max, number} tekens.",
-      "taxId": "Het fiscale registratienummer dat uw organisatie in het geselecteerde land gebruikt."
+      "taxId": "Het fiscale registratienummer dat uw organisatie in het geselecteerde land gebruikt.",
+      "document": "PDF, Word, PNG, JPEG of WebP, tot {maxMb, number} MB"
     },
     "sizeOption": "{range} medewerkers",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "Plaats is verplicht",
       "stateRequired": "Provincie/regio is verplicht",
       "postalCodeRequired": "Postcode is verplicht",
-      "postalCodeInvalid": "Voer een geldige postcode in voor het geselecteerde land"
+      "postalCodeInvalid": "Voer een geldige postcode in voor het geselecteerde land",
+      "organizationRegistrationNumberTooLong": "Het registratienummer mag maximaal {max, number} tekens bevatten",
+      "organizationIncorporationDateInvalid": "Voer een geldige datum in",
+      "organizationDocumentRequired": "Upload dit document",
+      "organizationDocumentTooLarge": "Het bestand mag maximaal {maxMb, number} MB groot zijn",
+      "organizationDocumentWrongFormat": "Upload een pdf, Word-bestand of afbeelding (PNG, JPEG of WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "Bedrijfsregistratie",
+        "hint": "Oprichtingsakte"
+      },
+      "taxRegistrationCertificate": {
+        "label": "Belastingregistratiebewijs",
+        "hint": "GST-, btw- of belastingcertificaat"
+      },
+      "addressProof": {
+        "label": "Adresbewijs",
+        "hint": "Energierekening of huurovereenkomst"
+      },
+      "additionalDocument": {
+        "label": "Aanvullend document (optioneel)",
+        "hint": "Elk ander ondersteunend document"
+      }
+    },
+    "uploadedFiles": {
+      "title": "Geüploade bestanden",
+      "description": "Controleer je logo en documenten voordat je verdergaat."
     }
   },
   "review": {

@@ -35,5 +35,19 @@
     "clickToReplace": "बदलने के लिए क्लिक करें",
     "remove": "{name} हटाएँ",
     "noFile": "कोई फ़ाइल नहीं चुनी गई"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "प्रकार",
+      "file": "फ़ाइल",
+      "size": "आकार",
+      "actions": "कार्रवाइयाँ"
+    },
+    "view": "देखें",
+    "download": "डाउनलोड करें",
+    "viewFile": "{name} देखें",
+    "downloadFile": "{name} डाउनलोड करें",
+    "deleteTitle": "{name} हटाएँ?",
+    "deleteDescription": "फ़ाइल स्थायी रूप से हटा दी जाएगी। इसे पूर्ववत नहीं किया जा सकता।"
   }
 }

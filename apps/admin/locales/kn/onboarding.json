@@ -220,6 +220,10 @@
       "location": {
         "title": "ಸ್ಥಳ ಮತ್ತು ತೆರಿಗೆ ವಿವರಗಳು",
         "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆ ನೋಂದಾಯಿತವಾಗಿರುವ ದೇಶ. ವಿಳಾಸ ಮತ್ತು ತೆರಿಗೆ ಐಡಿಯನ್ನು ಈ ದೇಶಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಪರಿಶೀಲಿಸಲಾಗುತ್ತದೆ."
+      },
+      "documents": {
+        "title": "ದಾಖಲೆ ಅಪ್‌ಲೋಡ್‌ಗಳು",
+        "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆಯನ್ನು ಪರಿಶೀಲಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡಲು ಕಾನೂನು ದಾಖಲೆಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "ಸಂಸ್ಥೆಯ ಗಾತ್ರ",
       "website": "ವೆಬ್‌ಸೈಟ್",
       "description": "ಸಂಸ್ಥೆಯ ವಿವರಣೆ",
-      "taxId": "ತೆರಿಗೆ ಐಡಿ (ಉದಾ: GSTIN, VAT ಅಥವಾ EIN)"
+      "taxId": "ತೆರಿಗೆ ಐಡಿ (ಉದಾ: GSTIN, VAT ಅಥವಾ EIN)",
+      "registrationNumber": "ನೋಂದಣಿ ಸಂಖ್ಯೆ",
+      "incorporationDate": "ಸಂಸ್ಥಾಪನೆ ದಿನಾಂಕ"
     },
     "placeholders": {
       "name": "ಉದಾ: Acme Retail",
@@ -238,13 +244,15 @@
       "size": "ಗಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
       "description": "ನಿಮ್ಮ ಸಂಸ್ಥೆ ಏನು ಮಾಡುತ್ತದೆ ಮತ್ತು ಯಾರಿಗೆ ಸೇವೆ ನೀಡುತ್ತದೆ?",
       "taxId": "ಉದಾ: GSTIN, VAT ಅಥವಾ EIN",
-      "logo": "ಲೋಗೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
+      "logo": "ಲೋಗೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+      "registrationNumber": "ನೋಂದಣಿ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ"
     },
     "hints": {
       "slug": "ಸಣ್ಣ ಇಂಗ್ಲಿಷ್ ಅಕ್ಷರಗಳು, ಅಂಕಿಗಳು ಮತ್ತು ಹೈಫನ್‌ಗಳು. ಇದು ನಿಮ್ಮ ಸಂಸ್ಥೆಯ ವೆಬ್ ವಿಳಾಸದ ಭಾಗವಾಗುತ್ತದೆ.",
       "logo": "PNG, JPEG ಅಥವಾ WebP, ಗರಿಷ್ಠ {maxMb, number} MB.",
       "description": "{min, number}–{max, number} ಅಕ್ಷರಗಳು.",
-      "taxId": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶದಲ್ಲಿ ನಿಮ್ಮ ಸಂಸ್ಥೆ ಬಳಸುವ ತೆರಿಗೆ ನೋಂದಣಿ ಸಂಖ್ಯೆ."
+      "taxId": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶದಲ್ಲಿ ನಿಮ್ಮ ಸಂಸ್ಥೆ ಬಳಸುವ ತೆರಿಗೆ ನೋಂದಣಿ ಸಂಖ್ಯೆ.",
+      "document": "PDF, Word, PNG, JPEG ಅಥವಾ WebP, {maxMb, number} MB ವರೆಗೆ"
     },
     "sizeOption": "{range} ಉದ್ಯೋಗಿಗಳು",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "ನಗರ ಅಗತ್ಯವಿದೆ",
       "stateRequired": "ರಾಜ್ಯ ಅಗತ್ಯವಿದೆ",
       "postalCodeRequired": "ಪಿನ್ ಕೋಡ್ ಅಗತ್ಯವಿದೆ",
-      "postalCodeInvalid": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶಕ್ಕೆ ಮಾನ್ಯವಾದ ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ"
+      "postalCodeInvalid": "ಆಯ್ಕೆಮಾಡಿದ ದೇಶಕ್ಕೆ ಮಾನ್ಯವಾದ ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ",
+      "organizationRegistrationNumberTooLong": "ನೋಂದಣಿ ಸಂಖ್ಯೆ {max, number} ಅಕ್ಷರಗಳು ಅಥವಾ ಕಡಿಮೆ ಇರಬೇಕು",
+      "organizationIncorporationDateInvalid": "ಮಾನ್ಯ ದಿನಾಂಕವನ್ನು ನಮೂದಿಸಿ",
+      "organizationDocumentRequired": "ಈ ದಾಖಲೆಯನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+      "organizationDocumentTooLarge": "ಫೈಲ್ {maxMb, number} MB ಅಥವಾ ಅದಕ್ಕಿಂತ ಚಿಕ್ಕದಾಗಿರಬೇಕು",
+      "organizationDocumentWrongFormat": "PDF, Word ಫೈಲ್ ಅಥವಾ ಚಿತ್ರವನ್ನು (PNG, JPEG ಅಥವಾ WebP) ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "ವ್ಯಾಪಾರ ನೋಂದಣಿ",
+        "hint": "ಸಂಸ್ಥಾಪನಾ ಪ್ರಮಾಣಪತ್ರ"
+      },
+      "taxRegistrationCertificate": {
+        "label": "ತೆರಿಗೆ ನೋಂದಣಿ ಪ್ರಮಾಣಪತ್ರ",
+        "hint": "GST, VAT ಅಥವಾ ತೆರಿಗೆ ಪ್ರಮಾಣಪತ್ರ"
+      },
+      "addressProof": {
+        "label": "ವಿಳಾಸದ ಪುರಾವೆ",
+        "hint": "ಯುಟಿಲಿಟಿ ಬಿಲ್ ಅಥವಾ ಬಾಡಿಗೆ ಒಪ್ಪಂದ"
+      },
+      "additionalDocument": {
+        "label": "ಹೆಚ್ಚುವರಿ ದಾಖಲೆ (ಐಚ್ಛಿಕ)",
+        "hint": "ಯಾವುದೇ ಇತರ ಪೂರಕ ದಾಖಲೆ"
+      }
+    },
+    "uploadedFiles": {
+      "title": "ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳು",
+      "description": "ಮುಂದುವರಿಯುವ ಮೊದಲು ನಿಮ್ಮ ಲೋಗೋ ಮತ್ತು ದಾಖಲೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ."
     }
   },
   "review": {

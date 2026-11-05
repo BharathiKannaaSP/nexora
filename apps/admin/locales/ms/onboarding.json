@@ -220,6 +220,10 @@
       "location": {
         "title": "Lokasi dan butiran cukai",
         "description": "Tempat organisasi anda didaftarkan. Alamat dan ID cukai disemak berdasarkan negara ini."
+      },
+      "documents": {
+        "title": "Muat naik dokumen",
+        "description": "Muat naik dokumen undang-undang untuk membantu kami mengesahkan organisasi anda."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "Saiz organisasi",
       "website": "Laman web",
       "description": "Penerangan organisasi",
-      "taxId": "ID cukai (cth. TIN, SST atau GSTIN)"
+      "taxId": "ID cukai (cth. TIN, SST atau GSTIN)",
+      "registrationNumber": "Nombor pendaftaran",
+      "incorporationDate": "Tarikh penubuhan"
     },
     "placeholders": {
       "name": "cth. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "Pilih saiz",
       "description": "Apakah yang dilakukan oleh organisasi anda, dan siapakah yang dilayaninya?",
       "taxId": "cth. TIN, SST atau GSTIN",
-      "logo": "Muat naik logo"
+      "logo": "Muat naik logo",
+      "registrationNumber": "Masukkan nombor pendaftaran"
     },
     "hints": {
       "slug": "Huruf kecil, nombor dan tanda sempang. Ia menjadi sebahagian daripada alamat web organisasi anda.",
       "logo": "PNG, JPEG atau WebP, sehingga {maxMb, number} MB.",
       "description": "{min, number}–{max, number} aksara.",
-      "taxId": "Nombor pendaftaran cukai yang digunakan oleh organisasi anda di negara yang dipilih."
+      "taxId": "Nombor pendaftaran cukai yang digunakan oleh organisasi anda di negara yang dipilih.",
+      "document": "PDF, Word, PNG, JPEG atau WebP, sehingga {maxMb, number} MB"
     },
     "sizeOption": "{range} pekerja",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "Bandar diperlukan",
       "stateRequired": "Negeri diperlukan",
       "postalCodeRequired": "Poskod diperlukan",
-      "postalCodeInvalid": "Masukkan poskod yang sah untuk negara yang dipilih"
+      "postalCodeInvalid": "Masukkan poskod yang sah untuk negara yang dipilih",
+      "organizationRegistrationNumberTooLong": "Nombor pendaftaran mestilah {max, number} aksara atau kurang",
+      "organizationIncorporationDateInvalid": "Masukkan tarikh yang sah",
+      "organizationDocumentRequired": "Muat naik dokumen ini",
+      "organizationDocumentTooLarge": "Fail mestilah {maxMb, number} MB atau lebih kecil",
+      "organizationDocumentWrongFormat": "Muat naik PDF, fail Word atau imej (PNG, JPEG atau WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "Pendaftaran perniagaan",
+        "hint": "Sijil penubuhan"
+      },
+      "taxRegistrationCertificate": {
+        "label": "Sijil pendaftaran cukai",
+        "hint": "Sijil GST, VAT atau cukai"
+      },
+      "addressProof": {
+        "label": "Bukti alamat",
+        "hint": "Bil utiliti atau perjanjian sewa"
+      },
+      "additionalDocument": {
+        "label": "Dokumen tambahan (pilihan)",
+        "hint": "Sebarang dokumen sokongan lain"
+      }
+    },
+    "uploadedFiles": {
+      "title": "Fail yang dimuat naik",
+      "description": "Semak logo dan dokumen anda sebelum meneruskan."
     }
   },
   "review": {

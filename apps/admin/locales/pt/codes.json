@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "Sua solicitação de acesso de administrador foi salva"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Sua solicitação de organização foi enviada"
+    },
+    "ORGANIZATION_FILE_INVALID": "Não foi possível usar um arquivo. Envie-o novamente",
+    "ORGANIZATION_FILE_DUPLICATE": "Cada arquivo só pode ser usado uma vez"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Este tipo de arquivo não é permitido",
     "FILE_TOO_LARGE": "Este arquivo é muito grande",
     "UPLOAD_NOT_FOUND": "O envio não foi encontrado ou expirou. Tente novamente",
-    "UPLOAD_FAILED": "Não foi possível enviar o arquivo. Tente novamente"
+    "UPLOAD_FAILED": "Não foi possível enviar o arquivo. Tente novamente",
+    "UPLOAD": {
+      "DELETED": "Arquivo excluído"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

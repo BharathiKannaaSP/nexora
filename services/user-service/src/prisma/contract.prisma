@@ -18,6 +18,25 @@ enum Gender {
   PREFER_NOT_TO_SAY
 }
 
+// Match PERMISSION_ACTIONS in @nexora/schemas/onboarding/become-admin.
+enum AccessLevel {
+  VIEW
+  CREATE
+  EDIT
+  DELETE
+}
+
+// Match PERMISSION_MODULES in @nexora/schemas/onboarding/become-admin.
+enum ModuleCode {
+  COUNTRY_MANAGEMENT
+  USER_MANAGEMENT
+  ORGANIZATION_MANAGEMENT
+  PRODUCT_MANAGEMENT
+  INVENTORY_MANAGEMENT
+  BILLING_MANAGEMENT
+  ANALYTICS_MANAGEMENT
+}
+
 model UserProfile {
   id            String               @id @onCreate(cuid(2))
   userId        String               @unique
@@ -61,4 +80,37 @@ model OutboxEvent {
 
   @@index([status, availableAt])
   @@index([aggregateId])
+}
+
+// What a user may do, granted when an onboarding request is approved:
+// - ADMIN (AdminAccessRequest): organizationId null, per country.
+// - ORG_ADMIN (CREATE OrganizationRequest): every module and access level in
+//   their organization.
+// - ORG_MEMBER (JOIN OrganizationRequest): the modules and access levels they
+//   asked for, in that organization.
+// The role itself is User.systemRole in auth-service.
+model UserPermission {
+  id                 String      @id @onCreate(cuid(2))
+  userId             String
+  // Null for platform (ADMIN) permissions.
+  organizationId     String?
+
+  countryCode        String
+  moduleCode         ModuleCode
+  accessLevel        AccessLevel
+  // Optional historical display-name snapshot.
+  moduleNameSnapshot String?
+
+  sourceRequestId    String?
+  grantedByUserId    String?
+
+  createdAt          DateTime    @default(now())
+
+  // Two partial indexes because Postgres treats NULLs as distinct: one
+  // unique key with organizationId would let platform rows repeat.
+  @@index([userId, countryCode, moduleCode, accessLevel], unique: true, where: sql`"organizationId" IS NULL`, name: "UserPermission_platform_key")
+  @@index([userId, organizationId, moduleCode, accessLevel], unique: true, where: sql`"organizationId" IS NOT NULL`, name: "UserPermission_organization_key")
+  @@index([organizationId])
+  @@index([countryCode, moduleCode], name: "UserPermission_country_module")
+  @@index([sourceRequestId])
 }

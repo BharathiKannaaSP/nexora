@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "Permintaan akses pentadbir anda telah disimpan"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Permintaan organisasi anda telah dihantar"
+    },
+    "ORGANIZATION_FILE_INVALID": "Satu fail tidak dapat digunakan. Sila muat naik semula",
+    "ORGANIZATION_FILE_DUPLICATE": "Setiap fail hanya boleh digunakan sekali"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Jenis fail ini tidak dibenarkan",
     "FILE_TOO_LARGE": "Fail ini terlalu besar",
     "UPLOAD_NOT_FOUND": "Muat naik tidak ditemui atau telah tamat tempoh. Sila cuba lagi",
-    "UPLOAD_FAILED": "Fail tidak dapat dimuat naik. Sila cuba lagi"
+    "UPLOAD_FAILED": "Fail tidak dapat dimuat naik. Sila cuba lagi",
+    "UPLOAD": {
+      "DELETED": "Fail dipadam"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

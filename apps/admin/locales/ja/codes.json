@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "管理者アクセスのリクエストを保存しました"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "組織の申請を送信しました"
+    },
+    "ORGANIZATION_FILE_INVALID": "使用できないファイルがあります。もう一度アップロードしてください",
+    "ORGANIZATION_FILE_DUPLICATE": "同じファイルは一度しか使用できません"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "このファイル形式は使用できません",
     "FILE_TOO_LARGE": "ファイルが大きすぎます",
     "UPLOAD_NOT_FOUND": "アップロードが見つからないか、期限が切れました。もう一度お試しください",
-    "UPLOAD_FAILED": "ファイルをアップロードできませんでした。もう一度お試しください"
+    "UPLOAD_FAILED": "ファイルをアップロードできませんでした。もう一度お試しください",
+    "UPLOAD": {
+      "DELETED": "ファイルを削除しました"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

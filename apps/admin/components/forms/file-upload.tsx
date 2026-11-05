@@ -5,7 +5,9 @@ import { useLocale, useTranslations } from "next-intl"
 import { useEffect, useId, useMemo, useRef, useState } from "react"
 import type { ControllerRenderProps } from "react-hook-form"
 import { Button } from "@nexora/ui/components/button"
+import { Spinner } from "@nexora/ui/components/spinner"
 import { cn } from "@nexora/ui/lib/utils"
+import { DeleteFileDialog } from "./delete-file-dialog"
 import type { FieldConfig } from "./form-types"
 
 interface FileUploadProps {
@@ -51,10 +53,22 @@ const useImagePreview = (file: File | undefined) => {
   return url
 }
 
+/** A file uploaded earlier and put back in the form, e.g. a SavedFile. */
+interface SavedFileValue {
+  originalFileName: string
+  sizeBytes?: number
+}
+
+const isSavedFileValue = (value: unknown): value is SavedFileValue =>
+  typeof value === "object" &&
+  value !== null &&
+  typeof (value as SavedFileValue).originalFileName === "string"
+
 /**
  * A file picker for EntityForm. With `maxFiles` 1 (the default) the value is
- * a File or undefined, otherwise a File[]. Type and size are left to the
- * form's schema, so its translated errors show under the field.
+ * a File, a file saved earlier (shown by name, see SavedFileValue) or
+ * undefined; otherwise a File[]. Type and size are left to the form's schema,
+ * so its translated errors show under the field.
  */
 const FileUpload = ({
   fieldConfig,
@@ -84,11 +98,21 @@ const FileUpload = ({
       : []
   const firstFile = files[0]
   const preview = useImagePreview(multiple ? undefined : firstFile)
+
+  // What the single-file field shows: the picked File, or the saved file.
+  const savedFile =
+    !multiple && isSavedFileValue(field.value) ? field.value : undefined
+  const shown = firstFile
+    ? { name: firstFile.name, size: firstFile.size }
+    : savedFile
+      ? { name: savedFile.originalFileName, size: savedFile.sizeBytes }
+      : undefined
   const isFull = files.length >= maxFiles
 
   const isImageUpload =
     !!fieldConfig.accept?.length &&
     fieldConfig.accept.every((type) => type.startsWith("image/"))
+
   const Icon = fieldConfig.uploadIcon ?? (isImageUpload ? ImageUp : FileText)
 
   const setFiles = (picked: File[]) => {
@@ -102,10 +126,30 @@ const FileUpload = ({
   }
 
   const removeFile = (index: number) => {
-    field.onChange(multiple ? files.filter((_, i) => i !== index) : undefined)
+    // null, not undefined: react-hook-form shows a field's default value for
+    // undefined, so a saved file would come straight back.
+    field.onChange(multiple ? files.filter((_, i) => i !== index) : null)
     field.onBlur()
     // The same file can be picked again after removing it.
     if (inputRef.current) inputRef.current.value = ""
+  }
+
+  // A saved file can be deleted for good (see onDeleteSavedFile): ask first,
+  // and clear the field only once it's gone.
+  const [confirmDelete, setConfirmDelete] = useState(false)
+  const [deleting, setDeleting] = useState(false)
+  const deletesSavedFile = !!savedFile && !!fieldConfig.onDeleteSavedFile
+
+  const requestRemove = () => {
+    if (deletesSavedFile) setConfirmDelete(true)
+    else removeFile(0)
+  }
+
+  const deleteSavedFile = async () => {
+    setDeleting(true)
+    const deleted = await fieldConfig.onDeleteSavedFile!(field.value)
+    setDeleting(false)
+    if (deleted) removeFile(0)
   }
 
   const openPicker = () => {
@@ -133,22 +177,33 @@ const FileUpload = ({
     },
   }
 
+  // Rendered by every variant, so the dialog goes with it.
   const nativeInput = (
-    <input
-      {...inputProps}
-      ref={inputRef}
-      type="file"
-      name={field.name}
-      className="sr-only"
-      tabIndex={-1}
-      multiple={multiple}
-      accept={fieldConfig.accept?.join(",")}
-      disabled={disabled}
-      onChange={(event) => {
-        setFiles(Array.from(event.target.files ?? []))
-        event.target.value = ""
-      }}
-    />
+    <>
+      {deletesSavedFile && shown && (
+        <DeleteFileDialog
+          open={confirmDelete}
+          onOpenChange={setConfirmDelete}
+          name={shown.name}
+          onConfirm={deleteSavedFile}
+        />
+      )}
+      <input
+        {...inputProps}
+        ref={inputRef}
+        type="file"
+        name={field.name}
+        className="sr-only"
+        tabIndex={-1}
+        multiple={multiple}
+        accept={fieldConfig.accept?.join(",")}
+        disabled={disabled}
+        onChange={(event) => {
+          setFiles(Array.from(event.target.files ?? []))
+          event.target.value = ""
+        }}
+      />
+    </>
   )
 
   const fileList = multiple && files.length > 0 && (
@@ -197,23 +252,23 @@ const FileUpload = ({
           <span
             className={cn(
               "min-w-0 flex-1 truncate",
-              !firstFile && "text-muted-foreground"
+              !shown && "text-muted-foreground"
             )}
           >
-            {multiple || !firstFile
+            {multiple || !shown
               ? (fieldConfig.placeholder ?? t("noFile"))
-              : firstFile.name}
+              : shown.name}
           </span>
-          {!multiple && firstFile && (
+          {!multiple && shown && (
             <Button
               type="button"
               variant="ghost"
               size="icon-xs"
-              disabled={disabled}
-              onClick={() => removeFile(0)}
-              aria-label={t("remove", { name: firstFile.name })}
+              disabled={disabled || deleting}
+              onClick={requestRemove}
+              aria-label={t("remove", { name: shown.name })}
             >
-              <X />
+              {deleting ? <Spinner aria-hidden="true" /> : <X />}
             </Button>
           )}
           <Button
@@ -224,7 +279,7 @@ const FileUpload = ({
             onClick={openPicker}
             aria-describedby={inputProps["aria-describedby"]}
           >
-            {firstFile && !multiple ? t("replace") : t("browse")}
+            {shown && !multiple ? t("replace") : t("browse")}
           </Button>
         </div>
         {fileList}
@@ -264,7 +319,7 @@ const FileUpload = ({
           disabled={disabled || (multiple && isFull)}
           onClick={openPicker}
           aria-label={
-            !multiple && firstFile
+            !multiple && shown
               ? `${t("replace")}: ${fieldConfig.label}`
               : `${title}: ${fieldConfig.label}`
           }
@@ -275,7 +330,7 @@ const FileUpload = ({
           }
         />
 
-        {!multiple && firstFile ? (
+        {!multiple && shown ? (
           <>
             {preview ? (
               // eslint-disable-next-line @next/next/no-img-element -- a local blob: preview
@@ -293,21 +348,22 @@ const FileUpload = ({
               />
             )}
             <p className="w-full truncate px-6 text-sm font-medium">
-              {firstFile.name}
+              {shown.name}
             </p>
             <p className="text-xs text-muted-foreground">
-              {formatSize(firstFile.size, locale)} · {t("clickToReplace")}
+              {shown.size ? `${formatSize(shown.size, locale)} · ` : ""}
+              {t("clickToReplace")}
             </p>
             <Button
               type="button"
               variant="ghost"
               size="icon-xs"
               className="absolute top-1.5 right-1.5 z-10"
-              disabled={disabled}
-              onClick={() => removeFile(0)}
-              aria-label={t("remove", { name: firstFile.name })}
+              disabled={disabled || deleting}
+              onClick={requestRemove}
+              aria-label={t("remove", { name: shown.name })}
             >
-              <X />
+              {deleting ? <Spinner aria-hidden="true" /> : <X />}
             </Button>
           </>
         ) : (

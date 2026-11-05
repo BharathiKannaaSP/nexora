@@ -14,6 +14,11 @@ const withNextIntl = createNextIntlPlugin({
 
 const isDev = process.env.NODE_ENV === "development"
 
+// The S3 bucket the browser PUTs uploads to, and the CloudFront domain signed
+// file URLs point at. Both optional, so the app still builds without them.
+const mediaUploadOrigin = process.env.MEDIA_UPLOAD_ORIGIN ?? ""
+const mediaCdnOrigin = process.env.MEDIA_CDN_ORIGIN ?? ""
+
 // Without nonces: they need every page rendered per request, which rules out
 // the prerendered shells cacheComponents produces. Inline scripts therefore
 // stay allowed; the rest still blocks framing, plugins, foreign scripts and
@@ -23,9 +28,9 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' blob: data:",
+  `img-src 'self' blob: data: ${mediaCdnOrigin}`.trim(),
   "font-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self' ${mediaUploadOrigin}`.trim(),
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

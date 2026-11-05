@@ -61,13 +61,21 @@ declare const messages: {
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "Your admin access request has been saved"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Your organization request has been submitted"
+    },
+    "ORGANIZATION_FILE_INVALID": "A file couldn't be used. Please upload it again",
+    "ORGANIZATION_FILE_DUPLICATE": "Each file can be used only once"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "This file type is not allowed",
     "FILE_TOO_LARGE": "This file is too large",
     "UPLOAD_NOT_FOUND": "The upload was not found or has expired. Please try again",
-    "UPLOAD_FAILED": "The file couldn't be uploaded. Please try again"
+    "UPLOAD_FAILED": "The file couldn't be uploaded. Please try again",
+    "UPLOAD": {
+      "DELETED": "File deleted"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

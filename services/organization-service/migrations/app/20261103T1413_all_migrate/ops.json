@@ -1,0 +1,746 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.Organization",
+    "label": "Create table \"Organization\"",
+    "summary": "Creates table \"Organization\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "Organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Organization\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Organization\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Organization\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Organization\"",
+        "sql": "CREATE TABLE \"public\".\"Organization\" (\n  \"address\" json NOT NULL,\n  \"countryCode\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"createdByUserId\" text NOT NULL,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"industry\" text NOT NULL,\n  \"logoObjectKey\" text NOT NULL,\n  \"name\" text NOT NULL,\n  \"size\" text NOT NULL,\n  \"slug\" text NOT NULL,\n  \"sourceRequestId\" text,\n  \"status\" text DEFAULT 'ACTIVE' NOT NULL,\n  \"taxDetails\" json NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"website\" text,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"Organization_status_check_0f44f6b1\" CHECK (\"status\" IN ('ACTIVE', 'SUSPENDED', 'ARCHIVED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Organization\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"Organization\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Organization\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.OrganizationMembership",
+    "label": "Create table \"OrganizationMembership\"",
+    "summary": "Creates table \"OrganizationMembership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"OrganizationMembership\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"OrganizationMembership\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"OrganizationMembership\"",
+        "sql": "CREATE TABLE \"public\".\"OrganizationMembership\" (\n  \"approvedByUserId\" text,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"department\" text,\n  \"employeeId\" text,\n  \"id\" text NOT NULL,\n  \"jobTitle\" text,\n  \"joinedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"leftAt\" timestamptz,\n  \"organizationId\" text NOT NULL,\n  \"reportingManager\" text,\n  \"sourceRequestId\" text,\n  \"status\" text DEFAULT 'ACTIVE' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  \"userId\" text NOT NULL,\n  \"workEmail\" text,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"OrganizationMembership_status_check_cb48dcff\" CHECK (\"status\" IN ('ACTIVE', 'SUSPENDED', 'LEFT', 'REMOVED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"OrganizationMembership\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"OrganizationMembership\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.OutboxEvent",
+    "label": "Create table \"OutboxEvent\"",
+    "summary": "Creates table \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"OutboxEvent\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"OutboxEvent\"",
+        "sql": "CREATE TABLE \"public\".\"OutboxEvent\" (\n  \"aggregateId\" text NOT NULL,\n  \"attempts\" int4 DEFAULT 0 NOT NULL,\n  \"availableAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"eventType\" text NOT NULL,\n  \"id\" text NOT NULL,\n  \"lastError\" text,\n  \"payload\" json NOT NULL,\n  \"publishedAt\" timestamptz,\n  \"status\" text DEFAULT 'PENDING' NOT NULL,\n  \"updatedAt\" timestamptz NOT NULL,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"OutboxEvent_status_check_a6e9acdb\" CHECK (\"status\" IN ('PENDING', 'PROCESSING', 'PUBLISHED', 'FAILED'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"OutboxEvent\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"OutboxEvent\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "unique.Organization.Organization_slug_key",
+    "label": "Add unique constraint on \"Organization\" (slug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "Organization_slug_key",
+        "table": "Organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Organization_slug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Organization_slug_key",
+          "public",
+          "\"public\".\"Organization\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Organization_slug_key\" on \"Organization\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"Organization_slug_key\"",
+        "sql": "ALTER TABLE \"public\".\"Organization\" ADD CONSTRAINT \"Organization_slug_key\" UNIQUE (\"slug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"Organization_slug_key\" exists on (slug)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "Organization_slug_key",
+          "public",
+          "\"public\".\"Organization\"",
+          "u",
+          "[\"slug\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.Organization.Organization_sourceRequestId_key",
+    "label": "Add unique constraint on \"Organization\" (sourceRequestId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "Organization_sourceRequestId_key",
+        "table": "Organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Organization_sourceRequestId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Organization_sourceRequestId_key",
+          "public",
+          "\"public\".\"Organization\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Organization_sourceRequestId_key\" on \"Organization\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"Organization_sourceRequestId_key\"",
+        "sql": "ALTER TABLE \"public\".\"Organization\" ADD CONSTRAINT \"Organization_sourceRequestId_key\" UNIQUE (\"sourceRequestId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"Organization_sourceRequestId_key\" exists on (sourceRequestId)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "Organization_sourceRequestId_key",
+          "public",
+          "\"public\".\"Organization\"",
+          "u",
+          "[\"sourceRequestId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.OrganizationMembership.OrganizationMembership_sourceRequestId_key",
+    "label": "Add unique constraint on \"OrganizationMembership\" (sourceRequestId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "OrganizationMembership_sourceRequestId_key",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationMembership_sourceRequestId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationMembership_sourceRequestId_key",
+          "public",
+          "\"public\".\"OrganizationMembership\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationMembership_sourceRequestId_key\" on \"OrganizationMembership\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"OrganizationMembership_sourceRequestId_key\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationMembership\" ADD CONSTRAINT \"OrganizationMembership_sourceRequestId_key\" UNIQUE (\"sourceRequestId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"OrganizationMembership_sourceRequestId_key\" exists on (sourceRequestId)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "OrganizationMembership_sourceRequestId_key",
+          "public",
+          "\"public\".\"OrganizationMembership\"",
+          "u",
+          "[\"sourceRequestId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.OrganizationMembership.OrganizationMembership_organizationId_userId_key",
+    "label": "Add unique constraint on \"OrganizationMembership\" (organizationId, userId)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "OrganizationMembership_organizationId_userId_key",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationMembership_organizationId_userId_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationMembership_organizationId_userId_key",
+          "public",
+          "\"public\".\"OrganizationMembership\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationMembership_organizationId_userId_key\" on \"OrganizationMembership\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"OrganizationMembership_organizationId_userId_key\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationMembership\" ADD CONSTRAINT \"OrganizationMembership_organizationId_userId_key\" UNIQUE (\"organizationId\", \"userId\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify unique constraint \"OrganizationMembership_organizationId_userId_key\" exists on (organizationId, userId)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
+        "params": [
+          "OrganizationMembership_organizationId_userId_key",
+          "public",
+          "\"public\".\"OrganizationMembership\"",
+          "u",
+          "[\"organizationId\",\"userId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Organization.Organization_countryCode_status_idx_3911eb6a",
+    "label": "Create index \"Organization_countryCode_status_idx_3911eb6a\" on \"Organization\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Organization_countryCode_status_idx_3911eb6a",
+        "table": "Organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Organization_countryCode_status_idx_3911eb6a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Organization_countryCode_status_idx_3911eb6a\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Organization_countryCode_status_idx_3911eb6a\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Organization_countryCode_status_idx_3911eb6a\"",
+        "sql": "CREATE INDEX \"Organization_countryCode_status_idx_3911eb6a\" ON \"public\".\"Organization\" (\"countryCode\", \"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Organization_countryCode_status_idx_3911eb6a\" exists on \"Organization\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"Organization_countryCode_status_idx_3911eb6a\"",
+          "i",
+          "I",
+          "\"public\".\"Organization\"",
+          "btree",
+          "[\"countryCode\",\"status\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Organization.Organization_createdByUserId_idx_93e8a540",
+    "label": "Create index \"Organization_createdByUserId_idx_93e8a540\" on \"Organization\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "Organization_createdByUserId_idx_93e8a540",
+        "table": "Organization"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Organization_createdByUserId_idx_93e8a540\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Organization_createdByUserId_idx_93e8a540\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Organization_createdByUserId_idx_93e8a540\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Organization_createdByUserId_idx_93e8a540\"",
+        "sql": "CREATE INDEX \"Organization_createdByUserId_idx_93e8a540\" ON \"public\".\"Organization\" (\"createdByUserId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Organization_createdByUserId_idx_93e8a540\" exists on \"Organization\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"Organization_createdByUserId_idx_93e8a540\"",
+          "i",
+          "I",
+          "\"public\".\"Organization\"",
+          "btree",
+          "[\"createdByUserId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OrganizationMembership.OrganizationMembership_organizationId_idx_2e17ef41",
+    "label": "Create index \"OrganizationMembership_organizationId_idx_2e17ef41\" on \"OrganizationMembership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OrganizationMembership_organizationId_idx_2e17ef41",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OrganizationMembership_organizationId_idx_2e17ef41\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_organizationId_idx_2e17ef41\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OrganizationMembership_organizationId_idx_2e17ef41\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OrganizationMembership_organizationId_idx_2e17ef41\"",
+        "sql": "CREATE INDEX \"OrganizationMembership_organizationId_idx_2e17ef41\" ON \"public\".\"OrganizationMembership\" (\"organizationId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OrganizationMembership_organizationId_idx_2e17ef41\" exists on \"OrganizationMembership\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_organizationId_idx_2e17ef41\"",
+          "i",
+          "I",
+          "\"public\".\"OrganizationMembership\"",
+          "btree",
+          "[\"organizationId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OrganizationMembership.OrganizationMembership_organizationId_status_idx_21af5e82",
+    "label": "Create index \"OrganizationMembership_organizationId_status_idx_21af5e82\" on \"OrganizationMembership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OrganizationMembership_organizationId_status_idx_21af5e82",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OrganizationMembership_organizationId_status_idx_21af5e82\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_organizationId_status_idx_21af5e82\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OrganizationMembership_organizationId_status_idx_21af5e82\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OrganizationMembership_organizationId_status_idx_21af5e82\"",
+        "sql": "CREATE INDEX \"OrganizationMembership_organizationId_status_idx_21af5e82\" ON \"public\".\"OrganizationMembership\" (\"organizationId\", \"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OrganizationMembership_organizationId_status_idx_21af5e82\" exists on \"OrganizationMembership\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_organizationId_status_idx_21af5e82\"",
+          "i",
+          "I",
+          "\"public\".\"OrganizationMembership\"",
+          "btree",
+          "[\"organizationId\",\"status\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OrganizationMembership.OrganizationMembership_userId_status_idx_e4a128ba",
+    "label": "Create index \"OrganizationMembership_userId_status_idx_e4a128ba\" on \"OrganizationMembership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OrganizationMembership_userId_status_idx_e4a128ba",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OrganizationMembership_userId_status_idx_e4a128ba\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_userId_status_idx_e4a128ba\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OrganizationMembership_userId_status_idx_e4a128ba\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OrganizationMembership_userId_status_idx_e4a128ba\"",
+        "sql": "CREATE INDEX \"OrganizationMembership_userId_status_idx_e4a128ba\" ON \"public\".\"OrganizationMembership\" (\"userId\", \"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OrganizationMembership_userId_status_idx_e4a128ba\" exists on \"OrganizationMembership\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OrganizationMembership_userId_status_idx_e4a128ba\"",
+          "i",
+          "I",
+          "\"public\".\"OrganizationMembership\"",
+          "btree",
+          "[\"userId\",\"status\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_aggregateId_idx_c07c6552",
+    "label": "Create index \"OutboxEvent_aggregateId_idx_c07c6552\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_aggregateId_idx_c07c6552",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_aggregateId_idx_c07c6552\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_aggregateId_idx_c07c6552\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_aggregateId_idx_c07c6552\"",
+        "sql": "CREATE INDEX \"OutboxEvent_aggregateId_idx_c07c6552\" ON \"public\".\"OutboxEvent\" (\"aggregateId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_aggregateId_idx_c07c6552\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_aggregateId_idx_c07c6552\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"aggregateId\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.OutboxEvent.OutboxEvent_status_availableAt_idx_98697328",
+    "label": "Create index \"OutboxEvent_status_availableAt_idx_98697328\" on \"OutboxEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "OutboxEvent_status_availableAt_idx_98697328",
+        "table": "OutboxEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"OutboxEvent_status_availableAt_idx_98697328\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"OutboxEvent_status_availableAt_idx_98697328\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"OutboxEvent_status_availableAt_idx_98697328\"",
+        "sql": "CREATE INDEX \"OutboxEvent_status_availableAt_idx_98697328\" ON \"public\".\"OutboxEvent\" (\"status\", \"availableAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"OutboxEvent_status_availableAt_idx_98697328\" exists on \"OutboxEvent\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"OutboxEvent_status_availableAt_idx_98697328\"",
+          "i",
+          "I",
+          "\"public\".\"OutboxEvent\"",
+          "btree",
+          "[\"status\",\"availableAt\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.OrganizationMembership.OrganizationMembership_organizationId_fkey",
+    "label": "Add foreign key \"OrganizationMembership_organizationId_fkey\" on \"OrganizationMembership\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "OrganizationMembership_organizationId_fkey",
+        "table": "OrganizationMembership"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"OrganizationMembership_organizationId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationMembership_organizationId_fkey",
+          "public",
+          "\"public\".\"OrganizationMembership\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"OrganizationMembership_organizationId_fkey\" on \"OrganizationMembership\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"OrganizationMembership_organizationId_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationMembership\"\nADD CONSTRAINT \"OrganizationMembership_organizationId_fkey\"\nFOREIGN KEY (\"organizationId\")\nREFERENCES \"public\".\"Organization\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"OrganizationMembership_organizationId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
+        "params": [
+          "OrganizationMembership_organizationId_fkey",
+          "public",
+          "\"public\".\"OrganizationMembership\"",
+          "f",
+          "[\"organizationId\"]",
+          "\"public\".\"Organization\"",
+          "[\"id\"]",
+          "c",
+          "a"
+        ]
+      }
+    ]
+  }
+]

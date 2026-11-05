@@ -220,6 +220,10 @@
       "location": {
         "title": "الموقع والتفاصيل الضريبية",
         "description": "مكان تسجيل مؤسستك. يتم التحقق من العنوان والرقم الضريبي وفقًا لهذه الدولة."
+      },
+      "documents": {
+        "title": "تحميل المستندات",
+        "description": "حمّل المستندات القانونية لمساعدتنا في التحقق من مؤسستك."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "حجم المؤسسة",
       "website": "الموقع الإلكتروني",
       "description": "وصف المؤسسة",
-      "taxId": "الرقم الضريبي (مثل رقم ضريبة القيمة المضافة أو GSTIN أو EIN)"
+      "taxId": "الرقم الضريبي (مثل رقم ضريبة القيمة المضافة أو GSTIN أو EIN)",
+      "registrationNumber": "رقم التسجيل",
+      "incorporationDate": "تاريخ التأسيس"
     },
     "placeholders": {
       "name": "مثل Acme Retail",
@@ -238,13 +244,15 @@
       "size": "اختر الحجم",
       "description": "ما الذي تقدمه مؤسستك، ولمن؟",
       "taxId": "مثل رقم ضريبة القيمة المضافة أو GSTIN أو EIN",
-      "logo": "رفع الشعار"
+      "logo": "رفع الشعار",
+      "registrationNumber": "أدخل رقم التسجيل"
     },
     "hints": {
       "slug": "أحرف إنجليزية صغيرة وأرقام وشرطات. سيصبح جزءًا من عنوان الويب لمؤسستك.",
       "logo": "PNG أو JPEG أو WebP، بحد أقصى {maxMb, number} ميغابايت.",
       "description": "من {min, number} إلى {max, number} حرف.",
-      "taxId": "رقم التسجيل الضريبي الذي تستخدمه مؤسستك في الدولة المحددة."
+      "taxId": "رقم التسجيل الضريبي الذي تستخدمه مؤسستك في الدولة المحددة.",
+      "document": "PDF أو Word أو PNG أو JPEG أو WebP، حتى {maxMb, number} ميغابايت"
     },
     "sizeOption": "{range} موظف",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "المدينة مطلوبة",
       "stateRequired": "الولاية/المنطقة مطلوبة",
       "postalCodeRequired": "الرمز البريدي مطلوب",
-      "postalCodeInvalid": "أدخل رمزًا بريديًا صالحًا للدولة المحددة"
+      "postalCodeInvalid": "أدخل رمزًا بريديًا صالحًا للدولة المحددة",
+      "organizationRegistrationNumberTooLong": "يجب ألا يتجاوز رقم التسجيل {max, number} حرفًا",
+      "organizationIncorporationDateInvalid": "أدخل تاريخًا صالحًا",
+      "organizationDocumentRequired": "حمّل هذا المستند",
+      "organizationDocumentTooLarge": "يجب ألا يتجاوز حجم الملف {maxMb, number} ميغابايت",
+      "organizationDocumentWrongFormat": "حمّل ملف PDF أو Word أو صورة (PNG أو JPEG أو WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "السجل التجاري",
+        "hint": "شهادة التأسيس"
+      },
+      "taxRegistrationCertificate": {
+        "label": "شهادة التسجيل الضريبي",
+        "hint": "شهادة GST أو VAT أو الشهادة الضريبية"
+      },
+      "addressProof": {
+        "label": "إثبات العنوان",
+        "hint": "فاتورة مرافق أو عقد إيجار"
+      },
+      "additionalDocument": {
+        "label": "مستند إضافي (اختياري)",
+        "hint": "أي مستند داعم آخر"
+      }
+    },
+    "uploadedFiles": {
+      "title": "الملفات المرفوعة",
+      "description": "تحقق من الشعار والمستندات قبل المتابعة."
     }
   },
   "review": {

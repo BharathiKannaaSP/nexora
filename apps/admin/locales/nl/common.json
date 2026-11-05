@@ -35,5 +35,19 @@
     "clickToReplace": "Klik om te vervangen",
     "remove": "{name} verwijderen",
     "noFile": "Geen bestand gekozen"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Type",
+      "file": "Bestand",
+      "size": "Grootte",
+      "actions": "Acties"
+    },
+    "view": "Bekijken",
+    "download": "Downloaden",
+    "viewFile": "{name} bekijken",
+    "downloadFile": "{name} downloaden",
+    "deleteTitle": "{name} verwijderen?",
+    "deleteDescription": "Het bestand wordt definitief verwijderd. Dit kan niet ongedaan worden gemaakt."
   }
 }

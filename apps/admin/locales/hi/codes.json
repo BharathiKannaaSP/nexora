@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "आपका एडमिन एक्सेस अनुरोध सहेज लिया गया है"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "आपका संगठन अनुरोध सबमिट कर दिया गया है"
+    },
+    "ORGANIZATION_FILE_INVALID": "एक फ़ाइल का उपयोग नहीं किया जा सका। कृपया इसे फिर से अपलोड करें",
+    "ORGANIZATION_FILE_DUPLICATE": "हर फ़ाइल का उपयोग केवल एक बार किया जा सकता है"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "इस प्रकार की फ़ाइल की अनुमति नहीं है",
     "FILE_TOO_LARGE": "यह फ़ाइल बहुत बड़ी है",
     "UPLOAD_NOT_FOUND": "अपलोड नहीं मिला या उसकी समय-सीमा समाप्त हो गई। कृपया फिर से प्रयास करें",
-    "UPLOAD_FAILED": "फ़ाइल अपलोड नहीं हो सकी। कृपया फिर से प्रयास करें"
+    "UPLOAD_FAILED": "फ़ाइल अपलोड नहीं हो सकी। कृपया फिर से प्रयास करें",
+    "UPLOAD": {
+      "DELETED": "फ़ाइल हटा दी गई"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

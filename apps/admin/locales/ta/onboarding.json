@@ -220,6 +220,10 @@
       "location": {
         "title": "இருப்பிடம் மற்றும் வரி விவரங்கள்",
         "description": "உங்கள் நிறுவனம் பதிவுசெய்யப்பட்ட இடம். முகவரியும் வரி அடையாள எண்ணும் இந்த நாட்டின் அடிப்படையில் சரிபார்க்கப்படும்."
+      },
+      "documents": {
+        "title": "ஆவணப் பதிவேற்றங்கள்",
+        "description": "உங்கள் நிறுவனத்தைச் சரிபார்க்க எங்களுக்கு உதவ சட்ட ஆவணங்களைப் பதிவேற்றவும்."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "நிறுவனத்தின் அளவு",
       "website": "இணையதளம்",
       "description": "நிறுவனத்தின் விளக்கம்",
-      "taxId": "வரி அடையாள எண் (எ.கா. GSTIN, VAT அல்லது EIN)"
+      "taxId": "வரி அடையாள எண் (எ.கா. GSTIN, VAT அல்லது EIN)",
+      "registrationNumber": "பதிவு எண்",
+      "incorporationDate": "நிறுவப்பட்ட தேதி"
     },
     "placeholders": {
       "name": "எ.கா. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "அளவைத் தேர்ந்தெடுக்கவும்",
       "description": "உங்கள் நிறுவனம் என்ன செய்கிறது, யாருக்குச் சேவை செய்கிறது?",
       "taxId": "எ.கா. GSTIN, VAT அல்லது EIN",
-      "logo": "லோகோவைப் பதிவேற்று"
+      "logo": "லோகோவைப் பதிவேற்று",
+      "registrationNumber": "பதிவு எண்ணை உள்ளிடவும்"
     },
     "hints": {
       "slug": "சிறிய ஆங்கில எழுத்துகள், எண்கள் மற்றும் இணைப்புக்குறிகள். இது உங்கள் நிறுவனத்தின் இணைய முகவரியின் ஒரு பகுதியாகும்.",
       "logo": "PNG, JPEG அல்லது WebP, அதிகபட்சம் {maxMb, number} MB.",
       "description": "{min, number}–{max, number} எழுத்துகள்.",
-      "taxId": "தேர்ந்தெடுத்த நாட்டில் உங்கள் நிறுவனம் பயன்படுத்தும் வரிப் பதிவு எண்."
+      "taxId": "தேர்ந்தெடுத்த நாட்டில் உங்கள் நிறுவனம் பயன்படுத்தும் வரிப் பதிவு எண்.",
+      "document": "PDF, Word, PNG, JPEG அல்லது WebP, {maxMb, number} MB வரை"
     },
     "sizeOption": "{range} ஊழியர்கள்",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "நகரம் தேவை",
       "stateRequired": "மாநிலம் தேவை",
       "postalCodeRequired": "அஞ்சல் குறியீடு தேவை",
-      "postalCodeInvalid": "தேர்ந்தெடுத்த நாட்டிற்கான சரியான அஞ்சல் குறியீட்டை உள்ளிடவும்"
+      "postalCodeInvalid": "தேர்ந்தெடுத்த நாட்டிற்கான சரியான அஞ்சல் குறியீட்டை உள்ளிடவும்",
+      "organizationRegistrationNumberTooLong": "பதிவு எண் {max, number} எழுத்துகள் அல்லது அதற்குக் குறைவாக இருக்க வேண்டும்",
+      "organizationIncorporationDateInvalid": "சரியான தேதியை உள்ளிடவும்",
+      "organizationDocumentRequired": "இந்த ஆவணத்தைப் பதிவேற்றவும்",
+      "organizationDocumentTooLarge": "கோப்பு {maxMb, number} MB அல்லது அதற்குக் குறைவாக இருக்க வேண்டும்",
+      "organizationDocumentWrongFormat": "PDF, Word கோப்பு அல்லது படத்தை (PNG, JPEG அல்லது WebP) பதிவேற்றவும்"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "வணிகப் பதிவு",
+        "hint": "நிறுவனச் சான்றிதழ்"
+      },
+      "taxRegistrationCertificate": {
+        "label": "வரிப் பதிவுச் சான்றிதழ்",
+        "hint": "GST, VAT அல்லது வரிச் சான்றிதழ்"
+      },
+      "addressProof": {
+        "label": "முகவரிச் சான்று",
+        "hint": "பயன்பாட்டுக் கட்டணம் அல்லது வாடகை ஒப்பந்தம்"
+      },
+      "additionalDocument": {
+        "label": "கூடுதல் ஆவணம் (விருப்பத்தேர்வு)",
+        "hint": "வேறு ஏதேனும் ஆதார ஆவணம்"
+      }
+    },
+    "uploadedFiles": {
+      "title": "பதிவேற்றிய கோப்புகள்",
+      "description": "தொடர்வதற்கு முன் உங்கள் லோகோ மற்றும் ஆவணங்களைச் சரிபார்க்கவும்."
     }
   },
   "review": {

@@ -220,6 +220,10 @@
       "location": {
         "title": "Ubicación y datos fiscales",
         "description": "Dónde está registrada tu organización. La dirección y el número de identificación fiscal se validan para este país."
+      },
+      "documents": {
+        "title": "Carga de documentos",
+        "description": "Sube documentos legales para ayudarnos a verificar tu organización."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "Tamaño de la organización",
       "website": "Sitio web",
       "description": "Descripción de la organización",
-      "taxId": "Número de identificación fiscal (p. ej. NIF, IVA, GSTIN o EIN)"
+      "taxId": "Número de identificación fiscal (p. ej. NIF, IVA, GSTIN o EIN)",
+      "registrationNumber": "Número de registro",
+      "incorporationDate": "Fecha de constitución"
     },
     "placeholders": {
       "name": "p. ej. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "Selecciona un tamaño",
       "description": "¿A qué se dedica tu organización y a quién atiende?",
       "taxId": "p. ej. NIF, IVA, GSTIN o EIN",
-      "logo": "Subir logotipo"
+      "logo": "Subir logotipo",
+      "registrationNumber": "Introduce el número de registro"
     },
     "hints": {
       "slug": "Minúsculas, números y guiones. Formará parte de la dirección web de tu organización.",
       "logo": "PNG, JPEG o WebP, hasta {maxMb, number} MB.",
       "description": "{min, number}–{max, number} caracteres.",
-      "taxId": "El número de registro fiscal que usa tu organización en el país seleccionado."
+      "taxId": "El número de registro fiscal que usa tu organización en el país seleccionado.",
+      "document": "PDF, Word, PNG, JPEG o WebP, hasta {maxMb, number} MB"
     },
     "sizeOption": "{range} empleados",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "La ciudad es obligatoria",
       "stateRequired": "El estado/provincia es obligatorio",
       "postalCodeRequired": "El código postal es obligatorio",
-      "postalCodeInvalid": "Introduce un código postal válido para el país seleccionado"
+      "postalCodeInvalid": "Introduce un código postal válido para el país seleccionado",
+      "organizationRegistrationNumberTooLong": "El número de registro debe tener {max, number} caracteres o menos",
+      "organizationIncorporationDateInvalid": "Introduce una fecha válida",
+      "organizationDocumentRequired": "Sube este documento",
+      "organizationDocumentTooLarge": "El archivo debe pesar {maxMb, number} MB o menos",
+      "organizationDocumentWrongFormat": "Sube un PDF, un archivo de Word o una imagen (PNG, JPEG o WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "Registro mercantil",
+        "hint": "Certificado de constitución"
+      },
+      "taxRegistrationCertificate": {
+        "label": "Certificado de registro fiscal",
+        "hint": "Certificado de GST, IVA o fiscal"
+      },
+      "addressProof": {
+        "label": "Comprobante de domicilio",
+        "hint": "Factura de servicios o contrato de alquiler"
+      },
+      "additionalDocument": {
+        "label": "Documento adicional (opcional)",
+        "hint": "Cualquier otro documento de respaldo"
+      }
+    },
+    "uploadedFiles": {
+      "title": "Archivos subidos",
+      "description": "Revisa tu logotipo y tus documentos antes de continuar."
     }
   },
   "review": {

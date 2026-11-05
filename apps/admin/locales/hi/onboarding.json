@@ -220,6 +220,10 @@
       "location": {
         "title": "स्थान और टैक्स विवरण",
         "description": "आपका संगठन कहाँ पंजीकृत है। पता और टैक्स आईडी इसी देश के अनुसार जाँचे जाते हैं।"
+      },
+      "documents": {
+        "title": "दस्तावेज़ अपलोड",
+        "description": "अपने संगठन के सत्यापन में हमारी मदद के लिए कानूनी दस्तावेज़ अपलोड करें।"
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "संगठन का आकार",
       "website": "वेबसाइट",
       "description": "संगठन का विवरण",
-      "taxId": "टैक्स आईडी (जैसे GSTIN, VAT या EIN)"
+      "taxId": "टैक्स आईडी (जैसे GSTIN, VAT या EIN)",
+      "registrationNumber": "पंजीकरण संख्या",
+      "incorporationDate": "निगमन तिथि"
     },
     "placeholders": {
       "name": "जैसे Acme Retail",
@@ -238,13 +244,15 @@
       "size": "आकार चुनें",
       "description": "आपका संगठन क्या करता है और किसे सेवा देता है?",
       "taxId": "जैसे GSTIN, VAT या EIN",
-      "logo": "लोगो अपलोड करें"
+      "logo": "लोगो अपलोड करें",
+      "registrationNumber": "पंजीकरण संख्या दर्ज करें"
     },
     "hints": {
       "slug": "छोटे अंग्रेज़ी अक्षर, अंक और हाइफ़न। यह आपके संगठन के वेब पते का हिस्सा बनेगा।",
       "logo": "PNG, JPEG या WebP, अधिकतम {maxMb, number} MB।",
       "description": "{min, number}–{max, number} अक्षर।",
-      "taxId": "चुने गए देश में आपके संगठन द्वारा उपयोग किया जाने वाला टैक्स पंजीकरण नंबर।"
+      "taxId": "चुने गए देश में आपके संगठन द्वारा उपयोग किया जाने वाला टैक्स पंजीकरण नंबर।",
+      "document": "PDF, Word, PNG, JPEG या WebP, {maxMb, number} MB तक"
     },
     "sizeOption": "{range} कर्मचारी",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "शहर आवश्यक है",
       "stateRequired": "राज्य आवश्यक है",
       "postalCodeRequired": "पिन कोड आवश्यक है",
-      "postalCodeInvalid": "चुने गए देश के लिए मान्य पिन कोड दर्ज करें"
+      "postalCodeInvalid": "चुने गए देश के लिए मान्य पिन कोड दर्ज करें",
+      "organizationRegistrationNumberTooLong": "पंजीकरण संख्या {max, number} अक्षरों या उससे कम की होनी चाहिए",
+      "organizationIncorporationDateInvalid": "एक मान्य तिथि दर्ज करें",
+      "organizationDocumentRequired": "यह दस्तावेज़ अपलोड करें",
+      "organizationDocumentTooLarge": "फ़ाइल {maxMb, number} MB या उससे छोटी होनी चाहिए",
+      "organizationDocumentWrongFormat": "PDF, Word फ़ाइल या छवि (PNG, JPEG या WebP) अपलोड करें"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "व्यवसाय पंजीकरण",
+        "hint": "निगमन प्रमाणपत्र"
+      },
+      "taxRegistrationCertificate": {
+        "label": "कर पंजीकरण प्रमाणपत्र",
+        "hint": "GST, VAT या कर प्रमाणपत्र"
+      },
+      "addressProof": {
+        "label": "पते का प्रमाण",
+        "hint": "बिजली/पानी का बिल या किरायानामा"
+      },
+      "additionalDocument": {
+        "label": "अतिरिक्त दस्तावेज़ (वैकल्पिक)",
+        "hint": "कोई अन्य सहायक दस्तावेज़"
+      }
+    },
+    "uploadedFiles": {
+      "title": "अपलोड की गई फ़ाइलें",
+      "description": "आगे बढ़ने से पहले अपना लोगो और दस्तावेज़ जाँच लें।"
     }
   },
   "review": {

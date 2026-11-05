@@ -220,6 +220,10 @@
       "location": {
         "title": "Location and tax details",
         "description": "Where your organization is registered. The address and tax ID are checked against this country."
+      },
+      "documents": {
+        "title": "Document uploads",
+        "description": "Upload legal documents to help us verify your organization."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "Organization size",
       "website": "Website",
       "description": "Organization Description",
-      "taxId": "Tax ID (e.g. GSTIN, VAT or EIN)"
+      "taxId": "Tax ID (e.g. GSTIN, VAT or EIN)",
+      "registrationNumber": "Registration number",
+      "incorporationDate": "Incorporation date"
     },
     "placeholders": {
       "name": "e.g. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "Select a size",
       "description": "What does your organization do, and who does it serve?",
       "taxId": "e.g. GSTIN, VAT or EIN",
-      "logo": "Upload logo"
+      "logo": "Upload logo",
+      "registrationNumber": "Enter registration number"
     },
     "hints": {
       "slug": "Lowercase letters, numbers and hyphens. It becomes part of your organization's web address.",
       "logo": "PNG, JPEG or WebP, up to {maxMb, number} MB.",
       "description": "{min, number}–{max, number} characters.",
-      "taxId": "The tax registration number your organization uses in the selected country."
+      "taxId": "The tax registration number your organization uses in the selected country.",
+      "document": "PDF, Word, PNG, JPEG or WebP, up to {maxMb, number} MB"
     },
     "sizeOption": "{range} employees",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "City is required",
       "stateRequired": "State is required",
       "postalCodeRequired": "Postal code is required",
-      "postalCodeInvalid": "Enter a valid postal code for the selected country"
+      "postalCodeInvalid": "Enter a valid postal code for the selected country",
+      "organizationRegistrationNumberTooLong": "Registration number must be {max, number} characters or fewer",
+      "organizationIncorporationDateInvalid": "Enter a valid date",
+      "organizationDocumentRequired": "Upload this document",
+      "organizationDocumentTooLarge": "File must be {maxMb, number} MB or smaller",
+      "organizationDocumentWrongFormat": "Upload a PDF, Word file or image (PNG, JPEG or WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "Business registration",
+        "hint": "Certificate of incorporation"
+      },
+      "taxRegistrationCertificate": {
+        "label": "Tax registration certificate",
+        "hint": "GST, VAT or tax certificate"
+      },
+      "addressProof": {
+        "label": "Address proof",
+        "hint": "Utility bill or lease agreement"
+      },
+      "additionalDocument": {
+        "label": "Additional document (optional)",
+        "hint": "Any other supporting document"
+      }
+    },
+    "uploadedFiles": {
+      "title": "Uploaded files",
+      "description": "Check your logo and documents before you continue."
     }
   },
   "review": {

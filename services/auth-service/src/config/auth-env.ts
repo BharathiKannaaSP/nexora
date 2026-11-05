@@ -33,6 +33,7 @@ const envSchema = z.object({
       .filter(Boolean)
   ),
   KAFKA_CLIENT_ID: z.string(),
+  KAFKA_GROUP_ID: z.string().default("nexora-auth-service"),
 })
 
 export const env = envSchema.parse(process.env)

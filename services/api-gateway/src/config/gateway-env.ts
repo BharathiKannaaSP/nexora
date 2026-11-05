@@ -10,6 +10,8 @@ const envSchema = z.object({
   AGGREGATE_SERVICE_URL: z.string().url(),
   ONBOARDING_SERVICE_URL: z.string().url(),
   USER_SERVICE_URL: z.string().url(),
+  ORGANIZATION_SERVICE_URL: z.string().url(),
+  MEDIA_SERVICE_URL: z.string().url(),
   CLIENT_ORIGINS: z
     .string()
     .default("http://localhost:3001")

@@ -35,5 +35,19 @@
     "clickToReplace": "മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക",
     "remove": "{name} നീക്കം ചെയ്യുക",
     "noFile": "ഫയൽ തിരഞ്ഞെടുത്തിട്ടില്ല"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "തരം",
+      "file": "ഫയൽ",
+      "size": "വലുപ്പം",
+      "actions": "പ്രവർത്തനങ്ങൾ"
+    },
+    "view": "കാണുക",
+    "download": "ഡൗൺലോഡ്",
+    "viewFile": "{name} കാണുക",
+    "downloadFile": "{name} ഡൗൺലോഡ് ചെയ്യുക",
+    "deleteTitle": "{name} ഇല്ലാതാക്കണോ?",
+    "deleteDescription": "ഫയൽ ശാശ്വതമായി ഇല്ലാതാക്കും. ഇത് പഴയപടിയാക്കാനാകില്ല."
   }
 }

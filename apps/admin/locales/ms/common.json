@@ -35,5 +35,19 @@
     "clickToReplace": "Klik untuk ganti",
     "remove": "Alih keluar {name}",
     "noFile": "Tiada fail dipilih"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "Jenis",
+      "file": "Fail",
+      "size": "Saiz",
+      "actions": "Tindakan"
+    },
+    "view": "Lihat",
+    "download": "Muat turun",
+    "viewFile": "Lihat {name}",
+    "downloadFile": "Muat turun {name}",
+    "deleteTitle": "Padam {name}?",
+    "deleteDescription": "Fail akan dipadam secara kekal. Tindakan ini tidak boleh dibuat asal."
   }
 }

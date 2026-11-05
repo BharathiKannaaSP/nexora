@@ -58,13 +58,21 @@
   "ONBOARDING": {
     "BECOME_ADMIN_REQUEST": {
       "SUCCESS": "تم حفظ طلب صلاحية المسؤول"
-    }
+    },
+    "CREATE_ORGANIZATION_REQUEST": {
+      "SUCCESS": "تم إرسال طلب مؤسستك"
+    },
+    "ORGANIZATION_FILE_INVALID": "تعذّر استخدام أحد الملفات. يُرجى تحميله مرة أخرى",
+    "ORGANIZATION_FILE_DUPLICATE": "يمكن استخدام كل ملف مرة واحدة فقط"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "نوع الملف هذا غير مسموح به",
     "FILE_TOO_LARGE": "هذا الملف كبير جدًا",
     "UPLOAD_NOT_FOUND": "لم يتم العثور على الملف المرفوع أو انتهت صلاحيته. يرجى المحاولة مرة أخرى",
-    "UPLOAD_FAILED": "تعذر رفع الملف. يرجى المحاولة مرة أخرى"
+    "UPLOAD_FAILED": "تعذر رفع الملف. يرجى المحاولة مرة أخرى",
+    "UPLOAD": {
+      "DELETED": "تم حذف الملف"
+    }
   },
   "ORGANIZATION": {
     "REQUEST_SUBMITTED": {

@@ -8,6 +8,10 @@
       "model": "OutboxEvent",
       "namespace": "public"
     },
+    "UserPermission": {
+      "model": "UserPermission",
+      "namespace": "public"
+    },
     "UserProfile": {
       "model": "UserProfile",
       "namespace": "public"
@@ -17,6 +21,27 @@
     "namespaces": {
       "public": {
         "enum": {
+          "AccessLevel": {
+            "codecId": "pg/text@1",
+            "members": [
+              {
+                "name": "VIEW",
+                "value": "VIEW"
+              },
+              {
+                "name": "CREATE",
+                "value": "CREATE"
+              },
+              {
+                "name": "EDIT",
+                "value": "EDIT"
+              },
+              {
+                "name": "DELETE",
+                "value": "DELETE"
+              }
+            ]
+          },
           "Gender": {
             "codecId": "pg/text@1",
             "members": [
@@ -35,6 +60,39 @@
               {
                 "name": "PREFER_NOT_TO_SAY",
                 "value": "PREFER_NOT_TO_SAY"
+              }
+            ]
+          },
+          "ModuleCode": {
+            "codecId": "pg/text@1",
+            "members": [
+              {
+                "name": "COUNTRY_MANAGEMENT",
+                "value": "COUNTRY_MANAGEMENT"
+              },
+              {
+                "name": "USER_MANAGEMENT",
+                "value": "USER_MANAGEMENT"
+              },
+              {
+                "name": "ORGANIZATION_MANAGEMENT",
+                "value": "ORGANIZATION_MANAGEMENT"
+              },
+              {
+                "name": "PRODUCT_MANAGEMENT",
+                "value": "PRODUCT_MANAGEMENT"
+              },
+              {
+                "name": "INVENTORY_MANAGEMENT",
+                "value": "INVENTORY_MANAGEMENT"
+              },
+              {
+                "name": "BILLING_MANAGEMENT",
+                "value": "BILLING_MANAGEMENT"
+              },
+              {
+                "name": "ANALYTICS_MANAGEMENT",
+                "value": "ANALYTICS_MANAGEMENT"
               }
             ]
           },
@@ -199,6 +257,129 @@
               },
               "namespaceId": "public",
               "table": "OutboxEvent"
+            }
+          },
+          "UserPermission": {
+            "fields": {
+              "accessLevel": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "AccessLevel",
+                  "namespaceId": "public",
+                  "plane": "domain"
+                }
+              },
+              "countryCode": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
+              "grantedByUserId": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "moduleCode": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "ModuleCode",
+                  "namespaceId": "public",
+                  "plane": "domain"
+                }
+              },
+              "moduleNameSnapshot": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "organizationId": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "sourceRequestId": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "userId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "accessLevel": {
+                  "column": "accessLevel"
+                },
+                "countryCode": {
+                  "column": "countryCode"
+                },
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "grantedByUserId": {
+                  "column": "grantedByUserId"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "moduleCode": {
+                  "column": "moduleCode"
+                },
+                "moduleNameSnapshot": {
+                  "column": "moduleNameSnapshot"
+                },
+                "organizationId": {
+                  "column": "organizationId"
+                },
+                "sourceRequestId": {
+                  "column": "sourceRequestId"
+                },
+                "userId": {
+                  "column": "userId"
+                }
+              },
+              "namespaceId": "public",
+              "table": "UserPermission"
             }
           },
           "UserProfile": {
@@ -517,6 +698,146 @@
               },
               "uniques": []
             },
+            "UserPermission": {
+              "checks": [
+                {
+                  "expression": "\"accessLevel\" IN ('VIEW', 'CREATE', 'EDIT', 'DELETE')",
+                  "name": "UserPermission_accessLevel_check_a8881806",
+                  "prefix": "UserPermission_accessLevel_check"
+                },
+                {
+                  "expression": "\"moduleCode\" IN ('COUNTRY_MANAGEMENT', 'USER_MANAGEMENT', 'ORGANIZATION_MANAGEMENT', 'PRODUCT_MANAGEMENT', 'INVENTORY_MANAGEMENT', 'BILLING_MANAGEMENT', 'ANALYTICS_MANAGEMENT')",
+                  "name": "UserPermission_moduleCode_check_715d8229",
+                  "prefix": "UserPermission_moduleCode_check"
+                }
+              ],
+              "columns": {
+                "accessLevel": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "AccessLevel",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
+                },
+                "countryCode": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "createdAt": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                },
+                "grantedByUserId": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "moduleCode": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "ModuleCode",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
+                },
+                "moduleNameSnapshot": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "organizationId": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "sourceRequestId": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "userId": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [
+                {
+                  "columns": [
+                    "countryCode",
+                    "moduleCode"
+                  ],
+                  "name": "UserPermission_country_module_793def4d",
+                  "prefix": "UserPermission_country_module",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "organizationId"
+                  ],
+                  "name": "UserPermission_organizationId_idx_2e17ef41",
+                  "prefix": "UserPermission_organizationId_idx",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "userId",
+                    "organizationId",
+                    "moduleCode",
+                    "accessLevel"
+                  ],
+                  "name": "UserPermission_organization_key_0360ee30",
+                  "prefix": "UserPermission_organization_key",
+                  "unique": true,
+                  "where": "\"organizationId\" IS NOT NULL"
+                },
+                {
+                  "columns": [
+                    "userId",
+                    "countryCode",
+                    "moduleCode",
+                    "accessLevel"
+                  ],
+                  "name": "UserPermission_platform_key_0dd62f6d",
+                  "prefix": "UserPermission_platform_key",
+                  "unique": true,
+                  "where": "\"organizationId\" IS NULL"
+                },
+                {
+                  "columns": [
+                    "sourceRequestId"
+                  ],
+                  "name": "UserPermission_sourceRequestId_idx_949a5766",
+                  "prefix": "UserPermission_sourceRequestId_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": []
+            },
             "UserProfile": {
               "checks": [
                 {
@@ -675,6 +996,15 @@
             }
           },
           "valueSet": {
+            "AccessLevel": {
+              "kind": "valueSet",
+              "values": [
+                "VIEW",
+                "CREATE",
+                "EDIT",
+                "DELETE"
+              ]
+            },
             "Gender": {
               "kind": "valueSet",
               "values": [
@@ -682,6 +1012,18 @@
                 "FEMALE",
                 "OTHER",
                 "PREFER_NOT_TO_SAY"
+              ]
+            },
+            "ModuleCode": {
+              "kind": "valueSet",
+              "values": [
+                "COUNTRY_MANAGEMENT",
+                "USER_MANAGEMENT",
+                "ORGANIZATION_MANAGEMENT",
+                "PRODUCT_MANAGEMENT",
+                "INVENTORY_MANAGEMENT",
+                "BILLING_MANAGEMENT",
+                "ANALYTICS_MANAGEMENT"
               ]
             },
             "OutboxEventStatus": {
@@ -706,10 +1048,10 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "a6f6940c734b6378e2742ef8dd19cc63dd7e769bec3faecfef8c8ce0b70e61f4"
+    "storageHash": "2b185ed8dd0f3300ff697a352105e8b725690a8bed73d6153b30140c0b00534a"
   },
   "execution": {
-    "executionHash": "a5e3e7fd69c0e815ba0fb37d0251b358b971a945726d41a40c867b5bc880475a",
+    "executionHash": "9fffc340d1e1df5f3a84024891864e160957c3162f8967cd8e9bb9baad87a0d0",
     "mutations": {
       "defaults": [
         {
@@ -735,6 +1077,17 @@
           "ref": {
             "entry": "OutboxEvent",
             "field": "updatedAt",
+            "namespace": "public"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "cuid2",
+            "kind": "generator"
+          },
+          "ref": {
+            "entry": "UserPermission",
+            "field": "id",
             "namespace": "public"
           }
         },

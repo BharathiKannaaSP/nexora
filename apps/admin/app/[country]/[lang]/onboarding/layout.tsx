@@ -49,14 +49,14 @@ export const OnboardingLayout = async ({
         </aside>
 
         {/* Content */}
-        <main className="order-2 px-4 py-2 md:col-span-2 md:px-10 md:py-8">
+        <main className="order-2 px-4 py-2 md:col-span-3 md:px-10 md:py-8">
           <div>{children}</div>
         </main>
 
         {/* Sidebar */}
-        <aside className="order-3 px-4 py-2 md:col-span-1 md:px-6 md:py-8">
+        {/* <aside className="order-3 px-4 py-2 md:col-span-1 md:px-6 md:py-8">
           <OnboardingSidebar />
-        </aside>
+        </aside> */}
       </div>
     </div>
   )

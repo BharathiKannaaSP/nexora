@@ -35,5 +35,19 @@
     "clickToReplace": "クリックして置き換え",
     "remove": "{name} を削除",
     "noFile": "ファイルが選択されていません"
+  },
+  "uploadedFiles": {
+    "columns": {
+      "type": "種類",
+      "file": "ファイル",
+      "size": "サイズ",
+      "actions": "操作"
+    },
+    "view": "表示",
+    "download": "ダウンロード",
+    "viewFile": "{name} を表示",
+    "downloadFile": "{name} をダウンロード",
+    "deleteTitle": "{name} を削除しますか？",
+    "deleteDescription": "ファイルは完全に削除されます。この操作は元に戻せません。"
   }
 }

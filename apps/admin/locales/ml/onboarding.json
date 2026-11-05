@@ -220,6 +220,10 @@
       "location": {
         "title": "സ്ഥലവും നികുതി വിവരങ്ങളും",
         "description": "നിങ്ങളുടെ സ്ഥാപനം രജിസ്റ്റർ ചെയ്തിരിക്കുന്ന രാജ്യം. വിലാസവും നികുതി ഐഡിയും ഈ രാജ്യത്തിനനുസരിച്ച് പരിശോധിക്കും."
+      },
+      "documents": {
+        "title": "രേഖകൾ അപ്‌ലോഡ് ചെയ്യുക",
+        "description": "നിങ്ങളുടെ സ്ഥാപനം പരിശോധിക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് നിയമപരമായ രേഖകൾ അപ്‌ലോഡ് ചെയ്യുക."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "സ്ഥാപനത്തിന്റെ വലുപ്പം",
       "website": "വെബ്‌സൈറ്റ്",
       "description": "സ്ഥാപനത്തിന്റെ വിവരണം",
-      "taxId": "നികുതി ഐഡി (ഉദാ: GSTIN, VAT അല്ലെങ്കിൽ EIN)"
+      "taxId": "നികുതി ഐഡി (ഉദാ: GSTIN, VAT അല്ലെങ്കിൽ EIN)",
+      "registrationNumber": "രജിസ്ട്രേഷൻ നമ്പർ",
+      "incorporationDate": "സ്ഥാപന തീയതി"
     },
     "placeholders": {
       "name": "ഉദാ: Acme Retail",
@@ -238,13 +244,15 @@
       "size": "വലുപ്പം തിരഞ്ഞെടുക്കുക",
       "description": "നിങ്ങളുടെ സ്ഥാപനം എന്തു ചെയ്യുന്നു, ആർക്കാണ് സേവനം നൽകുന്നത്?",
       "taxId": "ഉദാ: GSTIN, VAT അല്ലെങ്കിൽ EIN",
-      "logo": "ലോഗോ അപ്‌ലോഡ് ചെയ്യുക"
+      "logo": "ലോഗോ അപ്‌ലോഡ് ചെയ്യുക",
+      "registrationNumber": "രജിസ്ട്രേഷൻ നമ്പർ നൽകുക"
     },
     "hints": {
       "slug": "ചെറിയ ഇംഗ്ലീഷ് അക്ഷരങ്ങൾ, അക്കങ്ങൾ, ഹൈഫനുകൾ. ഇത് നിങ്ങളുടെ സ്ഥാപനത്തിന്റെ വെബ് വിലാസത്തിന്റെ ഭാഗമാകും.",
       "logo": "PNG, JPEG അല്ലെങ്കിൽ WebP, പരമാവധി {maxMb, number} MB.",
       "description": "{min, number}–{max, number} അക്ഷരങ്ങൾ.",
-      "taxId": "തിരഞ്ഞെടുത്ത രാജ്യത്ത് നിങ്ങളുടെ സ്ഥാപനം ഉപയോഗിക്കുന്ന നികുതി രജിസ്ട്രേഷൻ നമ്പർ."
+      "taxId": "തിരഞ്ഞെടുത്ത രാജ്യത്ത് നിങ്ങളുടെ സ്ഥാപനം ഉപയോഗിക്കുന്ന നികുതി രജിസ്ട്രേഷൻ നമ്പർ.",
+      "document": "PDF, Word, PNG, JPEG അല്ലെങ്കിൽ WebP, {maxMb, number} MB വരെ"
     },
     "sizeOption": "{range} ജീവനക്കാർ",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "നഗരം ആവശ്യമാണ്",
       "stateRequired": "സംസ്ഥാനം ആവശ്യമാണ്",
       "postalCodeRequired": "പിൻ കോഡ് ആവശ്യമാണ്",
-      "postalCodeInvalid": "തിരഞ്ഞെടുത്ത രാജ്യത്തിന് സാധുവായ പിൻ കോഡ് നൽകുക"
+      "postalCodeInvalid": "തിരഞ്ഞെടുത്ത രാജ്യത്തിന് സാധുവായ പിൻ കോഡ് നൽകുക",
+      "organizationRegistrationNumberTooLong": "രജിസ്ട്രേഷൻ നമ്പർ {max, number} അക്ഷരങ്ങളോ അതിൽ കുറവോ ആയിരിക്കണം",
+      "organizationIncorporationDateInvalid": "സാധുവായ ഒരു തീയതി നൽകുക",
+      "organizationDocumentRequired": "ഈ രേഖ അപ്‌ലോഡ് ചെയ്യുക",
+      "organizationDocumentTooLarge": "ഫയൽ {maxMb, number} MB അല്ലെങ്കിൽ അതിൽ കുറവായിരിക്കണം",
+      "organizationDocumentWrongFormat": "PDF, Word ഫയൽ അല്ലെങ്കിൽ ചിത്രം (PNG, JPEG അല്ലെങ്കിൽ WebP) അപ്‌ലോഡ് ചെയ്യുക"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "ബിസിനസ് രജിസ്ട്രേഷൻ",
+        "hint": "ഇൻകോർപ്പറേഷൻ സർട്ടിഫിക്കറ്റ്"
+      },
+      "taxRegistrationCertificate": {
+        "label": "നികുതി രജിസ്ട്രേഷൻ സർട്ടിഫിക്കറ്റ്",
+        "hint": "GST, VAT അല്ലെങ്കിൽ നികുതി സർട്ടിഫിക്കറ്റ്"
+      },
+      "addressProof": {
+        "label": "വിലാസ തെളിവ്",
+        "hint": "യൂട്ടിലിറ്റി ബിൽ അല്ലെങ്കിൽ വാടക കരാർ"
+      },
+      "additionalDocument": {
+        "label": "അധിക രേഖ (ഓപ്ഷണൽ)",
+        "hint": "മറ്റേതെങ്കിലും പിന്തുണാ രേഖ"
+      }
+    },
+    "uploadedFiles": {
+      "title": "അപ്‌ലോഡ് ചെയ്ത ഫയലുകൾ",
+      "description": "തുടരുന്നതിന് മുമ്പ് നിങ്ങളുടെ ലോഗോയും രേഖകളും പരിശോധിക്കുക."
     }
   },
   "review": {

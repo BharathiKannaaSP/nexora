@@ -220,6 +220,10 @@
       "location": {
         "title": "Standort und Steuerangaben",
         "description": "Wo Ihre Organisation registriert ist. Adresse und Steuernummer werden für dieses Land geprüft."
+      },
+      "documents": {
+        "title": "Dokumente hochladen",
+        "description": "Laden Sie rechtliche Dokumente hoch, damit wir Ihre Organisation verifizieren können."
       }
     },
     "fields": {
@@ -230,7 +234,9 @@
       "size": "Größe der Organisation",
       "website": "Website",
       "description": "Beschreibung der Organisation",
-      "taxId": "Steuernummer (z. B. USt-IdNr., GSTIN oder EIN)"
+      "taxId": "Steuernummer (z. B. USt-IdNr., GSTIN oder EIN)",
+      "registrationNumber": "Registernummer",
+      "incorporationDate": "Gründungsdatum"
     },
     "placeholders": {
       "name": "z. B. Acme Retail",
@@ -238,13 +244,15 @@
       "size": "Größe auswählen",
       "description": "Was macht Ihre Organisation und für wen?",
       "taxId": "z. B. USt-IdNr., GSTIN oder EIN",
-      "logo": "Logo hochladen"
+      "logo": "Logo hochladen",
+      "registrationNumber": "Registernummer eingeben"
     },
     "hints": {
       "slug": "Kleinbuchstaben, Ziffern und Bindestriche. Wird Teil der Webadresse Ihrer Organisation.",
       "logo": "PNG, JPEG oder WebP, bis zu {maxMb, number} MB.",
       "description": "{min, number}–{max, number} Zeichen.",
-      "taxId": "Die Steuernummer, die Ihre Organisation im ausgewählten Land verwendet."
+      "taxId": "Die Steuernummer, die Ihre Organisation im ausgewählten Land verwendet.",
+      "document": "PDF, Word, PNG, JPEG oder WebP, bis {maxMb, number} MB"
     },
     "sizeOption": "{range} Mitarbeitende",
     "industries": {
@@ -283,7 +291,34 @@
       "cityRequired": "Stadt ist erforderlich",
       "stateRequired": "Bundesland/Region ist erforderlich",
       "postalCodeRequired": "Postleitzahl ist erforderlich",
-      "postalCodeInvalid": "Geben Sie eine gültige Postleitzahl für das ausgewählte Land ein"
+      "postalCodeInvalid": "Geben Sie eine gültige Postleitzahl für das ausgewählte Land ein",
+      "organizationRegistrationNumberTooLong": "Die Registernummer darf höchstens {max, number} Zeichen lang sein",
+      "organizationIncorporationDateInvalid": "Geben Sie ein gültiges Datum ein",
+      "organizationDocumentRequired": "Laden Sie dieses Dokument hoch",
+      "organizationDocumentTooLarge": "Die Datei darf höchstens {maxMb, number} MB groß sein",
+      "organizationDocumentWrongFormat": "Laden Sie eine PDF-, Word- oder Bilddatei hoch (PNG, JPEG oder WebP)"
+    },
+    "documents": {
+      "businessRegistration": {
+        "label": "Handelsregistereintrag",
+        "hint": "Gründungsurkunde"
+      },
+      "taxRegistrationCertificate": {
+        "label": "Steuerregistrierungsbescheinigung",
+        "hint": "GST-, USt- oder Steuerbescheinigung"
+      },
+      "addressProof": {
+        "label": "Adressnachweis",
+        "hint": "Versorgerrechnung oder Mietvertrag"
+      },
+      "additionalDocument": {
+        "label": "Weiteres Dokument (optional)",
+        "hint": "Jedes weitere unterstützende Dokument"
+      }
+    },
+    "uploadedFiles": {
+      "title": "Hochgeladene Dateien",
+      "description": "Prüfen Sie Ihr Logo und Ihre Dokumente, bevor Sie fortfahren."
     }
   },
   "review": {
