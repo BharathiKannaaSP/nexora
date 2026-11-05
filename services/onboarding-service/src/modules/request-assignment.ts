@@ -30,45 +30,66 @@ type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
 
 /**
  * The users who can review `requestType`: they hold REVIEWER_ACCESS_LEVEL
- * on its module, in any country. Read from ReviewerPermission, the local
- * copy of user-service's platform permissions, so no other service is
- * called mid-submit. Sorted, so the round robin goes through them in a
- * stable order.
+ * on its module in EVERY one of `countryCodes`, so one reviewer can decide
+ * the whole request (an admin for India can't approve access to Germany).
+ * Empty `countryCodes` means the country isn't known: any country will do.
+ *
+ * Read from ReviewerPermission, the local copy of user-service's platform
+ * permissions, so no other service is called mid-submit. Sorted, so the
+ * round robin goes through them in a stable order.
  */
 const eligibleReviewers = async (
   tx: Transaction,
   requestType: AssignableRequestType,
+  countryCodes: string[],
   excludeUserId: string
 ) => {
+  const countries = [...new Set(countryCodes.map((c) => c.toUpperCase()))]
+
   const permissions = await tx.orm.public.ReviewerPermission.where({
     moduleCode: REVIEWER_MODULE[requestType],
     accessLevel: REVIEWER_ACCESS_LEVEL,
   }).all()
 
-  // No one reviews their own request.
-  return [...new Set(permissions.map(({ userId }) => userId))]
-    .filter((userId) => userId !== excludeUserId)
-    .sort()
+  const countriesByUser = new Map<string, Set<string>>()
+  for (const { userId, countryCode } of permissions) {
+    const held = countriesByUser.get(userId) ?? new Set<string>()
+    held.add(countryCode.toUpperCase())
+    countriesByUser.set(userId, held)
+  }
+
+  return (
+    [...countriesByUser]
+      .filter(([, held]) => countries.every((country) => held.has(country)))
+      .map(([userId]) => userId)
+      // No one reviews their own request.
+      .filter((userId) => userId !== excludeUserId)
+      .sort()
+  )
 }
 
 /**
- * Assigns a submitted request to a reviewer, round robin: the eligible
- * reviewer after the one who got the last request of this type, wrapping
- * around. Runs in the submit's transaction, so the request and its
- * assignment are saved together.
+ * Assigns a submitted request to a reviewer, round robin among those who
+ * cover all its countries: the eligible reviewer after the one who got the
+ * last request of this type, wrapping around. Runs in the submit's
+ * transaction, so the request and its assignment are saved together.
  *
- * A resubmitted request keeps its reviewer while they can still review it.
- * With no eligible reviewer the request is left unassigned (returns null).
+ * A resubmitted request keeps its reviewer while they can still review it
+ * (e.g. it now asks for a country they don't manage: it moves on). With no
+ * eligible reviewer the request is left unassigned (returns null).
  */
 export const assignReviewer = async (
   tx: Transaction,
   {
     requestId,
     requestType,
+    countryCodes,
     requesterUserId,
   }: {
     requestId: string
     requestType: AssignableRequestType
+    /** The countries the request is for; [] when not known. */
+    countryCodes: string[]
     requesterUserId: string
   }
 ) => {
@@ -81,11 +102,16 @@ export const assignReviewer = async (
       .build()
   )
 
-  const reviewers = await eligibleReviewers(tx, requestType, requesterUserId)
+  const reviewers = await eligibleReviewers(
+    tx,
+    requestType,
+    countryCodes,
+    requesterUserId
+  )
 
   if (reviewers.length === 0) {
     console.warn(
-      `No reviewer for ${requestType} request ${requestId}; left unassigned`
+      `No reviewer covers ${countryCodes.join(", ") || "any country"} for ${requestType} request ${requestId}; left unassigned`
     )
     return null
   }
@@ -116,7 +142,7 @@ export const assignReviewer = async (
     requestType,
     assignedToUserId: next,
     // Null: assigned by the system, not by a person.
-    assignedByUserId:  requesterUserId ?? null,
+    assignedByUserId: requesterUserId ?? null,
     reason: current ? "ROUND_ROBIN_REASSIGNED" : "ROUND_ROBIN",
   })
 }

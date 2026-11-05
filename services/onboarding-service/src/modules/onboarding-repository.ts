@@ -145,6 +145,8 @@ export const saveAdminAccessRequestRepository = async (
     const assignment = await assignReviewer(tx, {
       requestId: saved.id,
       requestType: "ADMIN_ACCESS",
+      // Every country access is asked for in.
+      countryCodes: permissions.map(({ countryCode }) => countryCode),
       requesterUserId: onboarding.userId,
     })
 
@@ -299,6 +301,12 @@ export const saveOrganizationRequestRepository = async (
     await assignReviewer(tx, {
       requestId: saved.id,
       requestType: request.type === "CREATE" ? "CREATE_ORG" : "JOIN_ORG",
+      // CREATE: the new organization's country. JOIN: the organization's
+      // country lives in organization-service, so any country for now.
+      countryCodes:
+        request.type === "CREATE" && request.proposedCountryCode
+          ? [request.proposedCountryCode]
+          : [],
       requesterUserId: onboarding.userId,
     })
 
