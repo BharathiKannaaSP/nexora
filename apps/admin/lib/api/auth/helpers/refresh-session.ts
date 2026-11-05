@@ -1,7 +1,9 @@
 import { REFRESH_SHARED_RESULT_MS } from "@nexora/shared/constants/auth"
 import type { ApiSuccessResponse } from "@nexora/shared/types/api"
 import type { RefreshResponseData } from "@nexora/shared/types/auth"
-import { ApiError, api } from "@/lib/api/server"
+
+import { api, ApiError } from "@/lib/api/server"
+
 import {
   readRefreshCookie,
   refreshCookieHeader,

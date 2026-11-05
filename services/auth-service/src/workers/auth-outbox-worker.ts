@@ -1,5 +1,6 @@
 import "dotenv/config"
 import "temporal-polyfill/full/global"
+
 import { startOutboxPublisher } from "../outbox/auth-outbox-publisher"
 
 startOutboxPublisher().catch((error: unknown) => {

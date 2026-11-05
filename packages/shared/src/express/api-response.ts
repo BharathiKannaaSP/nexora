@@ -1,4 +1,5 @@
 import type { Response } from "express"
+
 import type { ApiSuccessResponse } from "../types/api"
 
 export function sendSuccess<T>(

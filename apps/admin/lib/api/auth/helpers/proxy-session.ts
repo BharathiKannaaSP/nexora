@@ -1,10 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server"
-import { refreshSession } from "./refresh-session"
+
 import {
   ACCESS_COOKIE_NAME,
   REFRESH_BEFORE_EXPIRY_SECONDS,
   REFRESH_COOKIE_NAME,
 } from "@nexora/shared/constants/auth"
+
+import { refreshSession } from "./refresh-session"
 import {
   clearSessionCookies,
   secondsUntilExpiry,

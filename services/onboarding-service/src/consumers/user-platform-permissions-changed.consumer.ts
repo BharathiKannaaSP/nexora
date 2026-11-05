@@ -1,5 +1,6 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
 import { userPlatformPermissionsChangedEventSchema } from "@nexora/schemas/events/permissions"
+
 import { env } from "../config/onboarding-env"
 import { applyPlatformPermissionsSnapshotRepository } from "../modules/reviewer-permission-repository"
 

@@ -1,3 +1,10 @@
+import { NextResponse, type NextRequest } from "next/server"
+
+import {
+  nextWithSession,
+  resolveSession,
+  withSessionCookies,
+} from "@/lib/api/auth/helpers/proxy-session"
 import {
   getCountryDefaultLanguage,
   href,
@@ -6,13 +13,7 @@ import {
   isLocale,
   localizedPath,
 } from "@/lib/i18n/config"
-import {
-  nextWithSession,
-  resolveSession,
-  withSessionCookies,
-} from "@/lib/api/auth/helpers/proxy-session"
 import { getUserCountry } from "@/lib/i18n/get-user-country"
-import { NextResponse, type NextRequest } from "next/server"
 
 // The root layout lives under app/[country]/[lang]. Rejecting unsupported
 // countries and languages here, instead of relying on notFound() in that

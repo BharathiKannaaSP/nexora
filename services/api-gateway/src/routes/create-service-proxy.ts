@@ -1,4 +1,5 @@
 import { createProxyMiddleware } from "http-proxy-middleware"
+
 import { env } from "../config/gateway-env"
 import type { AuthenticatedRequest } from "../middleware/authenticate"
 

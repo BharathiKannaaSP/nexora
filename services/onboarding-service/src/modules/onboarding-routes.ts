@@ -1,15 +1,17 @@
-import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
-import { env } from "../config/onboarding-env"
 import { Router } from "express"
+
+import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
+
+import { env } from "../config/onboarding-env"
 import {
-  onboardingDetails,
-  submitBecomeAdminRequest,
-  updateOnboardingStep,
-  getBecomeAdminFormDetails,
   getAdminPermissions,
-  submitOrganizationRequest,
+  getBecomeAdminFormDetails,
   getCreateOrganizationFormDetails,
+  onboardingDetails,
   removeOrganizationRequestFile,
+  submitBecomeAdminRequest,
+  submitOrganizationRequest,
+  updateOnboardingStep,
 } from "./onboarding-controller"
 
 const verifyGateway = createVerifyGateway(env.INTERNAL_SERVICE_SECRET)

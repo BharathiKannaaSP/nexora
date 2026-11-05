@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl"
+import { ComponentProps, memo, useMemo } from "react"
+import { ControllerRenderProps } from "react-hook-form"
+
 import {
   Combobox,
   ComboboxContent,
@@ -6,11 +10,9 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@nexora/ui/components/combobox"
-import { flattenSelectOptions } from "./form-utils"
-import { ComponentProps, memo, useMemo } from "react"
-import { ControllerRenderProps } from "react-hook-form"
+
 import { FieldConfig } from "./form-types"
-import { useTranslations } from "next-intl"
+import { flattenSelectOptions } from "./form-utils"
 
 /** A single select the user can type into to filter, e.g. for countries. */
 export const ComboboxField = memo(function ComboboxField({

@@ -1,7 +1,8 @@
 import { z } from "zod"
+
 import {
-  PERMISSION_MODULES,
   modulePermissionsSchema,
+  PERMISSION_MODULES,
   type PermissionModuleCode,
 } from "./become-admin"
 
@@ -12,7 +13,9 @@ import {
  * member, not even its creator, gets them.
  */
 export const ORGANIZATION_PERMISSION_MODULES = PERMISSION_MODULES.filter(
-  (module): module is Exclude<
+  (
+    module
+  ): module is Exclude<
     PermissionModuleCode,
     "COUNTRY_MANAGEMENT" | "ORGANIZATION_MANAGEMENT"
   > => module !== "COUNTRY_MANAGEMENT" && module !== "ORGANIZATION_MANAGEMENT"

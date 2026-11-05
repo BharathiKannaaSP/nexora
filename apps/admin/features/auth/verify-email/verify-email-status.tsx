@@ -1,21 +1,23 @@
 "use client"
 
+import { useTranslations } from "next-intl"
+import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
+
 import {
   Banner,
   BannerDescription,
   BannerTitle,
 } from "@nexora/ui/components/banner"
 import { buttonVariants } from "@nexora/ui/components/button"
-import { LoaderCircle } from "lucide-react"
-import { useTranslations } from "next-intl"
-import Link from "next/link"
-import { useParams } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { Spinner } from "@nexora/ui/components/spinner"
+
+import { useCodeMessage } from "@/hooks/use-code-message"
+import { useLocaleParams } from "@/hooks/use-locale-params"
 import { verifyEmail } from "@/lib/api/auth/verify-email"
 import { href } from "@/lib/i18n/config"
-import { clearPendingVerification } from "./pending-verification"
 
-type CodeKey = Parameters<ReturnType<typeof useTranslations<"codes">>>[0]
+import { clearPendingVerification } from "./pending-verification"
 
 type Status =
   | { state: "verifying" }
@@ -34,8 +36,8 @@ const VerifyEmailStatus = ({
   token: string | null
 }) => {
   const t = useTranslations("auth.verifyEmail")
-  const tCodes = useTranslations("codes")
-  const { country, lang } = useParams<{ country: string; lang: string }>()
+  const codeMessage = useCodeMessage()
+  const { country, lang } = useLocaleParams()
   const [status, setStatus] = useState<Status>(
     token ? { state: "verifying" } : { state: "success" }
   )
@@ -70,7 +72,7 @@ const VerifyEmailStatus = ({
         role="status"
         className="flex items-center gap-3 text-sm text-muted-foreground"
       >
-        <LoaderCircle className="size-5 animate-spin" aria-hidden="true" />
+        <Spinner className="size-5" aria-hidden="true" />
         <div>
           <p className="font-medium text-foreground">{t("verifying.title")}</p>
           <p>{t("verifying.description")}</p>
@@ -103,15 +105,11 @@ const VerifyEmailStatus = ({
     )
   }
 
-  const code = status.code as CodeKey
-
   return (
     <div className="flex flex-col gap-6">
       <Banner variant="destructive">
         <BannerTitle>{t("error.title")}</BannerTitle>
-        <BannerDescription>
-          {tCodes(tCodes.has(code) ? code : "UNKNOWN_ERROR")}
-        </BannerDescription>
+        <BannerDescription>{codeMessage(status.code)}</BannerDescription>
       </Banner>
       <p className="text-sm text-muted-foreground">{t("error.description")}</p>
       <div className="flex flex-col gap-3">

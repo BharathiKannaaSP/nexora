@@ -63,7 +63,8 @@
       "SUCCESS": "您的组织申请已提交"
     },
     "ORGANIZATION_FILE_INVALID": "有文件无法使用，请重新上传",
-    "ORGANIZATION_FILE_DUPLICATE": "每个文件只能使用一次"
+    "ORGANIZATION_FILE_DUPLICATE": "每个文件只能使用一次",
+    "NO_REVIEWER_AVAILABLE": "目前还没有可审核此请求的审核人。请稍后重试或联系支持团队。"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "不允许此文件类型",

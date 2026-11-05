@@ -1,6 +1,8 @@
-import { resolveLocaleParams } from "@/lib/i18n/locale-params"
-import { SidebarProvider } from "@nexora/ui/components/sidebar"
 import { ReactNode } from "react"
+
+import { SidebarProvider } from "@nexora/ui/components/sidebar"
+
+import { resolveLocaleParams } from "@/lib/i18n/locale-params"
 
 interface DashboardRouteLayoutProps {
   children: ReactNode

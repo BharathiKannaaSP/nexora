@@ -2,13 +2,18 @@
 
 import { FileText, ImageUp, Paperclip, X } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
-import { useEffect, useId, useMemo, useRef, useState } from "react"
+import { useId, useRef, useState } from "react"
 import type { ControllerRenderProps } from "react-hook-form"
+
 import { Button } from "@nexora/ui/components/button"
 import { Spinner } from "@nexora/ui/components/spinner"
 import { cn } from "@nexora/ui/lib/utils"
+
+import { useObjectUrl } from "@/hooks/use-object-url"
+
 import { DeleteFileDialog } from "./delete-file-dialog"
 import type { FieldConfig } from "./form-types"
+import { formatFileSize } from "./format-file-size"
 
 interface FileUploadProps {
   fieldConfig: FieldConfig
@@ -19,38 +24,6 @@ interface FileUploadProps {
   /** The box variants show the description inside, under this id. */
   descriptionId: string
   invalid?: boolean
-}
-
-const formatSize = (bytes: number, locale?: string) => {
-  const units = ["byte", "kilobyte", "megabyte"] as const
-  let value = bytes
-  let unit = 0
-  while (value >= 1024 && unit < units.length - 1) {
-    value /= 1024
-    unit++
-  }
-  return new Intl.NumberFormat(locale, {
-    style: "unit",
-    unit: units[unit],
-    unitDisplay: "short",
-    maximumFractionDigits: unit === 0 ? 0 : 1,
-  }).format(value)
-}
-
-/** An object URL for an image file, revoked when it changes or unmounts. */
-const useImagePreview = (file: File | undefined) => {
-  const url = useMemo(
-    () =>
-      file?.type.startsWith("image/") ? URL.createObjectURL(file) : undefined,
-    [file]
-  )
-  useEffect(
-    () => () => {
-      if (url) URL.revokeObjectURL(url)
-    },
-    [url]
-  )
-  return url
 }
 
 /** A file uploaded earlier and put back in the form, e.g. a SavedFile. */
@@ -97,7 +70,10 @@ const FileUpload = ({
       ? [field.value]
       : []
   const firstFile = files[0]
-  const preview = useImagePreview(multiple ? undefined : firstFile)
+  // A thumbnail for a single picked image.
+  const preview = useObjectUrl(
+    !multiple && firstFile?.type.startsWith("image/") ? firstFile : undefined
+  )
 
   // What the single-file field shows: the picked File, or the saved file.
   const savedFile =
@@ -216,7 +192,7 @@ const FileUpload = ({
           <Paperclip className="size-4 shrink-0 text-muted-foreground" />
           <span className="min-w-0 flex-1 truncate">{file.name}</span>
           <span className="shrink-0 text-xs text-muted-foreground">
-            {formatSize(file.size, locale)}
+            {formatFileSize(file.size, locale)}
           </span>
           <Button
             type="button"
@@ -351,7 +327,7 @@ const FileUpload = ({
               {shown.name}
             </p>
             <p className="text-xs text-muted-foreground">
-              {shown.size ? `${formatSize(shown.size, locale)} · ` : ""}
+              {shown.size ? `${formatFileSize(shown.size, locale)} · ` : ""}
               {t("clickToReplace")}
             </p>
             <Button

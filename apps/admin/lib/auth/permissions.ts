@@ -59,3 +59,25 @@ export const hasPermission = (
 ) =>
   permissions[countryCode.toUpperCase()]?.[moduleCode]?.includes(accessLevel) ??
   false
+
+/**
+ * `permissions` as a list, countries in their given order, and modules and
+ * actions in catalog order (as the become-admin form shows them).
+ */
+export const toOrderedPermissions = (permissions: CountryPermissions) =>
+  Object.entries(permissions).map(([countryCode, modules]) => ({
+    countryCode,
+    modules: PERMISSION_MODULES.flatMap((code) => {
+      const granted = modules[code]
+      return granted
+        ? [
+            {
+              code,
+              actions: PERMISSION_ACTIONS.filter((action) =>
+                granted.includes(action)
+              ),
+            },
+          ]
+        : []
+    }),
+  }))

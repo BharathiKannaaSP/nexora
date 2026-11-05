@@ -1,4 +1,5 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
+
 import { env } from "../config/onboarding-env"
 import { initiateForUserOnboarding } from "../modules/onboarding-service"
 

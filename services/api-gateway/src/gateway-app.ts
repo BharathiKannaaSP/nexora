@@ -1,12 +1,12 @@
-import helmet from "helmet"
-import express, { Express } from "express"
 import cors from "cors"
+import express, { Express } from "express"
 import rateLimit from "express-rate-limit"
-import {
-  notFoundHandler,
-  errorHandler,
-} from "./middleware/gateway-error-handler"
+import helmet from "helmet"
+
+import { notFoundHandler } from "@nexora/shared/express/error-handler"
+
 import { env } from "./config/gateway-env"
+import { errorHandler } from "./middleware/gateway-error-handler"
 import proxyRoutes from "./routes/proxy-routes"
 
 const app: Express = express()
@@ -59,7 +59,7 @@ app.use(
   ],
   rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    limit: 200, // limit each IP to 20 requests per windowMs
+    limit: 200, // limit each IP to 200 requests per windowMs
     standardHeaders: "draft-8",
     legacyHeaders: false,
     message: tooManyRequests,

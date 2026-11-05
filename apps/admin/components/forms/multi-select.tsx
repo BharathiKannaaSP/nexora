@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl"
+import { ComponentProps, memo, useMemo } from "react"
+import { ControllerRenderProps } from "react-hook-form"
+
 import {
   Combobox,
   ComboboxChip,
@@ -10,11 +14,9 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@nexora/ui/components/combobox"
-import { flattenSelectOptions } from "./form-utils"
-import { ComponentProps, memo, useMemo } from "react"
-import { ControllerRenderProps } from "react-hook-form"
+
 import { FieldConfig } from "./form-types"
-import { useTranslations } from "next-intl"
+import { flattenSelectOptions } from "./form-utils"
 
 export const MultiSelectField = memo(function MultiSelectField({
   field,

@@ -66,7 +66,8 @@ declare const messages: {
       "SUCCESS": "Your organization request has been submitted"
     },
     "ORGANIZATION_FILE_INVALID": "A file couldn't be used. Please upload it again",
-    "ORGANIZATION_FILE_DUPLICATE": "Each file can be used only once"
+    "ORGANIZATION_FILE_DUPLICATE": "Each file can be used only once",
+    "NO_REVIEWER_AVAILABLE": "No reviewer is available for this request yet. Please try again later or contact support."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "This file type is not allowed",

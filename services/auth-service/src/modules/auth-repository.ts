@@ -1,7 +1,9 @@
-import { KAFKA_TOPICS } from "@nexora/kafka"
 import { Temporal } from "temporal-polyfill"
-import { db } from "../prisma/auth-db"
+
+import { KAFKA_TOPICS } from "@nexora/kafka"
 import { UpdateMeFormValues } from "@nexora/schemas/auth/update-me"
+
+import { db } from "../prisma/auth-db"
 
 const users = db.orm.public.User
 
@@ -36,19 +38,11 @@ type UpdateMeChanges = Omit<UpdateMeFormValues, "password"> & {
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
 
-const issueVerificationToken = async (
+/** Stores a new verification token and queues its email in the outbox. */
+const createVerificationToken = async (
   tx: Transaction,
   input: ReplaceVerificationTokenInput
 ) => {
-  // Expire earlier unused links so only the newest email works.
-  // update() only touches the first matching row; this needs all of them.
-  await tx.orm.public.EmailVerificationToken.where({
-    userId: input.userId,
-    usedAt: null,
-  }).updateAndCount({
-    expiresAt: input.now,
-  })
-
   await tx.orm.public.EmailVerificationToken.create({
     userId: input.userId,
     tokenHash: input.tokenHash,
@@ -69,6 +63,22 @@ const issueVerificationToken = async (
     attempts: 0,
     availableAt: input.now,
   })
+}
+
+const issueVerificationToken = async (
+  tx: Transaction,
+  input: ReplaceVerificationTokenInput
+) => {
+  // Expire earlier unused links so only the newest email works.
+  // update() only touches the first matching row; this needs all of them.
+  await tx.orm.public.EmailVerificationToken.where({
+    userId: input.userId,
+    usedAt: null,
+  }).updateAndCount({
+    expiresAt: input.now,
+  })
+
+  await createVerificationToken(tx, input)
 }
 
 export const authRepository = {
@@ -99,25 +109,11 @@ export const authRepository = {
         accountStatus: "ACTIVE",
       })
 
-      await tx.orm.public.EmailVerificationToken.create({
+      await createVerificationToken(tx, {
+        ...input,
         userId: user.id,
-        tokenHash: input.tokenHash,
-        expiresAt: input.tokenExpiresAt,
-      })
-
-      await tx.orm.public.OutboxEvent.create({
-        eventType: "email.verification.requested",
-        aggregateId: user.id,
-        payload: {
-          userId: user.id,
-          email: user.email,
-          encryptedVerificationToken: input.encryptedVerificationToken,
-          locale: input.preferredLocale,
-          country: input.countryCode,
-        },
-        status: "PENDING",
-        attempts: 0,
-        availableAt: Temporal.Now.instant(),
+        email: user.email,
+        now: Temporal.Now.instant(),
       })
 
       return user

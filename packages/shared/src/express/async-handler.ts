@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response, RequestHandler } from "express"
+import type { NextFunction, Request, RequestHandler, Response } from "express"
 
 type AsyncController = (
   req: Request,

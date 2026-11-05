@@ -1,4 +1,5 @@
 import { createRequire } from "node:module"
+
 import babelParser from "@babel/eslint-parser"
 import js from "@eslint/js"
 import eslintConfigPrettier from "eslint-config-prettier"

@@ -1,25 +1,22 @@
 import { z } from "zod"
+
+import {
+  clientOriginsSchema,
+  internalSecretSchema,
+  nodeEnvSchema,
+  portSchema,
+} from "@nexora/shared/config/env"
+
 import "dotenv/config"
 
 const ttlSeconds = z.coerce.number().int().min(60).max(600).default(300)
 
 const envSchema = z
   .object({
-    NODE_ENV: z
-      .enum(["development", "production", "test"])
-      .default("development"),
-    PORT: z.coerce.number().int().positive().default(4006),
-    // An empty secret would let any caller pass verifyGateway and set x-user-id.
-    INTERNAL_SERVICE_SECRET: z.string().min(32),
-    CLIENT_ORIGINS: z
-      .string()
-      .default("http://localhost:3001")
-      .transform((val) =>
-        val
-          .split(",")
-          .map((origin) => origin.trim())
-          .filter(Boolean)
-      ),
+    NODE_ENV: nodeEnvSchema,
+    PORT: portSchema(4006),
+    INTERNAL_SERVICE_SECRET: internalSecretSchema,
+    CLIENT_ORIGINS: clientOriginsSchema,
 
     // Credentials aren't read here: the SDK finds AWS_PROFILE or the access
     // keys locally, and the task or instance role in AWS.

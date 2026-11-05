@@ -1,16 +1,17 @@
-import { AuthFormHeader, AuthFullPageLayout } from "@/components/auth"
 import { MailCheck } from "lucide-react"
+import { getTranslations } from "next-intl/server"
+import { redirect } from "next/navigation"
+import { Suspense, type ReactNode } from "react"
+
+import { AuthFormHeader, AuthFullPageLayout } from "@/components/auth"
+import { authMetadata } from "@/features/auth/auth-page"
+import { VerifyEmailContent } from "@/features/auth/verify-email/verify-email-content"
+import { getCurrentUser } from "@/lib/api/auth/me"
 import { localizedPath } from "@/lib/i18n/config"
 import {
   resolveLocaleParams,
   type LocaleParams,
 } from "@/lib/i18n/locale-params"
-import { Metadata } from "next"
-import { getTranslations } from "next-intl/server"
-import { redirect } from "next/navigation"
-import { Suspense, type ReactNode } from "react"
-import { VerifyEmailContent } from "@/features/auth/verify-email/verify-email-content"
-import { getCurrentUser } from "@/lib/api/auth/me"
 
 export interface VerifyEmailPageProps {
   params: Promise<LocaleParams>
@@ -20,21 +21,8 @@ export interface VerifyEmailPageProps {
   }>
 }
 
-export async function generateMetadata({
-  params,
-}: VerifyEmailPageProps): Promise<Metadata> {
-  const { lang } = await resolveLocaleParams(params)
-
-  const t = await getTranslations({
-    locale: lang,
-    namespace: "auth.verifyEmail",
-  })
-
-  return {
-    title: t("metadata.title"),
-    description: t("metadata.description"),
-  }
-}
+export const generateMetadata = ({ params }: VerifyEmailPageProps) =>
+  authMetadata(params, "verifyEmail")
 
 /**
  * Only verified users can sign in, so a session means there's nothing to
@@ -86,7 +74,7 @@ const VerifyEmailPage = async ({
           <RedirectIfVerified dashboardHref={localizedPath(country, lang)}>
             <VerifyEmailContent
               lang={lang}
-              signInHref={localizedPath(country, lang) + "/auth/sign-in"}
+              signInHref={localizedPath(country, lang, "/auth/sign-in")}
               searchParams={searchParams}
             />
           </RedirectIfVerified>

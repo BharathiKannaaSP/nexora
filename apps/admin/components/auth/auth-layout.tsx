@@ -1,6 +1,8 @@
-import { LanguageSwitcher } from "@/components/common"
-import { cn } from "@nexora/ui/lib/utils"
 import { ReactNode } from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
+
+import { LanguageSwitcher } from "@/components/common"
 
 export interface AuthLayoutProps {
   brandPanel: ReactNode

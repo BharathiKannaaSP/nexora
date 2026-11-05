@@ -1,6 +1,6 @@
-import { globalIgnores } from "eslint/config"
 import pluginNext from "@next/eslint-plugin-next"
 import pluginReactHooks from "eslint-plugin-react-hooks"
+import { globalIgnores } from "eslint/config"
 import globals from "globals"
 
 import { config as baseConfig } from "./base.js"

@@ -1,5 +1,6 @@
-import { cn } from "@nexora/ui/lib/utils"
 import { HTMLAttributes, ReactNode } from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
 
 interface AuthFormHeaderProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -7,7 +8,6 @@ interface AuthFormHeaderProps extends Omit<
 > {
   title: string
   description?: string
-  badge?: ReactNode
   leading?: ReactNode
   alignment?: "left" | "center"
   titleClassName?: string
@@ -17,7 +17,6 @@ interface AuthFormHeaderProps extends Omit<
 export const AuthFormHeader = ({
   title,
   description,
-  badge,
   leading,
   alignment = "left",
   className,
@@ -37,8 +36,6 @@ export const AuthFormHeader = ({
       {...props}
     >
       {leading && <div>{leading}</div>}
-
-      {badge && <div>{badge}</div>}
 
       <div className="space-y-2">
         <h1

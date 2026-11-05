@@ -1,5 +1,6 @@
-import type { Response, NextFunction, Request } from "express"
+import type { NextFunction, Request, Response } from "express"
 import jwt from "jsonwebtoken"
+
 import { env } from "../config/gateway-env"
 
 export interface AuthenticatedRequest extends Request {

@@ -63,7 +63,8 @@
       "SUCCESS": "組織の申請を送信しました"
     },
     "ORGANIZATION_FILE_INVALID": "使用できないファイルがあります。もう一度アップロードしてください",
-    "ORGANIZATION_FILE_DUPLICATE": "同じファイルは一度しか使用できません"
+    "ORGANIZATION_FILE_DUPLICATE": "同じファイルは一度しか使用できません",
+    "NO_REVIEWER_AVAILABLE": "このリクエストを担当できるレビュアーがまだいません。後でもう一度お試しいただくか、サポートにお問い合わせください。"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "このファイル形式は使用できません",

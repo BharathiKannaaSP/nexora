@@ -1,7 +1,7 @@
-import app from "./onboarding-app"
 import { env } from "./config/onboarding-env"
 import { startInitiateUserOnboardingConsumer } from "./consumers/initiate-user-onboarding.consumer"
 import { startUserPlatformPermissionsChangedConsumer } from "./consumers/user-platform-permissions-changed.consumer"
+import app from "./onboarding-app"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora Onboarding service running on", env.PORT)

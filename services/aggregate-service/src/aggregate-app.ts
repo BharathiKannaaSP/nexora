@@ -1,10 +1,12 @@
 import express, { Express } from "express"
 import helmet from "helmet"
-import aggregateRoutes from "./modules/aggregate-routes"
+
 import {
   createErrorHandler,
   notFoundHandler,
 } from "@nexora/shared/express/error-handler"
+
+import aggregateRoutes from "./modules/aggregate-routes"
 
 const app: Express = express()
 

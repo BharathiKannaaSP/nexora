@@ -1,6 +1,8 @@
 import { Temporal } from "temporal-polyfill"
-import { db } from "../prisma/user-db"
+
 import type { UpdateUserDetailsInput } from "@nexora/schemas/user-details/user-details-update"
+
+import { db } from "../prisma/user-db"
 
 /** Creates an empty profile unless one exists; returns whether it did. */
 export const createUserProfileRepository = async (

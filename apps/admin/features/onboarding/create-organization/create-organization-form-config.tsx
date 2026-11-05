@@ -1,4 +1,18 @@
 import {
+  Building2,
+  Calendar,
+  Factory,
+  FileText,
+  FileUp,
+  Globe,
+  Hash,
+  Link,
+  Pencil,
+  UsersRound,
+} from "lucide-react"
+import type { useTranslations } from "next-intl"
+
+import {
   createCreateOrganizationSchema,
   ORGANIZATION_DESCRIPTION_MAX_LENGTH,
   ORGANIZATION_DESCRIPTION_MIN_LENGTH,
@@ -15,23 +29,12 @@ import {
   type CreateOrganizationFormValues,
   type OrganizationIndustry,
 } from "@nexora/schemas/onboarding/create-organization"
-import { countryUsesPostalCode } from "@nexora/schemas/user-details/user-details-update"
 import type { Country } from "@nexora/shared/types/country"
-import {
-  Building2,
-  Calendar,
-  Factory,
-  FileText,
-  FileUp,
-  Globe,
-  Hash,
-  Home,
-  Link,
-  Pencil,
-  UsersRound,
-} from "lucide-react"
-import type { useTranslations } from "next-intl"
+
 import type { EntityFormConfig } from "@/components/forms/form-types"
+
+import { addressFields } from "../address-fields"
+import { toCountryOptions } from "../country-options"
 
 export interface CreateOrganizationFormConfigOptions {
   t: ReturnType<typeof useTranslations<"onboarding">>
@@ -79,13 +82,6 @@ export const DOCUMENT_FIELDS = [
   name: keyof CreateOrganizationFormValues["proposedDocuments"]
   required: boolean
 }[]
-
-// One collator for the whole sort; localeCompare(…, lang) builds one per call.
-const byName = (lang: string) => {
-  const collator = new Intl.Collator(lang)
-  return (a: { name: string }, b: { name: string }) =>
-    collator.compare(a.name, b.name)
-}
 
 export const createOrganizationFormConfig = ({
   t,
@@ -228,15 +224,7 @@ export const createOrganizationFormConfig = ({
       label: t("chooseYourPathForm.fields.bioCountry"),
       type: "combobox",
       required: true,
-      // e.g. "Inde" on /fr/fr; English when the runtime has no name.
-      options: countries
-        .map((country) => ({
-          value: country.code,
-          name: regionNames.of(country.code) ?? country.name,
-          flag: country.flag,
-        }))
-        .sort(byName(lang))
-        .map(({ value, name, flag }) => ({ value, label: `${flag} ${name}` })),
+      options: toCountryOptions(countries, { lang, regionNames }),
     },
     {
       name: "proposedTaxDetails.taxId",
@@ -267,48 +255,13 @@ export const createOrganizationFormConfig = ({
       icon: Calendar,
       placeholder: "YYYY-MM-DD",
     },
-    {
-      name: "proposedAddress.addressLine1",
-      label: t("chooseYourPathForm.fields.addressLine1"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "organization address-line1" },
-    },
-    {
-      name: "proposedAddress.addressLine2",
-      label: t("chooseYourPathForm.fields.addressLine2"),
-      type: "text",
-      icon: Home,
-      inputProps: { autoComplete: "organization address-line2" },
-    },
-    {
-      name: "proposedAddress.city",
-      label: t("chooseYourPathForm.fields.city"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "organization address-level2" },
-    },
-    {
-      name: "proposedAddress.state",
-      label: t("chooseYourPathForm.fields.state"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "organization address-level1" },
-    },
-    {
-      name: "proposedAddress.postalCode",
-      label: t("chooseYourPathForm.fields.postalCode"),
-      type: "text",
-      // Countries without postal codes (e.g. the UAE) may leave it blank.
-      required:
-        !selectedCountryCode || countryUsesPostalCode(selectedCountryCode),
-      colSpan: 2,
-      icon: Hash,
-      inputProps: { autoComplete: "organization postal-code" },
-    },
+    ...addressFields({
+      t,
+      namePrefix: "proposedAddress.",
+      autoCompletePrefix: "organization ",
+      postalCodeIcon: Hash,
+      countryCode: selectedCountryCode,
+    }),
     ...DOCUMENT_FIELDS.map(({ name, required }) => ({
       name: `proposedDocuments.${name}`,
       label: t(`createOrganizationForm.documents.${name}.label`),

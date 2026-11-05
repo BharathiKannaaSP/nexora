@@ -1,6 +1,7 @@
-import { cn } from "@nexora/ui/lib/utils"
 import Image from "next/image"
 import React from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
 
 interface BrandBackgroundProps {
   image?: string

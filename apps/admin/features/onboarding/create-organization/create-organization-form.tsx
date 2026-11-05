@@ -1,6 +1,11 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { useMemo } from "react"
+import { useForm, useWatch, type FieldPath } from "react-hook-form"
+
 import {
   isSavedFile,
   type CreateOrganizationFormValues,
@@ -8,10 +13,7 @@ import {
   type OrganizationDocumentSlot,
 } from "@nexora/schemas/onboarding/create-organization"
 import type { Country } from "@nexora/shared/types/country"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { useMemo } from "react"
-import { useForm, useWatch, type FieldPath } from "react-hook-form"
+import type { CreateOrganizationFormDetailsResponseData } from "@nexora/shared/types/onboarding"
 import {
   Card,
   CardContent,
@@ -19,26 +21,28 @@ import {
   CardHeader,
   CardTitle,
 } from "@nexora/ui/components/card"
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+
+import { EntityForm } from "@/components/forms/entity-form"
 import { UploadedFilesTable } from "@/components/forms/uploaded-files-table"
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useApiToast } from "@/hooks/use-api-toast"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useRegionNames } from "@/hooks/use-region-names"
+import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
+import { deleteUpload } from "@/lib/api/media/delete-upload"
+import { removeOrganizationRequestFile } from "@/lib/api/onboarding/remove-organization-request-file"
+import { submitCreateOrganizationRequest } from "@/lib/api/onboarding/submit-create-organization-request"
+import type { ApiResult } from "@/lib/api/result"
+import { uploadIfNew, type UploadedFile } from "@/lib/media/upload-file"
+
+import { findInitialCountry } from "../country-options"
+import { usePreviousStep } from "../use-previous-step"
 import {
   createCreateOrganizationFormSchema,
   createOrganizationFormConfig,
   DOCUMENT_FIELDS,
 } from "./create-organization-form-config"
 import { toCreateOrganizationFormDefaults } from "./create-organization-form-defaults"
-import { EntityForm } from "@/components/forms/entity-form"
-import { updateOnboardingStep } from "@/lib/api/auth/update-onboarding-step"
-import { useApiToast } from "@/hooks/use-api-toast"
-import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
-import { submitCreateOrganizationRequest } from "@/lib/api/onboarding/submit-create-organization-request"
-import { href } from "@/lib/i18n/config"
-import { ONBOARDING_PATHS } from "@/lib/bootstrap/bootstrap-path"
-import { uploadIfNew, type UploadedFile } from "@/lib/media/upload-file"
-import { deleteUpload } from "@/lib/api/media/delete-upload"
-import { removeOrganizationRequestFile } from "@/lib/api/onboarding/remove-organization-request-file"
-import type { CreateOrganizationFormDetailsResponseData } from "@nexora/shared/types/onboarding"
-import type { ApiResult } from "@/lib/api/result"
 
 interface CreateOrganizationFormProps {
   countries: Country[]
@@ -52,20 +56,18 @@ const CreateOrganizationForm = ({
   const t = useTranslations("onboarding")
   const tActions = useTranslations("common.actions")
   const { user } = useBootstrap()
-  const { country: urlCountry, lang } = useParams<{
-    country: string
-    lang: string
-  }>()
+  const { country: urlCountry, lang } = useLocaleParams()
   const showApiToast = useApiToast()
   const router = useRouter()
 
   const schema = useMemo(() => createCreateOrganizationFormSchema(t), [t])
 
   // The organization starts in the user's own country, else the URL's.
-  const savedCode = user?.bioCountry?.toUpperCase()
-  const initialCountry =
-    countries.find(({ code }) => code === savedCode) ??
-    countries.find(({ code }) => code === urlCountry.toUpperCase())
+  const initialCountry = findInitialCountry(
+    countries,
+    user?.bioCountry,
+    urlCountry
+  )
 
   // The saved request, when the user comes back to step 3; else null.
   const savedRequest = createOrganizationFormDetails.success
@@ -138,10 +140,7 @@ const CreateOrganizationForm = ({
   ]
   const hasUploadedFiles = uploadedFiles.some(({ value }) => value)
 
-  const regionNames = useMemo(
-    () => new Intl.DisplayNames([lang], { type: "region" }),
-    [lang]
-  )
+  const regionNames = useRegionNames(lang)
 
   const createOrganizationConfig = createOrganizationFormConfig({
     t,
@@ -152,16 +151,8 @@ const CreateOrganizationForm = ({
     onDeleteSavedFile: deleteSavedFile,
   })
 
-  const handlePreviousStep = async () => {
-    const stepResult = await updateOnboardingStep({
-      step: "CHOOSE_PATH",
-    })
-    if (!stepResult.success) {
-      showApiToast(stepResult)
-      return
-    }
-    router.replace(href(urlCountry, lang, ONBOARDING_PATHS.BASIC_INFORMATION))
-  }
+  // Step 3 goes back to step 2, where the path was picked.
+  const handlePreviousStep = usePreviousStep("CHOOSE_PATH")
 
   /**
    * Uploads newly picked files straight to S3 (saved ones are kept as they

@@ -1,4 +1,18 @@
 import {
+  Boxes,
+  Building2,
+  ChartColumn,
+  CreditCard,
+  Globe,
+  Package,
+  Pencil,
+  ShieldCheck,
+  UsersRound,
+  type LucideIcon,
+} from "lucide-react"
+import type { useTranslations } from "next-intl"
+
+import {
   ADMIN_REQUEST_MAX_COUNTRIES,
   ADMIN_REQUEST_TEXT_FIELD_MAX_LENGTH,
   createBecomeAdminSchema,
@@ -7,22 +21,11 @@ import {
   type PermissionAction,
   type PermissionModuleCode,
 } from "@nexora/schemas/onboarding/become-admin"
-import {
-  Boxes,
-  Building2,
-  ChartColumn,
-  CreditCard,
-  Crown,
-  Globe,
-  type LucideIcon,
-  Package,
-  Pencil,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react"
 import type { Country } from "@nexora/shared/types/country"
-import type { useTranslations } from "next-intl"
+
 import type { EntityFormConfig } from "@/components/forms/form-types"
+
+import { countryName, toCountryOptions } from "../country-options"
 
 interface BecomeAdminFormConfigOptions {
   t: ReturnType<typeof useTranslations<"onboarding">>
@@ -79,21 +82,14 @@ export const createBecomeAdminFormConfig = ({
   lang,
   regionNames,
 }: BecomeAdminFormFieldOptions): EntityFormConfig => {
-  // e.g. "Inde" on /fr/fr; English when the runtime has no name.
-  const countryName = (country: Country) =>
-    regionNames.of(country.code) ?? country.name
-
-  const collator = new Intl.Collator(lang)
-  const countryOptions = countries
-    .map((country) => ({
-      value: country.code,
-      label: `${country.flag} ${countryName(country)}`,
-      description: country.code,
-      disabled: country.code === lockedCountryCode,
-      name: countryName(country),
-    }))
-    .sort((a, b) => collator.compare(a.name, b.name))
-    .map(({ name: _name, ...option }) => option)
+  const countryOptions = toCountryOptions(
+    countries,
+    { lang, regionNames },
+    ({ code }) => ({
+      description: code,
+      disabled: code === lockedCountryCode,
+    })
+  )
 
   const permissionGroups = selectedCountryCodes.flatMap((code) => {
     const country = countries.find((country) => country.code === code)
@@ -101,7 +97,7 @@ export const createBecomeAdminFormConfig = ({
       ? [
           {
             value: country.code,
-            label: `${country.flag} ${countryName(country)} (${country.code})`,
+            label: `${country.flag} ${countryName(regionNames, country)} (${country.code})`,
           },
         ]
       : []

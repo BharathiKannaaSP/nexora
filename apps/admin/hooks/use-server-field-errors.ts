@@ -1,9 +1,10 @@
 "use client"
 
-import type { ApiFieldError } from "@nexora/shared/types/api"
 import { useTranslations } from "next-intl"
 import { useCallback } from "react"
 import type { FieldValues, Path, UseFormReturn } from "react-hook-form"
+
+import type { ApiFieldError } from "@nexora/shared/types/api"
 
 /**
  * Marks the fields a VALIDATION_ERROR response names. Services validate

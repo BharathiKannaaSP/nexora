@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken"
+
 import { ACCESS_TOKEN_TTL_SECONDS } from "@nexora/shared/constants/auth"
-import { env } from "../../config/auth-env"
 import { AppError } from "@nexora/shared/express/app-error"
+
+import { env } from "../../config/auth-env"
 
 export const signInAccessToken = (userId: string): string => {
   const secret = env.JWT_ACCESS_SECRET

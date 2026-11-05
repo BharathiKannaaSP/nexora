@@ -1,7 +1,9 @@
+import { ReactNode } from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
+
 import { BrandLogo } from "@/components/branding"
 import { LanguageSwitcher } from "@/components/common"
-import { cn } from "@nexora/ui/lib/utils"
-import { ReactNode } from "react"
 
 interface AuthFullPageLayoutProps {
   children: ReactNode

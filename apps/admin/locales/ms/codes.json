@@ -63,7 +63,8 @@
       "SUCCESS": "Permintaan organisasi anda telah dihantar"
     },
     "ORGANIZATION_FILE_INVALID": "Satu fail tidak dapat digunakan. Sila muat naik semula",
-    "ORGANIZATION_FILE_DUPLICATE": "Setiap fail hanya boleh digunakan sekali"
+    "ORGANIZATION_FILE_DUPLICATE": "Setiap fail hanya boleh digunakan sekali",
+    "NO_REVIEWER_AVAILABLE": "Belum ada penyemak tersedia untuk permintaan ini. Sila cuba lagi kemudian atau hubungi sokongan."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Jenis fail ini tidak dibenarkan",

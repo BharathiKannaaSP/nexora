@@ -1,4 +1,5 @@
 import { z } from "zod"
+
 import {
   PERMISSION_ACTIONS,
   PERMISSION_MODULES,
@@ -12,6 +13,13 @@ export const platformPermissionSchema = z.object({
 })
 
 export type PlatformPermission = z.infer<typeof platformPermissionSchema>
+
+/** "IN:ORGANIZATION:READ": identifies a permission, for de-duplicating. */
+export const platformPermissionKey = (p: {
+  countryCode: string
+  moduleCode: string
+  accessLevel: string
+}) => `${p.countryCode}:${p.moduleCode}:${p.accessLevel}`
 
 /**
  * onboarding.admin-access.approved, from onboarding-service: an admin access

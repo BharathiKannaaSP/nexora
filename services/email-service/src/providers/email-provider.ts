@@ -1,4 +1,5 @@
 import { Resend } from "resend"
+
 import { env } from "../config/email-env"
 import { renderVerificationEmail } from "../templates/verification-email"
 

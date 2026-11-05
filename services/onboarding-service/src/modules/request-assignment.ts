@@ -1,13 +1,16 @@
-import type {
-  PermissionAction,
-  PermissionModuleCode,
-} from "@nexora/schemas/onboarding/become-admin"
+import { Temporal } from "temporal-polyfill"
+
 import { KAFKA_TOPICS } from "@nexora/kafka"
 import type {
   AdminAccessApprovedPayload,
   PlatformPermission,
 } from "@nexora/schemas/events/permissions"
-import { Temporal } from "temporal-polyfill"
+import type {
+  PermissionAction,
+  PermissionModuleCode,
+} from "@nexora/schemas/onboarding/become-admin"
+import { AppError } from "@nexora/shared/express/app-error"
+
 import { db } from "../prisma/onboarding-db"
 
 /** RequestAssignment.requestType values. */
@@ -27,6 +30,18 @@ const REVIEWER_MODULE = {
 const REVIEWER_ACCESS_LEVEL: PermissionAction = "EDIT"
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
+
+/**
+ * Thrown inside the submit's transaction when no one can review the
+ * request, so nothing is saved (the onboarding stays on its step) and the
+ * user is told instead of waiting on a request nobody will see.
+ */
+export const noReviewerAvailable = () =>
+  new AppError(
+    "No reviewer is available for this request yet",
+    409,
+    "ONBOARDING.NO_REVIEWER_AVAILABLE"
+  )
 
 /**
  * The users who can review `requestType`: they hold REVIEWER_ACCESS_LEVEL
@@ -75,8 +90,9 @@ const eligibleReviewers = async (
  * transaction, so the request and its assignment are saved together.
  *
  * A resubmitted request keeps its reviewer while they can still review it
- * (e.g. it now asks for a country they don't manage: it moves on). With no
- * eligible reviewer the request is left unassigned (returns null).
+ * (e.g. it now asks for a country they don't manage: it moves on). Returns
+ * null when no one can review it; the caller then fails the submit with
+ * noReviewerAvailable() (or, for the very first admin, approves it).
  */
 export const assignReviewer = async (
   tx: Transaction,
@@ -111,7 +127,7 @@ export const assignReviewer = async (
 
   if (reviewers.length === 0) {
     console.warn(
-      `No reviewer covers ${countryCodes.join(", ") || "any country"} for ${requestType} request ${requestId}; left unassigned`
+      `No reviewer covers ${countryCodes.join(", ") || "any country"} for ${requestType} request ${requestId}`
     )
     return null
   }
@@ -177,12 +193,7 @@ export const approveFirstAdminRequest = async (
     status: "APPROVED",
   }).first()
 
-  if (anyApproved) {
-    console.warn(
-      `No reviewer for admin access request ${request.id}; left unassigned`
-    )
-    return null
-  }
+  if (anyApproved) return null
 
   const now = Temporal.Now.instant()
 

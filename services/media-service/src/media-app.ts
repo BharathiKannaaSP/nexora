@@ -1,13 +1,15 @@
+import cors from "cors"
 import express, { Express } from "express"
 import helmet from "helmet"
-import cors from "cors"
-import { env } from "./config/media-env"
-import mediaRoutes from "./modules/media-routes"
-import internalRoutes from "./modules/media-internal-routes"
+
 import {
   createErrorHandler,
   notFoundHandler,
 } from "@nexora/shared/express/error-handler"
+
+import { env } from "./config/media-env"
+import internalRoutes from "./modules/media-internal-routes"
+import mediaRoutes from "./modules/media-routes"
 
 const app: Express = express()
 

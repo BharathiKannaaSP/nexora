@@ -1,5 +1,9 @@
 "use client"
 
+import { RefreshCw } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { useEffect } from "react"
+
 import {
   AlertDialog,
   AlertDialogContent,
@@ -9,12 +13,9 @@ import {
   AlertDialogTitle,
 } from "@nexora/ui/components/alert-dialog"
 import { Button } from "@nexora/ui/components/button"
-import { RefreshCw } from "lucide-react"
-import { useTranslations } from "next-intl"
-import { useEffect } from "react"
-import { getApiErrorCode } from "@/lib/api/render-error"
 
-type CodeKey = Parameters<ReturnType<typeof useTranslations<"codes">>>[0]
+import { useCodeMessage } from "@/hooks/use-code-message"
+import { getApiErrorCode } from "@/lib/api/render-error"
 
 /**
  * Catches errors thrown while rendering any page, e.g. a gateway failure in
@@ -29,8 +30,7 @@ const ErrorBoundary = ({
   retry: () => void
 }) => {
   const t = useTranslations("common.error")
-  const tCodes = useTranslations("codes")
-  const code = (getApiErrorCode(error) ?? "UNKNOWN_ERROR") as CodeKey
+  const codeMessage = useCodeMessage()
 
   useEffect(() => {
     console.error(error)
@@ -43,7 +43,7 @@ const ErrorBoundary = ({
         <AlertDialogHeader>
           <AlertDialogTitle>{t("title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            {tCodes(tCodes.has(code) ? code : "UNKNOWN_ERROR")}
+            {codeMessage(getApiErrorCode(error) ?? "UNKNOWN_ERROR")}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

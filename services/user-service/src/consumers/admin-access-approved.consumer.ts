@@ -1,5 +1,6 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
 import { adminAccessApprovedEventSchema } from "@nexora/schemas/events/permissions"
+
 import { env } from "../config/user-env"
 import { grantAdminAccessRepository } from "../modules/user-permission-repository"
 

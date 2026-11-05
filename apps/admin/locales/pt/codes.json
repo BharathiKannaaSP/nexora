@@ -63,7 +63,8 @@
       "SUCCESS": "Sua solicitação de organização foi enviada"
     },
     "ORGANIZATION_FILE_INVALID": "Não foi possível usar um arquivo. Envie-o novamente",
-    "ORGANIZATION_FILE_DUPLICATE": "Cada arquivo só pode ser usado uma vez"
+    "ORGANIZATION_FILE_DUPLICATE": "Cada arquivo só pode ser usado uma vez",
+    "NO_REVIEWER_AVAILABLE": "Ainda não há nenhum revisor disponível para esta solicitação. Tente novamente mais tarde ou entre em contato com o suporte."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Este tipo de arquivo não é permitido",

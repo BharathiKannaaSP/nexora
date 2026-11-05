@@ -1,8 +1,8 @@
 "use client"
 
-import { ComponentProps, useMemo } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { ComponentProps, useMemo } from "react"
 
 import { Label } from "@nexora/ui/components/label"
 import { Separator } from "@nexora/ui/components/separator"

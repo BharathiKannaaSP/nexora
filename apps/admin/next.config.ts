@@ -1,6 +1,7 @@
 import { readdirSync } from "node:fs"
-import createNextIntlPlugin from "next-intl/plugin"
+
 import type { NextConfig } from "next"
+import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin({
   requestConfig: "./lib/i18n/request.ts",

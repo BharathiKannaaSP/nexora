@@ -1,10 +1,12 @@
 import { createDecipheriv } from "node:crypto"
+
 import {
   TOKEN_ENCRYPTION_ALGORITHM,
   TOKEN_ENCRYPTION_AUTH_TAG_BYTES,
   TOKEN_ENCRYPTION_IV_BYTES,
   TOKEN_ENCRYPTION_VERSION,
 } from "@nexora/shared/constants/crypto"
+
 import { env } from "../config/email-env"
 
 export function decryptToken(encryptedToken: string, context: string): string {

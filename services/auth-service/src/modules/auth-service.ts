@@ -1,17 +1,11 @@
+import bcrypt from "bcryptjs"
+import { Temporal } from "temporal-polyfill"
+
 import type {
   SignUpFormValues,
   SignUpLocale,
 } from "@nexora/schemas/auth/sign-up"
-import { AppError } from "@nexora/shared/express/app-error"
-import { toSupportedCountryLocale } from "@nexora/shared/constants/i18n"
-import { authRepository } from "./auth-repository"
-import bcrypt from "bcryptjs"
-import {
-  generateVerificationToken,
-  hashVerificationToken,
-} from "../lib/helpers/verification-token"
-import { encryptToken } from "../lib/helpers/token-encryption"
-import { Temporal } from "temporal-polyfill"
+import { UpdateMeFormValues } from "@nexora/schemas/auth/update-me"
 import {
   ACCESS_TOKEN_TTL_SECONDS,
   PASSWORD_HASH_ROUNDS,
@@ -22,13 +16,28 @@ import {
   VERIFICATION_RESEND_COOLDOWN_MS,
   VERIFICATION_TOKEN_TTL_HOURS,
 } from "@nexora/shared/constants/auth"
+import { toSupportedCountryLocale } from "@nexora/shared/constants/i18n"
+import { AppError } from "@nexora/shared/express/app-error"
+
+import { createAttemptLimiter } from "../lib/attempt-limiter"
 import { signInAccessToken } from "../lib/helpers/access-token"
 import {
   generateRefreshToken,
   hashRefreshToken,
 } from "../lib/helpers/refresh-token"
-import { createAttemptLimiter } from "../lib/attempt-limiter"
-import { UpdateMeFormValues } from "@nexora/schemas/auth/update-me"
+import { encryptToken } from "../lib/helpers/token-encryption"
+import {
+  generateVerificationToken,
+  hashVerificationToken,
+} from "../lib/helpers/verification-token"
+import { authRepository } from "./auth-repository"
+
+/** Prisma's unique-constraint violation (P2002). */
+const isUniqueConstraintError = (error: unknown) =>
+  typeof error === "object" &&
+  error !== null &&
+  "code" in error &&
+  error.code === "P2002"
 
 // Compared against when no user matches, so an unknown email or username
 // takes as long to reject as a wrong password and timing can't reveal which
@@ -113,12 +122,7 @@ export const authService = {
       }
     } catch (error) {
       // Handle a duplicate email inserted concurrently by another request
-      if (
-        typeof error === "object" &&
-        error !== null &&
-        "code" in error &&
-        error.code == "P2002"
-      ) {
+      if (isUniqueConstraintError(error)) {
         throw new AppError(
           "An account with this email already exists",
           400,
@@ -462,10 +466,19 @@ export const authService = {
     // unsupported, e.g. country "jp" with locale "ta".
     const localeChanged =
       input.preferredLocale !== undefined || input.countryCode !== undefined
-    const { country, locale } = toSupportedCountryLocale(
+    const normalized = toSupportedCountryLocale(
       input.countryCode ?? user.countryCode,
       input.preferredLocale ?? user.preferredLocale
     )
+    const country = normalized.country
+    // A language-only change the saved country doesn't offer (picked while
+    // visiting another country) keeps the saved language instead of falling
+    // back to the country's default.
+    const locale =
+      input.countryCode === undefined &&
+      normalized.locale !== input.preferredLocale
+        ? user.preferredLocale
+        : normalized.locale
 
     const now = Temporal.Now.instant()
     // Same token resendVerification() sends, but without its cooldown: a link
@@ -509,12 +522,7 @@ export const authService = {
     } catch (error) {
       // Another request took the email or username between the checks above
       // and this write; the unique constraint doesn't say which.
-      if (
-        typeof error === "object" &&
-        error !== null &&
-        "code" in error &&
-        error.code == "P2002"
-      ) {
+      if (isUniqueConstraintError(error)) {
         throw new AppError(
           "An account with this email or username already exists",
           400,

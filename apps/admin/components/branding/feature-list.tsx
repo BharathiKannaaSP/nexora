@@ -1,5 +1,6 @@
-import { cn } from "@nexora/ui/lib/utils"
 import { ReactNode } from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
 
 export interface FeatureItemProps {
   id: string

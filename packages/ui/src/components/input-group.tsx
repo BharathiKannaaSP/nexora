@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import * as React from "react"
 
 import { Button } from "@nexora/ui/components/button"
 import { Input } from "@nexora/ui/components/input"

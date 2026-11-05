@@ -83,17 +83,6 @@ const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 // format. Here: letters, digits and common separators only.
 const TAX_ID_PATTERN = /^[A-Z0-9][A-Z0-9 ./-]{3,29}$/i
 
-/** Turns a name into a slug suggestion, e.g. "Acme Retail Ltd." → "acme-retail-ltd". */
-export const toOrganizationSlug = (name: string) =>
-  name
-    .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, ORGANIZATION_SLUG_MAX_LENGTH)
-    .replace(/-+$/, "")
-
 // ---------------------------------------------------------------------------
 // Messages
 // ---------------------------------------------------------------------------

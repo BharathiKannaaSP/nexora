@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import * as React from "react"
 
 // next-themes injects an inline script that applies the theme before paint.
 // Only the copy in the server HTML runs; marking client-rendered copies as a

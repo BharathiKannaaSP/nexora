@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto"
+
 import {
   CopyObjectCommand,
   DeleteObjectCommand,
@@ -8,29 +10,30 @@ import {
 } from "@aws-sdk/client-s3"
 import { getSignedUrl as getS3SignedUrl } from "@aws-sdk/s3-request-presigner"
 import { fileTypeFromBuffer } from "file-type"
-import { randomUUID } from "node:crypto"
+
+import {
+  EXTENSION_BY_MIME,
+  parseUploadKey,
+  UPLOAD_PURPOSES,
+  UPLOAD_RULES,
+  type CreateUploadInput,
+  type SignFileUrlInput,
+  type UploadPurpose,
+} from "@nexora/schemas/media/upload"
 import { AppError } from "@nexora/shared/express/app-error"
 import type {
   CompleteUploadResponseData,
   CreateUploadResponseData,
   FileUrlResponseData,
 } from "@nexora/shared/types/media"
-import {
-  EXTENSION_BY_MIME,
-  UPLOAD_PURPOSES,
-  UPLOAD_RULES,
-  parseUploadKey,
-  type CreateUploadInput,
-  type SignFileUrlInput,
-  type UploadPurpose,
-} from "@nexora/schemas/media/upload"
+
 import { env } from "../config/media-env"
-import { s3 } from "../lib/s3-client"
 import {
   canSignCloudFrontUrls,
   signCloudFrontUrl,
   windowedExpiry,
 } from "../lib/cloudfront"
+import { s3 } from "../lib/s3-client"
 
 // tmp/{userId}/{purpose}/{uuid}.{ext}, exactly as createUploadService builds it.
 const TMP_KEY = /^tmp\/([A-Za-z0-9_-]+)\/([a-z-]+)\/[0-9a-f-]{36}\.[a-z]+$/
@@ -79,7 +82,11 @@ const headSize = async (key: string) => {
     return head.ContentLength ?? 0
   } catch (error) {
     if (error instanceof NotFound) {
-      throw new AppError("File not found or expired", 404, "MEDIA.UPLOAD_NOT_FOUND")
+      throw new AppError(
+        "File not found or expired",
+        404,
+        "MEDIA.UPLOAD_NOT_FOUND"
+      )
     }
     throw error
   }

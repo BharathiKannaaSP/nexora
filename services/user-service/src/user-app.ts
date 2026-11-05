@@ -1,13 +1,15 @@
+import cookieParser from "cookie-parser"
+import cors from "cors"
 import express, { Express } from "express"
 import helmet from "helmet"
-import cors from "cors"
-import { env } from "./config/user-env"
-import cookieParser from "cookie-parser"
-import userRoutes from "./modules/user-routes"
+
 import {
   createErrorHandler,
   notFoundHandler,
 } from "@nexora/shared/express/error-handler"
+
+import { env } from "./config/user-env"
+import userRoutes from "./modules/user-routes"
 
 const app: Express = express()
 

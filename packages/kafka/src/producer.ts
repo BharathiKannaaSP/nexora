@@ -1,4 +1,5 @@
 import type { Producer } from "kafkajs"
+
 import { kafka } from "./client"
 
 let producer: Producer | undefined

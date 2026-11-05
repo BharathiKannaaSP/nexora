@@ -1,6 +1,7 @@
-import * as React from "react"
-import { CheckIcon } from "lucide-react"
 import { cn } from "cn"
+import { CheckIcon } from "lucide-react"
+import * as React from "react"
+
 import { useMobile, useWide } from "../hooks/use-mobile"
 
 type StepperOrientation = "horizontal" | "vertical"

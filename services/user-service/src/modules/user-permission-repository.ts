@@ -1,22 +1,33 @@
-import { KAFKA_TOPICS } from "@nexora/kafka"
-import type {
-  AdminAccessApprovedPayload,
-  UserPlatformPermissionsChangedPayload,
-} from "@nexora/schemas/events/permissions"
 import { Temporal } from "temporal-polyfill"
+
+import { KAFKA_TOPICS } from "@nexora/kafka"
+import {
+  platformPermissionKey,
+  type AdminAccessApprovedPayload,
+  type UserPlatformPermissionsChangedPayload,
+} from "@nexora/schemas/events/permissions"
+
 import { db } from "../prisma/user-db"
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
 
-const permissionKey = (p: {
-  countryCode: string
-  moduleCode: string
-  accessLevel: string
-}) => `${p.countryCode}:${p.moduleCode}:${p.accessLevel}`
-
 /** The user's platform (organizationId null) permissions. */
 const platformPermissions = (tx: Transaction, userId: string) =>
   tx.orm.public.UserPermission.where({ userId, organizationId: null }).all()
+
+/**
+ * The countries the user holds any platform permission in, lowercase like
+ * the /[country] URLs (permissions store them as "IN").
+ */
+export const getPlatformCountriesRepository = async (
+  userId: string
+): Promise<string[]> => {
+  const rows = await db.orm.public.UserPermission.where({
+    userId,
+    organizationId: null,
+  }).all()
+  return [...new Set(rows.map(({ countryCode }) => countryCode.toLowerCase()))]
+}
 
 /**
  * Queues user.platform-permissions.changed with ALL of the user's platform
@@ -60,12 +71,12 @@ export const grantAdminAccessRepository = async (
 ): Promise<number> => {
   return db.transaction(async (tx) => {
     const held = new Set(
-      (await platformPermissions(tx, event.userId)).map(permissionKey)
+      (await platformPermissions(tx, event.userId)).map(platformPermissionKey)
     )
 
     let added = 0
     for (const permission of event.permissions) {
-      const key = permissionKey(permission)
+      const key = platformPermissionKey(permission)
       if (held.has(key)) continue
       held.add(key)
 

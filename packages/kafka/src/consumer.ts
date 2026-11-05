@@ -1,4 +1,5 @@
 import { EachMessagePayload } from "kafkajs"
+
 import { kafka } from "./client"
 
 type EventHandler = (

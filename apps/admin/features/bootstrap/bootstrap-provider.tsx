@@ -1,7 +1,8 @@
 "use client"
 
-import type { CurrentUserOverviewResponseData } from "@nexora/shared/types/aggregate"
 import { createContext, use, type ReactNode } from "react"
+
+import type { CurrentUserOverviewResponseData } from "@nexora/shared/types/aggregate"
 
 const BootstrapContext = createContext<CurrentUserOverviewResponseData | null>(
   null

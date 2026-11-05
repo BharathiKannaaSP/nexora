@@ -1,4 +1,3 @@
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import {
@@ -7,6 +6,7 @@ import {
   OctagonXIcon,
   TriangleAlertIcon,
 } from "lucide-react"
+import * as React from "react"
 
 const bannerVariants = cva(
   "relative flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-sm [&>[data-slot=banner-icon]_svg]:pointer-events-none [&>[data-slot=banner-icon]_svg:not([class*='size-'])]:size-4",

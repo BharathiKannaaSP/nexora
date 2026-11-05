@@ -1,15 +1,18 @@
-import { VerifyEmailPageProps } from "@/app/[country]/[lang]/auth/verify-email/page"
-import { ResendVerification } from "./resend-verification"
-import {
-  Banner,
-  BannerTitle,
-  BannerDescription,
-} from "@nexora/ui/components/banner"
-import { Separator } from "@nexora/ui/components/separator"
 import { ArrowLeft } from "lucide-react"
 import { Locale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
+
+import {
+  Banner,
+  BannerDescription,
+  BannerTitle,
+} from "@nexora/ui/components/banner"
+import { Separator } from "@nexora/ui/components/separator"
+
+import { VerifyEmailPageProps } from "@/app/[country]/[lang]/auth/verify-email/page"
+
+import { ResendVerification } from "./resend-verification"
 import VerifyEmailStatus from "./verify-email-status"
 
 export const VerifyEmailContent = async ({

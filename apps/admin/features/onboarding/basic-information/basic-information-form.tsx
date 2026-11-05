@@ -1,16 +1,19 @@
 "use client"
 
-import type { BasicInformationFormValues as BasicInformationValues } from "@nexora/schemas/onboarding/basic-information"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+
+import type { BasicInformationFormValues as BasicInformationValues } from "@nexora/schemas/onboarding/basic-information"
+
 import { EntityForm } from "@/components/forms/entity-form"
 import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
 import { useApiToast } from "@/hooks/use-api-toast"
 import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
 import { updateMe } from "@/lib/api/auth/update-me"
 import { updateOnboardingStep } from "@/lib/api/auth/update-onboarding-step"
+
 import {
   createBasicInformationFormConfig,
   createBasicInformationFormSchema,

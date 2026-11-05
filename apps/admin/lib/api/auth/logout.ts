@@ -2,22 +2,22 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+
 import { REFRESH_COOKIE_NAME } from "@nexora/shared/constants/auth"
+import type { LogoutResponseData } from "@nexora/shared/types/auth"
+
 import {
   clearSessionCookies,
   refreshCookieHeader,
 } from "@/lib/api/auth/helpers/session-cookies"
 import {
   defaultCountry,
-  getCountryDefaultLanguage,
   isCountry,
-  isCountryLanguage,
-  isLocale,
   localizedPath,
+  resolveCountryLanguage,
 } from "@/lib/i18n/config"
-import type { ApiSuccessResponse } from "@nexora/shared/types/api"
-import type { LogoutResponseData } from "@nexora/shared/types/auth"
-import { api } from "../server"
+
+import { apiResult } from "../result"
 
 /** Revokes the session, clears the cookies and sends the browser to sign-in. */
 export async function logout(country: string, lang: string): Promise<never> {
@@ -25,15 +25,12 @@ export async function logout(country: string, lang: string): Promise<never> {
   const refreshToken = cookieStore.get(REFRESH_COOKIE_NAME)?.value
 
   // Signed out here even if revoking fails; the session then just expires.
-  await api
-    .post<ApiSuccessResponse<LogoutResponseData>>("/auth/logout", undefined, {
-      cache: "no-store",
-      authenticated: false,
-      headers: refreshToken
-        ? { Cookie: refreshCookieHeader(refreshToken) }
-        : undefined,
-    })
-    .catch(() => undefined)
+  await apiResult.post<LogoutResponseData>("/auth/logout", undefined, {
+    authenticated: false,
+    headers: refreshToken
+      ? { Cookie: refreshCookieHeader(refreshToken) }
+      : undefined,
+  })
 
   clearSessionCookies(cookieStore)
 
@@ -42,10 +39,11 @@ export async function logout(country: string, lang: string): Promise<never> {
   // this response, and that render's own redirect to sign-in loses the
   // language (it lands on the country default).
   const safeCountry = isCountry(country) ? country : defaultCountry
-  const locale =
-    isLocale(lang) && isCountryLanguage(safeCountry, lang)
-      ? lang
-      : getCountryDefaultLanguage(safeCountry)
-
-  redirect(localizedPath(safeCountry, locale, "/auth/sign-in"))
+  redirect(
+    localizedPath(
+      safeCountry,
+      resolveCountryLanguage(safeCountry, lang),
+      "/auth/sign-in"
+    )
+  )
 }

@@ -1,7 +1,7 @@
-import app from "./user-app"
 import { env } from "./config/user-env"
-import { startCreateUserProfileConsumer } from "./consumers/create-user-profile.consumer"
 import { startAdminAccessApprovedConsumer } from "./consumers/admin-access-approved.consumer"
+import { startCreateUserProfileConsumer } from "./consumers/create-user-profile.consumer"
+import app from "./user-app"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora User service running on", env.PORT)

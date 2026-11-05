@@ -1,7 +1,5 @@
-import type { Request, RequestHandler } from "express"
-import { asyncHandler } from "@nexora/shared/express/async-handler"
-import { sendSuccess } from "@nexora/shared/express/api-response"
-import { AppError } from "@nexora/shared/express/app-error"
+import type { RequestHandler } from "express"
+
 import {
   createUploadSchema,
   objectKeyInputSchema,
@@ -9,6 +7,10 @@ import {
   signFileUrlSchema,
   signFileUrlsSchema,
 } from "@nexora/schemas/media/upload"
+import { sendSuccess } from "@nexora/shared/express/api-response"
+import { asyncHandler } from "@nexora/shared/express/async-handler"
+import { requireUserId } from "@nexora/shared/express/require-user-id"
+
 import {
   completeUploadService,
   createUploadService,
@@ -18,16 +20,6 @@ import {
   signFileUrlService,
   signFileUrlsService,
 } from "./media-service"
-
-/** The user the gateway authenticated. */
-const requireUserId = (req: Request) => {
-  const userId = req.headers["x-user-id"]
-
-  if (typeof userId !== "string" || !userId) {
-    throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-  }
-  return userId
-}
 
 // Public routes
 
@@ -60,11 +52,7 @@ export const completeUpload: RequestHandler = asyncHandler(async (req, res) => {
 export const getOwnUploadUrl: RequestHandler = asyncHandler(
   async (req, res) => {
     const { key, fileName } = ownUploadUrlInputSchema.parse(req.query)
-    const data = await getOwnUploadUrlService(
-      requireUserId(req),
-      key,
-      fileName
-    )
+    const data = await getOwnUploadUrlService(requireUserId(req), key, fileName)
     return sendSuccess(
       res,
       200,

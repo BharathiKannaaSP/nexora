@@ -1,7 +1,7 @@
-import React from "react"
 import { getTranslations } from "next-intl/server"
-import { lang } from "next/root-params"
+
 import { LocaleParams, resolveLocaleParams } from "@/lib/i18n/locale-params"
+
 import { BrandLogo } from "../branding"
 import { LanguageSwitcher } from "./language-switcher"
 import { SignOutButton } from "./sign-out-button"

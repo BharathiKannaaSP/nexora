@@ -1,5 +1,10 @@
-import type { UserPlatformPermissionsChangedPayload } from "@nexora/schemas/events/permissions"
 import { Temporal } from "temporal-polyfill"
+
+import {
+  platformPermissionKey,
+  type UserPlatformPermissionsChangedPayload,
+} from "@nexora/schemas/events/permissions"
+
 import { db } from "../prisma/onboarding-db"
 
 /**
@@ -39,10 +44,7 @@ export const applyPlatformPermissionsSnapshotRepository = async (
 
     // A snapshot can list a permission twice; the table can't hold it twice.
     const unique = new Map(
-      snapshot.permissions.map((p) => [
-        `${p.countryCode}:${p.moduleCode}:${p.accessLevel}`,
-        p,
-      ])
+      snapshot.permissions.map((p) => [platformPermissionKey(p), p])
     )
     for (const permission of unique.values()) {
       await tx.orm.public.ReviewerPermission.create({

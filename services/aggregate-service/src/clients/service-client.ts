@@ -1,6 +1,7 @@
-import type { ApiErrorResponse } from "@nexora/shared/types/api"
-import { env } from "../config/aggregate-env"
 import { AppError } from "@nexora/shared/express/app-error"
+import type { ApiErrorResponse } from "@nexora/shared/types/api"
+
+import { env } from "../config/aggregate-env"
 
 type ServiceName = "auth" | "onboarding" | "user"
 

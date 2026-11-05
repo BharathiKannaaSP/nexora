@@ -1,6 +1,8 @@
-import { createBasicInformationSchema } from "@nexora/schemas/onboarding/basic-information"
 import { AtSign, CircleCheck, Lock, Mail, UserRound } from "lucide-react"
 import type { useTranslations } from "next-intl"
+
+import { createBasicInformationSchema } from "@nexora/schemas/onboarding/basic-information"
+
 import type { EntityFormConfig } from "@/components/forms/form-types"
 
 interface BasicInformationFormConfigOptions {

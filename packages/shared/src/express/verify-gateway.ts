@@ -1,5 +1,7 @@
-import type { NextFunction, Request, RequestHandler, Response } from "express"
 import { timingSafeEqual } from "crypto"
+
+import type { NextFunction, Request, RequestHandler, Response } from "express"
+
 import type { ApiErrorResponse } from "../types/api"
 
 const forbidden: ApiErrorResponse = {

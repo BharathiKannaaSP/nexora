@@ -1,24 +1,58 @@
 "use client"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+
 import {
   createSignUpSchema,
   type SignUpFormValues,
 } from "@nexora/schemas/auth/sign-up"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { SignUpForm } from "./sign-up-form"
-import { useForm } from "react-hook-form"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { register } from "@/lib/api/auth/register"
-import { useApiToast } from "@/hooks/use-api-toast"
-import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
-import { href } from "@/lib/i18n/config"
+
+import { AuthForm, type AuthFieldDef } from "@/components/auth/auth-form"
 import { markJustRegistered } from "@/features/auth/sign-in/registered-banner"
+import { useApiToast } from "@/hooks/use-api-toast"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
+import { register } from "@/lib/api/auth/register"
+import { href } from "@/lib/i18n/config"
+
+// First and last name share a row on wide screens; the rest span both.
+const signUpFields: AuthFieldDef<SignUpFormValues>[] = [
+  { name: "firstName", type: "text", autoComplete: "given-name" },
+  { name: "lastName", type: "text", autoComplete: "family-name" },
+  {
+    name: "userName",
+    type: "text",
+    autoComplete: "username",
+    className: "sm:col-span-2",
+  },
+  {
+    name: "email",
+    type: "email",
+    autoComplete: "email",
+    className: "sm:col-span-2",
+  },
+  {
+    name: "password",
+    type: "password",
+    autoComplete: "new-password",
+    className: "sm:col-span-2",
+  },
+  {
+    name: "confirmPassword",
+    type: "password",
+    autoComplete: "new-password",
+    className: "sm:col-span-2",
+  },
+]
 
 export const SignUpFormContainer = () => {
   const t = useTranslations("auth.signUp.form")
   const showApiToast = useApiToast()
   const router = useRouter()
-  const { country, lang } = useParams<{ country: string; lang: string }>()
+  const { country, lang } = useLocaleParams()
   const signUpSchema = createSignUpSchema({
     firstNameRequired: t("validation.firstNameRequired"),
     firstNameTooLong: t("validation.firstNameTooLong"),
@@ -58,9 +92,11 @@ export const SignUpFormContainer = () => {
   }
 
   return (
-    <SignUpForm
+    <AuthForm
       form={form}
       onSubmit={handleSignUp}
+      fields={signUpFields}
+      fieldsClassName="grid grid-cols-1 sm:grid-cols-2"
       labels={{
         firstName: t("fields.firstName"),
         lastName: t("fields.lastName"),

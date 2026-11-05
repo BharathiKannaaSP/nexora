@@ -1,12 +1,16 @@
 "use client"
 
-import { Button } from "@nexora/ui/components/button"
-import { LoaderCircle, RefreshCw } from "lucide-react"
+import { RefreshCw } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
-import { resendVerification } from "@/lib/api/auth/resend-verification"
-import { useApiToast } from "@/hooks/use-api-toast"
+
 import { VERIFICATION_RESEND_COOLDOWN_MS } from "@nexora/shared/constants/auth"
+import { Button } from "@nexora/ui/components/button"
+import { Spinner } from "@nexora/ui/components/spinner"
+
+import { useApiToast } from "@/hooks/use-api-toast"
+import { resendVerification } from "@/lib/api/auth/resend-verification"
+
 import {
   readPendingVerification,
   writePendingVerification,
@@ -71,7 +75,7 @@ export const ResendVerification = () => {
         onClick={handleResend}
       >
         {sending ? (
-          <LoaderCircle className="animate-spin" aria-hidden="true" />
+          <Spinner aria-hidden="true" />
         ) : (
           <RefreshCw aria-hidden="true" />
         )}

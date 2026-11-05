@@ -1,7 +1,12 @@
 "use client"
 
-import * as React from "react"
 import { cn } from "cn"
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react"
+import * as React from "react"
 import {
   DayPicker,
   getDefaultClassNames,
@@ -10,11 +15,6 @@ import {
 } from "react-day-picker"
 
 import { Button, buttonVariants } from "@nexora/ui/components/button"
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDownIcon,
-} from "lucide-react"
 
 function Calendar({
   className,

@@ -1,16 +1,17 @@
 "use server"
 
-import type { SignInFormValues } from "@nexora/schemas/auth/sign-in"
 import { cookies } from "next/headers"
+
+import type { SignInFormValues } from "@nexora/schemas/auth/sign-in"
+import type { SignInResponseData } from "@nexora/shared/types/auth"
+
 import {
   readRefreshCookie,
   writeSessionCookies,
   type RefreshCookie,
 } from "@/lib/api/auth/helpers/session-cookies"
-import type { ApiSuccessResponse } from "@nexora/shared/types/api"
-import type { SignInResponseData } from "@nexora/shared/types/auth"
-import { toApiResult, type ApiResult } from "../result"
-import { api } from "../server"
+
+import { apiResult, type ApiResult } from "../result"
 
 export interface LoginResponseData {
   user: SignInResponseData["user"]
@@ -21,14 +22,15 @@ export async function login(
 ): Promise<ApiResult<LoginResponseData>> {
   const issued: { refresh: RefreshCookie | null } = { refresh: null }
 
-  const result = await toApiResult(
-    api.post<ApiSuccessResponse<SignInResponseData>>("/auth/sign-in", values, {
-      cache: "no-store",
+  const result = await apiResult.post<SignInResponseData>(
+    "/auth/sign-in",
+    values,
+    {
       authenticated: false,
       onResponse: (response) => {
         issued.refresh = readRefreshCookie(response)
       },
-    })
+    }
   )
 
   if (!result.success) return result

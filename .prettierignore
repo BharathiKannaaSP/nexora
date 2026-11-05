@@ -5,3 +5,8 @@ node_modules/
 coverage/
 pnpm-lock.yaml
 .pnpm-store/
+# generated
+**/migrations/**
+**/src/prisma/contract.*
+**/*.d.json.ts
+next-env.d.ts

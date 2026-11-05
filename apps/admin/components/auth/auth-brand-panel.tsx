@@ -1,10 +1,12 @@
 import { ReactNode } from "react"
+
 import { cn } from "@nexora/ui/lib/utils"
+
 import {
-  FeatureItemProps,
-  FeatureList,
   BrandBackground,
   BrandLogo,
+  FeatureItemProps,
+  FeatureList,
 } from "@/components/branding"
 
 interface AuthBrandPanelProps {

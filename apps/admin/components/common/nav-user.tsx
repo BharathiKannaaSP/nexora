@@ -1,5 +1,8 @@
 "use client"
 
+import { EllipsisVertical, LogOut } from "lucide-react"
+import { useTranslations } from "next-intl"
+
 import {
   Avatar,
   AvatarFallback,
@@ -20,12 +23,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@nexora/ui/components/sidebar"
-import { EllipsisVertical, LogOut } from "lucide-react"
-import { useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
-import { useTransition } from "react"
+
 import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
-import { logout } from "@/lib/api/auth/logout"
+import { useSignOut } from "@/hooks/use-sign-out"
 
 const UserSummary = ({
   fullName,
@@ -51,11 +51,10 @@ const UserSummary = ({
 )
 
 export const NavUser = () => {
-  const { country, lang } = useParams<{ country: string; lang: string }>()
   const { account } = useBootstrap()
   const { isMobile } = useSidebar()
   const t = useTranslations("dashboard")
-  const [isPending, startTransition] = useTransition()
+  const { signOut, isPending } = useSignOut()
 
   const fullName = `${account.firstName} ${account.lastName}`.trim()
   const initials =
@@ -67,11 +66,6 @@ export const NavUser = () => {
       userName={account.userName}
     />
   )
-
-  const handleSignOut = () =>
-    startTransition(async () => {
-      await logout(country, lang)
-    })
 
   return (
     <SidebarMenu>
@@ -105,7 +99,7 @@ export const NavUser = () => {
             <DropdownMenuItem
               variant="destructive"
               disabled={isPending}
-              onClick={handleSignOut}
+              onClick={signOut}
             >
               <LogOut aria-hidden="true" />
               {t("userMenu.signOut")}

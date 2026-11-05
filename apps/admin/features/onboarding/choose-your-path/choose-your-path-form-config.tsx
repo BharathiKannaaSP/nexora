@@ -1,19 +1,22 @@
-import { createChooseYourPathSchema } from "@nexora/schemas/onboarding/choose-your-path"
-import { countryUsesPostalCode } from "@nexora/schemas/user-details/user-details-update"
 import {
   Building,
   Calendar,
   Clock,
   Globe,
-  Home,
   Pencil,
   Settings,
   UsersRound,
 } from "lucide-react"
-import type { Country } from "@nexora/shared/types/country"
 import type { useTranslations } from "next-intl"
+
+import { createChooseYourPathSchema } from "@nexora/schemas/onboarding/choose-your-path"
+import type { Country } from "@nexora/shared/types/country"
+
 import type { EntityFormConfig } from "@/components/forms/form-types"
 import { getCountryLanguages } from "@/lib/i18n/config"
+
+import { addressFields } from "../address-fields"
+import { toCountryOptions } from "../country-options"
 
 interface ChooseYourPathFormConfigOptions {
   t: ReturnType<typeof useTranslations<"onboarding">>
@@ -30,13 +33,6 @@ interface ChooseYourPathFormFieldOptions extends ChooseYourPathFormConfigOptions
   /** The page's language; country names are shown and sorted in it. */
   lang: string
   regionNames: Intl.DisplayNames
-}
-
-// One collator for the whole sort; localeCompare(…, lang) builds one per call.
-const byName = (lang: string) => {
-  const collator = new Intl.Collator(lang)
-  return (a: { name: string }, b: { name: string }) =>
-    collator.compare(a.name, b.name)
 }
 
 export const createChooseYourPathFormConfig = ({
@@ -109,15 +105,7 @@ export const createChooseYourPathFormConfig = ({
       required: true,
       defaultValue: urlCountry,
       description: countrySwitchNotice,
-      // e.g. "Inde" on /fr/fr; English when the runtime has no name.
-      options: countries
-        .map((country) => ({
-          value: country.code,
-          name: regionNames.of(country.code) ?? country.name,
-          flag: country.flag,
-        }))
-        .sort(byName(lang))
-        .map(({ value, name, flag }) => ({ value, label: `${flag} ${name}` })),
+      options: toCountryOptions(countries, { lang, regionNames }),
     },
     {
       name: "languageCode",
@@ -196,47 +184,7 @@ export const createChooseYourPathFormConfig = ({
       colSpan: 2,
       icon: Pencil,
     },
-    {
-      name: "addressLine1",
-      label: t("chooseYourPathForm.fields.addressLine1"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "address-line1" },
-    },
-    {
-      name: "addressLine2",
-      label: t("chooseYourPathForm.fields.addressLine2"),
-      type: "text",
-      icon: Home,
-      inputProps: { autoComplete: "address-line2" },
-    },
-    {
-      name: "city",
-      label: t("chooseYourPathForm.fields.city"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "address-level2" },
-    },
-    {
-      name: "state",
-      label: t("chooseYourPathForm.fields.state"),
-      type: "text",
-      required: true,
-      icon: Home,
-      inputProps: { autoComplete: "address-level1" },
-    },
-    {
-      name: "postalCode",
-      label: t("chooseYourPathForm.fields.postalCode"),
-      type: "text",
-      // Countries without postal codes (e.g. the UAE) may leave it blank.
-      required: !selectedCountry || countryUsesPostalCode(selectedCountry.code),
-      colSpan: 2,
-      icon: Home,
-      inputProps: { autoComplete: "postal-code" },
-    },
+    ...addressFields({ t, countryCode: selectedCountry?.code }),
   ],
 })
 

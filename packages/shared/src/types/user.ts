@@ -5,6 +5,12 @@ export type Gender = "MALE" | "FEMALE" | "OTHER" | "PREFER_NOT_TO_SAY"
 
 export type ProfileStatus = "INCOMPLETE" | "COMPLETE"
 
+/** GET /user/platform-countries */
+export interface PlatformCountriesResponseData {
+  /** Countries with any platform permission, lowercase, e.g. ["in"]. */
+  countries: string[]
+}
+
 /** GET /user/user-details, PUT /user/user-details */
 export interface UserDetailsResponseData {
   id: string

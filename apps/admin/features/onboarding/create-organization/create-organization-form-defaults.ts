@@ -1,3 +1,5 @@
+import type { DefaultValues } from "react-hook-form"
+
 import {
   ORGANIZATION_DOCUMENT_SLOTS,
   ORGANIZATION_INDUSTRIES,
@@ -10,14 +12,12 @@ import type {
   CreateOrganizationFormDetails,
   JsonValue,
 } from "@nexora/shared/types/onboarding"
-import type { DefaultValues } from "react-hook-form"
 
 /** `value` if it's one of `options`, else undefined (the field starts empty). */
 const oneOf = <T extends string>(
   options: readonly T[],
   value: string | null | undefined
-): T | undefined =>
-  options.includes(value as T) ? (value as T) : undefined
+): T | undefined => (options.includes(value as T) ? (value as T) : undefined)
 
 /** A string property of a JSON column, or "". */
 const textIn = (json: JsonValue | null | undefined, key: string): string => {

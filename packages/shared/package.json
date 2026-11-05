@@ -30,6 +30,7 @@
     "zod": "^4.6.5"
   },
   "exports": {
+    "./config/*": "./src/config/*.ts",
     "./constants/*": "./src/constants/*.ts",
     "./express/*": "./src/express/*.ts",
     "./types/*": "./src/types/*.ts"

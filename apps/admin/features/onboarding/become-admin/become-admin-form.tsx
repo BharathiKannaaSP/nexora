@@ -1,15 +1,17 @@
 "use client"
-import type { ApiResult } from "@/lib/api/result"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm, useWatch } from "react-hook-form"
+
+import type { BecomeAdminFormValues } from "@nexora/schemas/onboarding/become-admin"
+import type { Country } from "@nexora/shared/types/country"
 import type {
   AdminAccessRequest,
   BecomeAdminFormDetailsResponseData,
 } from "@nexora/shared/types/onboarding"
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
-import { useApiToast } from "@/hooks/use-api-toast"
-import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { useMemo, useState } from "react"
 import {
   AlertDialog,
   AlertDialogClose,
@@ -21,55 +23,34 @@ import {
 } from "@nexora/ui/components/alert-dialog"
 import { Button } from "@nexora/ui/components/button"
 import { Spinner } from "@nexora/ui/components/spinner"
+
+import { EntityForm } from "@/components/forms/entity-form"
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useApiToast } from "@/hooks/use-api-toast"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useRegionNames } from "@/hooks/use-region-names"
+import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
+import { submitBecomeAdminRequest } from "@/lib/api/onboarding/submit-become-admin-request"
+import type { ApiResult } from "@/lib/api/result"
+import { toCountryPermissions } from "@/lib/auth/permissions"
+
+import { usePreviousStep } from "../use-previous-step"
 import {
   createBecomeAdminFormConfig,
   createBecomeAdminFormSchema,
 } from "./become-admin-form-config"
-import { useForm, useWatch } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import type {
-  BecomeAdminFormValues,
-  PermissionAction,
-  PermissionModuleCode,
-} from "@nexora/schemas/onboarding/become-admin"
-import type { Country } from "@nexora/shared/types/country"
-import type { Country as PhoneCountry } from "react-phone-number-input"
-import { EntityForm } from "@/components/forms/entity-form"
-import { updateMe } from "@/lib/api/auth/update-me"
-import { submitBecomeAdminRequest } from "@/lib/api/onboarding/submit-become-admin-request"
-import { updateOnboardingStep } from "@/lib/api/auth/update-onboarding-step"
-import { updateUserDetails } from "@/lib/api/user-service/user-details-update"
-import {
-  ONBOARDING_PATHS,
-  ROLE_REQUIREMENTS_PATHS,
-} from "@/lib/bootstrap/bootstrap-path"
-import {
-  getCountryDefaultLanguage,
-  href,
-  isCountryLanguage,
-} from "@/lib/i18n/config"
-import { getBecomeAdminFormDetails } from "@/lib/api/onboarding/become-admin-get"
 
 /**
- * The countries and permissions of a saved request, in the form's shape:
- * one row per country, module and action becomes
- * { [country]: { [module]: action[] } }. The locked country is always ticked.
+ * The countries and permissions of a saved request, in the form's shape
+ * (see toCountryPermissions()). The locked country is always ticked.
  */
 const savedFormSelections = (
   savedRequest: AdminAccessRequest | null,
   lockedCountryCode: string | undefined
 ): Pick<BecomeAdminFormValues, "countries" | "permissions"> => {
-  const permissions: BecomeAdminFormValues["permissions"] = {}
-
-  for (const {
-    countryCode,
-    moduleCode,
-    accessLevel,
-  } of savedRequest?.requestedPermissions ?? []) {
-    const modules = (permissions[countryCode] ??= {})
-    const actions = (modules[moduleCode as PermissionModuleCode] ??= [])
-    actions.push(accessLevel as PermissionAction)
-  }
+  const permissions = toCountryPermissions(
+    savedRequest?.requestedPermissions ?? []
+  )
 
   const countries = [
     ...new Set([
@@ -96,11 +77,8 @@ const BecomeAdminForm = ({
   const showApiToast = useApiToast()
   const router = useRouter()
   const { user } = useBootstrap()
-
-  const { country: urlCountry, lang } = useParams<{
-    country: string
-    lang: string
-  }>()
+  const { lang } = useLocaleParams()
+  const handlePreviousStep = usePreviousStep("CHOOSE_PATH")
 
   const schema = createBecomeAdminFormSchema(t)
 
@@ -134,10 +112,7 @@ const BecomeAdminForm = ({
     name: "countries",
   })
 
-  const regionNames = useMemo(
-    () => new Intl.DisplayNames([lang], { type: "region" }),
-    [lang]
-  )
+  const regionNames = useRegionNames(lang)
 
   const config = createBecomeAdminFormConfig({
     t,
@@ -176,17 +151,6 @@ const BecomeAdminForm = ({
     // The request also moved onboarding to REVIEW; re-run the page's
     // BootstrapGuard so it sends the user there.
     router.refresh()
-  }
-
-  const handlePreviousStep = async () => {
-    const stepResult = await updateOnboardingStep({
-      step: "CHOOSE_PATH",
-    })
-    if (!stepResult.success) {
-      showApiToast(stepResult)
-      return
-    }
-    router.replace(href(urlCountry, lang, ONBOARDING_PATHS.CHOOSE_PATH))
   }
 
   return (

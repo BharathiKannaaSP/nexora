@@ -1,3 +1,9 @@
+import { Temporal } from "temporal-polyfill"
+
+import type {
+  PermissionAction,
+  PermissionModuleCode,
+} from "@nexora/schemas/onboarding/become-admin"
 import type {
   JsonValue,
   OnboardingPath,
@@ -5,13 +11,13 @@ import type {
   OnboardingStep,
   OrganizationDocumentType,
 } from "@nexora/shared/types/onboarding"
-import type {
-  PermissionAction,
-  PermissionModuleCode,
-} from "@nexora/schemas/onboarding/become-admin"
-import { Temporal } from "temporal-polyfill"
+
 import { db } from "../prisma/onboarding-db"
-import { approveFirstAdminRequest, assignReviewer } from "./request-assignment"
+import {
+  approveFirstAdminRequest,
+  assignReviewer,
+  noReviewerAvailable,
+} from "./request-assignment"
 
 export const initiateUserOnboarding = async (
   userId: string
@@ -159,6 +165,10 @@ export const saveAdminAccessRequestRepository = async (
           permissions: requestedPermissions,
         })
 
+    // Admins exist but none covers these countries: fail the submit (it
+    // rolls back) rather than save a request no one will review.
+    if (!assignment && !firstAdmin) throw noReviewerAvailable()
+
     return {
       onboarding: firstAdmin?.onboarding ?? movedOn,
       adminAccessRequest: {
@@ -298,7 +308,7 @@ export const saveOrganizationRequestRepository = async (
       )
     }
 
-    await assignReviewer(tx, {
+    const assignment = await assignReviewer(tx, {
       requestId: saved.id,
       requestType: request.type === "CREATE" ? "CREATE_ORG" : "JOIN_ORG",
       // CREATE: the new organization's country. JOIN: the organization's
@@ -309,6 +319,10 @@ export const saveOrganizationRequestRepository = async (
           : [],
       requesterUserId: onboarding.userId,
     })
+
+    // No one can review it: fail the submit (it rolls back) rather than
+    // save a request no one will see.
+    if (!assignment) throw noReviewerAvailable()
 
     return {
       onboarding: movedOn,

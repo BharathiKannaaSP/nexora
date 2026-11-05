@@ -63,7 +63,8 @@
       "SUCCESS": "تم إرسال طلب مؤسستك"
     },
     "ORGANIZATION_FILE_INVALID": "تعذّر استخدام أحد الملفات. يُرجى تحميله مرة أخرى",
-    "ORGANIZATION_FILE_DUPLICATE": "يمكن استخدام كل ملف مرة واحدة فقط"
+    "ORGANIZATION_FILE_DUPLICATE": "يمكن استخدام كل ملف مرة واحدة فقط",
+    "NO_REVIEWER_AVAILABLE": "لا يوجد مراجع متاح لهذا الطلب حاليًا. يُرجى المحاولة لاحقًا أو التواصل مع الدعم."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "نوع الملف هذا غير مسموح به",

@@ -1,1 +1,1 @@
-export { default } from "@nexora/ui/postcss.config";
+export { default } from "@nexora/ui/postcss.config"

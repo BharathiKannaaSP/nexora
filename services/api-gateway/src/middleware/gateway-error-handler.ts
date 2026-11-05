@@ -1,18 +1,12 @@
 import type {
+  ErrorRequestHandler,
   NextFunction,
   Request,
   Response,
-  ErrorRequestHandler,
 } from "express"
 
-export const notFoundHandler = (_req: Request, res: Response): void => {
-  res.status(404).json({
-    success: false,
-    message: "Route Not Found",
-    code: "ROUTE_NOT_FOUND",
-  })
-}
-
+// Unlike the services' createErrorHandler, never forwards error details:
+// they can name internal hosts and ports.
 export const errorHandler: ErrorRequestHandler = (
   err: unknown,
   _req: Request,

@@ -49,6 +49,22 @@ export function isCountryLanguage(country: string, lang: string) {
   return getCountryLanguages(country).some(({ code }) => code === lang)
 }
 
+/**
+ * The first of `candidates` that `country` offers, else its default
+ * language, e.g. the URL's language, then the user's preferred one.
+ */
+export function resolveCountryLanguage(
+  country: string,
+  ...candidates: (string | null | undefined)[]
+): Locale {
+  return (
+    candidates.find(
+      (lang): lang is Locale =>
+        !!lang && isLocale(lang) && isCountryLanguage(country, lang)
+    ) ?? getCountryDefaultLanguage(country)
+  )
+}
+
 export function localizedPath(country: string, lang: Locale, path = "/") {
   const normalizedPath = path === "/" ? "" : `/${path.replace(/^\/+/, "")}`
 

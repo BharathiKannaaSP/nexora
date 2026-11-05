@@ -1,5 +1,6 @@
+import { ReactNode, Suspense } from "react"
+
 import Header from "@/components/common/header"
-import OnboardingSidebar from "@/components/onboarding/onboarding-sidebar"
 import OnboardingStepper from "@/components/onboarding/onboarding-stepper"
 import { BootstrapProvider } from "@/features/bootstrap/bootstrap-provider"
 import { bootstrap } from "@/lib/api/bootstrap/helpers/bootstrap"
@@ -7,7 +8,6 @@ import {
   resolveLocaleParams,
   type LocaleParams,
 } from "@/lib/i18n/locale-params"
-import { ReactNode, Suspense } from "react"
 
 interface OnboardingLayoutProps {
   children: ReactNode
@@ -52,11 +52,6 @@ export const OnboardingLayout = async ({
         <main className="order-2 px-4 py-2 md:col-span-3 md:px-10 md:py-8">
           <div>{children}</div>
         </main>
-
-        {/* Sidebar */}
-        {/* <aside className="order-3 px-4 py-2 md:col-span-1 md:px-6 md:py-8">
-          <OnboardingSidebar />
-        </aside> */}
       </div>
     </div>
   )

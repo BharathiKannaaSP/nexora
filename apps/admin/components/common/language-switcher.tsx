@@ -1,7 +1,9 @@
 "use client"
 
-import { updateMe } from "@/lib/api/auth/update-me"
-import { getCountryLanguages, isLocale, type Locale } from "@/lib/i18n/config"
+import { useLocale, useTranslations } from "next-intl"
+import { usePathname, useRouter } from "next/navigation"
+import { useId } from "react"
+
 import { Label } from "@nexora/ui/components/label"
 import {
   Select,
@@ -11,9 +13,9 @@ import {
   SelectValue,
 } from "@nexora/ui/components/select"
 import { cn } from "@nexora/ui/lib/utils"
-import { useLocale, useTranslations } from "next-intl"
-import { usePathname, useRouter } from "next/navigation"
-import { useId } from "react"
+
+import { updateMe } from "@/lib/api/auth/update-me"
+import { getCountryLanguages, isLocale, type Locale } from "@/lib/i18n/config"
 
 export function LanguageSwitcher({ className }: { className?: string }) {
   const id = useId()
@@ -44,12 +46,13 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     nextSegments[2] = nextLocale
 
     // Saved on the account, so the next sign-in and later emails use it too.
-    // Auth pages are signed out. Saved together with the country, since the
-    // pair must be valid as a whole. A failure only costs that; the switch
-    // itself still happens.
+    // Auth pages are signed out. Only the language: the saved country is
+    // the user's own and must not follow a country they're just visiting
+    // (auth-service keeps the saved language if that country doesn't offer
+    // this one). A failure only costs that; the switch itself still happens.
     if (segments[3] !== "auth") {
       try {
-        await updateMe({ countryCode: country, preferredLocale: nextLocale })
+        await updateMe({ preferredLocale: nextLocale })
       } catch (error) {
         console.error(error)
       }

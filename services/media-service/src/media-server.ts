@@ -1,5 +1,5 @@
-import app from "./media-app"
 import { env } from "./config/media-env"
+import app from "./media-app"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora Media service running on", env.PORT)

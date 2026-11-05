@@ -1,17 +1,8 @@
 "use client"
 
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
-import {
-  ACTION_KEYS,
-  MODULE_ICONS,
-  MODULE_KEYS,
-} from "@/features/onboarding/become-admin/become-admin-form-config"
-import {
-  PERMISSION_ACTIONS,
-  PERMISSION_MODULES,
-  type PermissionAction,
-  type PermissionModuleCode,
-} from "@nexora/schemas/onboarding/become-admin"
+import { useFormatter, useTranslations } from "next-intl"
+import { useMemo, type ReactNode } from "react"
+
 import type { AdminAccessRequest } from "@nexora/shared/types/onboarding"
 import type { Gender } from "@nexora/shared/types/user"
 import {
@@ -20,9 +11,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@nexora/ui/components/card"
-import { useFormatter, useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
-import { useMemo, type ReactNode } from "react"
+
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import {
+  ACTION_KEYS,
+  MODULE_ICONS,
+  MODULE_KEYS,
+} from "@/features/onboarding/become-admin/become-admin-form-config"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useRegionNames } from "@/hooks/use-region-names"
+import {
+  toCountryPermissions,
+  toOrderedPermissions,
+} from "@/lib/auth/permissions"
 
 // Labels live in onboarding.json under chooseYourPathForm.genderOptions.
 const GENDER_KEYS = {
@@ -31,41 +32,6 @@ const GENDER_KEYS = {
   OTHER: "other",
   PREFER_NOT_TO_SAY: "preferNotToSay",
 } as const satisfies Record<Gender, string>
-
-/**
- * A request's permission rows grouped as { [country]: { [module]: action[] } },
- * with modules and actions in the order the form shows them.
- */
-const groupPermissions = (request: AdminAccessRequest) => {
-  const byCountry = new Map<
-    string,
-    Map<PermissionModuleCode, Set<PermissionAction>>
-  >()
-
-  for (const {
-    countryCode,
-    moduleCode,
-    accessLevel,
-  } of request.requestedPermissions) {
-    const modules = byCountry.get(countryCode) ?? new Map()
-    byCountry.set(countryCode, modules)
-    const actions = modules.get(moduleCode as PermissionModuleCode) ?? new Set()
-    modules.set(moduleCode as PermissionModuleCode, actions)
-    actions.add(accessLevel as PermissionAction)
-  }
-
-  return [...byCountry].map(([countryCode, modules]) => ({
-    countryCode,
-    modules: PERMISSION_MODULES.filter((code) => modules.has(code)).map(
-      (code) => ({
-        code,
-        actions: PERMISSION_ACTIONS.filter((action) =>
-          modules.get(code)?.has(action)
-        ),
-      })
-    ),
-  }))
-}
 
 const Section = ({
   title,
@@ -110,12 +76,9 @@ const SubmittedInformation = ({
   const t = useTranslations("onboarding")
   const format = useFormatter()
   const { account, user } = useBootstrap()
-  const { lang } = useParams<{ lang: string }>()
+  const { lang } = useLocaleParams()
 
-  const regionNames = useMemo(
-    () => new Intl.DisplayNames([lang], { type: "region" }),
-    [lang]
-  )
+  const regionNames = useRegionNames(lang)
   const languageNames = useMemo(
     () => new Intl.DisplayNames([lang], { type: "language" }),
     [lang]
@@ -217,51 +180,51 @@ const SubmittedInformation = ({
 
             <Section title={t("review.submittedInformation.permissions")}>
               <div className="flex flex-col gap-4">
-                {groupPermissions(adminAccessRequest).map(
-                  ({ countryCode, modules }) => (
-                    <div
-                      key={countryCode}
-                      className="flex flex-col gap-3 rounded-lg border p-4"
-                    >
-                      <p className="font-medium">
-                        {regionNames.of(countryCode) ?? countryCode}
-                      </p>
-                      <ul className="flex flex-col gap-3">
-                        {modules.map(({ code, actions }) => {
-                          const Icon = MODULE_ICONS[code]
-                          return (
-                            <li
-                              key={code}
-                              className="flex flex-wrap items-center justify-between gap-2"
-                            >
-                              <span className="flex items-center gap-2">
-                                <Icon
-                                  className="size-4 text-muted-foreground"
-                                  aria-hidden="true"
-                                />
-                                {t(
-                                  `becomeAdminForm.modules.${MODULE_KEYS[code]}.label`
-                                )}
-                              </span>
-                              <span className="flex flex-wrap gap-1.5">
-                                {actions.map((action) => (
-                                  <span
-                                    key={action}
-                                    className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
-                                  >
-                                    {t(
-                                      `becomeAdminForm.actions.${ACTION_KEYS[action]}`
-                                    )}
-                                  </span>
-                                ))}
-                              </span>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                    </div>
-                  )
-                )}
+                {toOrderedPermissions(
+                  toCountryPermissions(adminAccessRequest.requestedPermissions)
+                ).map(({ countryCode, modules }) => (
+                  <div
+                    key={countryCode}
+                    className="flex flex-col gap-3 rounded-lg border p-4"
+                  >
+                    <p className="font-medium">
+                      {regionNames.of(countryCode) ?? countryCode}
+                    </p>
+                    <ul className="flex flex-col gap-3">
+                      {modules.map(({ code, actions }) => {
+                        const Icon = MODULE_ICONS[code]
+                        return (
+                          <li
+                            key={code}
+                            className="flex flex-wrap items-center justify-between gap-2"
+                          >
+                            <span className="flex items-center gap-2">
+                              <Icon
+                                className="size-4 text-muted-foreground"
+                                aria-hidden="true"
+                              />
+                              {t(
+                                `becomeAdminForm.modules.${MODULE_KEYS[code]}.label`
+                              )}
+                            </span>
+                            <span className="flex flex-wrap gap-1.5">
+                              {actions.map((action) => (
+                                <span
+                                  key={action}
+                                  className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                                >
+                                  {t(
+                                    `becomeAdminForm.actions.${ACTION_KEYS[action]}`
+                                  )}
+                                </span>
+                              ))}
+                            </span>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </Section>
           </>

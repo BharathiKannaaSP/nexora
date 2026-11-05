@@ -1,6 +1,8 @@
+import { cookies, headers as requestHeaders } from "next/headers"
+
 import { ACCESS_COOKIE_NAME } from "@nexora/shared/constants/auth"
 import type { ApiErrorResponse, ApiFieldError } from "@nexora/shared/types/api"
-import { cookies, headers as requestHeaders } from "next/headers"
+
 import { getClientIp } from "./client-ip"
 
 type QueryValue = string | number | boolean | null | undefined
@@ -150,7 +152,7 @@ export async function apiServer<T = unknown>(
   return data as T
 }
 
-type MethodOptions = Omit<ApiServerOptions, "method" | "body">
+export type MethodOptions = Omit<ApiServerOptions, "method" | "body">
 
 /** Client for the API gateway, e.g. `api.post("/auth/register", body)`. */
 export const api = {

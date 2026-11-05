@@ -1,9 +1,8 @@
 "use server"
 
-import type { ApiSuccessResponse } from "@nexora/shared/types/api"
 import type { ObjectKeyResponseData } from "@nexora/shared/types/media"
-import { toApiResult, type ApiResult } from "../result"
-import { api } from "../server"
+
+import { apiResult, type ApiResult } from "../result"
 
 /**
  * Takes a saved logo or document off the user's create-organization request.
@@ -13,11 +12,8 @@ import { api } from "../server"
 export async function removeOrganizationRequestFile(
   key: string
 ): Promise<ApiResult<ObjectKeyResponseData>> {
-  return toApiResult(
-    api.post<ApiSuccessResponse<ObjectKeyResponseData>>(
-      "/onboarding/organization-request/remove-file",
-      { key },
-      { cache: "no-store" }
-    )
+  return apiResult.post<ObjectKeyResponseData>(
+    "/onboarding/organization-request/remove-file",
+    { key }
   )
 }

@@ -1,11 +1,12 @@
+import territoryInfo from "cldr-core/supplemental/territoryInfo.json" with { type: "json" }
+import { getCountry } from "countries-and-timezones"
 import {
   countries,
   getEmojiFlag,
   languages,
   type TCountryCode,
 } from "countries-list"
-import { getCountry } from "countries-and-timezones"
-import territoryInfo from "cldr-core/supplemental/territoryInfo.json" with { type: "json" }
+
 import type { Country, CountryLanguage } from "@nexora/shared/types/country"
 
 // Inhabited places countries-and-timezones leaves out. The uninhabited ones

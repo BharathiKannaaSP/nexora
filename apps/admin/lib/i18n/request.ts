@@ -1,4 +1,5 @@
 import { getRequestConfig } from "next-intl/server"
+
 import { isLocale } from "./config"
 import { loadMessages } from "./messages"
 

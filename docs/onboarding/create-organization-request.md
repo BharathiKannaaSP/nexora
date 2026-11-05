@@ -9,7 +9,7 @@ the form. onboarding-service checks they belong to the user and saves them.
 No service calls another, and there are no events.
 
 Storage, signing and the AWS setup are in
-[../aws/S3/media-service.md](../aws/S3/media-service.md).
+[../aws.md](../aws.md).
 
 ## Flow
 

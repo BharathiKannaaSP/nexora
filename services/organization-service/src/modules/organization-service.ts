@@ -1,4 +1,5 @@
 import { AppError } from "@nexora/shared/express/app-error"
+
 import {
   getActiveMembershipRepository,
   getMyOrganizationsRepository,

@@ -1,6 +1,6 @@
-import OnboardingReview from "@/features/onboarding/review/onboarding-review"
 import { onboardingMetadata } from "@/features/onboarding/onboarding-metadata"
 import { OnboardingPageGuard } from "@/features/onboarding/onboarding-page-guard"
+import OnboardingReview from "@/features/onboarding/review/onboarding-review"
 import { bootstrap } from "@/lib/api/bootstrap/helpers/bootstrap"
 import { getBecomeAdminFormDetails } from "@/lib/api/onboarding/become-admin-get"
 import {

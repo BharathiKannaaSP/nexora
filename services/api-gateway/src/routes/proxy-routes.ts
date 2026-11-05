@@ -1,7 +1,8 @@
 import { Router } from "express"
+
+import { env } from "../config/gateway-env"
 import { authenticate } from "../middleware/authenticate"
 import { createServiceProxy } from "./create-service-proxy"
-import { env } from "../config/gateway-env"
 
 const router: Router = Router()
 

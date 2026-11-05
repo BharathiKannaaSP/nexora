@@ -2,5 +2,11 @@
     "python.terminal.useEnvFile": true,
     // The Prisma extension's bundled language server lags the Prisma 8 RC CLI
     // (e.g. flags @onCreate as unsupported). Rely on `prisma contract emit`.
-    "prisma.enableDiagnostics": false
+    "prisma.enableDiagnostics": false,
+    // Prettier formats and sorts imports on save (see .prettierrc).
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
+    }
 }

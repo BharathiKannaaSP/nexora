@@ -1,5 +1,8 @@
+import { useTranslations } from "next-intl"
 import React from "react"
 import { Controller, FieldValues, Path, UseFormReturn } from "react-hook-form"
+import { Country } from "react-phone-number-input"
+
 import { Button } from "@nexora/ui/components/button"
 import {
   Card,
@@ -9,12 +12,11 @@ import {
   CardTitle,
 } from "@nexora/ui/components/card"
 import { FieldGroup } from "@nexora/ui/components/field"
-import { cn } from "@nexora/ui/lib/utils"
-import { RenderField } from "./render-field"
-import { EntityFormConfig } from "./form-types"
 import { Spinner } from "@nexora/ui/components/spinner"
-import { Country } from "react-phone-number-input"
-import { useTranslations } from "next-intl"
+import { cn } from "@nexora/ui/lib/utils"
+
+import { EntityFormConfig } from "./form-types"
+import { RenderField } from "./render-field"
 
 export type EntityFormAction = {
   key: string
@@ -27,16 +29,40 @@ export type EntityFormAction = {
   onClick?: () => void | Promise<void>
 }
 
-// "previous" and "previous" sit on the left of the footer, the rest on the right.
+// "previous" and "cancel" sit on the left of the footer, the rest on the right.
 const isLeftAction = (action: EntityFormAction) =>
-  action.key === "previous" || action.key === "previous"
+  action.key === "previous" || action.key === "cancel"
+
+/** A footer button; a submit one validates the form before calling onSubmit. */
+const ActionButton = ({
+  action,
+  onSubmit,
+}: {
+  action: EntityFormAction
+  onSubmit: () => void
+}) => {
+  const tCommon = useTranslations("common")
+
+  return (
+    <Button
+      type={action.type ?? "button"}
+      variant={action.variant ?? "default"}
+      disabled={action.disabled || action.loading}
+      onClick={action.type === "submit" ? onSubmit : action.onClick}
+    >
+      {action.loading ? (
+        <Spinner aria-label={tCommon("loading")} />
+      ) : (
+        action.label
+      )}
+    </Button>
+  )
+}
 
 interface EntityFormProps<TValues extends FieldValues> {
   form: UseFormReturn<TValues>
   config: EntityFormConfig
-  initialData?: Partial<TValues>
   onSubmit: (values: TValues) => Promise<void>
-  isSubmitting?: boolean
   actions?: EntityFormAction[]
   countryCode?: Country
   /** Shown after the sections, above the footer, e.g. an uploaded-files table. */
@@ -51,7 +77,6 @@ export function EntityForm<TValues extends FieldValues>({
   countryCode,
   children,
 }: EntityFormProps<TValues>) {
-  const tCommon = useTranslations("common")
   async function handleSubmit(values: TValues) {
     try {
       await onSubmit(values)
@@ -59,6 +84,14 @@ export function EntityForm<TValues extends FieldValues>({
       console.error(err)
     }
   }
+
+  const renderAction = (action: EntityFormAction) => (
+    <ActionButton
+      key={action.key}
+      action={action}
+      onSubmit={form.handleSubmit(handleSubmit)}
+    />
+  )
 
   function getField(name: string) {
     return config.fields.find((field) => field.name === name)
@@ -151,52 +184,13 @@ export function EntityForm<TValues extends FieldValues>({
       {/* FOOTER ACTIONS */}
       {actions.length > 0 && (
         <div className="sticky bottom-2 z-20 flex items-center justify-between rounded-2xl border bg-background/60 p-4 backdrop-blur">
-          {/* Left Actions */}
           <div className="flex items-center gap-3">
-            {actions.filter(isLeftAction).map((action) => (
-              <Button
-                key={action.key}
-                type={action.type ?? "button"}
-                variant={action.variant ?? "default"}
-                disabled={action.disabled || action.loading}
-                onClick={
-                  action.type === "submit"
-                    ? form.handleSubmit(handleSubmit)
-                    : action.onClick
-                }
-              >
-                {action.loading ? (
-                  <Spinner aria-label={tCommon("loading")} />
-                ) : (
-                  action.label
-                )}
-              </Button>
-            ))}
+            {actions.filter(isLeftAction).map(renderAction)}
           </div>
-
-          {/* Right Actions */}
           <div className="flex items-center gap-3">
             {actions
               .filter((action) => !isLeftAction(action))
-              .map((action) => (
-                <Button
-                  key={action.key}
-                  type={action.type ?? "button"}
-                  variant={action.variant ?? "default"}
-                  disabled={action.disabled || action.loading}
-                  onClick={
-                    action.type === "submit"
-                      ? form.handleSubmit(handleSubmit)
-                      : action.onClick
-                  }
-                >
-                  {action.loading ? (
-                    <Spinner aria-label={tCommon("loading")} />
-                  ) : (
-                    action.label
-                  )}
-                </Button>
-              ))}
+              .map(renderAction)}
           </div>
         </div>
       )}

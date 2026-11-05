@@ -1,4 +1,5 @@
 import { Kafka, logLevel } from "kafkajs"
+
 import { env } from "./config/kafka-env"
 
 const brokers = (env.KAFKA_BROKERS ?? "localhost:29092")

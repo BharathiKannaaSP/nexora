@@ -1,5 +1,10 @@
 "use client"
+
+import { useLocale } from "next-intl"
 import { ControllerRenderProps } from "react-hook-form"
+import PhoneInputInput, { Country } from "react-phone-number-input/input"
+
+import { DatePicker } from "@nexora/ui/components/date-picker"
 import {
   Field,
   FieldContent,
@@ -8,13 +13,13 @@ import {
   FieldLabel,
   FieldTitle,
 } from "@nexora/ui/components/field"
-import { Input } from "@nexora/ui/components/input"
-import { DatePicker } from "@nexora/ui/components/date-picker"
+import { Input, inputClassName } from "@nexora/ui/components/input"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@nexora/ui/components/input-group"
+import { RadioGroup, RadioGroupItem } from "@nexora/ui/components/radio-group"
 import {
   Select,
   SelectContent,
@@ -24,19 +29,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@nexora/ui/components/select"
-import { RadioGroup, RadioGroupItem } from "@nexora/ui/components/radio-group"
 import { Switch } from "@nexora/ui/components/switch"
 import { Textarea } from "@nexora/ui/components/textarea"
 import { cn } from "@nexora/ui/lib/utils"
-import { MultiSelectField } from "./multi-select"
+
 import { CheckboxGroupField } from "./checkbox-group"
 import { ComboboxField } from "./combobox"
-import { flattenSelectOptions } from "./form-utils"
-import { FieldConfig } from "./form-types"
-import PhoneInputInput, { Country } from "react-phone-number-input/input"
 import FileUpload from "./file-upload"
 import LinksInput from "./form-link-input"
-import { useLocale } from "next-intl"
+import { FieldConfig } from "./form-types"
+import {
+  flattenSelectOptions,
+  isOptionGroup,
+  isRegionGroup,
+} from "./form-utils"
+import { MultiSelectField } from "./multi-select"
 import { PermissionMatrixField } from "./permission-matrix"
 
 interface RenderFieldProps {
@@ -207,13 +214,10 @@ export function RenderField({
           <SelectContent>
             {fieldConfig.options?.map((option, index) => {
               // GROUPED OPTION
-              if (
-                typeof option === "object" &&
-                option !== null &&
-                "options" in option
-              ) {
-                const groupLabel =
-                  "region" in option ? option.region : option.label
+              if (isOptionGroup(option) || isRegionGroup(option)) {
+                const groupLabel = isRegionGroup(option)
+                  ? option.region
+                  : option.label
 
                 return (
                   <SelectGroup key={`${groupLabel}-${index}`}>
@@ -273,11 +277,7 @@ export function RenderField({
           className="flex w-full flex-col gap-3 lg:flex-row"
         >
           {fieldConfig.options?.map((option) => {
-            if (
-              typeof option === "object" &&
-              option !== null &&
-              "value" in option
-            ) {
+            if (!isOptionGroup(option) && !isRegionGroup(option)) {
               const id = `${fieldConfig.name}-${option.value}`
               const Icon = option.icon
 
@@ -345,9 +345,7 @@ export function RenderField({
           onChange={(value) => field.onChange(value ?? "")}
           disabled={fieldConfig.disabled}
           placeholder={fieldConfig.placeholder}
-          className={cn(
-            "h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40"
-          )}
+          className={inputClassName}
         />
       )}
 

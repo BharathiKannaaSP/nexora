@@ -1,24 +1,38 @@
 "use client"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { useForm } from "react-hook-form"
+
 import {
   createSignInSchema,
   type SignInFormValues,
 } from "@nexora/schemas/auth/sign-in"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { SignInForm } from "./sign-in-form"
-import { useForm } from "react-hook-form"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import { login } from "@/lib/api/auth/login"
-import { useApiToast } from "@/hooks/use-api-toast"
-import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
-import { href, isCountry, isCountryLanguage } from "@/lib/i18n/config"
+
+import { AuthForm, type AuthFieldDef } from "@/components/auth/auth-form"
 import { savePendingVerification } from "@/features/auth/verify-email/pending-verification"
+import { useApiToast } from "@/hooks/use-api-toast"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
+import { login } from "@/lib/api/auth/login"
+import { href, isCountry, isCountryLanguage } from "@/lib/i18n/config"
+
+const signInFields: AuthFieldDef<SignInFormValues>[] = [
+  {
+    name: "identifier",
+    type: "text",
+    autoComplete: "username",
+    inputProps: { autoCapitalize: "none", spellCheck: false },
+  },
+  { name: "password", type: "password", autoComplete: "current-password" },
+]
 
 export const SignInFormContainer = () => {
   const t = useTranslations("auth.signIn.form")
   const showApiToast = useApiToast()
   const router = useRouter()
-  const { country, lang } = useParams<{ country: string; lang: string }>()
+  const { country, lang } = useLocaleParams()
   const signInSchema = createSignInSchema({
     identifierRequired: t("validation.identifierRequired"),
     identifierTooLong: t("validation.identifierTooLong"),
@@ -65,9 +79,10 @@ export const SignInFormContainer = () => {
   }
 
   return (
-    <SignInForm
+    <AuthForm
       form={form}
       onSubmit={handleSignIn}
+      fields={signInFields}
       labels={{
         identifier: t("fields.identifier"),
         password: t("fields.password"),

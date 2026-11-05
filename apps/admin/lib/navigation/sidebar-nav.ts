@@ -8,7 +8,6 @@ import {
   Globe,
   Languages,
   LayoutDashboard,
-  type LucideIcon,
   Package,
   Settings,
   ShieldCheck,
@@ -17,7 +16,9 @@ import {
   UserCheck,
   UserCog,
   UsersRound,
+  type LucideIcon,
 } from "lucide-react"
+
 import {
   hasPermission,
   type CountryPermissions,

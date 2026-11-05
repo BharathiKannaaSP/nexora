@@ -1,11 +1,13 @@
 "use client"
+
+import { useTranslations } from "next-intl"
+import { useEffect, useState } from "react"
+
 import {
   Banner,
   BannerDescription,
   BannerTitle,
 } from "@nexora/ui/components/banner"
-import { useTranslations } from "next-intl"
-import { useEffect, useState } from "react"
 
 const REGISTERED_STORAGE_KEY = "nexora.justRegistered"
 const BANNER_VISIBLE_MS = 10_000 // 10 seconds

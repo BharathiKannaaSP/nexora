@@ -63,7 +63,8 @@
       "SUCCESS": "Ihre Organisationsanfrage wurde eingereicht"
     },
     "ORGANIZATION_FILE_INVALID": "Eine Datei konnte nicht verwendet werden. Bitte laden Sie sie erneut hoch",
-    "ORGANIZATION_FILE_DUPLICATE": "Jede Datei kann nur einmal verwendet werden"
+    "ORGANIZATION_FILE_DUPLICATE": "Jede Datei kann nur einmal verwendet werden",
+    "NO_REVIEWER_AVAILABLE": "Für diese Anfrage ist noch kein Prüfer verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dieser Dateityp ist nicht erlaubt",

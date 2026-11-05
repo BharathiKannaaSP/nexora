@@ -1,4 +1,12 @@
 import {
+  createColumnHelper,
+  tableFeatures,
+  useTable,
+} from "@tanstack/react-table"
+import { memo, useMemo } from "react"
+import { ControllerRenderProps } from "react-hook-form"
+
+import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -14,13 +22,7 @@ import {
   TableRow,
 } from "@nexora/ui/components/table"
 import { cn } from "@nexora/ui/lib/utils"
-import {
-  createColumnHelper,
-  tableFeatures,
-  useTable,
-} from "@tanstack/react-table"
-import { memo, useMemo } from "react"
-import { ControllerRenderProps } from "react-hook-form"
+
 import { FieldConfig, PermissionMatrixConfig, SelectOption } from "./form-types"
 
 type PermissionValue = Record<string, Record<string, string[]> | undefined>

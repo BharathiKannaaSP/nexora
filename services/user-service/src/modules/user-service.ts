@@ -1,5 +1,6 @@
-import { AppError } from "@nexora/shared/express/app-error"
 import type { UpdateUserDetailsInput } from "@nexora/schemas/user-details/user-details-update"
+import { AppError } from "@nexora/shared/express/app-error"
+
 import {
   createUserProfileRepository,
   getUserDetailsRepository,

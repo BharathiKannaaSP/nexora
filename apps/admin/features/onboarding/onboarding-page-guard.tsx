@@ -1,9 +1,11 @@
+import { Suspense, type ReactNode } from "react"
+
 import { BootstrapGuard } from "@/features/bootstrap/bootstrap-guard"
 import {
   resolveLocaleParams,
   type LocaleParams,
 } from "@/lib/i18n/locale-params"
-import { Suspense, type ReactNode } from "react"
+
 import { onboardingPages, type OnboardingPage } from "./onboarding-metadata"
 
 /**

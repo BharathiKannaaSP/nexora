@@ -1,27 +1,25 @@
 import { z } from "zod"
+
+import {
+  clientOriginsSchema,
+  internalSecretSchema,
+  nodeEnvSchema,
+  portSchema,
+} from "@nexora/shared/config/env"
+
 import "dotenv/config"
 
 const envSchema = z.object({
-  NODE_ENV: z
-    .enum(["development", "production", "test"])
-    .default("development"),
-  PORT: z.coerce.number().int().positive().default(4000),
-  AUTH_SERVICE_URL: z.string().url(),
-  AGGREGATE_SERVICE_URL: z.string().url(),
-  ONBOARDING_SERVICE_URL: z.string().url(),
-  USER_SERVICE_URL: z.string().url(),
-  ORGANIZATION_SERVICE_URL: z.string().url(),
-  MEDIA_SERVICE_URL: z.string().url(),
-  CLIENT_ORIGINS: z
-    .string()
-    .default("http://localhost:3001")
-    .transform((val) =>
-      val
-        .split(",")
-        .map((origin) => origin.trim())
-        .filter(Boolean)
-    ),
-  INTERNAL_SERVICE_SECRET: z.string().min(32),
+  NODE_ENV: nodeEnvSchema,
+  PORT: portSchema(4000),
+  AUTH_SERVICE_URL: z.url(),
+  AGGREGATE_SERVICE_URL: z.url(),
+  ONBOARDING_SERVICE_URL: z.url(),
+  USER_SERVICE_URL: z.url(),
+  ORGANIZATION_SERVICE_URL: z.url(),
+  MEDIA_SERVICE_URL: z.url(),
+  CLIENT_ORIGINS: clientOriginsSchema,
+  INTERNAL_SERVICE_SECRET: internalSecretSchema,
   JWT_ACCESS_SECRET: z.string().min(32),
   // Proxies whose X-Forwarded-For is trusted for the client IP (Express
   // "trust proxy"): the admin Next.js server, plus any load balancer in front.

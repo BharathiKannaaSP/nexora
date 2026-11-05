@@ -1,14 +1,18 @@
 import { z } from "zod"
+
+import {
+  internalSecretSchema,
+  nodeEnvSchema,
+  portSchema,
+} from "@nexora/shared/config/env"
+
 import "dotenv/config"
 
 const envSchema = z.object({
-  NODE_ENV: z
-    .enum(["development", "production", "test"])
-    .default("development"),
-  PORT: z.coerce.number().int().positive().default(4005),
-  // An empty secret would let any caller pass verifyGateway and set x-user-id.
-  // Also sent to downstream services, which check the same secret.
-  INTERNAL_SERVICE_SECRET: z.string().min(32),
+  NODE_ENV: nodeEnvSchema,
+  PORT: portSchema(4005),
+  // Sent to downstream services too, which check the same secret.
+  INTERNAL_SERVICE_SECRET: internalSecretSchema,
   AUTH_SERVICE_URL: z.url(),
   ONBOARDING_SERVICE_URL: z.url(),
   USER_SERVICE_URL: z.url(),

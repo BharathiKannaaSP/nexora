@@ -1,5 +1,6 @@
-import { cn } from "@nexora/ui/lib/utils"
 import { HTMLAttributes, ReactNode } from "react"
+
+import { cn } from "@nexora/ui/lib/utils"
 
 interface AuthFormPanelProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode

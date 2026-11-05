@@ -2,7 +2,20 @@
 
 Nexora is an admin portal for fashion businesses. This repository is a **pnpm + Turborepo monorepo** that holds the Next.js admin app, the backend microservices, and the shared packages they all use.
 
-What is built today is the **identity layer**: sign-up, email verification (delivered through a transactional outbox and Kafka), sign-in, silent session refresh with refresh-token rotation and reuse detection, the current-user endpoint, and sign-out, all localised for 7 countries and 11 languages.
+What is built today:
+
+- **Identity:** sign-up, email verification (transactional outbox → Kafka → email), sign-in, silent session refresh with refresh-token rotation and reuse detection, current user, sign-out.
+- **Onboarding:** basic information → choose a path (create an organization, join one, or become an admin) → path requirements → review, with request assignment to reviewers.
+- **Permissions:** country-scoped platform permissions granted when an admin request is approved, synchronised between services by events, and enforced per `/[country]` in the admin app.
+- **Media:** private S3 storage with presigned browser uploads and CloudFront signed delivery.
+- **i18n:** 20 countries and 16 languages, routed as `/[country]/[lang]/…`.
+
+| Document | Covers |
+| --- | --- |
+| This README | Architecture, setup, environment, rules, identity flows, API |
+| [docs/aws.md](docs/aws.md) | S3, CloudFront, IAM, media-service, upload rules |
+| [docs/prisma.md](docs/prisma.md) | Prisma 8 commands for every service database |
+| [docs/onboarding/create-organization-request.md](docs/onboarding/create-organization-request.md) | Create-organization request with logo and documents |
 
 ---
 
@@ -32,6 +45,7 @@ What is built today is the **identity layer**: sign-up, email verification (deli
 12. [Known limitations](#12-known-limitations)
 13. [Security design](#13-security-design)
 14. [UI components (shadcn/ui)](#14-ui-components-shadcnui)
+15. [Rules and conventions](#15-rules-and-conventions)
 
 ---
 
@@ -39,69 +53,75 @@ What is built today is the **identity layer**: sign-up, email verification (deli
 
 ```mermaid
 flowchart LR
-    subgraph Browser
-        B[User's browser]
+    B[Browser] -- "httpOnly cookies" --> A
+
+    subgraph A["apps/admin — Next.js :3001"]
+        PX[proxy.ts<br/>locale + session]
+        SA[Server Actions / RSC<br/>lib/api/*]
     end
 
-    subgraph Admin["apps/admin — Next.js 16 :3001"]
-        PX[proxy.ts<br/>locale routing + session refresh]
-        SA[Server Actions<br/>lib/api/auth/*]
-        RSC[Server Components]
-        API[apiServer<br/>lib/api/server.ts]
+    SA -- "REST, Bearer token,<br/>X-Forwarded-For" --> G
+
+    subgraph G["api-gateway :4000"]
+        RL[rate limits] --> AU[authenticate] --> PR[proxy<br/>+ x-internal-secret<br/>+ x-user-id]
     end
 
-    subgraph GW["services/api-gateway — Express :4000"]
-        RL[Rate limits<br/>300 / 20 per 15 min per IP]
-        AU[authenticate<br/>JWT verify, /me only]
-        PR[createServiceProxy<br/>adds x-internal-secret, x-user-id]
-    end
+    PR --> AUTH[auth-service :4001]
+    PR --> ONB[onboarding-service :4002]
+    PR --> USR[user-service :4003]
+    PR --> ORG[organization-service :4004]
+    PR --> AGG[aggregate-service :4005]
+    PR --> MED[media-service :4006]
 
-    subgraph AS["services/auth-service — Express :4001"]
-        VG[verifyGateway]
-        CT[auth-controller]
-        SV[auth-service]
-        RP[auth-repository]
-    end
+    AGG -- "fan-out /me" --> AUTH & USR & ONB
 
-    subgraph OW["auth-service outbox worker (separate process)"]
-        OP[outbox-publisher<br/>polls every 2 s]
-    end
+    AUTH --- DBA[(auth DB)]
+    ONB --- DBO[(onboarding DB)]
+    USR --- DBU[(user DB)]
+    ORG --- DBG[(organization DB)]
 
-    subgraph ES["services/email-service (Kafka consumer)"]
-        CN[verification-email.consumer]
-        DC[decryptToken]
-        TP[templates + Resend provider]
-    end
+    AUTH & ONB & USR -- "outbox worker" --> K[[Kafka]]
+    K --> EMAIL[email-service] --> RS[Resend]
+    K --> AUTH & ONB & USR
 
-    DB[(PostgreSQL<br/>User, EmailVerificationToken,<br/>RefreshSession, OutboxEvent)]
-    K[[Kafka<br/>topic: email.verification.requested]]
-    RS[Resend API]
-
-    B -- "HTTPS, httpOnly cookies" --> PX
-    B --> SA
-    PX --> API
-    SA --> API
-    RSC --> API
-    API -- "REST + X-Forwarded-For" --> RL --> AU --> PR
-    PR -- "x-internal-secret" --> VG --> CT --> SV --> RP --> DB
-    OP -- "poll PENDING rows" --> DB
-    OP -- "publish, acks=all" --> K
-    K --> CN --> DC --> TP --> RS
-    RS -. "verification email with link" .-> B
+    MED -- "presign / check" --> S3[(S3, private)]
+    B -- "PUT bytes / GET signed URL" --> S3
+    B -- "GET signed URL" --> CF[CloudFront] --> S3
 ```
 
-| Component | Tech | Responsibility |
+**Principles**
+
+- **One entry point.** The browser only talks to the Next.js server; the Next.js server only talks to the gateway. Every service rejects requests without the gateway's `x-internal-secret` (`verifyGateway`), and reads the caller from `x-user-id`, which only the gateway sets, after verifying the JWT.
+- **Database per service.** auth, onboarding, user and organization each own a Postgres database and Prisma 8 contract. No service reads another's tables.
+- **Events, not calls, for writes across services.** A service writes its change and an `OutboxEvent` row in one transaction; its outbox worker publishes to Kafka with retries; consumers in other services apply it idempotently. The only synchronous service-to-service call is aggregate-service's read fan-out.
+- **Contracts are shared code.** Request schemas live in `@nexora/schemas` and run in both the browser form and the service. Response types and constants live in `@nexora/shared`, so both sides of every API agree.
+
+| Component | Port | Responsibility |
 |---|---|---|
-| `apps/admin` | Next.js 16 (App Router, `cacheComponents`), React 19, next-intl, react-hook-form, Zod | UI, i18n routing, holds both tokens in **httpOnly cookies on its own origin**, talks to the gateway server-side only. |
-| `services/api-gateway` | Express 5, http-proxy-middleware, express-rate-limit, jsonwebtoken | Single entry point. Per-IP rate limits, access-token verification for protected routes, injects the internal secret and the verified user id. |
-| `services/auth-service` | Express 5, Prisma ORM 8 (Postgres), bcryptjs, jsonwebtoken | Users, passwords, verification tokens, refresh sessions. Writes outbox events in the same transaction as the data that caused them. |
-| auth-service **outbox worker** | Node process (`src/workers/auth-outbox-worker.ts`) | Polls `OutboxEvent` and publishes to Kafka with retry/backoff. |
-| `services/email-service` | kafkajs consumer, Resend | Decrypts the verification token, builds the localised link and email, sends it. |
-| `packages/kafka` | kafkajs | Shared Kafka client, lazily-connected singleton producer, consumer helper, topic names. |
-| `packages/schemas` | Zod | Request schemas shared by the admin forms and auth-service. |
-| `packages/shared` | TS constants | TTLs, cookie names, crypto format, outbox tuning, i18n constants. |
-| `packages/ui` | shadcn/ui, Tailwind v4 | Shared UI components. |
-| `infrastructure/kafka` | Docker Compose, `apache/kafka:4.1.1` (KRaft) | Local single-node Kafka on `localhost:29092`. |
+| `apps/admin` | 3001 | Next.js 16 (App Router, `cacheComponents`), React 19, next-intl, react-hook-form. UI, i18n routing, session cookies on its own origin, server-side calls to the gateway. |
+| `services/api-gateway` | 4000 | Express 5. Per-IP rate limits, JWT verification, proxying with the internal secret and verified user id. |
+| `services/auth-service` | 4001 | Users, passwords, verification tokens, refresh sessions, system roles, countries. Produces `email.verification.requested`, `initiate.user.onboarding`; consumes `onboarding.admin-access.approved`. |
+| `services/onboarding-service` | 4002 | Onboarding steps, become-admin and organization requests, request assignment, reviewer permissions. Produces `onboarding.admin-access.approved`; consumes `initiate.user.onboarding`, `user.platform-permissions.changed`. |
+| `services/user-service` | 4003 | User profile details and platform permissions. Produces `user.platform-permissions.changed`; consumes `initiate.user.onboarding`, `onboarding.admin-access.approved`. |
+| `services/organization-service` | 4004 | Organizations and memberships (read API; no events yet). |
+| `services/aggregate-service` | 4005 | `GET /aggregate/me`: one bootstrap response built from auth, user and onboarding, with a per-call timeout. No database. |
+| `services/media-service` | 4006 | S3 presigned uploads, file checks, CloudFront signed URLs. No database. See [docs/aws.md](docs/aws.md). |
+| `services/email-service` | — | Kafka consumer: decrypts the verification token, renders the localised email, sends it with Resend. |
+| `packages/kafka` | — | Kafka client, lazily connected producer, `startConsumer`, `KAFKA_TOPICS`. |
+| `packages/outbox` | — | `createOutboxPublisher`: claims, publishes and retries outbox rows. |
+| `packages/schemas` | — | Zod schemas for forms, requests and events. |
+| `packages/shared` | — | Constants, response types, env schema fragments, Express helpers (`asyncHandler`, `AppError`, `sendSuccess`, `createErrorHandler`, `createVerifyGateway`, `requireUserId`). |
+| `packages/ui` | — | shadcn/ui components and Tailwind v4 styles. |
+| `infrastructure/kafka` | 29092 | Local single-node Kafka (KRaft). |
+
+Kafka topics (`KAFKA_TOPICS`):
+
+| Topic | Producer | Consumers |
+|---|---|---|
+| `email.verification.requested` | auth | email |
+| `initiate.user.onboarding` | auth | onboarding, user |
+| `onboarding.admin-access.approved` | onboarding | user, auth |
+| `user.platform-permissions.changed` | user | onboarding |
 
 ---
 
@@ -109,41 +129,52 @@ flowchart LR
 
 ```
 nexora/
-├── apps/
-│   └── admin/                          Next.js admin portal (port 3001)
-│       ├── proxy.ts                    Next 16 "proxy" (formerly middleware): locale + session
-│       ├── app/[country]/[lang]/
-│       │   ├── layout.tsx              Root layout (html lang/dir, Intl + Theme providers)
-│       │   ├── error.tsx               Error boundary → translated backend code
-│       │   ├── (dashboard)/            Signed-in area (layout + page)
-│       │   └── auth/{sign-in,sign-up,verify-email}/page.tsx
-│       ├── features/                   Stateful client features (forms, verify flow, sign-out)
-│       ├── components/                 Presentational layout/branding components
-│       ├── hooks/use-api-toast.ts      Backend code → translated toast
-│       ├── lib/api/                    Server-side gateway client + auth server actions
-│       ├── lib/i18n/                   Countries/locales, next-intl request config
-│       └── locales/<lang>/{auth,codes,common,dashboard}.json
+├── apps/admin/                         Next.js admin portal (port 3001)
+│   ├── proxy.ts                        Next 16 "proxy" (formerly middleware): locale + session
+│   ├── app/[country]/[lang]/           Routes: (dashboard), auth/*, onboarding/*, error.tsx
+│   ├── features/                       Stateful features: auth, bootstrap, onboarding, permissions
+│   ├── components/                     Reusable UI: auth, branding, common, forms, onboarding
+│   ├── hooks/                          Client hooks (toasts, params, object URLs, …)
+│   ├── lib/api/                        Server-side gateway client and server actions, per service
+│   ├── lib/{auth,bootstrap,i18n,media,navigation}/
+│   └── locales/<lang>/{auth,codes,common,dashboard,onboarding}.json
 ├── services/
-│   ├── api-gateway/                    Express gateway (port 4000)
-│   ├── auth-service/                   Express auth API (port 4001) + outbox worker
-│   │   ├── src/modules/                routes → controller → service → repository
-│   │   ├── src/outbox/                 auth-outbox-publisher.ts
-│   │   ├── src/workers/                auth-outbox-worker.ts (entry point)
-│   │   ├── src/prisma/                 contract.prisma, generated contract, db client
-│   │   └── migrations/                 Prisma 8 migrations + snapshots
-│   └── email-service/                  Kafka consumer that sends emails
-│       └── src/{consumers,crypto,providers,templates,locales}
+│   ├── api-gateway/
+│   ├── aggregate-service/
+│   ├── auth-service/                   + outbox worker, migrations
+│   ├── email-service/
+│   ├── media-service/
+│   ├── onboarding-service/             + outbox worker, migrations
+│   ├── organization-service/           + outbox worker
+│   └── user-service/                   + outbox worker
 ├── packages/
-│   ├── kafka/  schemas/  shared/  ui/
-│   ├── eslint-config/  typescript-config/
-└── infrastructure/kafka/docker-compose.yml
+│   ├── kafka/  outbox/  schemas/  shared/  ui/
+│   └── eslint-config/  typescript-config/
+├── infrastructure/kafka/docker-compose.yml
+├── scripts/prisma.mjs                  Runs Prisma for every service (docs/prisma.md)
+├── docs/                               aws.md, prisma.md, onboarding/
+└── figma/                              Design references and sample upload files
 ```
 
-Layering inside **auth-service** is strict and one-directional:
+Every Express service has the same shape:
 
 ```
-auth-routes.ts  →  auth-controller.ts  →  auth-service.ts  →  auth-repository.ts  →  prisma/auth-db.ts
- (HTTP wiring)      (parse + respond)       (business rules)     (SQL + transactions)
+src/
+├── <name>-server.ts      listen + graceful shutdown (+ Kafka consumers)
+├── <name>-app.ts         helmet, cors, json(10kb), /health, routes, notFound, errorHandler
+├── config/<name>-env.ts  Zod env schema; the process refuses to boot on bad config
+├── modules/              <name>-routes → <name>-controller → <name>-service → <name>-repository
+├── consumers/            one file per Kafka topic: *.consumer.ts
+├── outbox/               <name>-outbox-publisher.ts (handlers per event type)
+├── workers/              <name>-outbox-worker.ts (separate process)
+└── prisma/               contract.prisma, generated contract, <name>-db.ts
+```
+
+Layering is strict and one-directional:
+
+```
+routes        →  controller         →  service          →  repository           →  prisma/*-db.ts
+(HTTP wiring)    (parse + respond)     (business rules)    (queries + transactions)
 ```
 
 ---
@@ -152,11 +183,12 @@ auth-routes.ts  →  auth-controller.ts  →  auth-service.ts  →  auth-reposit
 
 ### Prerequisites
 
-- Node.js ≥ 20.9 (auth-service loads `temporal-polyfill` because Node < 26.8.2 has no global `Temporal`)
+- Node.js ≥ 20.9 (services load `temporal-polyfill` because Node < 26.8.2 has no global `Temporal`)
 - pnpm 11 (`packageManager: pnpm@11.25.0`)
 - PostgreSQL ≥ 15
 - Docker (for local Kafka)
 - A [Resend](https://resend.com) API key
+- For uploads: AWS access as described in [docs/aws.md](docs/aws.md)
 
 ### Steps
 
@@ -167,95 +199,65 @@ pnpm install
 # 2. Start Kafka (KRaft, single node, plaintext on 127.0.0.1:29092)
 docker compose -f infrastructure/kafka/docker-compose.yml up -d
 
-# 3. Create .env files (see section 4). Generate the shared AES key once and
-#    put the SAME value in auth-service and email-service:
-openssl rand -base64 32          # TOKEN_ENCRYPTION_KEY
-openssl rand -base64 48          # INTERNAL_SERVICE_SECRET / JWT_ACCESS_SECRET (≥ 32 chars)
+# 3. Create the databases
+createdb nexora_auth && createdb nexora_onboarding && createdb nexora_user && createdb nexora_organization
 
-# 4. Apply database migrations
-pnpm --filter @nexora/auth-service prisma:db:migrate
+# 4. Create .env files (section 4). Generate the secrets once:
+openssl rand -base64 32          # TOKEN_ENCRYPTION_KEY (same in auth + email)
+openssl rand -base64 48          # INTERNAL_SERVICE_SECRET (same everywhere), JWT_ACCESS_SECRET (gateway + auth)
 
-# 5. Run everything
+# 5. Apply database migrations for every service
+pnpm prisma db migrate --advance-ref db
+
+# 6. Run everything
 pnpm dev
 ```
 
-`pnpm dev` runs `turbo dev`. Turbo is configured so `@nexora/auth-service#dev` also starts **`@nexora/auth-service#outbox:dev`** (the outbox worker) alongside it — you get two auth-service processes: the HTTP API and the publisher.
+`pnpm dev` runs `turbo dev`. For auth, onboarding, user and organization, turbo also starts the service's `outbox:dev` worker next to the HTTP server.
 
-| Process | Command | Port |
-|---|---|---|
-| Admin app | `next dev --port 3001` | 3001 |
-| API gateway | `tsx watch src/gateway-server.ts` | 4000 (default) |
-| Auth service | `tsx watch src/auth-server.ts` | 4001 (default) |
-| Outbox worker | `tsx watch src/workers/auth-outbox-worker.ts` | — |
-| Email service | `NODE_USE_SYSTEM_CA=1 tsx watch src/email-server.ts` | — |
+Health checks: `GET http://localhost:<port>/health` on every HTTP service.
 
-Health checks: `GET http://localhost:4000/health`, `GET http://localhost:4001/health`.
-
-### Other root scripts
+### Root scripts
 
 | Script | What it does |
 |---|---|
-| `pnpm build` | `turbo build` (admin build runs `i18n:check` first) |
-| `pnpm lint` | ESLint everywhere; admin also runs `i18n-check` against `locales/en` |
+| `pnpm dev` | Every app, service and outbox worker |
+| `pnpm build` | `turbo build` (admin runs `i18n:check` first) |
+| `pnpm lint` | ESLint everywhere; admin also checks locales against `locales/en` |
 | `pnpm typecheck` | `tsc --noEmit` everywhere (admin runs `next typegen` first) |
-| `pnpm format` | Prettier |
-
-Prisma (inside `services/auth-service`): `prisma:emit` (regenerate contract), `prisma:migration:plan`, `prisma:db:migrate`.
+| `pnpm format` | Prettier, including import sorting |
+| `pnpm prisma …` | Prisma for every service database; see [docs/prisma.md](docs/prisma.md) |
 
 ---
 
 ## 4. Environment variables
 
-Every service validates its environment with Zod at startup and **refuses to boot** if anything is missing or malformed.
+Every service validates its environment with Zod at startup (`src/config/*-env.ts`, built from `@nexora/shared/config/env`) and **refuses to boot** if anything is missing or malformed. `.env*` files are git-ignored.
 
-### `apps/admin/.env`
+Shared values:
 
-| Variable | Required | Notes |
+| Variable | Where | Rule |
 |---|---|---|
-| `API_GATEWAY` | yes | Base URL including the API prefix, e.g. `http://localhost:4000/api/v1`. The admin calls paths like `/auth/sign-in`. |
-| `NEXT_PUBLIC_SITE_URL` | no | Used for metadata (`metadataBase`). Default `http://localhost:3000`. |
+| `INTERNAL_SERVICE_SECRET` | gateway, aggregate, auth, media, onboarding, organization, user | Same value everywhere, ≥ 32 chars |
+| `JWT_ACCESS_SECRET` | gateway, auth | Same value, ≥ 32 chars |
+| `TOKEN_ENCRYPTION_KEY` | auth, email | Same value, base64 of exactly 32 bytes |
+| `CLIENT_ORIGINS` | gateway, auth, media, onboarding, organization, user | Comma-separated CORS list, default `http://localhost:3001` |
+| `KAFKA_BROKERS`, `KAFKA_CLIENT_ID` | every Kafka process | `localhost:29092`; read by `packages/kafka` |
+| `NODE_ENV`, `PORT` | every service | Defaults `development` and the port in section 1 |
 
-### `services/api-gateway/.env`
+Per service:
 
-| Variable | Default | Notes |
-|---|---|---|
-| `NODE_ENV` | `development` | |
-| `PORT` | `4000` | |
-| `AUTH_SERVICE_URL` | — | e.g. `http://localhost:4001` |
-| `CLIENT_ORIGINS` | `http://localhost:3001` | Comma-separated CORS allow-list. |
-| `INTERNAL_SERVICE_SECRET` | — | ≥ 32 chars. Must equal auth-service's. |
-| `JWT_ACCESS_SECRET` | — | ≥ 32 chars. Must equal auth-service's. |
-| `TRUST_PROXY` | `loopback` | Express `trust proxy`. Only these hops may set `X-Forwarded-For`. A number means "trust N hops". |
-
-### `services/auth-service/.env`
-
-| Variable | Default | Notes |
-|---|---|---|
-| `NODE_ENV` | `development` | Controls the `Secure` flag on the refresh cookie. |
-| `PORT` | `4001` | |
-| `AUTH_DATABASE_URL` | — | Postgres connection URL. |
-| `INTERNAL_SERVICE_SECRET` | — | ≥ 32 chars. |
-| `CLIENT_ORIGINS` | `http://localhost:3001` | |
-| `JWT_ACCESS_SECRET` | — | ≥ 32 chars, HS256 signing key. |
-| `TOKEN_ENCRYPTION_KEY` | — | **Base64 of exactly 32 bytes.** Shared with email-service. |
-| `KAFKA_BROKERS` | — | Comma-separated, e.g. `localhost:29092`. |
-| `KAFKA_CLIENT_ID` | — | |
-
-### `services/email-service/.env`
-
-| Variable | Default | Notes |
-|---|---|---|
-| `NODE_ENV` | `development` | |
-| `KAFKA_BROKERS` | — | |
-| `KAFKA_CLIENT_ID` | `nexora-email-service` | |
-| `KAFKA_GROUP_ID` | `nexora-email-service` | Consumer group. |
-| `TOKEN_ENCRYPTION_KEY` | — | Same value as auth-service. |
-| `FRONTEND_ADMIN_URL` | — | Base for the link, e.g. `http://localhost:3001`. |
-| `RESEND_API_KEY` | — | |
-| `EMAIL_FROM` | — | Sender address. |
-| `EMAIL_TO_OVERRIDE` | — | **Dev only.** Sends every email to this address (Resend test mode only delivers to the account owner). Startup throws if set in production. |
-
-`packages/kafka` reads `KAFKA_BROKERS` and `KAFKA_CLIENT_ID` from the environment of whichever process imports it.
+| File | Variables |
+|---|---|
+| `apps/admin/.env` | `API_GATEWAY` (e.g. `http://localhost:4000/api/v1`), `NEXT_PUBLIC_SITE_URL`, `MEDIA_UPLOAD_ORIGIN`, `MEDIA_CDN_ORIGIN` |
+| `services/api-gateway/.env` | `AUTH_SERVICE_URL`, `AGGREGATE_SERVICE_URL`, `ONBOARDING_SERVICE_URL`, `USER_SERVICE_URL`, `ORGANIZATION_SERVICE_URL`, `MEDIA_SERVICE_URL`, `TRUST_PROXY` (default `loopback`) |
+| `services/aggregate-service/.env` | `AUTH_SERVICE_URL`, `ONBOARDING_SERVICE_URL`, `USER_SERVICE_URL`, `SERVICE_TIMEOUT_MS` (default 3000) |
+| `services/auth-service/.env` | `AUTH_DATABASE_URL`, `KAFKA_GROUP_ID` (default `nexora-auth-service`) |
+| `services/onboarding-service/.env` | `ONBOARDING_DATABASE_URL`, `KAFKA_GROUP_ID` |
+| `services/user-service/.env` | `USER_DATABASE_URL`, `KAFKA_GROUP_ID` |
+| `services/organization-service/.env` | `ORGANIZATION_DATABASE_URL`, `KAFKA_GROUP_ID` |
+| `services/media-service/.env` | `AWS_REGION`, `S3_BUCKET`, `CLOUDFRONT_*`, TTLs; see [docs/aws.md](docs/aws.md#7-environment) |
+| `services/email-service/.env` | `FRONTEND_ADMIN_URL`, `RESEND_API_KEY`, `EMAIL_FROM`, `EMAIL_TO_OVERRIDE` (dev only; refused in production), `KAFKA_GROUP_ID` |
 
 ---
 
@@ -296,6 +298,8 @@ Header contract between hops:
 ---
 
 ## 6. Data model
+
+This section covers the auth-service database. Every other service keeps its own `src/prisma/contract.prisma`.
 
 Defined in [services/auth-service/src/prisma/contract.prisma](services/auth-service/src/prisma/contract.prisma) (Prisma ORM 8, ids are `cuid(2)`, timestamps are `Temporal.Instant`).
 
@@ -711,7 +715,7 @@ Details:
 - `REFRESH_BEFORE_EXPIRY_SECONDS = 10` refreshes slightly early, so the token is still valid when the request reaches the gateway.
 - One page load fires several requests at once (document, RSC payload, prefetches), all with the same refresh token. `refreshSession` keeps a per-process `Map<token, Promise>` for `REFRESH_SHARED_RESULT_MS = 10 s`, so they share **one** rotation. Requests that slip past the cache (other instances, late arrivals) are covered by the server's 10 s reuse grace window (next section).
 - `nextWithSession` rewrites the **incoming** request cookies so Server Components and Server Actions in the same request already see the new tokens, and it also sets them on the response for the browser.
-- In a Server Component, `requireCurrentUser(country, lang)` (React-`cache`d per request) calls `/me`. A 401/403/404 redirects to sign-in. Anything else (429, gateway down) throws an `ApiRenderError` whose `digest` carries the backend code to `error.tsx`, which shows it translated.
+- In a Server Component, `bootstrap(country, lang)` (`lib/api/bootstrap/helpers/bootstrap.ts`, React-`cache`d per request) calls `/aggregate/me` and passes the result through `unwrapOrRedirect`. A 401/403/404 redirects to sign-in. Anything else (429, gateway down) throws an `ApiRenderError` whose `digest` carries the backend code to `error.tsx`, which shows it translated.
 
 ### 7.7 Refresh-token rotation and reuse detection
 
@@ -814,7 +818,7 @@ The root layout prerenders every valid pair via `generateStaticParams`, sets `<h
 
 ## 8. HTTP API reference
 
-All routes go through the gateway at `/api/v1/auth/*` and are forwarded unchanged to auth-service. All bodies are JSON (max 10 kB at auth-service).
+The identity routes below go through the gateway at `/api/v1/auth/*` and are forwarded unchanged to auth-service. The other services' routes are listed in [15.4](#154-service-routes); media routes in [docs/aws.md](docs/aws.md#5-http-api). All bodies are JSON (max 10 kB at auth-service).
 
 | Method & path | Auth | Gateway limit | Body | Success |
 |---|---|---|---|---|
@@ -827,7 +831,7 @@ All routes go through the gateway at `/api/v1/auth/*` and are forwarded unchange
 | `GET /me` | `Bearer` access token | global | — | `200 AUTH.ME.SUCCESS` `{ user }` |
 | `GET /health` (both services) | — | global | — | `{ status: "ok", service, uptime }` |
 
-Rate limits (per visitor IP, 15-minute windows, `RateLimit` draft-8 headers): **global 300**, **strict 20** on sign-in, register, resend-verification and verify-email.
+Rate limits (per visitor IP, 15-minute windows, `RateLimit` draft-8 headers): **global 300**, **strict 200** on sign-in, register, resend-verification and verify-email.
 
 ---
 
@@ -997,7 +1001,7 @@ Entry point for the worker process. Loads `dotenv` and the Temporal polyfill, ru
 | `@nexora/kafka` `publishEvent(topic, key, event)` | `producer.send` with `acks: -1`, value `JSON.stringify(event)`. |
 | `@nexora/kafka` `disconnectKafkaProducer()` | Disconnects and resets the singleton. *(Exported, not yet called on shutdown.)* |
 | `@nexora/kafka` `startConsumer({ groupId, topic, handleEvent })` | Connect → subscribe (`fromBeginning: true`) → `run({ eachMessage })`. Rejects empty messages, `JSON.parse`s, calls the handler. Disconnects if subscribe/run fails. |
-| `@nexora/kafka` `KAFKA_TOPICS` | `{ EMAIL_VERIFICATION_REQUESTED: "email.verification.requested" }`. |
+| `@nexora/kafka` `KAFKA_TOPICS` | Topic names; see the table in [section 1](#1-architecture-at-a-glance). |
 | `@nexora/schemas/auth/sign-up` | `createSignUpSchema(messages)`, `signUpLocaleSchema`, `verifyEmailSchema`, `resendVerificationSchema` and their types. Schema factories take translated messages, so the same rules run in the browser form (localised) and on the server. |
 | `@nexora/schemas/auth/sign-in` | `createSignInSchema(messages)`, `SignInFormValues`. |
 | `@nexora/shared/constants/*` | See [section 11](#11-shared-constants). |
@@ -1011,11 +1015,13 @@ Entry point for the worker process. Loads `dotenv` and the Temporal polyfill, ru
 |---|---|
 | `server.ts` `apiServer(endpoint, options)` | Server-only `fetch` to `API_GATEWAY`: builds the URL and query, JSON-encodes the body, adds `Authorization` (when `accessToken` is given) and the visitor's `X-Forwarded-For`, calls `onResponse(raw)` (used to read `Set-Cookie`), parses JSON or text, and throws `ApiError` on non-2xx. |
 | `server.ts` `api.get/post/put/patch/delete` | Thin wrappers around `apiServer`. |
+| `result.ts` `apiResult.get/post/put/patch/delete` | `toApiResult(api.X(...))` with `cache: "no-store"`: what every server action in `lib/api/<service>/*` uses. |
 | `server.ts` `ApiError` | Carries `status`, backend `code` and `errors[]`. |
 | `result.ts` `toApiResult(promise)` | Turns a call into a serialisable `ApiResult` (`{ success, code, data }` or `{ success: false, code, status, errors }`) so server actions return instead of throwing. |
 | `client-ip.ts` `getClientIp(headers)` | Last `X-Forwarded-For` entry (added by the nearest trusted proxy), else `x-real-ip`. |
 | `render-error.ts` `ApiRenderError(code, status)` | Error with `digest = "API_ERROR;" + code`; Next keeps the digest in production, so the code reaches `error.tsx`. |
 | `render-error.ts` `getApiErrorCode(error)` | Reads the code back from the digest. |
+| `render-error.ts` `unwrapOrRedirect(result, country, lang)` | Returns the data, redirects to sign-in on a signed-out status, or throws `ApiRenderError`. |
 
 #### Auth server actions — `lib/api/auth/*`
 
@@ -1042,7 +1048,6 @@ Entry point for the worker process. Loads `dotenv` and the Temporal polyfill, ru
 | `proxy-session.ts` `resolveSession(request)` | Decides whether to refresh and returns `{ signedIn, update? }` (`update: null` means sign out). |
 | `proxy-session.ts` `nextWithSession(request, session)` | Rewrites request cookies for this render and sets the response cookies. |
 | `proxy-session.ts` `withSessionCookies(response, session)` | Applies an update or clear to any response (e.g. a redirect). |
-| `current-user.ts` `requireCurrentUser(country, lang)` | React-`cache`d per request. Returns the user, redirects to sign-in on 401/403/404, or throws `ApiRenderError`. *(Ready for dashboard pages; not used yet.)* |
 
 #### `proxy.ts` — `proxy(request)`
 Locale routing and session gate; see [7.6](#76-session-resolution-and-silent-refresh-proxyts) and [7.10](#710-locale-routing). The matcher skips `_next/` and any path with a file extension.
@@ -1063,13 +1068,20 @@ Locale routing and session gate; see [7.6](#76-session-resolution-and-silent-ref
 |---|---|
 | `features/auth/sign-up/sign-up-form-container.tsx` | Translated Zod schema + react-hook-form; calls `register`, toasts, maps field errors, redirects to sign-in with `?registered=1`. |
 | `features/auth/sign-in/sign-in-form-container.tsx` | Calls `login`; on `EMAIL_NOT_VERIFIED` (or an unverified user) saves the pending identifier and goes to verify-email; otherwise maps errors and clears the password, or goes to the dashboard. |
-| `features/auth/*/…-form.tsx`, `…-form-fields.tsx` | Presentational forms with accessible labels and error wiring. |
+| `components/auth/auth-form.tsx` `AuthForm` | Generic sign-in/sign-up form: renders an `AuthFieldDef[]` list with accessible labels and error wiring. |
+| `features/auth/auth-page.tsx` | `authMetadata(params, page)` and `AuthPageBrandPanel`, shared by the auth pages. |
 | `features/auth/verify-email/pending-verification.ts` | `savePendingVerification`, `writePendingVerification`, `readPendingVerification`, `clearPendingVerification` on `sessionStorage` key `nexora.pendingVerification` (fails quietly if storage is blocked). |
 | `features/auth/verify-email/verify-email-content.tsx` | Server component choosing between token verification, the verified state, and the "check your inbox + resend" state. |
 | `features/auth/verify-email/verify-email-status.tsx` | Client-side, once-only token verification; success, verifying and error UIs. |
 | `features/auth/verify-email/resend-verification.tsx` | Resend button with the cooldown countdown. |
-| `features/dashboard/sign-out-button.tsx` | Calls the `logout` action inside a transition. |
+| `components/common/sign-out-button.tsx`, `nav-user.tsx` | Sign out through `useSignOut()`. |
 | `hooks/use-api-toast.ts` `useApiToast()` | Turns an `ApiResult.code` into a translated toast. |
+| `hooks/use-code-message.ts` `useCodeMessage()` | Backend code → translated message, falling back to `UNKNOWN_ERROR`. |
+| `hooks/use-locale-params.ts` `useLocaleParams()` | `{ country, lang }` from the route. |
+| `hooks/use-region-names.ts` `useRegionNames(lang)` | Memoised `Intl.DisplayNames` for country names. |
+| `hooks/use-sign-out.ts` `useSignOut()` | `{ signOut, isPending }`. |
+| `features/onboarding/*` | `country-options.ts` (`toCountryOptions`, `findInitialCountry`), `address-fields.ts`, `use-previous-step.ts`, `onboarding-steps.ts`, one folder per step with `*-form.tsx` + `*-form-config.tsx`. |
+| `lib/i18n/config.ts` `resolveCountryLanguage(country, ...candidates)` | First candidate language the country supports, else its default. |
 | `app/[country]/[lang]/error.tsx` | Error boundary: shows the translated backend code from the digest with a Retry button. |
 | `components/auth/*`, `components/branding/*`, `components/common/language-switcher.tsx` | Auth page layouts, brand panel, logo, feature list, language switcher. |
 | `next.config.ts` | next-intl plugin (generates typed message declarations), security headers (CSP, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` so the verify token doesn't leak, Permissions-Policy, HSTS in production), `cacheComponents`, `partialPrefetching`, AVIF/WebP images. |
@@ -1155,3 +1167,71 @@ The component is placed in `packages/ui/src/components`. Import it from the `ui`
 ```tsx
 import { Button } from "@nexora/ui/components/button"
 ```
+
+---
+
+## 15. Rules and conventions
+
+These are the rules the codebase follows. Keep to them in new code; `pnpm format`, `pnpm lint` and `pnpm typecheck` enforce the mechanical ones.
+
+### 15.1 Formatting, imports and naming
+
+- **Prettier** (`.prettierrc`): no semicolons, double quotes, trailing commas (es5), 80 columns, LF. Tailwind classes are sorted by `prettier-plugin-tailwindcss`.
+- **Imports are sorted automatically** by `@ianvs/prettier-plugin-sort-imports`, in five groups separated by a blank line, alphabetical inside each group:
+
+  ```ts
+  import { randomUUID } from "node:crypto"          // 1. Node built-ins
+
+  import { z } from "zod"                           // 2. third-party packages
+
+  import { AppError } from "@nexora/shared/express/app-error"   // 3. workspace packages
+
+  import { useApiToast } from "@/hooks/use-api-toast"           // 4. admin app alias
+
+  import { env } from "../config/media-env"         // 5. relative
+  ```
+
+  `"use client"` / `"use server"` stay first. Side-effect imports (`import "dotenv/config"`, `import "temporal-polyfill/full/global"`) are never reordered; in entry files keep them at the very top. Prefer `import type` / inline `type` for type-only imports.
+- **Files and folders are kebab-case.** Suffixes say what a file is: `*-routes.ts`, `*-controller.ts`, `*-service.ts`, `*-repository.ts`, `*-env.ts`, `*.consumer.ts`, `*-outbox-publisher.ts`, `*-outbox-worker.ts`; in the admin app `*-form.tsx`, `*-form-config.tsx`, `use-*.ts` for hooks.
+- **Named exports** for helpers, hooks and components. Default exports only where a framework needs them (Next.js pages/layouts, Express routers).
+- Generated files (`migrations/`, `src/prisma/contract.*`, `locales/**/*.d.json.ts`) are never edited by hand and are excluded from Prettier.
+
+### 15.2 Backend services
+
+- Follow the layering in [section 2](#2-repository-layout): routes only wire middleware and handlers; controllers parse input with a `@nexora/schemas` schema and respond with `sendSuccess`; services hold the rules; repositories hold the queries.
+- Wrap every handler in `asyncHandler`. Throw `AppError(message, status, CODE)` for expected failures; let `createErrorHandler` turn Zod errors into 400s and everything else into a generic 500.
+- Read the caller with `requireUserId(req)` from `@nexora/shared/express/require-user-id`. Never trust a user id from the body or query.
+- Every router runs `createVerifyGateway(env.INTERNAL_SERVICE_SECRET)`.
+- Build env schemas from `@nexora/shared/config/env` (`nodeEnvSchema`, `portSchema`, `clientOriginsSchema`, `internalSecretSchema`, `csvListSchema`, `aes256KeySchema`).
+- Success and error `code`s are `UPPER_SNAKE` or `DOMAIN.ACTION.RESULT` (e.g. `AUTH.SIGN_IN.SUCCESS`, `MEDIA.FILE_TOO_LARGE`). Every code the admin app can show has a translation in `apps/admin/locales/*/codes.json`.
+- **Cross-service writes go through the outbox.** Write the change and the `OutboxEvent` in the same transaction; add a handler to the service's outbox publisher; name the topic in `KAFKA_TOPICS`; validate the payload with a schema in `@nexora/schemas/events/*`.
+- **Consumers are idempotent** (an event can arrive twice or late) and **never rename a consumer group id**: a new group starts from the beginning of the topic and replays every event.
+- Timestamps are `Temporal.Instant`; ids are `cuid(2)`.
+- Schema changes: edit `contract.prisma`, then `pnpm prisma migrate --name <snake_case>` ([docs/prisma.md](docs/prisma.md)).
+
+### 15.3 Admin app
+
+- The browser never calls the gateway. Data goes through server actions and Server Components in `lib/api/<service>/*`, which return an `ApiResult` instead of throwing.
+- Reuse before writing: UI primitives come from `@nexora/ui/components/*` (add new ones with shadcn, [section 14](#14-ui-components-shadcnui)); forms are built from a `*-form-config.tsx` rendered by `components/forms/entity-form.tsx`; shared hooks live in `hooks/`.
+- No hard-coded user-facing text: every string comes from `locales/<lang>/*.json` through next-intl, and `locales/en` is the source the i18n check compares against.
+- Build paths with `href` / `localizedPath` from `lib/i18n/config.ts`; never concatenate `/[country]/[lang]` by hand.
+- Files: follow [docs/aws.md § 9](docs/aws.md#9-showing-files-in-the-admin-app) (`unoptimized` images, sign on click, no signed URLs in `"use cache"`).
+- Validation runs twice from one schema: the form uses the `@nexora/schemas` factory with translated messages; the service runs the same rules.
+
+### 15.4 Service routes
+
+All paths are behind the gateway's `authenticate` except the public auth routes in [section 8](#8-http-api-reference).
+
+| Service | Routes (prefix `/api/v1`) |
+|---|---|
+| aggregate | `GET /aggregate/me` |
+| auth | `PATCH /auth/me/update`, public `GET /auth/countries` (plus section 8) |
+| onboarding | `GET /onboarding/onboardingDetails`, `PATCH /onboarding/step`, `POST /onboarding/become-admin-request`, `GET /onboarding/become-admin-request-details`, `POST /onboarding/organization-request`, `GET /onboarding/create-organization-form-details`, `POST /onboarding/organization-request/remove-file`, `GET /onboarding/admin-permissions` |
+| user | `GET /user/user-details`, `PUT /user/user-details`, `GET /user/platform-countries` |
+| organization | `GET /organization/my-organizations`, `GET /organization/:organizationId` |
+| media | see [docs/aws.md](docs/aws.md#5-http-api) |
+
+### 15.5 Documentation
+
+- One document per topic: this README for architecture and identity, [docs/aws.md](docs/aws.md) for everything AWS, [docs/prisma.md](docs/prisma.md) for databases, `docs/<feature>/*.md` for feature flows.
+- When you add a service, topic, env variable or route, update the tables in sections 1, 4 and 15.4 in the same change.

@@ -1,5 +1,7 @@
 import { createHash, randomBytes } from "node:crypto"
+
 import { REFRESH_TOKEN_TTL_MS } from "@nexora/shared/constants/auth"
+
 import { env } from "../../config/auth-env"
 
 export const generateRefreshToken = (): string => {

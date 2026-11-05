@@ -1,25 +1,20 @@
 import { z } from "zod"
+
+import {
+  aes256KeySchema,
+  csvListSchema,
+  nodeEnvSchema,
+} from "@nexora/shared/config/env"
+
 import "dotenv/config"
 
 const envSchema = z.object({
-  NODE_ENV: z
-    .enum(["development", "production", "test"])
-    .default("development"),
-  KAFKA_BROKERS: z.string().transform((val) =>
-    val
-      .split(",")
-      .map((broker) => broker.trim())
-      .filter(Boolean)
-  ),
+  NODE_ENV: nodeEnvSchema,
+  KAFKA_BROKERS: csvListSchema(),
   KAFKA_CLIENT_ID: z.string().default("nexora-email-service"),
   KAFKA_GROUP_ID: z.string().default("nexora-email-service"),
   // Shared with the auth service; base64-encoded 32-byte AES-256 key
-  TOKEN_ENCRYPTION_KEY: z
-    .string()
-    .transform((val) => Buffer.from(val, "base64"))
-    .refine((key) => key.length === 32, {
-      message: "TOKEN_ENCRYPTION_KEY must be a base64-encoded 32-byte key",
-    }),
+  TOKEN_ENCRYPTION_KEY: aes256KeySchema("TOKEN_ENCRYPTION_KEY"),
   FRONTEND_ADMIN_URL: z.url(),
   RESEND_API_KEY: z.string().min(1),
   EMAIL_FROM: z.string().email().or(z.string().min(1)),

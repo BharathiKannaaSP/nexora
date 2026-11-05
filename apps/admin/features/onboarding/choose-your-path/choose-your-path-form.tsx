@@ -1,33 +1,38 @@
 "use client"
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
-import { useApiToast } from "@/hooks/use-api-toast"
-import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
-import { useTranslations } from "next-intl"
-import { useParams, useRouter } from "next/navigation"
-import React, { useEffect, useMemo } from "react"
-import {
-  createChooseYourPathFormConfig,
-  createChooseYourPathFormSchema,
-} from "./choose-your-path-form-config"
-import { useForm, useWatch } from "react-hook-form"
+
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import { useForm, useWatch } from "react-hook-form"
+import type { Country as PhoneCountry } from "react-phone-number-input"
+
 import type { ChooseYourPathFormValues } from "@nexora/schemas/onboarding/choose-your-path"
 import type { Country } from "@nexora/shared/types/country"
-import type { Country as PhoneCountry } from "react-phone-number-input"
+
 import { EntityForm } from "@/components/forms/entity-form"
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useApiToast } from "@/hooks/use-api-toast"
+import { useLocaleParams } from "@/hooks/use-locale-params"
+import { useRegionNames } from "@/hooks/use-region-names"
+import { useServerFieldErrors } from "@/hooks/use-server-field-errors"
 import { updateMe } from "@/lib/api/auth/update-me"
 import { updateOnboardingStep } from "@/lib/api/auth/update-onboarding-step"
 import { updateUserDetails } from "@/lib/api/user-service/user-details-update"
-import {
-  ONBOARDING_PATHS,
-  ROLE_REQUIREMENTS_PATHS,
-} from "@/lib/bootstrap/bootstrap-path"
+import { ROLE_REQUIREMENTS_PATHS } from "@/lib/bootstrap/bootstrap-path"
 import {
   getCountryDefaultLanguage,
   href,
   isCountry,
-  isCountryLanguage,
+  resolveCountryLanguage,
 } from "@/lib/i18n/config"
+
+import { findInitialCountry } from "../country-options"
+import { usePreviousStep } from "../use-previous-step"
+import {
+  createChooseYourPathFormConfig,
+  createChooseYourPathFormSchema,
+} from "./choose-your-path-form-config"
 
 /**
  * The /country the app should move to for the picked bioCountry: one Nexora
@@ -49,23 +54,21 @@ const ChooseYourPathForm = ({ countries }: ChooseYourPathFormProps) => {
   const showApiToast = useApiToast()
   const router = useRouter()
   const { user, onboarding } = useBootstrap()
-  const { country: urlCountry, lang } = useParams<{
-    country: string
-    lang: string
-  }>()
+  const { country: urlCountry, lang } = useLocaleParams()
+  const handlePreviousStep = usePreviousStep("BASIC_INFORMATION")
 
   const schema = createChooseYourPathFormSchema(t)
 
   // A saved country wins if it can still be picked; otherwise start from the
-  // URL's (/fr → France), with its first time zone and default language, as
-  // if it had been picked. Uppercased because older profiles saved lowercase
-  // codes ("uy").
-  const savedCode = user?.bioCountry?.toUpperCase()
-  const savedCountry = countries.find(({ code }) => code === savedCode)
-  const hasSavedCountry = Boolean(savedCountry)
-  const initialCountry =
-    savedCountry ??
-    countries.find(({ code }) => code === urlCountry.toUpperCase())
+  // URL's, with its first time zone and default language, as if it had been
+  // picked.
+  const initialCountry = findInitialCountry(
+    countries,
+    user?.bioCountry,
+    urlCountry
+  )
+  const hasSavedCountry =
+    !!initialCountry && initialCountry.code === user?.bioCountry?.toUpperCase()
 
   const form = useForm<ChooseYourPathFormValues>({
     resolver: zodResolver(schema),
@@ -122,10 +125,7 @@ const ChooseYourPathForm = ({ countries }: ChooseYourPathFormProps) => {
   // page's language, e.g. "Inde" on /fr/fr.
 
   const countrySwitch = getCountrySwitch(bioCountry, urlCountry)
-  const regionNames = useMemo(
-    () => new Intl.DisplayNames([lang], { type: "region" }),
-    [lang]
-  )
+  const regionNames = useRegionNames(lang)
   const countrySwitchNotice = countrySwitch
     ? t("chooseYourPathForm.hints.countrySwitch", {
         current: regionNames.of(urlCountry.toUpperCase()) ?? urlCountry,
@@ -154,6 +154,32 @@ const ChooseYourPathForm = ({ countries }: ChooseYourPathFormProps) => {
       return
     }
 
+    // The app follows the picked country (when Nexora is offered there) and
+    // the picked language (when the app is translated into it for that
+    // country), e.g. /fr/en + India + Tamil → /in/ta. Otherwise the URL's
+    // language is kept if the country offers it (/fr/en → /in/en), or the
+    // country's default is used (/fr/fr → /in/en).
+    const targetCountry =
+      getCountrySwitch(values.bioCountry, urlCountry) ?? urlCountry
+    const targetLang = resolveCountryLanguage(
+      targetCountry,
+      values.languageCode,
+      lang
+    )
+
+    // Moving past this step locks the saved country (see isCountryLocked()),
+    // so it's saved first, always, even when the URL already matches: the
+    // saved one may still be the sign-up country. Without it the user would
+    // be sent back to the old country, so a failure stops here.
+    const preferenceResult = await updateMe({
+      countryCode: targetCountry,
+      preferredLocale: targetLang,
+    })
+    if (!preferenceResult.success) {
+      showApiToast(preferenceResult)
+      return
+    }
+
     // Saves the path and moves past this step in one call.
     const stepResult = await updateOnboardingStep({
       step: "ROLE_REQUIREMENTS",
@@ -164,51 +190,15 @@ const ChooseYourPathForm = ({ countries }: ChooseYourPathFormProps) => {
       return
     }
 
-    // The app follows the picked country (when Nexora is offered there) and
-    // the picked language (when the app is translated into it for that
-    // country), e.g. /fr/en + India + Tamil → /in/ta. Otherwise the URL's
-    // language is kept if the country offers it (/fr/en → /in/en), or the
-    // country's default is used (/fr/fr → /in/en).
-    const targetCountry =
-      getCountrySwitch(values.bioCountry, urlCountry) ?? urlCountry
-    const pickedLang = values.languageCode ?? ""
-    const targetLang = isCountryLanguage(targetCountry, pickedLang)
-      ? pickedLang
-      : isCountryLanguage(targetCountry, lang)
-        ? lang
-        : getCountryDefaultLanguage(targetCountry)
-
     if (targetCountry === urlCountry && targetLang === lang) {
       // Re-run the page's BootstrapGuard so it moves on once onboarding has.
       router.refresh()
       return
     }
 
-    // Saved on the account so the next sign-in opens there too. The profile
-    // and step are already saved, so a failure here only costs that.
-    const preferenceResult = await updateMe({
-      countryCode: targetCountry,
-      preferredLocale: targetLang,
-    })
-
-    if (!preferenceResult.success) {
-      showApiToast(preferenceResult)
-    }
-
     router.replace(
       href(targetCountry, targetLang, ROLE_REQUIREMENTS_PATHS[selectedPath])
     )
-  }
-
-  const handlePreviousStep = async () => {
-    const stepResult = await updateOnboardingStep({
-      step: "BASIC_INFORMATION",
-    })
-    if (!stepResult.success) {
-      showApiToast(stepResult)
-      return
-    }
-    router.replace(href(urlCountry, lang, ONBOARDING_PATHS.BASIC_INFORMATION))
   }
 
   return (

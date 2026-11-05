@@ -1,10 +1,10 @@
 import { z } from "zod"
+
 import {
   refineUserDetails,
   userDetailsObjectSchema,
   type UserDetailsUpdateValidationMessages,
 } from "../user-details/user-details-update"
-
 import { USER_ONBOARDING_SELECTED_PATHS } from "./update-step"
 
 export interface ChooseYourPathValidationMessages extends UserDetailsUpdateValidationMessages {

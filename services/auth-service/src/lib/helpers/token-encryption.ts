@@ -1,9 +1,11 @@
 import { createCipheriv, randomBytes } from "node:crypto"
+
 import {
   TOKEN_ENCRYPTION_ALGORITHM,
   TOKEN_ENCRYPTION_IV_BYTES,
   TOKEN_ENCRYPTION_VERSION,
 } from "@nexora/shared/constants/crypto"
+
 import { env } from "../../config/auth-env"
 
 /**

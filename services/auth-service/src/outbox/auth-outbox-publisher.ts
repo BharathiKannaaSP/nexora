@@ -1,5 +1,6 @@
 import { KAFKA_TOPICS } from "@nexora/kafka"
 import { createOutboxPublisher, type OutboxEventHandler } from "@nexora/outbox"
+
 import { db } from "../prisma/auth-db"
 
 const parseEmailVerificationPayload: OutboxEventHandler = (value) => {

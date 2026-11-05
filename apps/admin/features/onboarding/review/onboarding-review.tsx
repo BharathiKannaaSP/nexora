@@ -1,17 +1,5 @@
 "use client"
 
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
-import { useHydrated } from "@/hooks/use-hydrated"
-import type { AdminAccessRequest } from "@nexora/shared/types/onboarding"
-import { Banner } from "@nexora/ui/components/banner"
-import { Button } from "@nexora/ui/components/button"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@nexora/ui/components/card"
-import { cn } from "@nexora/ui/lib/utils"
 import {
   Activity,
   Bell,
@@ -26,18 +14,33 @@ import {
   FileText,
   FileX,
   Hash,
-  type LucideIcon,
   UserRound,
   UserRoundCheck,
   X,
+  type LucideIcon,
 } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"
 import { useId, useState, type ReactNode } from "react"
+
+import type { AdminAccessRequest } from "@nexora/shared/types/onboarding"
+import { Banner } from "@nexora/ui/components/banner"
+import { Button } from "@nexora/ui/components/button"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@nexora/ui/components/card"
+import { cn } from "@nexora/ui/lib/utils"
+
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useHydrated } from "@/hooks/use-hydrated"
+
 import {
   PATH_KEYS,
   reviewOutcome,
-  reviewStageState,
   reviewStages,
+  reviewStageState,
   type ReviewOutcome,
   type ReviewStageState,
 } from "./review-status"

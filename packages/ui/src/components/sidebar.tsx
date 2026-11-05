@@ -1,10 +1,12 @@
 "use client"
 
-import * as React from "react"
 import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { PanelLeftIcon } from "lucide-react"
+import * as React from "react"
+
 import { Button } from "@nexora/ui/components/button"
 import { Input } from "@nexora/ui/components/input"
 import { Separator } from "@nexora/ui/components/separator"
@@ -21,7 +23,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@nexora/ui/components/tooltip"
-import { PanelLeftIcon } from "lucide-react"
+
 import { useMobile } from "../hooks/use-mobile"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"

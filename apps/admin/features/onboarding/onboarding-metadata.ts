@@ -1,3 +1,6 @@
+import type { Metadata } from "next"
+import { getTranslations } from "next-intl/server"
+
 import {
   ONBOARDING_PATHS,
   ROLE_REQUIREMENTS_PATHS,
@@ -7,17 +10,8 @@ import {
   resolveLocaleParams,
   type LocaleParams,
 } from "@/lib/i18n/locale-params"
-import type { Metadata } from "next"
-import { getTranslations } from "next-intl/server"
 
-export const onboardingSteps = [
-  "basicInformation",
-  "choosePath",
-  "roleRequirements",
-  "review",
-] as const
-
-export type OnboardingStep = (typeof onboardingSteps)[number]
+import type { OnboardingStep } from "./onboarding-steps"
 
 export const onboardingPages = {
   basicInformation: {

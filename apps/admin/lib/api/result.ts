@@ -2,7 +2,8 @@ import type {
   ApiFieldError,
   ApiSuccessResponse,
 } from "@nexora/shared/types/api"
-import { ApiError } from "./server"
+
+import { api, ApiError, type MethodOptions } from "./server"
 
 /**
  * Serializable result returned from server actions. The client never reads
@@ -35,4 +36,35 @@ export async function toApiResult<T>(
     }
     return { success: false, code: "UNKNOWN_ERROR" }
   }
+}
+
+// Server actions read fresh data, so their requests skip the fetch cache.
+const fresh = (options?: MethodOptions): MethodOptions => ({
+  cache: "no-store",
+  ...options,
+})
+
+/**
+ * `api`, uncached and returning an ApiResult instead of throwing, e.g.
+ * `apiResult.post<RegisterResponseData>("/auth/register", body)`.
+ */
+export const apiResult = {
+  get: <T>(endpoint: string, options?: MethodOptions) =>
+    toApiResult(api.get<ApiSuccessResponse<T>>(endpoint, fresh(options))),
+
+  post: <T>(endpoint: string, body?: unknown, options?: MethodOptions) =>
+    toApiResult(
+      api.post<ApiSuccessResponse<T>>(endpoint, body, fresh(options))
+    ),
+
+  put: <T>(endpoint: string, body?: unknown, options?: MethodOptions) =>
+    toApiResult(api.put<ApiSuccessResponse<T>>(endpoint, body, fresh(options))),
+
+  patch: <T>(endpoint: string, body?: unknown, options?: MethodOptions) =>
+    toApiResult(
+      api.patch<ApiSuccessResponse<T>>(endpoint, body, fresh(options))
+    ),
+
+  delete: <T>(endpoint: string, options?: MethodOptions) =>
+    toApiResult(api.delete<ApiSuccessResponse<T>>(endpoint, fresh(options))),
 }

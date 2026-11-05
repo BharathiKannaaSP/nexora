@@ -1,6 +1,7 @@
 "use client"
 
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useTranslations } from "next-intl"
+
 import type { OnboardingStep } from "@nexora/shared/types/onboarding"
 import {
   Stepper,
@@ -11,14 +12,9 @@ import {
   StepperStep,
   StepperTitle,
 } from "@nexora/ui/components/stepper"
-import { useTranslations } from "next-intl"
 
-const steps = [
-  { value: 1, key: "basicInformation" },
-  { value: 2, key: "choosePath" },
-  { value: 3, key: "roleRequirements" },
-  { value: 4, key: "review" },
-] as const
+import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { onboardingSteps } from "@/features/onboarding/onboarding-steps"
 
 /**
  * Stepper value for each onboarding step; REJECTED and COMPLETED stay on the
@@ -45,18 +41,18 @@ const OnboardingStepper = () => {
         value={currentStep}
         role="list"
       >
-        {steps.map((step, index) => (
-          <StepperItem key={step.value} value={step.value} role="listitem">
+        {onboardingSteps.map((step, index) => (
+          <StepperItem key={step} value={index + 1} role="listitem">
             <StepperStep>
               <StepperIndicator aria-hidden="true" />
               <div className="flex flex-col gap-1">
-                <StepperTitle>{t(`${step.key}.title`)}</StepperTitle>
+                <StepperTitle>{t(`${step}.title`)}</StepperTitle>
                 <StepperDescription>
-                  {t(`${step.key}.description`)}
+                  {t(`${step}.description`)}
                 </StepperDescription>
               </div>
             </StepperStep>
-            {index < steps.length - 1 && <StepperConnector />}
+            {index < onboardingSteps.length - 1 && <StepperConnector />}
           </StepperItem>
         ))}
       </Stepper>

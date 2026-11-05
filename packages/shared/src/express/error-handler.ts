@@ -1,10 +1,11 @@
 import type {
+  ErrorRequestHandler,
   NextFunction,
   Request,
   Response,
-  ErrorRequestHandler,
 } from "express"
 import { ZodError } from "zod"
+
 import type { ApiErrorResponse } from "../types/api"
 import { AppError } from "./app-error"
 

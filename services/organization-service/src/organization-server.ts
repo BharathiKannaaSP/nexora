@@ -1,5 +1,5 @@
-import app from "./organization-app"
 import { env } from "./config/organization-env"
+import app from "./organization-app"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora Organization service running on", env.PORT)

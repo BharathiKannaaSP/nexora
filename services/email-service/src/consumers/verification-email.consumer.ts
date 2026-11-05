@@ -1,4 +1,5 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
+
 import { env } from "../config/email-env"
 import { decryptToken } from "../crypto/token-decryption"
 import { sendVerificationEmail } from "../providers/email-provider"

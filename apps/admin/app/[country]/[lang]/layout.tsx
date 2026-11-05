@@ -1,4 +1,14 @@
 import "@nexora/ui/globals.css"
+
+import type { Metadata, Viewport } from "next"
+import { getMessages, getTimeZone, getTranslations } from "next-intl/server"
+import { Geist, Geist_Mono } from "next/font/google"
+import { notFound } from "next/navigation"
+import type { ReactNode } from "react"
+
+import { Toaster } from "@nexora/ui/components/toast"
+import { cn } from "@nexora/ui/lib/utils"
+
 import {
   getDirection,
   isCountry,
@@ -9,13 +19,6 @@ import {
 import { siteMetadata, siteViewport } from "@/lib/metadata"
 import { IntlProvider } from "@/providers/intl-provider"
 import { ThemeProvider } from "@/providers/theme-provider"
-import { Toaster } from "@nexora/ui/components/toast"
-import { cn } from "@nexora/ui/lib/utils"
-import type { Metadata, Viewport } from "next"
-import { getMessages, getTimeZone, getTranslations } from "next-intl/server"
-import { Geist, Geist_Mono } from "next/font/google"
-import { notFound } from "next/navigation"
-import type { ReactNode } from "react"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 

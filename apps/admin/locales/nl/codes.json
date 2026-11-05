@@ -63,7 +63,8 @@
       "SUCCESS": "Uw organisatieaanvraag is ingediend"
     },
     "ORGANIZATION_FILE_INVALID": "Een bestand kon niet worden gebruikt. Upload het opnieuw",
-    "ORGANIZATION_FILE_DUPLICATE": "Elk bestand kan maar één keer worden gebruikt"
+    "ORGANIZATION_FILE_DUPLICATE": "Elk bestand kan maar één keer worden gebruikt",
+    "NO_REVIEWER_AVAILABLE": "Er is nog geen beoordelaar beschikbaar voor deze aanvraag. Probeer het later opnieuw of neem contact op met support."
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dit bestandstype is niet toegestaan",

@@ -1,5 +1,6 @@
-import { createOutboxPublisher, parseObjectPayload } from "@nexora/outbox"
 import { KAFKA_TOPICS } from "@nexora/kafka"
+import { createOutboxPublisher, parseObjectPayload } from "@nexora/outbox"
+
 import { db } from "../prisma/user-db"
 
 export const { publishPendingOutboxEvents, startOutboxPublisher } =

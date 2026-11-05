@@ -1,27 +1,19 @@
 "use client"
 
-import { Button } from "@nexora/ui/components/button"
 import { LogOut } from "lucide-react"
-import { useParams } from "next/navigation"
-import { useTransition } from "react"
-import { logout } from "@/lib/api/auth/logout"
-import { useTranslations } from "next-intl"
+
+import { Button } from "@nexora/ui/components/button"
+
+import { useSignOut } from "@/hooks/use-sign-out"
 
 export const SignOutButton = ({ label }: { label?: string }) => {
-  const { country, lang } = useParams<{ country: string; lang: string }>()
-  const [isPending, startTransition] = useTransition()
-  const t = useTranslations("dashboard")
-
-  const handleSignOut = () =>
-    startTransition(async () => {
-      await logout(country, lang)
-    })
+  const { signOut, isPending } = useSignOut()
 
   return (
     <Button
       variant="destructive"
       size="sm"
-      onClick={handleSignOut}
+      onClick={signOut}
       disabled={isPending}
       aria-label={label}
     >

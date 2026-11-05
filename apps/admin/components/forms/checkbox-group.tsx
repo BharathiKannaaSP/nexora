@@ -1,9 +1,11 @@
-import { Checkbox } from "@nexora/ui/components/checkbox"
-import { cn } from "@nexora/ui/lib/utils"
 import { memo, useMemo } from "react"
 import { ControllerRenderProps } from "react-hook-form"
-import { flattenSelectOptions } from "./form-utils"
+
+import { Checkbox } from "@nexora/ui/components/checkbox"
+import { cn } from "@nexora/ui/lib/utils"
+
 import { FieldConfig } from "./form-types"
+import { flattenSelectOptions } from "./form-utils"
 
 /**
  * A card per option; the value is the ticked options' values, in the order

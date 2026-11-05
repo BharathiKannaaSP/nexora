@@ -1,5 +1,10 @@
 "use client"
 
+import { useTranslations } from "next-intl"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useMemo } from "react"
+
 import {
   Sidebar,
   SidebarContent,
@@ -13,15 +18,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@nexora/ui/components/sidebar"
-import { useTranslations } from "next-intl"
-import Link from "next/link"
-import { useParams, usePathname } from "next/navigation"
-import { useMemo } from "react"
+
 import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
+import { useLocaleParams } from "@/hooks/use-locale-params"
 import type { CountryPermissions } from "@/lib/auth/permissions"
 import { DASHBOARD_PATH } from "@/lib/bootstrap/bootstrap-path"
 import { href } from "@/lib/i18n/config"
 import { getSidebarNav } from "@/lib/navigation/sidebar-nav"
+
 import { BrandLogo } from "../branding"
 import { NavUser } from "./nav-user"
 
@@ -31,7 +35,7 @@ interface AppSidebarProps {
 }
 
 export const AppSidebar = ({ permissions = {} }: AppSidebarProps) => {
-  const { country, lang } = useParams<{ country: string; lang: string }>()
+  const { country, lang } = useLocaleParams()
   const pathname = usePathname()
   const { account } = useBootstrap()
   const t = useTranslations("dashboard")

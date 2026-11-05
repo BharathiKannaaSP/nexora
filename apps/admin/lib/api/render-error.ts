@@ -1,4 +1,11 @@
+import { redirect } from "next/navigation"
+
 import { API_ERROR_DIGEST_PREFIX } from "@nexora/shared/constants/api"
+import { SIGNED_OUT_STATUSES } from "@nexora/shared/constants/auth"
+
+import { href } from "@/lib/i18n/config"
+
+import type { ApiResult } from "./result"
 
 /**
  * An error for Server Components to throw when the gateway fails. Next hides
@@ -25,4 +32,25 @@ export const getApiErrorCode = (error: unknown): string | undefined => {
   if (typeof digest !== "string" || !digest.startsWith(API_ERROR_DIGEST_PREFIX))
     return
   return digest.slice(API_ERROR_DIGEST_PREFIX.length)
+}
+
+/**
+ * A result's data, for Server Components. Sends the browser to sign-in if the
+ * gateway rejected the session; proxy.ts clears the stale cookies on the next
+ * request. Any other failure (rate limited, gateway down, ...) says nothing
+ * about the session, so signing the user out would hide it; it's thrown for
+ * error.tsx to toast instead.
+ */
+export const unwrapOrRedirect = <T>(
+  result: ApiResult<T>,
+  country: string,
+  lang: string
+): T => {
+  if (result.success) return result.data
+
+  if (result.status !== undefined && SIGNED_OUT_STATUSES.has(result.status)) {
+    redirect(href(country, lang, "/auth/sign-in"))
+  }
+
+  throw new ApiRenderError(result.code, result.status)
 }

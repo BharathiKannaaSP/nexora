@@ -1,5 +1,6 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
 import { adminAccessApprovedEventSchema } from "@nexora/schemas/events/permissions"
+
 import { env } from "../config/auth-env"
 import { promoteToAdminRepository } from "../modules/system-role-repository"
 

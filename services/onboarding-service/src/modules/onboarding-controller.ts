@@ -1,9 +1,15 @@
+import { Request, RequestHandler, Response } from "express"
+
+import { objectKeyInputSchema } from "@nexora/schemas/media/upload"
+import { createBecomeAdminSchema } from "@nexora/schemas/onboarding/become-admin"
+import { createCreateOrganizationRequestSchema } from "@nexora/schemas/onboarding/create-organization"
+import { createJoinOrganizationRequestSchema } from "@nexora/schemas/onboarding/join-organization"
+import { updateOnboardingStepSchema } from "@nexora/schemas/onboarding/update-step"
 import { sendSuccess } from "@nexora/shared/express/api-response"
 import { AppError } from "@nexora/shared/express/app-error"
 import { asyncHandler } from "@nexora/shared/express/async-handler"
-import { createBecomeAdminSchema } from "@nexora/schemas/onboarding/become-admin"
-import { updateOnboardingStepSchema } from "@nexora/schemas/onboarding/update-step"
-import { Request, Response, RequestHandler } from "express"
+import { requireUserId } from "@nexora/shared/express/require-user-id"
+
 import {
   getAdminPermissionsService,
   getBecomeAdminFormDetailsService,
@@ -14,17 +20,10 @@ import {
   submitOrganizationRequestService,
   updateOnboardingStepService,
 } from "./onboarding-service"
-import { createCreateOrganizationRequestSchema } from "@nexora/schemas/onboarding/create-organization"
-import { createJoinOrganizationRequestSchema } from "@nexora/schemas/onboarding/join-organization"
-import { objectKeyInputSchema } from "@nexora/schemas/media/upload"
 
 export const onboardingDetails: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const onboardingDetails = await getOnboardingDetailsService(userId)
 
@@ -40,11 +39,7 @@ export const onboardingDetails: RequestHandler = asyncHandler(
 
 export const updateOnboardingStep: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const input = updateOnboardingStepSchema.parse(req.body)
     const data = await updateOnboardingStepService(userId, input)
@@ -61,11 +56,7 @@ export const updateOnboardingStep: RequestHandler = asyncHandler(
 
 export const submitBecomeAdminRequest: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     // Validation messages are the client's; the service only needs the rules.
     const becomeAdminSchema = createBecomeAdminSchema(
@@ -86,14 +77,10 @@ export const submitBecomeAdminRequest: RequestHandler = asyncHandler(
 
 export const submitOrganizationRequest: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
+    const userId = requireUserId(req)
     // `type` picks the schema; each schema checks it again as a literal.
     // Unchecked client input until a schema parses it; anything else is a 400.
     const type: "CREATE" | "JOIN" | undefined = req.body?.type
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
 
     const organizationRequestSchema =
       type === "CREATE"
@@ -131,11 +118,7 @@ export const submitOrganizationRequest: RequestHandler = asyncHandler(
 
 export const getBecomeAdminFormDetails: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const adminRequestDetails = await getBecomeAdminFormDetailsService(userId)
 
@@ -151,11 +134,7 @@ export const getBecomeAdminFormDetails: RequestHandler = asyncHandler(
 
 export const getCreateOrganizationFormDetails: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const createOrganizationFormDetails =
       await getCreateOrganizationFormDetailsService(userId)
@@ -172,11 +151,7 @@ export const getCreateOrganizationFormDetails: RequestHandler = asyncHandler(
 
 export const removeOrganizationRequestFile: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const { key } = objectKeyInputSchema.parse(req.body)
     const data = await removeOrganizationRequestFileService(userId, key)
@@ -193,11 +168,7 @@ export const removeOrganizationRequestFile: RequestHandler = asyncHandler(
 
 export const getAdminPermissions: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
-    const userId = req.headers["x-user-id"]
-
-    if (typeof userId !== "string" || !userId) {
-      throw new AppError("Unauthorized", 401, "UNAUTHORIZED")
-    }
+    const userId = requireUserId(req)
 
     const grantedPermissions = await getAdminPermissionsService(userId)
 

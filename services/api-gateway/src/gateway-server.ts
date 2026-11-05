@@ -1,5 +1,5 @@
-import app from "./gateway-app"
 import { env } from "./config/gateway-env"
+import app from "./gateway-app"
 
 const server = app.listen(env.PORT, () => {
   console.log("Nexora API gateway running on", env.PORT)

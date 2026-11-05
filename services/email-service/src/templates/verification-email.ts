@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE, RTL_LOCALES } from "@nexora/shared/constants/i18n"
+
 import { env } from "../config/email-env"
 import ar from "../locales/ar.json" with { type: "json" }
 import de from "../locales/de.json" with { type: "json" }

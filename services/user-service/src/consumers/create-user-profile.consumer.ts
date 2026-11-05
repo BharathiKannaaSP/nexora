@@ -1,4 +1,5 @@
 import { KAFKA_TOPICS, startConsumer } from "@nexora/kafka"
+
 import { env } from "../config/user-env"
 import { createUserProfileService } from "../modules/user-service"
 

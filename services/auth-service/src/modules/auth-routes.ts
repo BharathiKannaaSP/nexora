@@ -1,15 +1,17 @@
 import { Router } from "express"
+
 import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
+
 import { env } from "../config/auth-env"
 import {
-  register,
-  verifyEmail,
-  resendVerification,
-  signIn,
-  refresh,
   logout,
   me,
+  refresh,
+  register,
+  resendVerification,
+  signIn,
   updateMe,
+  verifyEmail,
 } from "./auth-controller"
 import { listCountries } from "./country-controller"
 

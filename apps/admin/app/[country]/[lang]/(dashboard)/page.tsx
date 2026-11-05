@@ -1,19 +1,17 @@
+import { getTranslations } from "next-intl/server"
+import { Suspense } from "react"
+
+import { SidebarInset, SidebarTrigger } from "@nexora/ui/components/sidebar"
+
+import { LanguageSwitcher } from "@/components/common"
+import { AppSidebar } from "@/components/common/app-sidebar"
 import { BootstrapGuard } from "@/features/bootstrap/bootstrap-guard"
+import { getGrantedPermissions } from "@/lib/api/onboarding/granted-permissions"
 import { DASHBOARD_PATH } from "@/lib/bootstrap/bootstrap-path"
 import {
   resolveLocaleParams,
   type LocaleParams,
 } from "@/lib/i18n/locale-params"
-import { getTranslations } from "next-intl/server"
-import { Suspense } from "react"
-import {
-  SidebarFooter,
-  SidebarInset,
-  SidebarTrigger,
-} from "@nexora/ui/components/sidebar"
-import { AppSidebar } from "@/components/common/app-sidebar"
-import { getGrantedPermissions } from "@/lib/api/onboarding/granted-permissions"
-import { LanguageSwitcher } from "@/components/common"
 
 interface DashboardPageProps {
   params: Promise<LocaleParams>

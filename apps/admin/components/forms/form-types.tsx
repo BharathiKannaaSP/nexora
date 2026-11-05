@@ -59,7 +59,6 @@ export interface FieldConfig {
   maxFiles?: number
   maxFileSize?: number
   accept?: string[]
-  endpoint?: string
   /**
    * "dropzone": a large box (default). "compact": a small card with the
    * label inside, for rows of documents. "inline": one line, like an input.
@@ -109,8 +108,6 @@ export interface EntityFormConfig {
   /** Leave out to skip the header, e.g. when a single section carries it. */
   title?: string
   description?: string
-  submitLabel?: string
-  updateLabel?: string
   sections: FormSection[]
   fields: FieldConfig[]
 }

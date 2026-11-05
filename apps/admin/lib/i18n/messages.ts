@@ -1,11 +1,12 @@
 import "server-only"
 
-import type { Locale } from "./config"
 import type auth from "@/locales/en/auth.json"
 import type codes from "@/locales/en/codes.json"
 import type common from "@/locales/en/common.json"
 import type dashboard from "@/locales/en/dashboard.json"
 import type onboarding from "@/locales/en/onboarding.json"
+
+import type { Locale } from "./config"
 
 // One entry per locales/<locale>/<namespace>.json file; English is the reference.
 export interface Messages {
