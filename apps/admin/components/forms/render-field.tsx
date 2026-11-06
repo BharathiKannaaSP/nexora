@@ -1,6 +1,6 @@
 "use client"
 
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { ControllerRenderProps } from "react-hook-form"
 import PhoneInputInput, { Country } from "react-phone-number-input/input"
 
@@ -62,6 +62,7 @@ export function RenderField({
   countryCode,
 }: RenderFieldProps) {
   const locale = useLocale()
+  const tForm = useTranslations("common.form")
   const Icon = fieldConfig.icon
   const isTextInput =
     fieldConfig.type === "text" ||
@@ -79,14 +80,15 @@ export function RenderField({
       .filter(Boolean)
       .join(" ") || undefined
 
-  // Radio groups, checkbox groups, permission matrices and link lists have
-  // several controls, so the label names the group (aria-labelledby) instead
-  // of pointing at a single input.
+  // Radio groups, checkbox groups, permission matrices, link lists and
+  // custom controls have several controls, so the label names the group
+  // (aria-labelledby) instead of pointing at a single input.
   const isGroupField =
     fieldConfig.type === "radio-group" ||
     fieldConfig.type === "checkbox-group" ||
     fieldConfig.type === "permission-matrix" ||
-    fieldConfig.type === "links"
+    fieldConfig.type === "links" ||
+    fieldConfig.type === "custom"
 
   // The upload boxes show the description inside; compact cards also show
   // the label inside, so the one above stays for screen readers only.
@@ -187,16 +189,38 @@ export function RenderField({
         ))}
 
       {/* TEXTAREA */}
-      {fieldConfig.type === "textarea" && (
-        <Textarea
-          {...field}
-          {...a11yProps}
-          value={field.value ?? ""}
-          disabled={fieldConfig.disabled}
-          placeholder={fieldConfig.placeholder}
-          className="min-h-28"
-        />
-      )}
+      {fieldConfig.type === "textarea" &&
+        (fieldConfig.characterLimit ? (
+          <div className="relative">
+            <Textarea
+              {...field}
+              {...a11yProps}
+              value={field.value ?? ""}
+              disabled={fieldConfig.disabled}
+              placeholder={fieldConfig.placeholder}
+              maxLength={fieldConfig.characterLimit}
+              className="min-h-28 pb-7"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute end-3 bottom-2 text-xs text-muted-foreground tabular-nums"
+            >
+              {tForm("characterCount", {
+                count: String(field.value ?? "").length,
+                max: fieldConfig.characterLimit,
+              })}
+            </span>
+          </div>
+        ) : (
+          <Textarea
+            {...field}
+            {...a11yProps}
+            value={field.value ?? ""}
+            disabled={fieldConfig.disabled}
+            placeholder={fieldConfig.placeholder}
+            className="min-h-28"
+          />
+        ))}
 
       {/* SELECT */}
       {fieldConfig.type === "select" && (
@@ -331,6 +355,15 @@ export function RenderField({
           error={error}
         />
       )}
+
+      {/* CUSTOM */}
+      {fieldConfig.type === "custom" &&
+        fieldConfig.render?.({
+          field,
+          labelId,
+          describedBy,
+          invalid: !!error,
+        })}
 
       {/* PHONE NUMBER */}
       {fieldConfig.type === "phone-number-select" && (

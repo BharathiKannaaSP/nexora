@@ -377,7 +377,9 @@
       "email": "E-mel",
       "permissions": "Kebenaran yang diminta",
       "logoAlt": "Logo {name}",
-      "logoUnavailable": "Logo tidak tersedia"
+      "logoUnavailable": "Logo tidak tersedia",
+      "organization": "Organisasi",
+      "organizationUnavailable": "Butiran organisasi ini tidak tersedia buat masa ini."
     },
     "next": {
       "title": "Apa yang berlaku seterusnya?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Terima kasih kerana memilih Nexora. Kami gembira menyambut anda!"
+  },
+  "joinOrganizationForm": {
+    "title": "Sertai organisasi",
+    "description": "Cari dan pilih organisasi tempat anda bekerja, berikan butiran anda dan muat naik dokumen yang diperlukan untuk meminta akses.",
+    "submit": "Hantar permintaan",
+    "sections": {
+      "organization": {
+        "title": "Pilih organisasi",
+        "description": "Cari organisasi tempat anda bekerja dan pilihnya."
+      },
+      "employment": {
+        "title": "Maklumat pekerjaan anda",
+        "description": "Beritahu pentadbir organisasi tentang peranan anda."
+      },
+      "documents": {
+        "title": "Dokumen pengesahan identiti",
+        "description": "Muat naik dokumen yang membuktikan identiti anda dan tempat anda bekerja."
+      },
+      "reason": {
+        "title": "Sebab menyertai",
+        "description": "Mengapakah anda meminta akses ke organisasi ini?"
+      },
+      "access": {
+        "title": "Akses yang diminta",
+        "description": "Pilih bahagian yang anda perlukan akses. Ini membantu pentadbir menyemak permintaan anda dengan lebih cepat."
+      },
+      "notes": {
+        "title": "Nota tambahan (pilihan)",
+        "description": "Tambah sebarang maklumat tambahan untuk pentadbir organisasi."
+      }
+    },
+    "fields": {
+      "organization": "Organisasi",
+      "employeeId": "ID pekerja (pilihan)",
+      "jobTitle": "Jawatan",
+      "department": "Jabatan",
+      "workEmail": "E-mel kerja",
+      "joiningDate": "Tarikh mula bekerja (pilihan)",
+      "reportingManager": "Pengurus pelaporan (pilihan)",
+      "message": "Sebab menyertai",
+      "permissions": "Kebenaran",
+      "additionalNotes": "Nota tambahan"
+    },
+    "placeholders": {
+      "employeeId": "Masukkan ID pekerja",
+      "jobTitle": "Masukkan jawatan anda",
+      "department": "Pilih jabatan",
+      "workEmail": "Masukkan e-mel kerja anda",
+      "joiningDate": "Pilih tarikh",
+      "reportingManager": "Masukkan nama pengurus",
+      "message": "Terangkan peranan anda dan sebab anda memerlukan akses…",
+      "additionalNotes": "Tambah sebarang nota tambahan…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG atau WebP, sehingga {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "Operasi",
+      "sales": "Jualan",
+      "marketing": "Pemasaran",
+      "product": "Produk",
+      "engineering": "Kejuruteraan",
+      "design": "Reka bentuk",
+      "finance": "Kewangan",
+      "humanResources": "Sumber manusia",
+      "customerSupport": "Sokongan pelanggan",
+      "logistics": "Logistik",
+      "other": "Lain-lain"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Kad Aadhaar",
+        "hint": "Bahagian hadapan atau salinan elektronik Aadhaar anda"
+      },
+      "pan": {
+        "label": "Kad PAN",
+        "hint": "Bahagian hadapan atau salinan elektronik kad PAN anda"
+      },
+      "governmentId": {
+        "label": "ID keluaran kerajaan",
+        "hint": "Pasport, kad pengenalan negara atau lesen memandu"
+      },
+      "employeeIdCard": {
+        "label": "Kad ID pekerja",
+        "hint": "Kad ID pekerja anda"
+      },
+      "offerLetter": {
+        "label": "Surat tawaran",
+        "hint": "Surat tawaran atau surat pelantikan anda"
+      }
+    },
+    "documentsNotice": "Berdasarkan negara anda (<strong>{country}</strong>), dokumen berikut diperlukan.",
+    "documentsFootnote": "Dokumen anda disulitkan dan hanya digunakan untuk tujuan pengesahan.",
+    "uploadedFiles": {
+      "title": "Fail yang dimuat naik",
+      "description": "Semak dokumen anda sebelum menghantar permintaan."
+    },
+    "validation": {
+      "organizationRequired": "Pilih organisasi yang ingin anda sertai",
+      "jobTitleRequired": "Jawatan diperlukan",
+      "departmentRequired": "Pilih jabatan anda",
+      "workEmailRequired": "E-mel kerja diperlukan",
+      "workEmailInvalid": "Masukkan alamat e-mel yang sah",
+      "textFieldTooLong": "Mestilah tidak melebihi {max, number} aksara",
+      "joiningDateInvalid": "Masukkan tarikh yang sah",
+      "messageRequired": "Beritahu pentadbir sebab anda ingin menyertai",
+      "messageTooLong": "Sebab mestilah tidak melebihi {max, number} aksara",
+      "notesTooLong": "Nota mestilah tidak melebihi {max, number} aksara",
+      "documentRequired": "Muat naik dokumen ini",
+      "documentTooLarge": "Fail mestilah tidak melebihi {maxMb, number} MB",
+      "documentWrongFormat": "Muat naik fail PDF, Word atau imej (PNG, JPEG atau WebP)",
+      "permissionsRequired": "Pilih sekurang-kurangnya satu kebenaran",
+      "permissionsNotAllowed": "Modul ini tidak boleh diminta untuk organisasi"
+    },
+    "aside": {
+      "next": {
+        "title": "Apakah yang berlaku seterusnya?",
+        "steps": {
+          "submitted": {
+            "title": "Permintaan dihantar",
+            "description": "Permintaan anda akan dihantar kepada pentadbir organisasi."
+          },
+          "review": {
+            "title": "Dalam semakan",
+            "description": "Pentadbir akan menyemak butiran dan dokumen anda."
+          },
+          "verification": {
+            "title": "Pengesahan",
+            "description": "Dokumen anda akan disahkan ketulenannya."
+          },
+          "approval": {
+            "title": "Kelulusan",
+            "description": "Setelah diluluskan, anda akan mendapat akses ke papan pemuka organisasi."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "Garis panduan dokumen",
+        "items": {
+          "clear": "Muat naik dokumen yang jelas dan sah",
+          "readable": "Pastikan semua teks boleh dibaca",
+          "formats": "Format yang disokong: PDF, Word, PNG, JPEG dan WebP",
+          "maxSize": "Saiz fail maksimum: {maxMb, number} MB setiap fail",
+          "encrypted": "Semua dokumen disulitkan dengan selamat"
+        }
+      },
+      "selected": {
+        "title": "Organisasi dipilih",
+        "change": "Tukar organisasi",
+        "choose": "Pilih organisasi",
+        "none": "Belum ada organisasi dipilih."
+      }
+    }
   }
 }

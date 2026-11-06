@@ -7,6 +7,7 @@ import {
   getAdminPermissions,
   getBecomeAdminFormDetails,
   getCreateOrganizationFormDetails,
+  getJoinOrganizationFormDetails,
   onboardingDetails,
   removeOrganizationRequestFile,
   submitBecomeAdminRequest,
@@ -29,6 +30,7 @@ router.get(
   "/create-organization-form-details",
   getCreateOrganizationFormDetails
 )
+router.get("/join-organization-form-details", getJoinOrganizationFormDetails)
 router.post("/organization-request/remove-file", removeOrganizationRequestFile)
 router.get("/admin-permissions", getAdminPermissions)
 

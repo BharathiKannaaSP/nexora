@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "Sila semak medan ini.",
-    "noResults": "Tiada hasil ditemui."
+    "noResults": "Tiada hasil ditemui.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "Memuatkan",
   "closeNotification": "Tutup pemberitahuan",
@@ -49,5 +50,13 @@
     "downloadFile": "Muat turun {name}",
     "deleteTitle": "Padam {name}?",
     "deleteDescription": "Fail akan dipadam secara kekal. Tindakan ini tidak boleh dibuat asal."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "Cari organisasi mengikut nama",
+    "noResults": "Tiada organisasi yang sepadan dengan “{search}”",
+    "empty": "Belum ada organisasi yang boleh disertai.",
+    "members": "{count, plural, other {# ahli}}",
+    "scrollBack": "Tunjukkan organisasi sebelumnya",
+    "scrollForward": "Tunjukkan lebih banyak organisasi"
   }
 }

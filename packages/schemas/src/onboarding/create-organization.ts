@@ -126,7 +126,7 @@ type Messages = Partial<CreateOrganizationValidationMessages>
 // ---------------------------------------------------------------------------
 
 /** An optional field where "" means "not given". */
-const blankOr = <T extends z.ZodType>(schema: T) =>
+export const blankOr = <T extends z.ZodType>(schema: T) =>
   z.union([z.literal(""), schema]).optional()
 
 /**
@@ -134,7 +134,7 @@ const blankOr = <T extends z.ZodType>(schema: T) =>
  * A resubmit that keeps a file sends the same values again. contentType and
  * sizeBytes are for display only: a signed URL serves what's really stored.
  */
-const submittedFileSchema = z.object({
+export const submittedFileSchema = z.object({
   key: z.string().min(1).max(1024),
   originalFileName: z.string().trim().min(1).max(255),
   contentType: z.string().min(1).max(255),
@@ -159,7 +159,7 @@ export const isSavedFile = (value: unknown): value is SavedFile =>
  * A form file field: a newly picked File, checked for type and size, or a
  * SavedFile kept from the last submit.
  */
-const fileSchema = (
+export const fileSchema = (
   rule: { mimeTypes: readonly string[]; maxBytes: number },
   messages: { required?: string; wrongFormat?: string; tooLarge?: string }
 ) =>

@@ -377,7 +377,9 @@
       "email": "البريد الإلكتروني",
       "permissions": "الأذونات المطلوبة",
       "logoAlt": "شعار {name}",
-      "logoUnavailable": "الشعار غير متاح"
+      "logoUnavailable": "الشعار غير متاح",
+      "organization": "المؤسسة",
+      "organizationUnavailable": "تفاصيل هذه المؤسسة غير متاحة حاليًا."
     },
     "next": {
       "title": "ماذا بعد؟",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "شكرًا لاختيارك Nexora. يسعدنا انضمامك إلينا!"
+  },
+  "joinOrganizationForm": {
+    "title": "الانضمام إلى مؤسسة",
+    "description": "ابحث عن المؤسسة التي تعمل بها واخترها، وقدّم بياناتك وحمّل المستندات المطلوبة لطلب الوصول.",
+    "submit": "إرسال الطلب",
+    "sections": {
+      "organization": {
+        "title": "اختيار المؤسسة",
+        "description": "ابحث عن المؤسسة التي تعمل لديها واخترها."
+      },
+      "employment": {
+        "title": "معلومات عملك",
+        "description": "أخبر مسؤول المؤسسة عن دورك."
+      },
+      "documents": {
+        "title": "مستندات التحقق من الهوية",
+        "description": "حمّل مستندات تثبت هويتك ومكان عملك."
+      },
+      "reason": {
+        "title": "سبب الانضمام",
+        "description": "لماذا تطلب الوصول إلى هذه المؤسسة؟"
+      },
+      "access": {
+        "title": "الوصول المطلوب",
+        "description": "اختر المجالات التي تحتاج إلى الوصول إليها. يساعد ذلك المسؤول على مراجعة طلبك بشكل أسرع."
+      },
+      "notes": {
+        "title": "ملاحظات إضافية (اختياري)",
+        "description": "أضف أي معلومات إضافية لمسؤول المؤسسة."
+      }
+    },
+    "fields": {
+      "organization": "المؤسسة",
+      "employeeId": "الرقم الوظيفي (اختياري)",
+      "jobTitle": "المسمى الوظيفي",
+      "department": "القسم",
+      "workEmail": "البريد الإلكتروني للعمل",
+      "joiningDate": "تاريخ الالتحاق (اختياري)",
+      "reportingManager": "المدير المباشر (اختياري)",
+      "message": "سبب الانضمام",
+      "permissions": "الصلاحيات",
+      "additionalNotes": "ملاحظات إضافية"
+    },
+    "placeholders": {
+      "employeeId": "أدخل الرقم الوظيفي",
+      "jobTitle": "أدخل مسماك الوظيفي",
+      "department": "اختر القسم",
+      "workEmail": "أدخل بريدك الإلكتروني للعمل",
+      "joiningDate": "اختر التاريخ",
+      "reportingManager": "أدخل اسم المدير",
+      "message": "اشرح دورك وسبب حاجتك إلى الوصول…",
+      "additionalNotes": "أضف أي ملاحظات إضافية…"
+    },
+    "hints": {
+      "document": "PDF أو Word أو PNG أو JPEG أو WebP، حتى {maxMb, number} ميغابايت"
+    },
+    "departments": {
+      "operations": "العمليات",
+      "sales": "المبيعات",
+      "marketing": "التسويق",
+      "product": "المنتج",
+      "engineering": "الهندسة",
+      "design": "التصميم",
+      "finance": "المالية",
+      "humanResources": "الموارد البشرية",
+      "customerSupport": "دعم العملاء",
+      "logistics": "الخدمات اللوجستية",
+      "other": "أخرى"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "بطاقة Aadhaar",
+        "hint": "الوجه الأمامي أو النسخة الإلكترونية من بطاقة Aadhaar"
+      },
+      "pan": {
+        "label": "بطاقة PAN",
+        "hint": "الوجه الأمامي أو النسخة الإلكترونية من بطاقة PAN"
+      },
+      "governmentId": {
+        "label": "هوية حكومية",
+        "hint": "جواز سفر أو بطاقة هوية وطنية أو رخصة قيادة"
+      },
+      "employeeIdCard": {
+        "label": "بطاقة الموظف",
+        "hint": "بطاقة الموظف الخاصة بك"
+      },
+      "offerLetter": {
+        "label": "خطاب العرض الوظيفي",
+        "hint": "خطاب العرض الوظيفي أو خطاب التعيين"
+      }
+    },
+    "documentsNotice": "بناءً على دولتك (<strong>{country}</strong>)، المستندات التالية مطلوبة.",
+    "documentsFootnote": "يتم تشفير مستنداتك واستخدامها لأغراض التحقق فقط.",
+    "uploadedFiles": {
+      "title": "الملفات المحمّلة",
+      "description": "تحقق من مستنداتك قبل إرسال طلبك."
+    },
+    "validation": {
+      "organizationRequired": "اختر المؤسسة التي تريد الانضمام إليها",
+      "jobTitleRequired": "المسمى الوظيفي مطلوب",
+      "departmentRequired": "اختر قسمك",
+      "workEmailRequired": "البريد الإلكتروني للعمل مطلوب",
+      "workEmailInvalid": "أدخل عنوان بريد إلكتروني صالحًا",
+      "textFieldTooLong": "يجب ألا يتجاوز {max, number} حرفًا",
+      "joiningDateInvalid": "أدخل تاريخًا صالحًا",
+      "messageRequired": "أخبر المسؤول بسبب رغبتك في الانضمام",
+      "messageTooLong": "يجب ألا يتجاوز السبب {max, number} حرفًا",
+      "notesTooLong": "يجب ألا تتجاوز الملاحظات {max, number} حرفًا",
+      "documentRequired": "حمّل هذا المستند",
+      "documentTooLarge": "يجب ألا يتجاوز حجم الملف {maxMb, number} ميغابايت",
+      "documentWrongFormat": "حمّل ملف PDF أو Word أو صورة (PNG أو JPEG أو WebP)",
+      "permissionsRequired": "اختر صلاحية واحدة على الأقل",
+      "permissionsNotAllowed": "لا يمكن طلب هذه الوحدة لمؤسسة"
+    },
+    "aside": {
+      "next": {
+        "title": "ماذا بعد؟",
+        "steps": {
+          "submitted": {
+            "title": "تم إرسال الطلب",
+            "description": "سيُرسل طلبك إلى مسؤول المؤسسة."
+          },
+          "review": {
+            "title": "قيد المراجعة",
+            "description": "سيراجع المسؤول بياناتك ومستنداتك."
+          },
+          "verification": {
+            "title": "التحقق",
+            "description": "سيتم التحقق من صحة مستنداتك."
+          },
+          "approval": {
+            "title": "الموافقة",
+            "description": "بعد الموافقة، ستحصل على حق الوصول إلى لوحة تحكم المؤسسة."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "إرشادات المستندات",
+        "items": {
+          "clear": "حمّل مستندات واضحة وصالحة",
+          "readable": "تأكد من أن جميع النصوص مقروءة",
+          "formats": "الصيغ المدعومة: PDF وWord وPNG وJPEG وWebP",
+          "maxSize": "الحد الأقصى لحجم الملف: {maxMb, number} ميغابايت لكل ملف",
+          "encrypted": "جميع المستندات مشفّرة بأمان"
+        }
+      },
+      "selected": {
+        "title": "المؤسسة المختارة",
+        "change": "تغيير المؤسسة",
+        "choose": "اختر مؤسسة",
+        "none": "لم يتم اختيار أي مؤسسة بعد."
+      }
+    }
   }
 }

@@ -269,6 +269,10 @@
                 "value": "EMPLOYMENT_PROOF"
               },
               {
+                "name": "OFFER_LETTER",
+                "value": "OFFER_LETTER"
+              },
+              {
                 "name": "OTHER",
                 "value": "OTHER"
               }
@@ -995,6 +999,13 @@
           },
           "OrganizationRequest": {
             "fields": {
+              "additionalNotes": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
               "applicationRevision": {
                 "nullable": false,
                 "type": {
@@ -1261,6 +1272,9 @@
             },
             "storage": {
               "fields": {
+                "additionalNotes": {
+                  "column": "additionalNotes"
+                },
                 "applicationRevision": {
                   "column": "applicationRevision"
                 },
@@ -2459,8 +2473,8 @@
             "OrganizationDocumentRequirement": {
               "checks": [
                 {
-                  "expression": "\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OTHER')",
-                  "name": "OrganizationDocumentRequirement_documentType_check_669f20a4",
+                  "expression": "\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OFFER_LETTER', 'OTHER')",
+                  "name": "OrganizationDocumentRequirement_documentType_check_f2925b67",
                   "prefix": "OrganizationDocumentRequirement_documentType_check"
                 },
                 {
@@ -2602,6 +2616,11 @@
                 }
               ],
               "columns": {
+                "additionalNotes": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
                 "applicationRevision": {
                   "codecId": "pg/int4@1",
                   "dataType": "pg/int4",
@@ -2857,8 +2876,8 @@
             "OrganizationRequestDocument": {
               "checks": [
                 {
-                  "expression": "\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OTHER')",
-                  "name": "OrganizationRequestDocument_documentType_check_669f20a4",
+                  "expression": "\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OFFER_LETTER', 'OTHER')",
+                  "name": "OrganizationRequestDocument_documentType_check_f2925b67",
                   "prefix": "OrganizationRequestDocument_documentType_check"
                 },
                 {
@@ -3554,6 +3573,7 @@
                 "IDENTITY_DOCUMENT",
                 "RESIDENCE_PERMIT",
                 "EMPLOYMENT_PROOF",
+                "OFFER_LETTER",
                 "OTHER"
               ]
             },
@@ -3589,7 +3609,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "eb6ec3aa2ab526b970aae66cd47426df7f325c22919896ec560034940595cec7"
+    "storageHash": "c2ef3c3f4b48c90b09b4fd2cfac9008555f5d91a4dbc32eb6b2ad119e034fc42"
   },
   "execution": {
     "executionHash": "f1be750274fa630d2d8b65f0d989d8c69cda18c0ae8bedfd668a336a12fe4652",

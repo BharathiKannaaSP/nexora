@@ -14,6 +14,7 @@ import {
   getAdminPermissionsService,
   getBecomeAdminFormDetailsService,
   getCreateOrganizationFormDetailsService,
+  getJoinOrganizationFormDetailsService,
   getOnboardingDetailsService,
   removeOrganizationRequestFileService,
   submitBecomeAdminRequestService,
@@ -145,6 +146,23 @@ export const getCreateOrganizationFormDetails: RequestHandler = asyncHandler(
       "Create organization form details fetched",
       "ONBOARDING.CREATE_ORGANIZATION_FORM_DETAILS_FETCHED",
       createOrganizationFormDetails
+    )
+  }
+)
+
+export const getJoinOrganizationFormDetails: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    const userId = requireUserId(req)
+
+    const joinOrganizationFormDetails =
+      await getJoinOrganizationFormDetailsService(userId)
+
+    return sendSuccess(
+      res,
+      200,
+      "Join organization form details fetched",
+      "ONBOARDING.JOIN_ORGANIZATION_FORM_DETAILS_FETCHED",
+      joinOrganizationFormDetails
     )
   }
 )

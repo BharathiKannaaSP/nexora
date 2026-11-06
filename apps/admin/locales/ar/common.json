@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "يُرجى التحقق من هذا الحقل.",
-    "noResults": "لم يتم العثور على نتائج."
+    "noResults": "لم يتم العثور على نتائج.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "جارٍ التحميل",
   "closeNotification": "إغلاق الإشعار",
@@ -49,5 +50,13 @@
     "downloadFile": "تنزيل {name}",
     "deleteTitle": "حذف {name}؟",
     "deleteDescription": "سيتم حذف الملف نهائيًا. لا يمكن التراجع عن ذلك."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "ابحث عن مؤسسة بالاسم",
+    "noResults": "لا توجد مؤسسات تطابق «{search}»",
+    "empty": "لا توجد مؤسسات متاحة للانضمام بعد.",
+    "members": "{count, plural, zero {# عضو} one {# عضو} two {# عضوان} few {# أعضاء} many {# عضوًا} other {# عضو}}",
+    "scrollBack": "عرض المؤسسات السابقة",
+    "scrollForward": "عرض المزيد من المؤسسات"
   }
 }

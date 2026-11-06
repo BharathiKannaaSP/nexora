@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "Satu fail tidak dapat digunakan. Sila muat naik semula",
     "ORGANIZATION_FILE_DUPLICATE": "Setiap fail hanya boleh digunakan sekali",
-    "NO_REVIEWER_AVAILABLE": "Belum ada penyemak tersedia untuk permintaan ini. Sila cuba lagi kemudian atau hubungi sokongan."
+    "NO_REVIEWER_AVAILABLE": "Belum ada penyemak tersedia untuk permintaan ini. Sila cuba lagi kemudian atau hubungi sokongan.",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Permintaan anda untuk menyertai organisasi telah dihantar"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Jenis fail ini tidak dibenarkan",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "Permintaan organisasi tidak ditemui",
     "REQUEST_INCOMPLETE": "Permintaan ini tiada butiran yang diperlukan",
     "NOT_FOUND": "Organisasi tidak ditemui"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "Organisasi tidak ditemui"
 }

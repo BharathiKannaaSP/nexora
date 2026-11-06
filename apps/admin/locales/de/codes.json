@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "Eine Datei konnte nicht verwendet werden. Bitte laden Sie sie erneut hoch",
     "ORGANIZATION_FILE_DUPLICATE": "Jede Datei kann nur einmal verwendet werden",
-    "NO_REVIEWER_AVAILABLE": "Für diese Anfrage ist noch kein Prüfer verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support."
+    "NO_REVIEWER_AVAILABLE": "Für diese Anfrage ist noch kein Prüfer verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support.",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Ihre Anfrage zum Beitritt zur Organisation wurde gesendet"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dieser Dateityp ist nicht erlaubt",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "Organisationsanfrage nicht gefunden",
     "REQUEST_INCOMPLETE": "Dieser Anfrage fehlen erforderliche Angaben",
     "NOT_FOUND": "Organisation nicht gefunden"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "Organisation nicht gefunden"
 }

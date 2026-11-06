@@ -101,7 +101,12 @@ export function EntityForm<TValues extends FieldValues>({
     <div className="space-y-6">
       {/* HEADER */}
       {config.title && (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          {config.icon && (
+            <span className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <config.icon className="size-6" aria-hidden="true" />
+            </span>
+          )}
           <div className="space-y-1">
             <h1 className="text-lg font-bold tracking-tight">{config.title}</h1>
 
@@ -142,7 +147,12 @@ export function EntityForm<TValues extends FieldValues>({
               </div>
             </CardHeader>
 
-            <CardContent>
+            <CardContent
+              className={cn(
+                (section.notice || section.footnote) && "flex flex-col gap-6"
+              )}
+            >
+              {section.notice}
               <FieldGroup
                 className={cn(
                   "grid grid-cols-1 gap-6 md:grid-cols-2",
@@ -174,6 +184,7 @@ export function EntityForm<TValues extends FieldValues>({
                   )
                 })}
               </FieldGroup>
+              {section.footnote}
             </CardContent>
           </Card>
         ))}

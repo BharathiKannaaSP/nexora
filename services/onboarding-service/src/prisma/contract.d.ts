@@ -23,7 +23,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'eb6ec3aa2ab526b970aae66cd47426df7f325c22919896ec560034940595cec7'>;
+  StorageHashBase<'c2ef3c3f4b48c90b09b4fd2cfac9008555f5d91a4dbc32eb6b2ad119e034fc42'>;
 export type ExecutionHash =
   ExecutionHashBase<'f1be750274fa630d2d8b65f0d989d8c69cda18c0ae8bedfd668a336a12fe4652'>;
 export type ProfileHash =
@@ -298,6 +298,7 @@ type FieldTypeOverrides = {
             | 'IDENTITY_DOCUMENT'
             | 'RESIDENCE_PERMIT'
             | 'EMPLOYMENT_PROOF'
+            | 'OFFER_LETTER'
             | 'OTHER';
           readonly input:
             | 'ORGANIZATION_LOGO'
@@ -307,6 +308,7 @@ type FieldTypeOverrides = {
             | 'IDENTITY_DOCUMENT'
             | 'RESIDENCE_PERMIT'
             | 'EMPLOYMENT_PROOF'
+            | 'OFFER_LETTER'
             | 'OTHER';
         };
         readonly scope: {
@@ -331,6 +333,7 @@ type FieldTypeOverrides = {
             | 'IDENTITY_DOCUMENT'
             | 'RESIDENCE_PERMIT'
             | 'EMPLOYMENT_PROOF'
+            | 'OFFER_LETTER'
             | 'OTHER';
           readonly input:
             | 'ORGANIZATION_LOGO'
@@ -340,6 +343,7 @@ type FieldTypeOverrides = {
             | 'IDENTITY_DOCUMENT'
             | 'RESIDENCE_PERMIT'
             | 'EMPLOYMENT_PROOF'
+            | 'OFFER_LETTER'
             | 'OTHER';
         };
         readonly status: {
@@ -478,6 +482,7 @@ type ColumnTypeOverrides = {
           | 'IDENTITY_DOCUMENT'
           | 'RESIDENCE_PERMIT'
           | 'EMPLOYMENT_PROOF'
+          | 'OFFER_LETTER'
           | 'OTHER';
         readonly input:
           | 'ORGANIZATION_LOGO'
@@ -487,6 +492,7 @@ type ColumnTypeOverrides = {
           | 'IDENTITY_DOCUMENT'
           | 'RESIDENCE_PERMIT'
           | 'EMPLOYMENT_PROOF'
+          | 'OFFER_LETTER'
           | 'OTHER';
       };
       readonly scope: {
@@ -511,6 +517,7 @@ type ColumnTypeOverrides = {
           | 'IDENTITY_DOCUMENT'
           | 'RESIDENCE_PERMIT'
           | 'EMPLOYMENT_PROOF'
+          | 'OFFER_LETTER'
           | 'OTHER';
         readonly input:
           | 'ORGANIZATION_LOGO'
@@ -520,6 +527,7 @@ type ColumnTypeOverrides = {
           | 'IDENTITY_DOCUMENT'
           | 'RESIDENCE_PERMIT'
           | 'EMPLOYMENT_PROOF'
+          | 'OFFER_LETTER'
           | 'OTHER';
       };
       readonly status: {
@@ -665,6 +673,7 @@ export namespace Models {
     readonly [RelationKeys]?: 'submissions';
   };
   export type public_OrganizationRequest = {
+    additionalNotes: FieldOutputTypes['public']['OrganizationRequest']['additionalNotes'];
     applicationRevision: FieldOutputTypes['public']['OrganizationRequest']['applicationRevision'];
     department: FieldOutputTypes['public']['OrganizationRequest']['department'];
     employeeId: FieldOutputTypes['public']['OrganizationRequest']['employeeId'];
@@ -1249,6 +1258,12 @@ type ContractBase = Omit<
             };
             readonly OrganizationRequest: {
               columns: {
+                readonly additionalNotes: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
                 readonly applicationRevision: {
                   readonly dataType: 'pg/int4';
                   readonly codecId: 'pg/int4@1';
@@ -2037,6 +2052,7 @@ type ContractBase = Omit<
                 'IDENTITY_DOCUMENT',
                 'RESIDENCE_PERMIT',
                 'EMPLOYMENT_PROOF',
+                'OFFER_LETTER',
                 'OTHER',
               ];
             };
@@ -2507,6 +2523,10 @@ type ContractBase = Omit<
           };
           readonly OrganizationRequest: {
             readonly fields: {
+              readonly additionalNotes: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
               readonly applicationRevision: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
@@ -2676,6 +2696,7 @@ type ContractBase = Omit<
               readonly table: 'OrganizationRequest';
               readonly namespaceId: 'public';
               readonly fields: {
+                readonly additionalNotes: { readonly column: 'additionalNotes' };
                 readonly applicationRevision: { readonly column: 'applicationRevision' };
                 readonly department: { readonly column: 'department' };
                 readonly employeeId: { readonly column: 'employeeId' };
@@ -3187,6 +3208,7 @@ type ContractBase = Omit<
               { readonly name: 'IDENTITY_DOCUMENT'; readonly value: 'IDENTITY_DOCUMENT' },
               { readonly name: 'RESIDENCE_PERMIT'; readonly value: 'RESIDENCE_PERMIT' },
               { readonly name: 'EMPLOYMENT_PROOF'; readonly value: 'EMPLOYMENT_PROOF' },
+              { readonly name: 'OFFER_LETTER'; readonly value: 'OFFER_LETTER' },
               { readonly name: 'OTHER'; readonly value: 'OTHER' },
             ];
           };
@@ -3278,6 +3300,7 @@ type ContractBase = Omit<
             { readonly name: 'IDENTITY_DOCUMENT'; readonly value: 'IDENTITY_DOCUMENT' },
             { readonly name: 'RESIDENCE_PERMIT'; readonly value: 'RESIDENCE_PERMIT' },
             { readonly name: 'EMPLOYMENT_PROOF'; readonly value: 'EMPLOYMENT_PROOF' },
+            { readonly name: 'OFFER_LETTER'; readonly value: 'OFFER_LETTER' },
             { readonly name: 'OTHER'; readonly value: 'OTHER' },
           ];
           readonly OrganizationRequestStatus: readonly [

@@ -377,7 +377,9 @@
       "email": "E-mail",
       "permissions": "Permissões solicitadas",
       "logoAlt": "Logotipo de {name}",
-      "logoUnavailable": "Logotipo indisponível"
+      "logoUnavailable": "Logotipo indisponível",
+      "organization": "Organização",
+      "organizationUnavailable": "Os dados desta organização não estão disponíveis no momento."
     },
     "next": {
       "title": "O que acontece agora?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Obrigado por escolher a Nexora. Estamos muito felizes em ter você com a gente!"
+  },
+  "joinOrganizationForm": {
+    "title": "Participar de uma organização",
+    "description": "Pesquise e selecione a organização onde você trabalha, informe seus dados e envie os documentos necessários para solicitar acesso.",
+    "submit": "Enviar solicitação",
+    "sections": {
+      "organization": {
+        "title": "Escolher organização",
+        "description": "Pesquise a organização em que você trabalha e selecione-a."
+      },
+      "employment": {
+        "title": "Suas informações profissionais",
+        "description": "Conte ao administrador da organização sobre sua função."
+      },
+      "documents": {
+        "title": "Documentos de verificação de identidade",
+        "description": "Envie documentos que comprovem quem você é e onde trabalha."
+      },
+      "reason": {
+        "title": "Motivo da participação",
+        "description": "Por que você está solicitando acesso a esta organização?"
+      },
+      "access": {
+        "title": "Acesso solicitado",
+        "description": "Selecione as áreas às quais você precisa de acesso. Isso ajuda o administrador a analisar sua solicitação mais rapidamente."
+      },
+      "notes": {
+        "title": "Observações adicionais (opcional)",
+        "description": "Adicione qualquer informação adicional para o administrador da organização."
+      }
+    },
+    "fields": {
+      "organization": "Organização",
+      "employeeId": "Matrícula do funcionário (opcional)",
+      "jobTitle": "Cargo",
+      "department": "Departamento",
+      "workEmail": "E-mail corporativo",
+      "joiningDate": "Data de admissão (opcional)",
+      "reportingManager": "Gestor direto (opcional)",
+      "message": "Motivo da participação",
+      "permissions": "Permissões",
+      "additionalNotes": "Observações adicionais"
+    },
+    "placeholders": {
+      "employeeId": "Informe a matrícula do funcionário",
+      "jobTitle": "Informe seu cargo",
+      "department": "Selecione o departamento",
+      "workEmail": "Informe seu e-mail corporativo",
+      "joiningDate": "Selecione a data",
+      "reportingManager": "Informe o nome do gestor",
+      "message": "Explique sua função e por que você precisa de acesso…",
+      "additionalNotes": "Adicione observações adicionais…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG ou WebP, até {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "Operações",
+      "sales": "Vendas",
+      "marketing": "Marketing",
+      "product": "Produto",
+      "engineering": "Engenharia",
+      "design": "Design",
+      "finance": "Finanças",
+      "humanResources": "Recursos humanos",
+      "customerSupport": "Suporte ao cliente",
+      "logistics": "Logística",
+      "other": "Outro"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Cartão Aadhaar",
+        "hint": "Frente ou cópia digital do seu Aadhaar"
+      },
+      "pan": {
+        "label": "Cartão PAN",
+        "hint": "Frente ou cópia digital do seu cartão PAN"
+      },
+      "governmentId": {
+        "label": "Documento de identidade oficial",
+        "hint": "Passaporte, carteira de identidade ou carteira de motorista"
+      },
+      "employeeIdCard": {
+        "label": "Crachá de funcionário",
+        "hint": "Seu crachá de funcionário"
+      },
+      "offerLetter": {
+        "label": "Carta de oferta",
+        "hint": "Sua carta de oferta ou de nomeação"
+      }
+    },
+    "documentsNotice": "Com base no seu país (<strong>{country}</strong>), os seguintes documentos são obrigatórios.",
+    "documentsFootnote": "Seus documentos são criptografados e usados apenas para fins de verificação.",
+    "uploadedFiles": {
+      "title": "Arquivos enviados",
+      "description": "Confira seus documentos antes de enviar sua solicitação."
+    },
+    "validation": {
+      "organizationRequired": "Selecione a organização da qual deseja participar",
+      "jobTitleRequired": "O cargo é obrigatório",
+      "departmentRequired": "Selecione seu departamento",
+      "workEmailRequired": "O e-mail corporativo é obrigatório",
+      "workEmailInvalid": "Informe um endereço de e-mail válido",
+      "textFieldTooLong": "Deve ter no máximo {max, number} caracteres",
+      "joiningDateInvalid": "Informe uma data válida",
+      "messageRequired": "Conte ao administrador por que você deseja participar",
+      "messageTooLong": "O motivo deve ter no máximo {max, number} caracteres",
+      "notesTooLong": "As observações devem ter no máximo {max, number} caracteres",
+      "documentRequired": "Envie este documento",
+      "documentTooLarge": "O arquivo deve ter no máximo {maxMb, number} MB",
+      "documentWrongFormat": "Envie um PDF, arquivo do Word ou imagem (PNG, JPEG ou WebP)",
+      "permissionsRequired": "Selecione pelo menos uma permissão",
+      "permissionsNotAllowed": "Este módulo não pode ser solicitado para uma organização"
+    },
+    "aside": {
+      "next": {
+        "title": "O que acontece agora?",
+        "steps": {
+          "submitted": {
+            "title": "Solicitação enviada",
+            "description": "Sua solicitação será enviada ao administrador da organização."
+          },
+          "review": {
+            "title": "Em análise",
+            "description": "O administrador vai analisar seus dados e documentos."
+          },
+          "verification": {
+            "title": "Verificação",
+            "description": "A autenticidade dos seus documentos será verificada."
+          },
+          "approval": {
+            "title": "Aprovação",
+            "description": "Após a aprovação, você terá acesso ao painel da organização."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "Diretrizes para documentos",
+        "items": {
+          "clear": "Envie documentos nítidos e válidos",
+          "readable": "Verifique se todo o texto está legível",
+          "formats": "Formatos aceitos: PDF, Word, PNG, JPEG e WebP",
+          "maxSize": "Tamanho máximo: {maxMb, number} MB por arquivo",
+          "encrypted": "Todos os documentos são criptografados com segurança"
+        }
+      },
+      "selected": {
+        "title": "Organização selecionada",
+        "change": "Alterar organização",
+        "choose": "Escolha uma organização",
+        "none": "Nenhuma organização selecionada ainda."
+      }
+    }
   }
 }

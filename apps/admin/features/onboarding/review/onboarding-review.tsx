@@ -22,7 +22,12 @@ import {
 import { useFormatter, useTranslations } from "next-intl"
 import { useId, useState, type ReactNode } from "react"
 
-import type { AdminAccessRequest } from "@nexora/shared/types/onboarding"
+import type {
+  AdminAccessRequest,
+  CreateOrganizationFormDetails,
+  JoinOrganizationFormDetails,
+} from "@nexora/shared/types/onboarding"
+import type { OrganizationDirectoryEntry } from "@nexora/shared/types/organization"
 import { Banner } from "@nexora/ui/components/banner"
 import { Button } from "@nexora/ui/components/button"
 import {
@@ -140,10 +145,19 @@ const NextStep = ({
 interface OnboardingReviewProps {
   /** The BECOME_ADMIN path's request; left out on the other paths. */
   adminAccessRequest?: AdminAccessRequest | null
+  /** The CREATE_ORGANIZATION path's request; left out on the other paths. */
+  organizationRequest?: CreateOrganizationFormDetails | null
+  /** The JOIN_ORGANIZATION path's request; left out on the other paths. */
+  joinRequest?: JoinOrganizationFormDetails | null
+  /** The organization the join request is for, from the directory. */
+  joinOrganization?: OrganizationDirectoryEntry | null
 }
 
 const OnboardingReview = ({
   adminAccessRequest = null,
+  organizationRequest = null,
+  joinRequest = null,
+  joinOrganization = null,
 }: OnboardingReviewProps) => {
   const t = useTranslations("onboarding")
   const format = useFormatter()
@@ -152,7 +166,15 @@ const OnboardingReview = ({
   const submittedId = useId()
   const hydrated = useHydrated()
 
-  const request = adminAccessRequest
+  // The request of the chosen path.
+  const request =
+    onboarding?.selectedPath === "BECOME_ADMIN"
+      ? adminAccessRequest
+      : onboarding?.selectedPath === "CREATE_ORGANIZATION"
+        ? organizationRequest
+        : onboarding?.selectedPath === "JOIN_ORGANIZATION"
+          ? joinRequest
+          : null
 
   const outcome = reviewOutcome(onboarding, request?.status ?? null)
   const heroKey = HERO_KEYS[outcome]
@@ -384,7 +406,12 @@ const OnboardingReview = ({
 
       <div id={submittedId} hidden={!showSubmitted}>
         {showSubmitted && (
-          <SubmittedInformation adminAccessRequest={adminAccessRequest} />
+          <SubmittedInformation
+            adminAccessRequest={adminAccessRequest}
+            organizationRequest={organizationRequest}
+            joinRequest={joinRequest}
+            joinOrganization={joinOrganization}
+          />
         )}
       </div>
 

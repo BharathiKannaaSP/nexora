@@ -377,7 +377,9 @@
       "email": "ईमेल",
       "permissions": "अनुरोधित अनुमतियाँ",
       "logoAlt": "{name} का लोगो",
-      "logoUnavailable": "लोगो उपलब्ध नहीं है"
+      "logoUnavailable": "लोगो उपलब्ध नहीं है",
+      "organization": "संगठन",
+      "organizationUnavailable": "इस संगठन का विवरण अभी उपलब्ध नहीं है।"
     },
     "next": {
       "title": "आगे क्या होगा?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Nexora चुनने के लिए धन्यवाद। आपको अपने साथ पाकर हम उत्साहित हैं!"
+  },
+  "joinOrganizationForm": {
+    "title": "संगठन से जुड़ें",
+    "description": "जिस संगठन में आप काम करते हैं उसे खोजें और चुनें, अपने विवरण दें और एक्सेस का अनुरोध करने के लिए आवश्यक दस्तावेज़ अपलोड करें।",
+    "submit": "अनुरोध सबमिट करें",
+    "sections": {
+      "organization": {
+        "title": "संगठन चुनें",
+        "description": "जिस संगठन के लिए आप काम करते हैं उसे खोजें और चुनें।"
+      },
+      "employment": {
+        "title": "आपकी नौकरी की जानकारी",
+        "description": "संगठन के एडमिन को अपनी भूमिका के बारे में बताएँ।"
+      },
+      "documents": {
+        "title": "पहचान सत्यापन दस्तावेज़",
+        "description": "ऐसे दस्तावेज़ अपलोड करें जो साबित करें कि आप कौन हैं और कहाँ काम करते हैं।"
+      },
+      "reason": {
+        "title": "जुड़ने का कारण",
+        "description": "आप इस संगठन के एक्सेस का अनुरोध क्यों कर रहे हैं?"
+      },
+      "access": {
+        "title": "अनुरोधित एक्सेस",
+        "description": "वे क्षेत्र चुनें जिनका एक्सेस आपको चाहिए। इससे एडमिन आपके अनुरोध की समीक्षा जल्दी कर पाएगा।"
+      },
+      "notes": {
+        "title": "अतिरिक्त नोट्स (वैकल्पिक)",
+        "description": "संगठन के एडमिन के लिए कोई भी अतिरिक्त जानकारी जोड़ें।"
+      }
+    },
+    "fields": {
+      "organization": "संगठन",
+      "employeeId": "कर्मचारी आईडी (वैकल्पिक)",
+      "jobTitle": "पद का नाम",
+      "department": "विभाग",
+      "workEmail": "कार्य ईमेल",
+      "joiningDate": "जॉइनिंग की तारीख (वैकल्पिक)",
+      "reportingManager": "रिपोर्टिंग मैनेजर (वैकल्पिक)",
+      "message": "जुड़ने का कारण",
+      "permissions": "अनुमतियाँ",
+      "additionalNotes": "अतिरिक्त नोट्स"
+    },
+    "placeholders": {
+      "employeeId": "कर्मचारी आईडी दर्ज करें",
+      "jobTitle": "अपने पद का नाम दर्ज करें",
+      "department": "विभाग चुनें",
+      "workEmail": "अपना कार्य ईमेल दर्ज करें",
+      "joiningDate": "तारीख चुनें",
+      "reportingManager": "मैनेजर का नाम दर्ज करें",
+      "message": "अपनी भूमिका और एक्सेस की ज़रूरत का कारण बताएँ…",
+      "additionalNotes": "कोई भी अतिरिक्त नोट जोड़ें…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG या WebP, {maxMb, number} MB तक"
+    },
+    "departments": {
+      "operations": "संचालन",
+      "sales": "बिक्री",
+      "marketing": "मार्केटिंग",
+      "product": "प्रोडक्ट",
+      "engineering": "इंजीनियरिंग",
+      "design": "डिज़ाइन",
+      "finance": "वित्त",
+      "humanResources": "मानव संसाधन",
+      "customerSupport": "ग्राहक सहायता",
+      "logistics": "लॉजिस्टिक्स",
+      "other": "अन्य"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar कार्ड",
+        "hint": "आपके Aadhaar का सामने वाला हिस्सा या ई-कॉपी"
+      },
+      "pan": {
+        "label": "PAN कार्ड",
+        "hint": "आपके PAN कार्ड का सामने वाला हिस्सा या ई-कॉपी"
+      },
+      "governmentId": {
+        "label": "सरकारी पहचान पत्र",
+        "hint": "पासपोर्ट, राष्ट्रीय पहचान पत्र या ड्राइविंग लाइसेंस"
+      },
+      "employeeIdCard": {
+        "label": "कर्मचारी पहचान पत्र",
+        "hint": "आपका कर्मचारी पहचान पत्र"
+      },
+      "offerLetter": {
+        "label": "ऑफ़र लेटर",
+        "hint": "आपका ऑफ़र लेटर या नियुक्ति पत्र"
+      }
+    },
+    "documentsNotice": "आपके देश (<strong>{country}</strong>) के आधार पर, निम्नलिखित दस्तावेज़ आवश्यक हैं।",
+    "documentsFootnote": "आपके दस्तावेज़ एन्क्रिप्ट किए जाते हैं और केवल सत्यापन के लिए उपयोग किए जाते हैं।",
+    "uploadedFiles": {
+      "title": "अपलोड की गई फ़ाइलें",
+      "description": "अनुरोध सबमिट करने से पहले अपने दस्तावेज़ जाँच लें।"
+    },
+    "validation": {
+      "organizationRequired": "वह संगठन चुनें जिससे आप जुड़ना चाहते हैं",
+      "jobTitleRequired": "पद का नाम आवश्यक है",
+      "departmentRequired": "अपना विभाग चुनें",
+      "workEmailRequired": "कार्य ईमेल आवश्यक है",
+      "workEmailInvalid": "एक मान्य ईमेल पता दर्ज करें",
+      "textFieldTooLong": "{max, number} वर्णों या उससे कम का होना चाहिए",
+      "joiningDateInvalid": "एक मान्य तारीख दर्ज करें",
+      "messageRequired": "एडमिन को बताएँ कि आप क्यों जुड़ना चाहते हैं",
+      "messageTooLong": "कारण {max, number} वर्णों या उससे कम का होना चाहिए",
+      "notesTooLong": "नोट्स {max, number} वर्णों या उससे कम के होने चाहिए",
+      "documentRequired": "यह दस्तावेज़ अपलोड करें",
+      "documentTooLarge": "फ़ाइल {maxMb, number} MB या उससे छोटी होनी चाहिए",
+      "documentWrongFormat": "PDF, Word फ़ाइल या इमेज (PNG, JPEG या WebP) अपलोड करें",
+      "permissionsRequired": "कम से कम एक अनुमति चुनें",
+      "permissionsNotAllowed": "इस मॉड्यूल का अनुरोध किसी संगठन के लिए नहीं किया जा सकता"
+    },
+    "aside": {
+      "next": {
+        "title": "आगे क्या होगा?",
+        "steps": {
+          "submitted": {
+            "title": "अनुरोध सबमिट हो गया",
+            "description": "आपका अनुरोध संगठन के एडमिन को भेजा जाएगा।"
+          },
+          "review": {
+            "title": "समीक्षा जारी है",
+            "description": "एडमिन आपके विवरण और दस्तावेज़ों की समीक्षा करेगा।"
+          },
+          "verification": {
+            "title": "सत्यापन",
+            "description": "आपके दस्तावेज़ों की प्रामाणिकता का सत्यापन किया जाएगा।"
+          },
+          "approval": {
+            "title": "अनुमोदन",
+            "description": "अनुमोदन के बाद, आपको संगठन के डैशबोर्ड का एक्सेस मिल जाएगा।"
+          }
+        }
+      },
+      "guidelines": {
+        "title": "दस्तावेज़ संबंधी दिशानिर्देश",
+        "items": {
+          "clear": "स्पष्ट और मान्य दस्तावेज़ अपलोड करें",
+          "readable": "सुनिश्चित करें कि सारा टेक्स्ट पढ़ने योग्य हो",
+          "formats": "समर्थित फ़ॉर्मेट: PDF, Word, PNG, JPEG और WebP",
+          "maxSize": "अधिकतम फ़ाइल आकार: प्रति फ़ाइल {maxMb, number} MB",
+          "encrypted": "सभी दस्तावेज़ सुरक्षित रूप से एन्क्रिप्ट किए जाते हैं"
+        }
+      },
+      "selected": {
+        "title": "चुना गया संगठन",
+        "change": "संगठन बदलें",
+        "choose": "कोई संगठन चुनें",
+        "none": "अभी तक कोई संगठन नहीं चुना गया है।"
+      }
+    }
   }
 }

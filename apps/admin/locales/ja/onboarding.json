@@ -377,7 +377,9 @@
       "email": "メールアドレス",
       "permissions": "リクエストした権限",
       "logoAlt": "{name} のロゴ",
-      "logoUnavailable": "ロゴを表示できません"
+      "logoUnavailable": "ロゴを表示できません",
+      "organization": "組織",
+      "organizationUnavailable": "現在、この組織の詳細を表示できません。"
     },
     "next": {
       "title": "今後の流れ",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Nexora をお選びいただきありがとうございます。ご参加をお待ちしていました！"
+  },
+  "joinOrganizationForm": {
+    "title": "組織に参加",
+    "description": "勤務先の組織を検索して選択し、必要事項を入力して必要書類をアップロードすると、アクセスをリクエストできます。",
+    "submit": "リクエストを送信",
+    "sections": {
+      "organization": {
+        "title": "組織を選択",
+        "description": "勤務先の組織を検索して選択してください。"
+      },
+      "employment": {
+        "title": "勤務情報",
+        "description": "組織の管理者にあなたの役割を伝えてください。"
+      },
+      "documents": {
+        "title": "本人確認書類",
+        "description": "本人であることと勤務先を証明する書類をアップロードしてください。"
+      },
+      "reason": {
+        "title": "参加理由",
+        "description": "この組織へのアクセスをリクエストする理由を教えてください。"
+      },
+      "access": {
+        "title": "リクエストするアクセス",
+        "description": "アクセスが必要な領域を選択してください。管理者がリクエストをより早く審査できます。"
+      },
+      "notes": {
+        "title": "補足事項（任意）",
+        "description": "組織の管理者に伝えたい補足情報があれば追加してください。"
+      }
+    },
+    "fields": {
+      "organization": "組織",
+      "employeeId": "社員番号（任意）",
+      "jobTitle": "役職",
+      "department": "部署",
+      "workEmail": "勤務先メールアドレス",
+      "joiningDate": "入社日（任意）",
+      "reportingManager": "直属の上司（任意）",
+      "message": "参加理由",
+      "permissions": "権限",
+      "additionalNotes": "補足事項"
+    },
+    "placeholders": {
+      "employeeId": "社員番号を入力",
+      "jobTitle": "役職を入力",
+      "department": "部署を選択",
+      "workEmail": "勤務先メールアドレスを入力",
+      "joiningDate": "日付を選択",
+      "reportingManager": "上司の名前を入力",
+      "message": "あなたの役割とアクセスが必要な理由を説明してください…",
+      "additionalNotes": "補足事項があれば入力してください…"
+    },
+    "hints": {
+      "document": "PDF、Word、PNG、JPEG、WebP（{maxMb, number} MBまで）"
+    },
+    "departments": {
+      "operations": "オペレーション",
+      "sales": "営業",
+      "marketing": "マーケティング",
+      "product": "プロダクト",
+      "engineering": "エンジニアリング",
+      "design": "デザイン",
+      "finance": "財務",
+      "humanResources": "人事",
+      "customerSupport": "カスタマーサポート",
+      "logistics": "物流",
+      "other": "その他"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaarカード",
+        "hint": "Aadhaarの表面または電子コピー"
+      },
+      "pan": {
+        "label": "PANカード",
+        "hint": "PANカードの表面または電子コピー"
+      },
+      "governmentId": {
+        "label": "政府発行の身分証明書",
+        "hint": "パスポート、国民IDカード、または運転免許証"
+      },
+      "employeeIdCard": {
+        "label": "社員証",
+        "hint": "あなたの社員証"
+      },
+      "offerLetter": {
+        "label": "内定通知書",
+        "hint": "内定通知書または辞令"
+      }
+    },
+    "documentsNotice": "お住まいの国（<strong>{country}</strong>）に基づき、以下の書類が必要です。",
+    "documentsFootnote": "書類は暗号化され、本人確認の目的でのみ使用されます。",
+    "uploadedFiles": {
+      "title": "アップロード済みファイル",
+      "description": "リクエストを送信する前に書類を確認してください。"
+    },
+    "validation": {
+      "organizationRequired": "参加する組織を選択してください",
+      "jobTitleRequired": "役職は必須です",
+      "departmentRequired": "部署を選択してください",
+      "workEmailRequired": "勤務先メールアドレスは必須です",
+      "workEmailInvalid": "有効なメールアドレスを入力してください",
+      "textFieldTooLong": "{max, number} 文字以内で入力してください",
+      "joiningDateInvalid": "有効な日付を入力してください",
+      "messageRequired": "参加したい理由を管理者に伝えてください",
+      "messageTooLong": "理由は {max, number} 文字以内で入力してください",
+      "notesTooLong": "補足事項は {max, number} 文字以内で入力してください",
+      "documentRequired": "この書類をアップロードしてください",
+      "documentTooLarge": "ファイルは{maxMb, number} MB以下にしてください",
+      "documentWrongFormat": "PDF、Wordファイル、または画像（PNG、JPEG、WebP）をアップロードしてください",
+      "permissionsRequired": "権限を1つ以上選択してください",
+      "permissionsNotAllowed": "このモジュールは組織に対してリクエストできません"
+    },
+    "aside": {
+      "next": {
+        "title": "今後の流れ",
+        "steps": {
+          "submitted": {
+            "title": "リクエスト送信",
+            "description": "リクエストが組織の管理者に送信されます。"
+          },
+          "review": {
+            "title": "審査中",
+            "description": "管理者があなたの情報と書類を審査します。"
+          },
+          "verification": {
+            "title": "確認",
+            "description": "書類の真正性が確認されます。"
+          },
+          "approval": {
+            "title": "承認",
+            "description": "承認されると、組織のダッシュボードにアクセスできるようになります。"
+          }
+        }
+      },
+      "guidelines": {
+        "title": "書類のガイドライン",
+        "items": {
+          "clear": "鮮明で有効な書類をアップロードしてください",
+          "readable": "すべての文字が読み取れることを確認してください",
+          "formats": "対応形式: PDF、Word、PNG、JPEG、WebP",
+          "maxSize": "最大ファイルサイズ: 1ファイルあたり{maxMb, number} MB",
+          "encrypted": "すべての書類は安全に暗号化されます"
+        }
+      },
+      "selected": {
+        "title": "選択した組織",
+        "change": "組織を変更",
+        "choose": "組織を選択",
+        "none": "まだ組織が選択されていません。"
+      }
+    }
   }
 }

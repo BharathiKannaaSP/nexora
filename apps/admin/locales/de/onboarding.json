@@ -377,7 +377,9 @@
       "email": "E-Mail",
       "permissions": "Angeforderte Berechtigungen",
       "logoAlt": "Logo von {name}",
-      "logoUnavailable": "Logo nicht verfügbar"
+      "logoUnavailable": "Logo nicht verfügbar",
+      "organization": "Organisation",
+      "organizationUnavailable": "Die Angaben zu dieser Organisation sind derzeit nicht verfügbar."
     },
     "next": {
       "title": "Wie geht es weiter?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Vielen Dank, dass Sie sich für Nexora entschieden haben. Wir freuen uns, Sie an Bord zu haben!"
+  },
+  "joinOrganizationForm": {
+    "title": "Einer Organisation beitreten",
+    "description": "Suchen und wählen Sie die Organisation, in der Sie arbeiten, geben Sie Ihre Angaben an und laden Sie die erforderlichen Dokumente hoch, um Zugriff zu beantragen.",
+    "submit": "Anfrage absenden",
+    "sections": {
+      "organization": {
+        "title": "Organisation auswählen",
+        "description": "Suchen Sie die Organisation, für die Sie arbeiten, und wählen Sie sie aus."
+      },
+      "employment": {
+        "title": "Ihre Beschäftigungsangaben",
+        "description": "Informieren Sie den Administrator der Organisation über Ihre Rolle."
+      },
+      "documents": {
+        "title": "Dokumente zur Identitätsprüfung",
+        "description": "Laden Sie Dokumente hoch, die belegen, wer Sie sind und wo Sie arbeiten."
+      },
+      "reason": {
+        "title": "Grund für den Beitritt",
+        "description": "Warum beantragen Sie Zugriff auf diese Organisation?"
+      },
+      "access": {
+        "title": "Angeforderter Zugriff",
+        "description": "Wählen Sie die Bereiche, auf die Sie Zugriff benötigen. So kann der Administrator Ihre Anfrage schneller prüfen."
+      },
+      "notes": {
+        "title": "Zusätzliche Hinweise (optional)",
+        "description": "Fügen Sie weitere Informationen für den Administrator der Organisation hinzu."
+      }
+    },
+    "fields": {
+      "organization": "Organisation",
+      "employeeId": "Personalnummer (optional)",
+      "jobTitle": "Berufsbezeichnung",
+      "department": "Abteilung",
+      "workEmail": "Geschäftliche E-Mail",
+      "joiningDate": "Eintrittsdatum (optional)",
+      "reportingManager": "Vorgesetzte Person (optional)",
+      "message": "Grund für den Beitritt",
+      "permissions": "Berechtigungen",
+      "additionalNotes": "Zusätzliche Hinweise"
+    },
+    "placeholders": {
+      "employeeId": "Personalnummer eingeben",
+      "jobTitle": "Geben Sie Ihre Berufsbezeichnung ein",
+      "department": "Abteilung auswählen",
+      "workEmail": "Geben Sie Ihre geschäftliche E-Mail ein",
+      "joiningDate": "Datum auswählen",
+      "reportingManager": "Name der vorgesetzten Person eingeben",
+      "message": "Beschreiben Sie Ihre Rolle und warum Sie Zugriff benötigen…",
+      "additionalNotes": "Zusätzliche Hinweise hinzufügen…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG oder WebP, bis zu {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "Betrieb",
+      "sales": "Vertrieb",
+      "marketing": "Marketing",
+      "product": "Produkt",
+      "engineering": "Entwicklung",
+      "design": "Design",
+      "finance": "Finanzen",
+      "humanResources": "Personalwesen",
+      "customerSupport": "Kundensupport",
+      "logistics": "Logistik",
+      "other": "Sonstiges"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar-Karte",
+        "hint": "Vorderseite oder E-Kopie Ihrer Aadhaar-Karte"
+      },
+      "pan": {
+        "label": "PAN-Karte",
+        "hint": "Vorderseite oder E-Kopie Ihrer PAN-Karte"
+      },
+      "governmentId": {
+        "label": "Amtlicher Ausweis",
+        "hint": "Reisepass, Personalausweis oder Führerschein"
+      },
+      "employeeIdCard": {
+        "label": "Mitarbeiterausweis",
+        "hint": "Ihr Mitarbeiterausweis"
+      },
+      "offerLetter": {
+        "label": "Angebotsschreiben",
+        "hint": "Ihr Angebots- oder Einstellungsschreiben"
+      }
+    },
+    "documentsNotice": "Basierend auf Ihrem Land (<strong>{country}</strong>) sind die folgenden Dokumente erforderlich.",
+    "documentsFootnote": "Ihre Dokumente werden verschlüsselt und ausschließlich zur Verifizierung verwendet.",
+    "uploadedFiles": {
+      "title": "Hochgeladene Dateien",
+      "description": "Prüfen Sie Ihre Dokumente, bevor Sie Ihre Anfrage absenden."
+    },
+    "validation": {
+      "organizationRequired": "Wählen Sie die Organisation, der Sie beitreten möchten",
+      "jobTitleRequired": "Die Berufsbezeichnung ist erforderlich",
+      "departmentRequired": "Wählen Sie Ihre Abteilung",
+      "workEmailRequired": "Die geschäftliche E-Mail ist erforderlich",
+      "workEmailInvalid": "Geben Sie eine gültige E-Mail-Adresse ein",
+      "textFieldTooLong": "Darf höchstens {max, number} Zeichen lang sein",
+      "joiningDateInvalid": "Geben Sie ein gültiges Datum ein",
+      "messageRequired": "Teilen Sie dem Administrator mit, warum Sie beitreten möchten",
+      "messageTooLong": "Der Grund darf höchstens {max, number} Zeichen lang sein",
+      "notesTooLong": "Die Hinweise dürfen höchstens {max, number} Zeichen lang sein",
+      "documentRequired": "Laden Sie dieses Dokument hoch",
+      "documentTooLarge": "Die Datei darf höchstens {maxMb, number} MB groß sein",
+      "documentWrongFormat": "Laden Sie eine PDF-, Word-Datei oder ein Bild (PNG, JPEG oder WebP) hoch",
+      "permissionsRequired": "Wählen Sie mindestens eine Berechtigung",
+      "permissionsNotAllowed": "Dieses Modul kann für eine Organisation nicht angefordert werden"
+    },
+    "aside": {
+      "next": {
+        "title": "Wie geht es weiter?",
+        "steps": {
+          "submitted": {
+            "title": "Anfrage gesendet",
+            "description": "Ihre Anfrage wird an den Administrator der Organisation gesendet."
+          },
+          "review": {
+            "title": "In Prüfung",
+            "description": "Der Administrator prüft Ihre Angaben und Dokumente."
+          },
+          "verification": {
+            "title": "Verifizierung",
+            "description": "Ihre Dokumente werden auf Echtheit geprüft."
+          },
+          "approval": {
+            "title": "Genehmigung",
+            "description": "Nach der Genehmigung erhalten Sie Zugriff auf das Dashboard der Organisation."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "Richtlinien für Dokumente",
+        "items": {
+          "clear": "Laden Sie gut lesbare und gültige Dokumente hoch",
+          "readable": "Achten Sie darauf, dass der gesamte Text lesbar ist",
+          "formats": "Unterstützte Formate: PDF, Word, PNG, JPEG und WebP",
+          "maxSize": "Maximale Dateigröße: {maxMb, number} MB pro Datei",
+          "encrypted": "Alle Dokumente werden sicher verschlüsselt"
+        }
+      },
+      "selected": {
+        "title": "Ausgewählte Organisation",
+        "change": "Organisation ändern",
+        "choose": "Organisation auswählen",
+        "none": "Noch keine Organisation ausgewählt."
+      }
+    }
   }
 }

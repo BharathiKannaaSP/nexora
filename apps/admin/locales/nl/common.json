@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "Controleer dit veld.",
-    "noResults": "Geen resultaten gevonden."
+    "noResults": "Geen resultaten gevonden.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "Bezig met laden",
   "closeNotification": "Melding sluiten",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} downloaden",
     "deleteTitle": "{name} verwijderen?",
     "deleteDescription": "Het bestand wordt definitief verwijderd. Dit kan niet ongedaan worden gemaakt."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "Zoek organisatie op naam",
+    "noResults": "Geen organisaties gevonden voor “{search}”",
+    "empty": "Er zijn nog geen organisaties beschikbaar om bij aan te sluiten.",
+    "members": "{count, plural, one {# lid} other {# leden}}",
+    "scrollBack": "Vorige organisaties weergeven",
+    "scrollForward": "Meer organisaties weergeven"
   }
 }

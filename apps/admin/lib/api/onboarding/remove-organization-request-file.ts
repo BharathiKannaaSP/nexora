@@ -5,9 +5,9 @@ import type { ObjectKeyResponseData } from "@nexora/shared/types/media"
 import { apiResult, type ApiResult } from "../result"
 
 /**
- * Takes a saved logo or document off the user's create-organization request.
- * Call it before deleting the file from S3, so the request never points at a
- * missing file.
+ * Takes a saved logo or document off the user's create- or join-organization
+ * request. Call it before deleting the file from S3, so the request never
+ * points at a missing file.
  */
 export async function removeOrganizationRequestFile(
   key: string

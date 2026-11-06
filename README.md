@@ -103,7 +103,7 @@ flowchart LR
 | `services/auth-service` | 4001 | Users, passwords, verification tokens, refresh sessions, system roles, countries. Produces `email.verification.requested`, `initiate.user.onboarding`; consumes `onboarding.admin-access.approved`. |
 | `services/onboarding-service` | 4002 | Onboarding steps, become-admin and organization requests, request assignment, reviewer permissions. Produces `onboarding.admin-access.approved`; consumes `initiate.user.onboarding`, `user.platform-permissions.changed`. |
 | `services/user-service` | 4003 | User profile details and platform permissions. Produces `user.platform-permissions.changed`; consumes `initiate.user.onboarding`, `onboarding.admin-access.approved`. |
-| `services/organization-service` | 4004 | Organizations and memberships (read API; no events yet). |
+| `services/organization-service` | 4004 | Organizations and memberships (read API, including the directory users pick from to join; no events yet). |
 | `services/aggregate-service` | 4005 | `GET /aggregate/me`: one bootstrap response built from auth, user and onboarding, with a per-call timeout. No database. |
 | `services/media-service` | 4006 | S3 presigned uploads, file checks, CloudFront signed URLs. No database. See [docs/aws.md](docs/aws.md). |
 | `services/email-service` | — | Kafka consumer: decrypts the verification token, renders the localised email, sends it with Resend. |
@@ -211,6 +211,9 @@ pnpm prisma db migrate --advance-ref db
 
 # 6. Run everything
 pnpm dev
+
+# Optional: sample ACTIVE organizations for the join-organization directory
+pnpm --filter @nexora/organization-service seed:dev
 ```
 
 `pnpm dev` runs `turbo dev`. For auth, onboarding, user and organization, turbo also starts the service's `outbox:dev` worker next to the HTTP server.
@@ -1226,9 +1229,9 @@ All paths are behind the gateway's `authenticate` except the public auth routes 
 |---|---|
 | aggregate | `GET /aggregate/me` |
 | auth | `PATCH /auth/me/update`, public `GET /auth/countries` (plus section 8) |
-| onboarding | `GET /onboarding/onboardingDetails`, `PATCH /onboarding/step`, `POST /onboarding/become-admin-request`, `GET /onboarding/become-admin-request-details`, `POST /onboarding/organization-request`, `GET /onboarding/create-organization-form-details`, `POST /onboarding/organization-request/remove-file`, `GET /onboarding/admin-permissions` |
+| onboarding | `GET /onboarding/onboardingDetails`, `PATCH /onboarding/step`, `POST /onboarding/become-admin-request`, `GET /onboarding/become-admin-request-details`, `POST /onboarding/organization-request`, `GET /onboarding/create-organization-form-details`, `GET /onboarding/join-organization-form-details`, `POST /onboarding/organization-request/remove-file`, `GET /onboarding/admin-permissions` |
 | user | `GET /user/user-details`, `PUT /user/user-details`, `GET /user/platform-countries` |
-| organization | `GET /organization/my-organizations`, `GET /organization/:organizationId` |
+| organization | `GET /organization/my-organizations`, `GET /organization/directory?search=&country=&limit=`, `GET /organization/directory/:organizationId`, `GET /organization/:organizationId` |
 | media | see [docs/aws.md](docs/aws.md#5-http-api) |
 
 ### 15.5 Documentation

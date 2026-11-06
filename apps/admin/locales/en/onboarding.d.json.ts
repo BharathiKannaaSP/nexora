@@ -380,7 +380,9 @@ declare const messages: {
       "email": "Email",
       "permissions": "Requested permissions",
       "logoAlt": "{name} logo",
-      "logoUnavailable": "Logo unavailable"
+      "logoUnavailable": "Logo unavailable",
+      "organization": "Organization",
+      "organizationUnavailable": "This organization's details aren't available right now."
     },
     "next": {
       "title": "What happens next?",
@@ -398,6 +400,159 @@ declare const messages: {
       }
     },
     "thanks": "Thank you for choosing Nexora. We're excited to have you on board!"
+  },
+  "joinOrganizationForm": {
+    "title": "Join an organization",
+    "description": "Search and select the organization where you work, provide your details and upload the required documents to request access.",
+    "submit": "Submit request",
+    "sections": {
+      "organization": {
+        "title": "Choose organization",
+        "description": "Search for the organization you work for and select it."
+      },
+      "employment": {
+        "title": "Your employment information",
+        "description": "Tell the organization admin about your role."
+      },
+      "documents": {
+        "title": "Identity verification documents",
+        "description": "Upload documents that prove who you are and where you work."
+      },
+      "reason": {
+        "title": "Reason for joining",
+        "description": "Why are you requesting access to this organization?"
+      },
+      "access": {
+        "title": "Requested access",
+        "description": "Select the areas you need access to. This helps the admin review your request faster."
+      },
+      "notes": {
+        "title": "Additional notes (optional)",
+        "description": "Add any additional information for the organization admin."
+      }
+    },
+    "fields": {
+      "organization": "Organization",
+      "employeeId": "Employee ID (optional)",
+      "jobTitle": "Job title",
+      "department": "Department",
+      "workEmail": "Work email",
+      "joiningDate": "Joining date (optional)",
+      "reportingManager": "Reporting manager (optional)",
+      "message": "Reason for joining",
+      "permissions": "Permissions",
+      "additionalNotes": "Additional notes"
+    },
+    "placeholders": {
+      "employeeId": "Enter employee ID",
+      "jobTitle": "Enter your job title",
+      "department": "Select department",
+      "workEmail": "Enter your work email",
+      "joiningDate": "Select date",
+      "reportingManager": "Enter manager name",
+      "message": "Explain your role and why you need access…",
+      "additionalNotes": "Add any additional notes…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG or WebP, up to {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "Operations",
+      "sales": "Sales",
+      "marketing": "Marketing",
+      "product": "Product",
+      "engineering": "Engineering",
+      "design": "Design",
+      "finance": "Finance",
+      "humanResources": "Human resources",
+      "customerSupport": "Customer support",
+      "logistics": "Logistics",
+      "other": "Other"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar card",
+        "hint": "Front side or e-copy of your Aadhaar"
+      },
+      "pan": {
+        "label": "PAN card",
+        "hint": "Front side or e-copy of your PAN card"
+      },
+      "governmentId": {
+        "label": "Government-issued ID",
+        "hint": "Passport, national ID card or driving licence"
+      },
+      "employeeIdCard": {
+        "label": "Employee ID card",
+        "hint": "Your employee ID card"
+      },
+      "offerLetter": {
+        "label": "Offer letter",
+        "hint": "Your offer or appointment letter"
+      }
+    },
+    "documentsNotice": "Based on your country (<strong>{country}</strong>), the following documents are required.",
+    "documentsFootnote": "Your documents are encrypted and used only for verification purposes.",
+    "uploadedFiles": {
+      "title": "Uploaded files",
+      "description": "Check your documents before you submit your request."
+    },
+    "validation": {
+      "organizationRequired": "Select the organization you want to join",
+      "jobTitleRequired": "Job title is required",
+      "departmentRequired": "Select your department",
+      "workEmailRequired": "Work email is required",
+      "workEmailInvalid": "Enter a valid email address",
+      "textFieldTooLong": "Must be {max, number} characters or fewer",
+      "joiningDateInvalid": "Enter a valid date",
+      "messageRequired": "Tell the admin why you want to join",
+      "messageTooLong": "Reason must be {max, number} characters or fewer",
+      "notesTooLong": "Notes must be {max, number} characters or fewer",
+      "documentRequired": "Upload this document",
+      "documentTooLarge": "File must be {maxMb, number} MB or smaller",
+      "documentWrongFormat": "Upload a PDF, Word file or image (PNG, JPEG or WebP)",
+      "permissionsRequired": "Select at least one permission",
+      "permissionsNotAllowed": "This module can't be requested for an organization"
+    },
+    "aside": {
+      "next": {
+        "title": "What happens next?",
+        "steps": {
+          "submitted": {
+            "title": "Request submitted",
+            "description": "Your request will be sent to the organization admin."
+          },
+          "review": {
+            "title": "Under review",
+            "description": "The admin will review your details and documents."
+          },
+          "verification": {
+            "title": "Verification",
+            "description": "Your documents will be verified for authenticity."
+          },
+          "approval": {
+            "title": "Approval",
+            "description": "Once approved, you'll get access to the organization dashboard."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "Document guidelines",
+        "items": {
+          "clear": "Upload clear and valid documents",
+          "readable": "Make sure all text is readable",
+          "formats": "Supported formats: PDF, Word, PNG, JPEG and WebP",
+          "maxSize": "Maximum file size: {maxMb, number} MB per file",
+          "encrypted": "All documents are securely encrypted"
+        }
+      },
+      "selected": {
+        "title": "Selected organization",
+        "change": "Change organization",
+        "choose": "Choose an organization",
+        "none": "No organization selected yet."
+      }
+    }
   }
 };
 export default messages;

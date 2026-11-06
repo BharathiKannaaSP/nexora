@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "이 항목을 확인해 주세요.",
-    "noResults": "검색 결과가 없습니다."
+    "noResults": "검색 결과가 없습니다.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "로딩 중",
   "closeNotification": "알림 닫기",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} 다운로드",
     "deleteTitle": "{name}을(를) 삭제할까요?",
     "deleteDescription": "파일이 영구적으로 삭제됩니다. 이 작업은 되돌릴 수 없습니다."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "조직 이름으로 검색",
+    "noResults": "“{search}”와(과) 일치하는 조직이 없습니다",
+    "empty": "아직 참여할 수 있는 조직이 없습니다.",
+    "members": "{count, plural, other {멤버 #명}}",
+    "scrollBack": "이전 조직 보기",
+    "scrollForward": "더 많은 조직 보기"
   }
 }

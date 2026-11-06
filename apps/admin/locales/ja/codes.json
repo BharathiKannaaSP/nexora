@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "使用できないファイルがあります。もう一度アップロードしてください",
     "ORGANIZATION_FILE_DUPLICATE": "同じファイルは一度しか使用できません",
-    "NO_REVIEWER_AVAILABLE": "このリクエストを担当できるレビュアーがまだいません。後でもう一度お試しいただくか、サポートにお問い合わせください。"
+    "NO_REVIEWER_AVAILABLE": "このリクエストを担当できるレビュアーがまだいません。後でもう一度お試しいただくか、サポートにお問い合わせください。",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "組織への参加リクエストを送信しました"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "このファイル形式は使用できません",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "組織の申請が見つかりません",
     "REQUEST_INCOMPLETE": "この申請には必須の情報が不足しています",
     "NOT_FOUND": "組織が見つかりません"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "組織が見つかりません"
 }

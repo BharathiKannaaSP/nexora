@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "No se pudo usar un archivo. Vuelve a subirlo",
     "ORGANIZATION_FILE_DUPLICATE": "Cada archivo solo se puede usar una vez",
-    "NO_REVIEWER_AVAILABLE": "Todavía no hay ningún revisor disponible para esta solicitud. Inténtalo más tarde o contacta con soporte."
+    "NO_REVIEWER_AVAILABLE": "Todavía no hay ningún revisor disponible para esta solicitud. Inténtalo más tarde o contacta con soporte.",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Se ha enviado tu solicitud para unirte a la organización"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Este tipo de archivo no está permitido",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "No se encontró la solicitud de organización",
     "REQUEST_INCOMPLETE": "A esta solicitud le faltan datos obligatorios",
     "NOT_FOUND": "No se encontró la organización"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "Organización no encontrada"
 }

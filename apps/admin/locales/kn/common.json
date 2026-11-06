@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "ದಯವಿಟ್ಟು ಈ ಕ್ಷೇತ್ರವನ್ನು ಪರಿಶೀಲಿಸಿ.",
-    "noResults": "ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ."
+    "noResults": "ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ",
   "closeNotification": "ಅಧಿಸೂಚನೆಯನ್ನು ಮುಚ್ಚಿ",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
     "deleteTitle": "{name} ಅಳಿಸಬೇಕೆ?",
     "deleteDescription": "ಫೈಲ್ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ. ಇದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "ಹೆಸರಿನ ಮೂಲಕ ಸಂಸ್ಥೆಯನ್ನು ಹುಡುಕಿ",
+    "noResults": "“{search}” ಗೆ ಹೊಂದುವ ಯಾವುದೇ ಸಂಸ್ಥೆಗಳಿಲ್ಲ",
+    "empty": "ಸೇರಲು ಇನ್ನೂ ಯಾವುದೇ ಸಂಸ್ಥೆಗಳು ಲಭ್ಯವಿಲ್ಲ.",
+    "members": "{count, plural, one {# ಸದಸ್ಯ} other {# ಸದಸ್ಯರು}}",
+    "scrollBack": "ಹಿಂದಿನ ಸಂಸ್ಥೆಗಳನ್ನು ತೋರಿಸಿ",
+    "scrollForward": "ಇನ್ನಷ್ಟು ಸಂಸ್ಥೆಗಳನ್ನು ತೋರಿಸಿ"
   }
 }

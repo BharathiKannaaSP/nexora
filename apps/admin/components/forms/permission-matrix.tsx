@@ -36,7 +36,8 @@ const MODULE_COLUMN_ID = "module"
  * An accordion item per group (e.g. a country), each holding a table with a
  * row per module and a column per action, plus a header checkbox that ticks
  * the whole column. The value is { [group]: { [module]: action[] } }; errors
- * come per group, e.g. errors.permissions.IN.
+ * come per group, e.g. errors.permissions.IN. Without groups it's a single
+ * table, the value is { [module]: action[] } and the field shows the error.
  */
 export const PermissionMatrixField = memo(function PermissionMatrixField({
   field,
@@ -52,8 +53,40 @@ export const PermissionMatrixField = memo(function PermissionMatrixField({
   error?: any
 }) {
   const matrix = fieldConfig.permissionMatrix
-  const firstGroup = matrix?.groups[0]
-  if (!matrix || !firstGroup) return null
+  if (!matrix) return null
+
+  if (!matrix.groups) {
+    const value: GroupPermissions = field.value ?? {}
+    const selectedCount = matrix.modules.filter(
+      ({ value: module }) => (value[module]?.length ?? 0) > 0
+    ).length
+
+    return (
+      <div
+        role="group"
+        aria-labelledby={labelId}
+        className={cn(
+          "min-w-0 overflow-hidden rounded-lg border",
+          error && "border-destructive"
+        )}
+      >
+        <p className="flex justify-end border-b px-4 py-2">
+          <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-700 dark:text-emerald-400">
+            {matrix.selectedCountLabel(selectedCount)}
+          </span>
+        </p>
+        <GroupTable
+          matrix={matrix}
+          groupValue={value}
+          disabled={fieldConfig.disabled}
+          onChange={field.onChange}
+        />
+      </div>
+    )
+  }
+
+  const firstGroup = matrix.groups[0]
+  if (!firstGroup) return null
   const value: PermissionValue = field.value ?? {}
 
   return (
@@ -111,7 +144,7 @@ export const PermissionMatrixField = memo(function PermissionMatrixField({
   )
 })
 
-/** One group's modules × actions table. */
+/** One group's modules × actions table; the only one without groups. */
 function GroupTable({
   matrix,
   group,
@@ -120,7 +153,7 @@ function GroupTable({
   onChange,
 }: {
   matrix: PermissionMatrixConfig
-  group: SelectOption
+  group?: SelectOption
   groupValue: GroupPermissions
   disabled?: boolean
   onChange: (next: GroupPermissions) => void
@@ -195,7 +228,11 @@ function GroupTable({
             return (
               <div className="flex justify-center">
                 <Checkbox
-                  aria-label={`${group.label}: ${module.label}, ${action.label}`}
+                  aria-label={
+                    group
+                      ? `${group.label}: ${module.label}, ${action.label}`
+                      : `${module.label}, ${action.label}`
+                  }
                   checked={
                     groupValue[module.value]?.includes(action.value) ?? false
                   }

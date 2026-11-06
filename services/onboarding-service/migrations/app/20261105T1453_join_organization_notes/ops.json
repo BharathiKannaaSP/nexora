@@ -1,0 +1,256 @@
+[
+  {
+    "id": "dropCheckConstraint.OrganizationDocumentRequirement.OrganizationDocumentRequirement_documentType_check_669f20a4",
+    "label": "Drop check constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\" on \"OrganizationDocumentRequirement\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "OrganizationDocumentRequirement_documentType_check_669f20a4",
+        "table": "OrganizationDocumentRequirement"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationDocumentRequirement_documentType_check_669f20a4",
+          "public",
+          "\"public\".\"OrganizationDocumentRequirement\""
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\" on \"OrganizationDocumentRequirement\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop check constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationDocumentRequirement\" DROP CONSTRAINT \"OrganizationDocumentRequirement_documentType_check_669f20a4\""
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationDocumentRequirement_documentType_check_669f20a4",
+          "public",
+          "\"public\".\"OrganizationDocumentRequirement\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationDocumentRequirement_documentType_check_669f20a4\" on \"OrganizationDocumentRequirement\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "dropCheckConstraint.OrganizationRequestDocument.OrganizationRequestDocument_documentType_check_669f20a4",
+    "label": "Drop check constraint \"OrganizationRequestDocument_documentType_check_669f20a4\" on \"OrganizationRequestDocument\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "OrganizationRequestDocument_documentType_check_669f20a4",
+        "table": "OrganizationRequestDocument"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationRequestDocument_documentType_check_669f20a4\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationRequestDocument_documentType_check_669f20a4",
+          "public",
+          "\"public\".\"OrganizationRequestDocument\""
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "constraint \"OrganizationRequestDocument_documentType_check_669f20a4\" on \"OrganizationRequestDocument\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop check constraint \"OrganizationRequestDocument_documentType_check_669f20a4\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationRequestDocument\" DROP CONSTRAINT \"OrganizationRequestDocument_documentType_check_669f20a4\""
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"OrganizationRequestDocument_documentType_check_669f20a4\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationRequestDocument_documentType_check_669f20a4",
+          "public",
+          "\"public\".\"OrganizationRequestDocument\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationRequestDocument_documentType_check_669f20a4\" on \"OrganizationRequestDocument\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "column.public.OrganizationRequest.additionalNotes",
+    "label": "Add column \"additionalNotes\" to \"OrganizationRequest\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "additionalNotes",
+        "table": "OrganizationRequest"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"additionalNotes\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "OrganizationRequest",
+          "additionalNotes"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "column \"additionalNotes\" on \"OrganizationRequest\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"additionalNotes\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationRequest\" ADD COLUMN \"additionalNotes\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"additionalNotes\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "OrganizationRequest",
+          "additionalNotes"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "column \"additionalNotes\" on \"OrganizationRequest\""
+        }
+      },
+      {
+        "description": "verify column \"additionalNotes\" has type \"text\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_attribute\" AS \"a\" INNER JOIN \"pg_class\" AS \"c\" ON \"c\".\"oid\" = \"a\".\"attrelid\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"relnamespace\" WHERE (\"n\".\"nspname\" = $1 AND \"c\".\"relname\" = $2 AND \"a\".\"attname\" = $3 AND (format_type(\"a\".\"atttypid\", \"a\".\"atttypmod\")) = $4 AND NOT (\"a\".\"attisdropped\"))) AS \"result\"",
+        "params": [
+          "public",
+          "OrganizationRequest",
+          "additionalNotes",
+          "text"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.OrganizationDocumentRequirement.OrganizationDocumentRequirement_documentType_check_f2925b67",
+    "label": "Add check constraint \"OrganizationDocumentRequirement_documentType_check_f2925b67\" on \"OrganizationDocumentRequirement\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "OrganizationDocumentRequirement_documentType_check_f2925b67",
+        "table": "OrganizationDocumentRequirement"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationDocumentRequirement_documentType_check_f2925b67\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationDocumentRequirement_documentType_check_f2925b67",
+          "public",
+          "\"public\".\"OrganizationDocumentRequirement\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationDocumentRequirement_documentType_check_f2925b67\" on \"OrganizationDocumentRequirement\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"OrganizationDocumentRequirement_documentType_check_f2925b67\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationDocumentRequirement\" ADD CONSTRAINT \"OrganizationDocumentRequirement_documentType_check_f2925b67\" CHECK (\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OFFER_LETTER', 'OTHER'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify check constraint \"OrganizationDocumentRequirement_documentType_check_f2925b67\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4)) AS \"result\"",
+        "params": [
+          "OrganizationDocumentRequirement_documentType_check_f2925b67",
+          "public",
+          "\"public\".\"OrganizationDocumentRequirement\"",
+          "c"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.OrganizationRequestDocument.OrganizationRequestDocument_documentType_check_f2925b67",
+    "label": "Add check constraint \"OrganizationRequestDocument_documentType_check_f2925b67\" on \"OrganizationRequestDocument\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "OrganizationRequestDocument_documentType_check_f2925b67",
+        "table": "OrganizationRequestDocument"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"OrganizationRequestDocument_documentType_check_f2925b67\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "OrganizationRequestDocument_documentType_check_f2925b67",
+          "public",
+          "\"public\".\"OrganizationRequestDocument\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"OrganizationRequestDocument_documentType_check_f2925b67\" on \"OrganizationRequestDocument\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"OrganizationRequestDocument_documentType_check_f2925b67\"",
+        "sql": "ALTER TABLE \"public\".\"OrganizationRequestDocument\" ADD CONSTRAINT \"OrganizationRequestDocument_documentType_check_f2925b67\" CHECK (\"documentType\" IN ('ORGANIZATION_LOGO', 'TAX_DOCUMENT', 'BUSINESS_REGISTRATION', 'PROOF_OF_ADDRESS', 'IDENTITY_DOCUMENT', 'RESIDENCE_PERMIT', 'EMPLOYMENT_PROOF', 'OFFER_LETTER', 'OTHER'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify check constraint \"OrganizationRequestDocument_documentType_check_f2925b67\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4)) AS \"result\"",
+        "params": [
+          "OrganizationRequestDocument_documentType_check_f2925b67",
+          "public",
+          "\"public\".\"OrganizationRequestDocument\"",
+          "c"
+        ]
+      }
+    ]
+  }
+]

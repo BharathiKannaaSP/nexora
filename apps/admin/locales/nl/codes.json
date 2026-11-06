@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "Een bestand kon niet worden gebruikt. Upload het opnieuw",
     "ORGANIZATION_FILE_DUPLICATE": "Elk bestand kan maar één keer worden gebruikt",
-    "NO_REVIEWER_AVAILABLE": "Er is nog geen beoordelaar beschikbaar voor deze aanvraag. Probeer het later opnieuw of neem contact op met support."
+    "NO_REVIEWER_AVAILABLE": "Er is nog geen beoordelaar beschikbaar voor deze aanvraag. Probeer het later opnieuw of neem contact op met support.",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Uw aanvraag om u bij de organisatie aan te sluiten is ingediend"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dit bestandstype is niet toegestaan",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "Organisatieaanvraag niet gevonden",
     "REQUEST_INCOMPLETE": "Deze aanvraag mist verplichte gegevens",
     "NOT_FOUND": "Organisatie niet gevonden"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "Organisatie niet gevonden"
 }

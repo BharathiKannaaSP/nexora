@@ -377,7 +377,9 @@
       "email": "E-mail",
       "permissions": "Aangevraagde rechten",
       "logoAlt": "Logo van {name}",
-      "logoUnavailable": "Logo niet beschikbaar"
+      "logoUnavailable": "Logo niet beschikbaar",
+      "organization": "Organisatie",
+      "organizationUnavailable": "De gegevens van deze organisatie zijn momenteel niet beschikbaar."
     },
     "next": {
       "title": "Wat gebeurt er nu?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Bedankt dat u voor Nexora heeft gekozen. We zijn blij dat u erbij bent!"
+  },
+  "joinOrganizationForm": {
+    "title": "Aansluiten bij een organisatie",
+    "description": "Zoek en selecteer de organisatie waar u werkt, vul uw gegevens in en upload de vereiste documenten om toegang aan te vragen.",
+    "submit": "Aanvraag indienen",
+    "sections": {
+      "organization": {
+        "title": "Organisatie kiezen",
+        "description": "Zoek de organisatie waarvoor u werkt en selecteer deze."
+      },
+      "employment": {
+        "title": "Uw dienstverband",
+        "description": "Vertel de beheerder van de organisatie over uw rol."
+      },
+      "documents": {
+        "title": "Documenten voor identiteitsverificatie",
+        "description": "Upload documenten die aantonen wie u bent en waar u werkt."
+      },
+      "reason": {
+        "title": "Reden van aansluiting",
+        "description": "Waarom vraagt u toegang tot deze organisatie aan?"
+      },
+      "access": {
+        "title": "Aangevraagde toegang",
+        "description": "Selecteer de onderdelen waartoe u toegang nodig heeft. Zo kan de beheerder uw aanvraag sneller beoordelen."
+      },
+      "notes": {
+        "title": "Aanvullende opmerkingen (optioneel)",
+        "description": "Voeg eventuele aanvullende informatie toe voor de beheerder van de organisatie."
+      }
+    },
+    "fields": {
+      "organization": "Organisatie",
+      "employeeId": "Personeelsnummer (optioneel)",
+      "jobTitle": "Functietitel",
+      "department": "Afdeling",
+      "workEmail": "Zakelijk e-mailadres",
+      "joiningDate": "Datum van indiensttreding (optioneel)",
+      "reportingManager": "Leidinggevende (optioneel)",
+      "message": "Reden van aansluiting",
+      "permissions": "Rechten",
+      "additionalNotes": "Aanvullende opmerkingen"
+    },
+    "placeholders": {
+      "employeeId": "Voer personeelsnummer in",
+      "jobTitle": "Voer uw functietitel in",
+      "department": "Selecteer afdeling",
+      "workEmail": "Voer uw zakelijke e-mailadres in",
+      "joiningDate": "Selecteer datum",
+      "reportingManager": "Voer naam van leidinggevende in",
+      "message": "Beschrijf uw rol en waarom u toegang nodig heeft…",
+      "additionalNotes": "Voeg eventuele aanvullende opmerkingen toe…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG of WebP, maximaal {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "Operations",
+      "sales": "Verkoop",
+      "marketing": "Marketing",
+      "product": "Product",
+      "engineering": "Engineering",
+      "design": "Ontwerp",
+      "finance": "Financiën",
+      "humanResources": "Personeelszaken",
+      "customerSupport": "Klantenservice",
+      "logistics": "Logistiek",
+      "other": "Overig"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar-kaart",
+        "hint": "Voorkant of digitale kopie van uw Aadhaar"
+      },
+      "pan": {
+        "label": "PAN-kaart",
+        "hint": "Voorkant of digitale kopie van uw PAN-kaart"
+      },
+      "governmentId": {
+        "label": "Door de overheid uitgegeven identiteitsbewijs",
+        "hint": "Paspoort, identiteitskaart of rijbewijs"
+      },
+      "employeeIdCard": {
+        "label": "Personeelspas",
+        "hint": "Uw personeelspas"
+      },
+      "offerLetter": {
+        "label": "Aanbiedingsbrief",
+        "hint": "Uw aanbiedingsbrief of aanstellingsbrief"
+      }
+    },
+    "documentsNotice": "Op basis van uw land (<strong>{country}</strong>) zijn de volgende documenten vereist.",
+    "documentsFootnote": "Uw documenten worden versleuteld en alleen gebruikt voor verificatie.",
+    "uploadedFiles": {
+      "title": "Geüploade bestanden",
+      "description": "Controleer uw documenten voordat u uw aanvraag indient."
+    },
+    "validation": {
+      "organizationRequired": "Selecteer de organisatie waarbij u zich wilt aansluiten",
+      "jobTitleRequired": "Functietitel is verplicht",
+      "departmentRequired": "Selecteer uw afdeling",
+      "workEmailRequired": "Zakelijk e-mailadres is verplicht",
+      "workEmailInvalid": "Voer een geldig e-mailadres in",
+      "textFieldTooLong": "Mag maximaal {max, number} tekens bevatten",
+      "joiningDateInvalid": "Voer een geldige datum in",
+      "messageRequired": "Vertel de beheerder waarom u zich wilt aansluiten",
+      "messageTooLong": "Reden mag maximaal {max, number} tekens bevatten",
+      "notesTooLong": "Opmerkingen mogen maximaal {max, number} tekens bevatten",
+      "documentRequired": "Upload dit document",
+      "documentTooLarge": "Bestand mag maximaal {maxMb, number} MB groot zijn",
+      "documentWrongFormat": "Upload een PDF, Word-bestand of afbeelding (PNG, JPEG of WebP)",
+      "permissionsRequired": "Selecteer ten minste één recht",
+      "permissionsNotAllowed": "Deze module kan niet worden aangevraagd voor een organisatie"
+    },
+    "aside": {
+      "next": {
+        "title": "Wat gebeurt er nu?",
+        "steps": {
+          "submitted": {
+            "title": "Aanvraag ingediend",
+            "description": "Uw aanvraag wordt naar de beheerder van de organisatie gestuurd."
+          },
+          "review": {
+            "title": "In behandeling",
+            "description": "De beheerder beoordeelt uw gegevens en documenten."
+          },
+          "verification": {
+            "title": "Verificatie",
+            "description": "Uw documenten worden op echtheid gecontroleerd."
+          },
+          "approval": {
+            "title": "Goedkeuring",
+            "description": "Na goedkeuring krijgt u toegang tot het dashboard van de organisatie."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "Richtlijnen voor documenten",
+        "items": {
+          "clear": "Upload duidelijke en geldige documenten",
+          "readable": "Zorg dat alle tekst leesbaar is",
+          "formats": "Ondersteunde formaten: PDF, Word, PNG, JPEG en WebP",
+          "maxSize": "Maximale bestandsgrootte: {maxMb, number} MB per bestand",
+          "encrypted": "Alle documenten worden veilig versleuteld"
+        }
+      },
+      "selected": {
+        "title": "Geselecteerde organisatie",
+        "change": "Organisatie wijzigen",
+        "choose": "Kies een organisatie",
+        "none": "Nog geen organisatie geselecteerd."
+      }
+    }
   }
 }

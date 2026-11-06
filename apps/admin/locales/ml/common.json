@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "ദയവായി ഈ ഫീൽഡ് പരിശോധിക്കുക.",
-    "noResults": "ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല."
+    "noResults": "ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "ലോഡ് ചെയ്യുന്നു",
   "closeNotification": "അറിയിപ്പ് അടയ്ക്കുക",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} ഡൗൺലോഡ് ചെയ്യുക",
     "deleteTitle": "{name} ഇല്ലാതാക്കണോ?",
     "deleteDescription": "ഫയൽ ശാശ്വതമായി ഇല്ലാതാക്കും. ഇത് പഴയപടിയാക്കാനാകില്ല."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "പേര് ഉപയോഗിച്ച് സ്ഥാപനം തിരയുക",
+    "noResults": "“{search}” എന്നതുമായി പൊരുത്തപ്പെടുന്ന സ്ഥാപനങ്ങളൊന്നുമില്ല",
+    "empty": "ചേരാൻ ഇതുവരെ സ്ഥാപനങ്ങളൊന്നും ലഭ്യമല്ല.",
+    "members": "{count, plural, one {# അംഗം} other {# അംഗങ്ങൾ}}",
+    "scrollBack": "മുമ്പത്തെ സ്ഥാപനങ്ങൾ കാണിക്കുക",
+    "scrollForward": "കൂടുതൽ സ്ഥാപനങ്ങൾ കാണിക്കുക"
   }
 }

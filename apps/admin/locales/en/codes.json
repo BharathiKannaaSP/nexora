@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "A file couldn't be used. Please upload it again",
     "ORGANIZATION_FILE_DUPLICATE": "Each file can be used only once",
-    "NO_REVIEWER_AVAILABLE": "No reviewer is available for this request yet. Please try again later or contact support."
+    "NO_REVIEWER_AVAILABLE": "No reviewer is available for this request yet. Please try again later or contact support.",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "Your request to join the organization has been submitted"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "This file type is not allowed",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "Organization request not found",
     "REQUEST_INCOMPLETE": "This request is missing required details",
     "NOT_FOUND": "Organization not found"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "Organization not found"
 }

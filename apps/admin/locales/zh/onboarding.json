@@ -377,7 +377,9 @@
       "email": "电子邮件",
       "permissions": "申请的权限",
       "logoAlt": "{name} 的标志",
-      "logoUnavailable": "标志无法显示"
+      "logoUnavailable": "标志无法显示",
+      "organization": "组织",
+      "organizationUnavailable": "暂时无法获取此组织的详细信息。"
     },
     "next": {
       "title": "接下来会怎样？",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "感谢您选择 Nexora。很高兴您的加入！"
+  },
+  "joinOrganizationForm": {
+    "title": "加入组织",
+    "description": "搜索并选择您所在的组织，填写您的信息并上传所需文件以申请访问权限。",
+    "submit": "提交申请",
+    "sections": {
+      "organization": {
+        "title": "选择组织",
+        "description": "搜索您所在的组织并选择它。"
+      },
+      "employment": {
+        "title": "您的雇佣信息",
+        "description": "向组织管理员介绍您的职位。"
+      },
+      "documents": {
+        "title": "身份验证文件",
+        "description": "上传能够证明您的身份及工作单位的文件。"
+      },
+      "reason": {
+        "title": "加入理由",
+        "description": "您为什么申请访问此组织？"
+      },
+      "access": {
+        "title": "申请的访问权限",
+        "description": "选择您需要访问的区域。这有助于管理员更快地审核您的申请。"
+      },
+      "notes": {
+        "title": "补充说明（可选）",
+        "description": "为组织管理员添加任何补充信息。"
+      }
+    },
+    "fields": {
+      "organization": "组织",
+      "employeeId": "员工编号（可选）",
+      "jobTitle": "职位名称",
+      "department": "部门",
+      "workEmail": "工作邮箱",
+      "joiningDate": "入职日期（可选）",
+      "reportingManager": "直属上级（可选）",
+      "message": "加入理由",
+      "permissions": "权限",
+      "additionalNotes": "补充说明"
+    },
+    "placeholders": {
+      "employeeId": "请输入员工编号",
+      "jobTitle": "请输入您的职位名称",
+      "department": "请选择部门",
+      "workEmail": "请输入您的工作邮箱",
+      "joiningDate": "请选择日期",
+      "reportingManager": "请输入上级姓名",
+      "message": "请说明您的职位以及需要访问权限的原因…",
+      "additionalNotes": "添加任何补充说明…"
+    },
+    "hints": {
+      "document": "PDF、Word、PNG、JPEG 或 WebP，不超过 {maxMb, number} MB"
+    },
+    "departments": {
+      "operations": "运营",
+      "sales": "销售",
+      "marketing": "市场营销",
+      "product": "产品",
+      "engineering": "工程",
+      "design": "设计",
+      "finance": "财务",
+      "humanResources": "人力资源",
+      "customerSupport": "客户支持",
+      "logistics": "物流",
+      "other": "其他"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar 卡",
+        "hint": "Aadhaar 卡正面或电子副本"
+      },
+      "pan": {
+        "label": "PAN 卡",
+        "hint": "PAN 卡正面或电子副本"
+      },
+      "governmentId": {
+        "label": "政府签发的身份证件",
+        "hint": "护照、国民身份证或驾驶证"
+      },
+      "employeeIdCard": {
+        "label": "员工证",
+        "hint": "您的员工证"
+      },
+      "offerLetter": {
+        "label": "录用通知书",
+        "hint": "您的录用通知书或任命书"
+      }
+    },
+    "documentsNotice": "根据您所在的国家/地区（<strong>{country}</strong>），需要提供以下文件。",
+    "documentsFootnote": "您的文件已加密，仅用于验证目的。",
+    "uploadedFiles": {
+      "title": "已上传的文件",
+      "description": "提交申请前请检查您的文件。"
+    },
+    "validation": {
+      "organizationRequired": "请选择您要加入的组织",
+      "jobTitleRequired": "职位名称为必填项",
+      "departmentRequired": "请选择您的部门",
+      "workEmailRequired": "工作邮箱为必填项",
+      "workEmailInvalid": "请输入有效的电子邮件地址",
+      "textFieldTooLong": "不能超过 {max, number} 个字符",
+      "joiningDateInvalid": "请输入有效的日期",
+      "messageRequired": "请告诉管理员您想加入的原因",
+      "messageTooLong": "理由不能超过 {max, number} 个字符",
+      "notesTooLong": "说明不能超过 {max, number} 个字符",
+      "documentRequired": "请上传此文件",
+      "documentTooLarge": "文件不能超过 {maxMb, number} MB",
+      "documentWrongFormat": "请上传 PDF、Word 文件或图片（PNG、JPEG 或 WebP）",
+      "permissionsRequired": "请至少选择一项权限",
+      "permissionsNotAllowed": "无法为组织申请此模块"
+    },
+    "aside": {
+      "next": {
+        "title": "接下来会发生什么？",
+        "steps": {
+          "submitted": {
+            "title": "申请已提交",
+            "description": "您的申请将发送给组织管理员。"
+          },
+          "review": {
+            "title": "审核中",
+            "description": "管理员将审核您的信息和文件。"
+          },
+          "verification": {
+            "title": "验证",
+            "description": "我们将验证您文件的真实性。"
+          },
+          "approval": {
+            "title": "批准",
+            "description": "获得批准后，您即可访问组织仪表板。"
+          }
+        }
+      },
+      "guidelines": {
+        "title": "文件要求",
+        "items": {
+          "clear": "请上传清晰有效的文件",
+          "readable": "确保所有文字清晰可读",
+          "formats": "支持的格式：PDF、Word、PNG、JPEG 和 WebP",
+          "maxSize": "文件大小上限：每个文件 {maxMb, number} MB",
+          "encrypted": "所有文件均经过安全加密"
+        }
+      },
+      "selected": {
+        "title": "已选组织",
+        "change": "更换组织",
+        "choose": "选择组织",
+        "none": "尚未选择组织。"
+      }
+    }
   }
 }

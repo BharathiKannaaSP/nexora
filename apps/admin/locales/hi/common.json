@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "कृपया इस फ़ील्ड की जाँच करें।",
-    "noResults": "कोई परिणाम नहीं मिला।"
+    "noResults": "कोई परिणाम नहीं मिला।",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "लोड हो रहा है",
   "closeNotification": "सूचना बंद करें",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} डाउनलोड करें",
     "deleteTitle": "{name} हटाएँ?",
     "deleteDescription": "फ़ाइल स्थायी रूप से हटा दी जाएगी। इसे पूर्ववत नहीं किया जा सकता।"
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "नाम से संगठन खोजें",
+    "noResults": "“{search}” से मेल खाने वाला कोई संगठन नहीं मिला",
+    "empty": "अभी जुड़ने के लिए कोई संगठन उपलब्ध नहीं है।",
+    "members": "{count, plural, one {# सदस्य} other {# सदस्य}}",
+    "scrollBack": "पिछले संगठन दिखाएँ",
+    "scrollForward": "और संगठन दिखाएँ"
   }
 }

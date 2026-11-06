@@ -193,7 +193,9 @@ export interface OrganizationRequestFields {
   type: "CREATE" | "JOIN"
   organizationId: string | null
 
+  /** JOIN: the reason for joining. */
   message: string | null
+  additionalNotes: string | null
   employeeId: string | null
   jobTitle: string | null
   department: string | null
@@ -290,8 +292,8 @@ export const saveOrganizationRequestRepository = async (
       )
     }
 
-    // Replaced like the permissions. A JOIN passes none, so switching from
-    // CREATE leaves no documents behind.
+    // Replaced like the permissions, so switching between CREATE and JOIN
+    // leaves none of the other type's documents behind.
     if (existing) {
       await tx.orm.public.OrganizationRequestDocument.where({
         requestId: saved.id,
@@ -360,22 +362,20 @@ export const getAdminAccessRequestFormDetailsRepository = async (onboarding: {
 }
 
 /**
- * The CREATE request of the onboarding's current revision, with its
- * documents, to prefill step 3; null before the first submit. A JOIN request
- * on the same revision (the user switched paths) doesn't count.
+ * The CREATE or JOIN request of the onboarding's current revision, with its
+ * documents and permissions, to prefill step 3; null before the first
+ * submit. A request of the other type on the same revision (the user
+ * switched paths) doesn't count.
  */
-export const getCreateOrganizationFormDetailsRepository = async (onboarding: {
-  id: string
-  userId: string
-  revision: number
-  currentStep: OnboardingStep
-  status: OnboardingStatus
-}) => {
+export const getOrganizationRequestFormDetailsRepository = async (
+  onboarding: { id: string; revision: number },
+  type: OrganizationRequestFields["type"]
+) => {
   return db.transaction(async (tx) => {
     const formDetails = await tx.orm.public.OrganizationRequest.where({
       onboardingId: onboarding.id,
       applicationRevision: onboarding.revision,
-      type: "CREATE",
+      type,
     }).first()
 
     if (!formDetails) return null
@@ -385,29 +385,36 @@ export const getCreateOrganizationFormDetailsRepository = async (onboarding: {
         requestId: formDetails.id,
       }).all()
 
-    return { ...formDetails, proposedDocuments }
+    const requestedPermissions =
+      await tx.orm.public.OrganizationRequestPermission.where({
+        requestId: formDetails.id,
+      }).all()
+
+    return { ...formDetails, proposedDocuments, requestedPermissions }
   })
 }
 
 /**
- * Takes one file off the saved create-organization request: clears the logo
- * key, or deletes the document row with that key. Returns what was removed,
- * or null when the request doesn't use the key (or there's no request).
+ * Takes one file off the saved CREATE or JOIN request: clears the logo key
+ * (CREATE only has one), or deletes the document row with that key. Returns
+ * what was removed, or null when the request doesn't use the key (or there's
+ * no request).
  */
 export const removeOrganizationRequestFileRepository = async (
   onboarding: { id: string; revision: number },
+  type: OrganizationRequestFields["type"],
   objectKey: string
 ): Promise<"logo" | "document" | null> => {
   return db.transaction(async (tx) => {
     const request = await tx.orm.public.OrganizationRequest.where({
       onboardingId: onboarding.id,
       applicationRevision: onboarding.revision,
-      type: "CREATE",
+      type,
     }).first()
 
     if (!request) return null
 
-    if (request.proposedLogoObjectKey === objectKey) {
+    if (type === "CREATE" && request.proposedLogoObjectKey === objectKey) {
       await tx.orm.public.OrganizationRequest.where({ id: request.id }).update({
         proposedLogoObjectKey: null,
       })

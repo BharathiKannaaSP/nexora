@@ -12,10 +12,10 @@ import {
 import {
   ORGANIZATION_DOCUMENT_SLOTS,
   type CreateOrganizationRequestInput,
-  type OrganizationDocumentSlot,
   type SubmittedFile,
 } from "@nexora/schemas/onboarding/create-organization"
 import {
+  JOIN_DOCUMENT_SLOTS,
   ORGANIZATION_PERMISSION_MODULES,
   type JoinOrganizationRequestInput,
 } from "@nexora/schemas/onboarding/join-organization"
@@ -29,10 +29,12 @@ import type {
   BecomeAdminRequestResponseData,
   CreateOrganizationFormDetailsResponseData,
   GrantedPermissionsResponseData,
+  JoinOrganizationFormDetailsResponseData,
   OnboardingMeResponseData,
   OnboardingPath,
   OnboardingStatus,
   OnboardingStep,
+  OrganizationDocumentType,
   OrganizationRequestResponseData,
   UpdateOnboardingStepResponseData,
 } from "@nexora/shared/types/onboarding"
@@ -40,8 +42,8 @@ import type {
 import {
   getAdminAccessRequestFormDetailsRepository,
   getAdminPermissionRowsRepository,
-  getCreateOrganizationFormDetailsRepository,
   getOnboardingDetailRepository,
+  getOrganizationRequestFormDetailsRepository,
   initiateUserOnboarding,
   removeOrganizationRequestFileRepository,
   saveAdminAccessRequestRepository,
@@ -225,6 +227,7 @@ const blankToNull = (value: string | undefined) => value || null
 const EMPTY_ORGANIZATION_REQUEST: Omit<OrganizationRequestFields, "type"> = {
   organizationId: null,
   message: null,
+  additionalNotes: null,
   employeeId: null,
   jobTitle: null,
   department: null,
@@ -274,29 +277,42 @@ const invalidFile = () =>
   )
 
 /**
- * Checks the logo and document keys without calling media-service: the key
- * says who uploaded the file and what for (see parseUploadKey). Returns the
- * document rows to save.
+ * Checks a file key without calling media-service: the key says who uploaded
+ * the file and what for (see parseUploadKey).
  */
-const toOrganizationDocumentRows = (
+const assertUploadedBy = (
   userId: string,
-  input: CreateOrganizationRequestInput
-): OrganizationRequestDocumentRow[] => {
-  const assertUploadedBy = (key: string, purpose: UploadPurpose) => {
-    const upload = parseUploadKey(key)
-    if (upload?.userId !== userId || upload.purpose !== purpose) {
-      throw invalidFile()
-    }
+  key: string,
+  purpose: UploadPurpose
+) => {
+  const upload = parseUploadKey(key)
+  if (upload?.userId !== userId || upload.purpose !== purpose) {
+    throw invalidFile()
   }
+}
 
-  const slots = Object.entries(input.proposedDocuments).filter(
-    (entry): entry is [OrganizationDocumentSlot, SubmittedFile] => !!entry[1]
+/**
+ * The document rows to save for a CREATE or JOIN request: one per filled
+ * slot, stored as the type `slotTypes` gives it. Every document must be the
+ * user's own "org-document" upload, and no key may be used twice, counting
+ * `otherKeys` (the CREATE logo).
+ */
+const toOrganizationDocumentRows = <Slot extends string>(
+  userId: string,
+  slotTypes: Record<Slot, OrganizationDocumentType>,
+  documents: Partial<Record<Slot, SubmittedFile | undefined>>,
+  otherKeys: readonly string[] = []
+): OrganizationRequestDocumentRow[] => {
+  const files = (Object.keys(slotTypes) as Slot[]).flatMap((slot) => {
+    const file = documents[slot]
+    return file ? [{ slot, file }] : []
+  })
+
+  files.forEach(({ file }) =>
+    assertUploadedBy(userId, file.key, "org-document")
   )
 
-  assertUploadedBy(input.proposedLogoKey, "org-logo")
-  slots.forEach(([, file]) => assertUploadedBy(file.key, "org-document"))
-
-  const keys = [input.proposedLogoKey, ...slots.map(([, file]) => file.key)]
+  const keys = [...otherKeys, ...files.map(({ file }) => file.key)]
   if (new Set(keys).size !== keys.length) {
     throw new AppError(
       "Each file can be used only once",
@@ -305,13 +321,27 @@ const toOrganizationDocumentRows = (
     )
   }
 
-  return slots.map(([slot, file]) => ({
-    documentType: ORGANIZATION_DOCUMENT_SLOTS[slot],
+  return files.map(({ slot, file }) => ({
+    documentType: slotTypes[slot],
     objectKey: file.key,
     originalFileName: file.originalFileName,
     contentType: file.contentType,
     sizeBytes: file.sizeBytes,
   }))
+}
+
+/** The CREATE logo and documents: see toOrganizationDocumentRows. */
+const toCreateOrganizationDocumentRows = (
+  userId: string,
+  input: CreateOrganizationRequestInput
+) => {
+  assertUploadedBy(userId, input.proposedLogoKey, "org-logo")
+  return toOrganizationDocumentRows(
+    userId,
+    ORGANIZATION_DOCUMENT_SLOTS,
+    input.proposedDocuments,
+    [input.proposedLogoKey]
+  )
 }
 
 const toJoinOrganizationRequest = (
@@ -320,11 +350,12 @@ const toJoinOrganizationRequest = (
   ...EMPTY_ORGANIZATION_REQUEST,
   type: "JOIN",
   organizationId: input.organizationId,
-  message: blankToNull(input.message),
+  message: input.message,
+  additionalNotes: blankToNull(input.additionalNotes),
   employeeId: blankToNull(input.employeeId),
   jobTitle: input.jobTitle,
-  department: blankToNull(input.department),
-  workEmail: blankToNull(input.workEmail),
+  department: input.department,
+  workEmail: input.workEmail,
   // A calendar date, stored as midnight UTC.
   joiningDate: input.joiningDate
     ? Temporal.PlainDate.from(input.joiningDate)
@@ -350,6 +381,25 @@ const PATH_FOR_REQUEST_TYPE = {
   JOIN: "JOIN_ORGANIZATION",
 } as const satisfies Record<OrganizationRequestFields["type"], OnboardingPath>
 
+const REQUEST_TYPE_FOR_PATH = {
+  CREATE_ORGANIZATION: "CREATE",
+  JOIN_ORGANIZATION: "JOIN",
+} as const satisfies Record<
+  (typeof PATH_FOR_REQUEST_TYPE)[keyof typeof PATH_FOR_REQUEST_TYPE],
+  OrganizationRequestFields["type"]
+>
+
+type OrganizationPath = keyof typeof REQUEST_TYPE_FOR_PATH
+
+const pathMismatch = (path: OrganizationPath) =>
+  new AppError(
+    path === "CREATE_ORGANIZATION"
+      ? "Choose the create organization path first"
+      : "Choose the join organization path first",
+    400,
+    "ONBOARDING_PATH_MISMATCH"
+  )
+
 /**
  * Step 3 of the CREATE_ORGANIZATION and JOIN_ORGANIZATION paths. A creator
  * asks for nothing and gets every organization permission; a member picks
@@ -373,15 +423,8 @@ export const submitOrganizationRequestService = async (
     )
   }
 
-  if (onboarding.selectedPath !== PATH_FOR_REQUEST_TYPE[input.type]) {
-    throw new AppError(
-      input.type === "CREATE"
-        ? "Choose the create organization path first"
-        : "Choose the join organization path first",
-      400,
-      "ONBOARDING_PATH_MISMATCH"
-    )
-  }
+  const path = PATH_FOR_REQUEST_TYPE[input.type]
+  if (onboarding.selectedPath !== path) throw pathMismatch(path)
 
   if (onboarding.currentStep !== "ROLE_REQUIREMENTS") {
     throw new AppError(
@@ -397,17 +440,20 @@ export const submitOrganizationRequestService = async (
           onboarding,
           toCreateOrganizationRequest(input),
           ORG_ADMIN_PERMISSION_ROWS,
-          toOrganizationDocumentRows(userId, input)
+          toCreateOrganizationDocumentRows(userId, input)
         )
       : await saveOrganizationRequestRepository(
           onboarding,
           toJoinOrganizationRequest(input),
           toJoinPermissionRows(input),
-          []
+          toOrganizationDocumentRows(
+            userId,
+            JOIN_DOCUMENT_SLOTS,
+            input.proposedDocuments
+          )
         )
 
   // Another request moved the onboarding between the checks and the write.
-
   if (!saved) {
     throw new AppError(
       "Onboarding was changed by another request",
@@ -446,36 +492,55 @@ export const getBecomeAdminFormDetailsService = async (
   return { adminAccessRequest: adminAccessRequest ?? null }
 }
 
-export const getCreateOrganizationFormDetailsService = async (
-  userId: string
-): Promise<CreateOrganizationFormDetailsResponseData> => {
+/** The saved request of `path`'s type, to prefill step 3; null before submit. */
+const getOrganizationRequestFormDetails = async (
+  userId: string,
+  path: OrganizationPath
+) => {
   const onboarding = await getOnboardingDetailRepository(userId)
 
   if (!onboarding) {
     throw new AppError("Onboarding not found", 404, "ONBOARDING_NOT_FOUND")
   }
 
-  if (onboarding.selectedPath !== "CREATE_ORGANIZATION") {
-    throw new AppError(
-      "Choose the create organization path first",
-      400,
-      "ONBOARDING_PATH_MISMATCH"
-    )
-  }
+  if (onboarding.selectedPath !== path) throw pathMismatch(path)
 
-  const createOrganizationFormDetails =
-    await getCreateOrganizationFormDetailsRepository(onboarding)
+  const formDetails = await getOrganizationRequestFormDetailsRepository(
+    onboarding,
+    REQUEST_TYPE_FOR_PATH[path]
+  )
 
-  return {
-    createOrganizationFormDetails: createOrganizationFormDetails ?? null,
-  }
+  return formDetails ?? null
 }
 
+export const getCreateOrganizationFormDetailsService = async (
+  userId: string
+): Promise<CreateOrganizationFormDetailsResponseData> => ({
+  createOrganizationFormDetails: await getOrganizationRequestFormDetails(
+    userId,
+    "CREATE_ORGANIZATION"
+  ),
+})
+
+export const getJoinOrganizationFormDetailsService = async (
+  userId: string
+): Promise<JoinOrganizationFormDetailsResponseData> => ({
+  joinOrganizationFormDetails: await getOrganizationRequestFormDetails(
+    userId,
+    "JOIN_ORGANIZATION"
+  ),
+})
+
+const isOrganizationPath = (
+  path: OnboardingPath | null
+): path is OrganizationPath => !!path && path in REQUEST_TYPE_FOR_PATH
+
 /**
- * Step 3 of CREATE_ORGANIZATION: the user deleted a saved logo or document.
- * It's taken off the saved request here, before the app deletes the object
- * from S3, so the request never points at a missing file. The user has to
- * submit again (with a new file where one is required) to move on.
+ * Step 3 of CREATE_ORGANIZATION or JOIN_ORGANIZATION: the user deleted a
+ * saved logo or document. It's taken off the saved request here, before the
+ * app deletes the object from S3, so the request never points at a missing
+ * file. The user has to submit again (with a new file where one is required)
+ * to move on.
  */
 export const removeOrganizationRequestFileService = async (
   userId: string,
@@ -495,9 +560,10 @@ export const removeOrganizationRequestFileService = async (
     )
   }
 
-  if (onboarding.selectedPath !== "CREATE_ORGANIZATION") {
+  const path = onboarding.selectedPath
+  if (!isOrganizationPath(path)) {
     throw new AppError(
-      "Choose the create organization path first",
+      "Choose the create or join organization path first",
       400,
       "ONBOARDING_PATH_MISMATCH"
     )
@@ -515,7 +581,11 @@ export const removeOrganizationRequestFileService = async (
 
   // Not on the request (e.g. already removed) is fine: the file is gone
   // from it either way.
-  await removeOrganizationRequestFileRepository(onboarding, objectKey)
+  await removeOrganizationRequestFileRepository(
+    onboarding,
+    REQUEST_TYPE_FOR_PATH[path],
+    objectKey
+  )
 
   return { objectKey }
 }

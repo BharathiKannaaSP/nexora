@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "请检查此字段。",
-    "noResults": "未找到结果。"
+    "noResults": "未找到结果。",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "加载中",
   "closeNotification": "关闭通知",
@@ -49,5 +50,13 @@
     "downloadFile": "下载 {name}",
     "deleteTitle": "删除 {name}？",
     "deleteDescription": "该文件将被永久删除，且无法撤消。"
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "按名称搜索组织",
+    "noResults": "没有与“{search}”匹配的组织",
+    "empty": "暂无可加入的组织。",
+    "members": "{count, plural, other {# 名成员}}",
+    "scrollBack": "显示上一组组织",
+    "scrollForward": "显示更多组织"
   }
 }

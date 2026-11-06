@@ -2,6 +2,7 @@ import type {
   AdminAccessRequestStatus,
   Onboarding,
   OnboardingPath,
+  OrganizationRequestStatus,
 } from "@nexora/shared/types/onboarding"
 
 export type ReviewOutcome = "waiting" | "inReview" | "approved" | "rejected"
@@ -31,7 +32,7 @@ export const PATH_KEYS = {
  */
 export const reviewOutcome = (
   onboarding: Onboarding | null,
-  requestStatus: AdminAccessRequestStatus | null
+  requestStatus: AdminAccessRequestStatus | OrganizationRequestStatus | null
 ): ReviewOutcome => {
   if (onboarding?.status === "REJECTED" || requestStatus === "REJECTED") {
     return "rejected"

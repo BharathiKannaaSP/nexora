@@ -25,6 +25,7 @@ export type CreateOrganizationFormDetails = Pick<
   | "proposedTaxDetails"
   | "proposedAddress"
   | "proposedDocuments"
+  | "reviewComment"
   | "submittedAt"
   | "updatedAt"
 >
@@ -115,6 +116,40 @@ export interface CreateOrganizationFormDetailsResponseData {
 }
 
 /**
+ * The saved JOIN request of the current revision, to prefill step 3 of the
+ * JOIN_ORGANIZATION path and to show on the review page. `proposedDocuments`
+ * map back to their form slots via JOIN_DOCUMENT_SLOTS.
+ */
+export type JoinOrganizationFormDetails = Pick<
+  OrganizationRequest,
+  | "id"
+  | "status"
+  | "applicationRevision"
+  | "organizationId"
+  | "message"
+  | "additionalNotes"
+  | "employeeId"
+  | "jobTitle"
+  | "department"
+  | "workEmail"
+  | "joiningDate"
+  | "reportingManager"
+  | "proposedDocuments"
+  | "requestedPermissions"
+  | "reviewComment"
+  | "submittedAt"
+  | "updatedAt"
+>
+
+/**
+ * GET /onboarding/join-organization-form-details. `null` until step 3 of the
+ * JOIN_ORGANIZATION path has been submitted.
+ */
+export interface JoinOrganizationFormDetailsResponseData {
+  joinOrganizationFormDetails: JoinOrganizationFormDetails | null
+}
+
+/**
  * GET /onboarding/become-admin-request-details. `null` until step 3 of the
  * BECOME_ADMIN path has been submitted.
  */
@@ -152,6 +187,7 @@ export type OrganizationDocumentType =
   | "IDENTITY_DOCUMENT"
   | "RESIDENCE_PERMIT"
   | "EMPLOYMENT_PROOF"
+  | "OFFER_LETTER"
   | "OTHER"
 
 export type OrganizationDocumentStatus =
@@ -195,8 +231,9 @@ export interface OrganizationRequest {
   type: OrganizationRequestType
   status: OrganizationRequestStatus
 
-  // For joining an existing organization.
+  // For joining an existing organization. `message` is the reason for joining.
   message: string | null
+  additionalNotes: string | null
   employeeId: string | null
   jobTitle: string | null
   department: string | null

@@ -25,7 +25,8 @@ declare const messages: {
   },
   "form": {
     "invalidField": "Please check this field.",
-    "noResults": "No results found."
+    "noResults": "No results found.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "Loading",
   "closeNotification": "Close notification",
@@ -52,6 +53,14 @@ declare const messages: {
     "downloadFile": "Download {name}",
     "deleteTitle": "Delete {name}?",
     "deleteDescription": "The file will be permanently deleted. This can't be undone."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "Search organization by name",
+    "noResults": "No organizations match “{search}”",
+    "empty": "No organizations are available to join yet.",
+    "members": "{count, plural, one {# member} other {# members}}",
+    "scrollBack": "Show previous organizations",
+    "scrollForward": "Show more organizations"
   }
 };
 export default messages;

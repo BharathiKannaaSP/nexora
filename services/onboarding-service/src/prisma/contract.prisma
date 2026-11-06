@@ -78,6 +78,7 @@ enum OrganizationDocumentType {
   IDENTITY_DOCUMENT
   RESIDENCE_PERMIT
   EMPLOYMENT_PROOF
+  OFFER_LETTER
   OTHER
 }
 
@@ -182,8 +183,9 @@ model OrganizationRequest {
   type                  OrganizationRequestType
   status                OrganizationRequestStatus       @default(PENDING)
 
-  // For joining an existing organization.
+  // For joining an existing organization. `message` is the reason.
   message               String?
+  additionalNotes       String?
   employeeId            String?
   jobTitle              String?
   department            String?

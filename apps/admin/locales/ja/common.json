@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "この項目を確認してください。",
-    "noResults": "結果が見つかりません。"
+    "noResults": "結果が見つかりません。",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "読み込み中",
   "closeNotification": "通知を閉じる",
@@ -49,5 +50,13 @@
     "downloadFile": "{name} をダウンロード",
     "deleteTitle": "{name} を削除しますか？",
     "deleteDescription": "ファイルは完全に削除されます。この操作は元に戻せません。"
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "組織名で検索",
+    "noResults": "「{search}」に一致する組織はありません",
+    "empty": "参加できる組織はまだありません。",
+    "members": "{count, plural, other {#人のメンバー}}",
+    "scrollBack": "前の組織を表示",
+    "scrollForward": "さらに組織を表示"
   }
 }

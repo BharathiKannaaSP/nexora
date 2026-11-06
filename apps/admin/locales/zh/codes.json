@@ -64,7 +64,10 @@
     },
     "ORGANIZATION_FILE_INVALID": "有文件无法使用，请重新上传",
     "ORGANIZATION_FILE_DUPLICATE": "每个文件只能使用一次",
-    "NO_REVIEWER_AVAILABLE": "目前还没有可审核此请求的审核人。请稍后重试或联系支持团队。"
+    "NO_REVIEWER_AVAILABLE": "目前还没有可审核此请求的审核人。请稍后重试或联系支持团队。",
+    "JOIN_ORGANIZATION_REQUEST": {
+      "SUCCESS": "您加入组织的申请已提交"
+    }
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "不允许此文件类型",
@@ -92,5 +95,6 @@
     "REQUEST_NOT_FOUND": "未找到组织申请",
     "REQUEST_INCOMPLETE": "此申请缺少必填信息",
     "NOT_FOUND": "未找到组织"
-  }
+  },
+  "ORGANIZATION_NOT_FOUND": "未找到组织"
 }

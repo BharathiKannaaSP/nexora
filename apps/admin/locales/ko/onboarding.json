@@ -377,7 +377,9 @@
       "email": "이메일",
       "permissions": "요청한 권한",
       "logoAlt": "{name} 로고",
-      "logoUnavailable": "로고를 표시할 수 없습니다"
+      "logoUnavailable": "로고를 표시할 수 없습니다",
+      "organization": "조직",
+      "organizationUnavailable": "현재 이 조직의 세부 정보를 확인할 수 없습니다."
     },
     "next": {
       "title": "다음 단계는 무엇인가요?",
@@ -395,5 +397,158 @@
       }
     },
     "thanks": "Nexora를 선택해 주셔서 감사합니다. 함께하게 되어 기쁩니다!"
+  },
+  "joinOrganizationForm": {
+    "title": "조직 참여",
+    "description": "근무 중인 조직을 검색해 선택하고, 정보를 입력한 뒤 필요한 서류를 업로드하여 액세스를 요청하세요.",
+    "submit": "요청 제출",
+    "sections": {
+      "organization": {
+        "title": "조직 선택",
+        "description": "근무 중인 조직을 검색하여 선택하세요."
+      },
+      "employment": {
+        "title": "재직 정보",
+        "description": "조직 관리자에게 내 역할을 알려 주세요."
+      },
+      "documents": {
+        "title": "신원 확인 서류",
+        "description": "본인 확인 및 재직을 증명할 수 있는 서류를 업로드해 주세요."
+      },
+      "reason": {
+        "title": "참여 사유",
+        "description": "이 조직에 대한 액세스를 요청하는 이유는 무엇인가요?"
+      },
+      "access": {
+        "title": "요청할 액세스",
+        "description": "액세스가 필요한 영역을 선택하세요. 관리자가 요청을 더 빠르게 검토할 수 있습니다."
+      },
+      "notes": {
+        "title": "추가 메모(선택)",
+        "description": "조직 관리자에게 전달할 추가 정보를 입력하세요."
+      }
+    },
+    "fields": {
+      "organization": "조직",
+      "employeeId": "사원 번호(선택)",
+      "jobTitle": "직책",
+      "department": "부서",
+      "workEmail": "회사 이메일",
+      "joiningDate": "입사일(선택)",
+      "reportingManager": "직속 상사(선택)",
+      "message": "참여 사유",
+      "permissions": "권한",
+      "additionalNotes": "추가 메모"
+    },
+    "placeholders": {
+      "employeeId": "사원 번호 입력",
+      "jobTitle": "직책 입력",
+      "department": "부서 선택",
+      "workEmail": "회사 이메일 입력",
+      "joiningDate": "날짜 선택",
+      "reportingManager": "상사 이름 입력",
+      "message": "내 역할과 액세스가 필요한 이유를 설명해 주세요…",
+      "additionalNotes": "추가 메모를 입력하세요…"
+    },
+    "hints": {
+      "document": "PDF, Word, PNG, JPEG 또는 WebP, 최대 {maxMb, number}MB"
+    },
+    "departments": {
+      "operations": "운영",
+      "sales": "영업",
+      "marketing": "마케팅",
+      "product": "제품",
+      "engineering": "엔지니어링",
+      "design": "디자인",
+      "finance": "재무",
+      "humanResources": "인사",
+      "customerSupport": "고객 지원",
+      "logistics": "물류",
+      "other": "기타"
+    },
+    "documents": {
+      "aadhaar": {
+        "label": "Aadhaar 카드",
+        "hint": "Aadhaar 앞면 또는 전자 사본"
+      },
+      "pan": {
+        "label": "PAN 카드",
+        "hint": "PAN 카드 앞면 또는 전자 사본"
+      },
+      "governmentId": {
+        "label": "정부 발급 신분증",
+        "hint": "여권, 주민등록증 또는 운전면허증"
+      },
+      "employeeIdCard": {
+        "label": "사원증",
+        "hint": "본인의 사원증"
+      },
+      "offerLetter": {
+        "label": "채용 제안서",
+        "hint": "채용 제안서 또는 임용장"
+      }
+    },
+    "documentsNotice": "거주 국가(<strong>{country}</strong>)에 따라 다음 서류가 필요합니다.",
+    "documentsFootnote": "서류는 암호화되며 확인 목적으로만 사용됩니다.",
+    "uploadedFiles": {
+      "title": "업로드한 파일",
+      "description": "요청을 제출하기 전에 서류를 확인하세요."
+    },
+    "validation": {
+      "organizationRequired": "참여할 조직을 선택해 주세요",
+      "jobTitleRequired": "직책을 입력해 주세요",
+      "departmentRequired": "부서를 선택해 주세요",
+      "workEmailRequired": "회사 이메일을 입력해 주세요",
+      "workEmailInvalid": "올바른 이메일 주소를 입력해 주세요",
+      "textFieldTooLong": "{max, number}자 이하로 입력해 주세요",
+      "joiningDateInvalid": "올바른 날짜를 입력해 주세요",
+      "messageRequired": "참여하려는 이유를 관리자에게 알려 주세요",
+      "messageTooLong": "참여 사유는 {max, number}자 이하로 입력해 주세요",
+      "notesTooLong": "메모는 {max, number}자 이하로 입력해 주세요",
+      "documentRequired": "이 서류를 업로드해 주세요",
+      "documentTooLarge": "파일은 {maxMb, number}MB 이하여야 합니다",
+      "documentWrongFormat": "PDF, Word 파일 또는 이미지(PNG, JPEG, WebP)를 업로드하세요",
+      "permissionsRequired": "권한을 하나 이상 선택해 주세요",
+      "permissionsNotAllowed": "이 모듈은 조직에 대해 요청할 수 없습니다"
+    },
+    "aside": {
+      "next": {
+        "title": "다음 단계는 무엇인가요?",
+        "steps": {
+          "submitted": {
+            "title": "요청 제출됨",
+            "description": "요청이 조직 관리자에게 전송됩니다."
+          },
+          "review": {
+            "title": "검토 중",
+            "description": "관리자가 정보와 서류를 검토합니다."
+          },
+          "verification": {
+            "title": "확인",
+            "description": "서류의 진위 여부를 확인합니다."
+          },
+          "approval": {
+            "title": "승인",
+            "description": "승인되면 조직 대시보드에 액세스할 수 있습니다."
+          }
+        }
+      },
+      "guidelines": {
+        "title": "서류 가이드라인",
+        "items": {
+          "clear": "선명하고 유효한 서류를 업로드하세요",
+          "readable": "모든 글자를 읽을 수 있는지 확인하세요",
+          "formats": "지원 형식: PDF, Word, PNG, JPEG, WebP",
+          "maxSize": "최대 파일 크기: 파일당 {maxMb, number}MB",
+          "encrypted": "모든 서류는 안전하게 암호화됩니다"
+        }
+      },
+      "selected": {
+        "title": "선택한 조직",
+        "change": "조직 변경",
+        "choose": "조직 선택",
+        "none": "아직 선택한 조직이 없습니다."
+      }
+    }
   }
 }

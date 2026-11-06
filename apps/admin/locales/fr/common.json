@@ -22,7 +22,8 @@
   },
   "form": {
     "invalidField": "Veuillez vérifier ce champ.",
-    "noResults": "Aucun résultat trouvé."
+    "noResults": "Aucun résultat trouvé.",
+    "characterCount": "{count, number} / {max, number}"
   },
   "loading": "Chargement",
   "closeNotification": "Fermer la notification",
@@ -49,5 +50,13 @@
     "downloadFile": "Télécharger {name}",
     "deleteTitle": "Supprimer {name} ?",
     "deleteDescription": "Le fichier sera définitivement supprimé. Cette action est irréversible."
+  },
+  "organizationPicker": {
+    "searchPlaceholder": "Rechercher une organisation par nom",
+    "noResults": "Aucune organisation ne correspond à « {search} »",
+    "empty": "Aucune organisation n’est encore disponible.",
+    "members": "{count, plural, one {# membre} other {# membres}}",
+    "scrollBack": "Afficher les organisations précédentes",
+    "scrollForward": "Afficher plus d’organisations"
   }
 }

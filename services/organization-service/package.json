@@ -11,9 +11,10 @@
     "prisma:migration:plan": "prisma migration plan --name 'give name'",
     "prisma:db:migrate": "prisma db migrate --advance-ref db",
     "lint": "eslint",
-    "format": "prettier --write \"src/**/*.ts\" prisma.config.ts",
-    "typecheck": "tsc --noEmit",
-    "outbox:dev": "tsx watch src/workers/organization-outbox-worker.ts"
+    "format": "prettier --write \"src/**/*.ts\" \"scripts/**/*.ts\" prisma.config.ts",
+    "typecheck": "tsc --noEmit && tsc -p scripts",
+    "outbox:dev": "tsx watch src/workers/organization-outbox-worker.ts",
+    "seed:dev": "tsx scripts/seed-dev-organizations.ts"
   },
   "keywords": [
     "nexora",
