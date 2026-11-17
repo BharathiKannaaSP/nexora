@@ -1,5 +1,6 @@
 {
   "languageLabel": "Langue",
+  "countryLabel": "Pays",
   "error": {
     "title": "Une erreur s'est produite",
     "retry": "Réessayer"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# membre} other {# membres}}",
     "scrollBack": "Afficher les organisations précédentes",
     "scrollForward": "Afficher plus d’organisations"
+  },
+  "table": {
+    "showing": "{from, number} à {to, number} sur {total, number} demandes",
+    "perPage": "{count, number} / page",
+    "rowsPerPage": "Lignes par page",
+    "clearFilters": "Effacer les filtres",
+    "pagination": "Pagination",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "goToPage": "Page {page, number}"
   }
 }

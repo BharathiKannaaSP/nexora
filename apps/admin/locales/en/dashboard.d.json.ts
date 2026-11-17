@@ -32,7 +32,11 @@ declare const messages: {
       "reports": "Reports",
       "auditLogs": "Audit logs",
       "notifications": "Notifications",
-      "settings": "Platform settings"
+      "settings": "Platform settings",
+      "allApprovals": "All approvals",
+      "adminRequests": "Admin requests",
+      "organizationRequests": "Organization requests",
+      "memberRequests": "Member requests"
     }
   },
   "userMenu": {

@@ -1,5 +1,6 @@
 {
   "languageLabel": "Sprache",
+  "countryLabel": "Land",
   "error": {
     "title": "Etwas ist schiefgelaufen",
     "retry": "Erneut versuchen"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# Mitglied} other {# Mitglieder}}",
     "scrollBack": "Vorherige Organisationen anzeigen",
     "scrollForward": "Weitere Organisationen anzeigen"
+  },
+  "table": {
+    "showing": "{from, number} bis {to, number} von {total, number} Anfragen",
+    "perPage": "{count, number} / Seite",
+    "rowsPerPage": "Zeilen pro Seite",
+    "clearFilters": "Filter zurücksetzen",
+    "pagination": "Seitennummerierung",
+    "previousPage": "Vorherige Seite",
+    "nextPage": "Nächste Seite",
+    "goToPage": "Seite {page, number}"
   }
 }

@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "Dieser Anfrage fehlen erforderliche Angaben",
     "NOT_FOUND": "Organisation nicht gefunden"
   },
-  "ORGANIZATION_NOT_FOUND": "Organisation nicht gefunden"
+  "ORGANIZATION_NOT_FOUND": "Organisation nicht gefunden",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Genehmigungen geladen."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Genehmigungszahlen geladen."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "Dieses Profilbild kann nicht verwendet werden. Bitte lade es erneut hoch."
 }

@@ -3,6 +3,7 @@
 
 declare const messages: {
   "languageLabel": "Language",
+  "countryLabel": "Country",
   "error": {
     "title": "Something went wrong",
     "retry": "Try again"
@@ -61,6 +62,16 @@ declare const messages: {
     "members": "{count, plural, one {# member} other {# members}}",
     "scrollBack": "Show previous organizations",
     "scrollForward": "Show more organizations"
+  },
+  "table": {
+    "showing": "Showing {from, number} to {to, number} of {total, number} requests",
+    "perPage": "{count, number} / page",
+    "rowsPerPage": "Rows per page",
+    "clearFilters": "Clear filters",
+    "pagination": "Pagination",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "goToPage": "Page {page, number}"
   }
 };
 export default messages;

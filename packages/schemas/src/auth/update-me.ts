@@ -37,6 +37,9 @@ export const createUpdateMeSchema = (messages: UpdateMeValidationMessages) =>
         .max(50, messages.usernameTooLong),
       email: z.string().trim().email(messages.invalidEmail),
       password: z.string().min(8, messages.passwordTooShort),
+      // The avatar: the key POST /media/uploads/complete returned for a
+      // "user-avatar" upload (checked to be the caller's own); null removes it.
+      profileImageKey: z.string().min(1).max(1024).nullable(),
       // Picked from a list, not typed, so it has no user-facing message.
       preferredLocale: z.string().regex(/^[a-z]{2}$/),
       // The /[country] the app opens in after sign-in, e.g. "in". Same

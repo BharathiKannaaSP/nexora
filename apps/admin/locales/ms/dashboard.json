@@ -29,7 +29,11 @@
       "reports": "Laporan",
       "auditLogs": "Log audit",
       "notifications": "Pemberitahuan",
-      "settings": "Tetapan platform"
+      "settings": "Tetapan platform",
+      "allApprovals": "Semua kelulusan",
+      "adminRequests": "Permintaan pentadbir",
+      "organizationRequests": "Permintaan organisasi",
+      "memberRequests": "Permintaan ahli"
     }
   },
   "userMenu": {

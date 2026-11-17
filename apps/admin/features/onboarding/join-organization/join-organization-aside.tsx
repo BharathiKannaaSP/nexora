@@ -144,7 +144,9 @@ export const JoinOrganizationAside = ({
             <div className="flex items-start gap-3">
               <OrganizationAvatar organization={organization} />
               <div className="flex min-w-0 flex-col gap-1">
-                <p className="truncate font-semibold">{organization.name}</p>
+                <p className="truncate font-semibold" title={organization.name}>
+                  {organization.name}
+                </p>
                 <OrganizationMeta
                   className="text-xs"
                   countryName={countryName(organization.countryCode)}

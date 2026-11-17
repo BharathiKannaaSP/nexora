@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "此申请缺少必填信息",
     "NOT_FOUND": "未找到组织"
   },
-  "ORGANIZATION_NOT_FOUND": "未找到组织"
+  "ORGANIZATION_NOT_FOUND": "未找到组织",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "审批已加载。"
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "审批数量已加载。"
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "无法使用此头像，请重新上传。"
 }

@@ -1,5 +1,6 @@
 {
   "languageLabel": "ഭാഷ",
+  "countryLabel": "രാജ്യം",
   "error": {
     "title": "എന്തോ കുഴപ്പം സംഭവിച്ചു",
     "retry": "വീണ്ടും ശ്രമിക്കുക"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# അംഗം} other {# അംഗങ്ങൾ}}",
     "scrollBack": "മുമ്പത്തെ സ്ഥാപനങ്ങൾ കാണിക്കുക",
     "scrollForward": "കൂടുതൽ സ്ഥാപനങ്ങൾ കാണിക്കുക"
+  },
+  "table": {
+    "showing": "{total, number} അഭ്യർത്ഥനകളിൽ {from, number} മുതൽ {to, number} വരെ കാണിക്കുന്നു",
+    "perPage": "{count, number} / പേജ്",
+    "rowsPerPage": "ഓരോ പേജിലെയും വരികൾ",
+    "clearFilters": "ഫിൽട്ടറുകൾ മായ്ക്കുക",
+    "pagination": "പേജിനേഷൻ",
+    "previousPage": "മുമ്പത്തെ പേജ്",
+    "nextPage": "അടുത്ത പേജ്",
+    "goToPage": "പേജ് {page, number}"
   }
 }

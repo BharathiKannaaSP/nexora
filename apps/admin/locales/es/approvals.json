@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Aprobaciones",
+    "description": "Revisa las solicitudes que requieren tu aprobación y actúa sobre ellas."
+  },
+  "listLabel": "Solicitudes",
+  "you": "Tú",
+  "unknownUser": "Usuario desconocido",
+  "unknownSubject": "una organización",
+  "stats": {
+    "total": "Total: {status}",
+    "totalAll": "Total de solicitudes",
+    "requests": "Solicitudes",
+    "overdue": "Vencidas",
+    "needsAttention": "Requieren atención"
+  },
+  "tabs": {
+    "label": "Tipos de solicitud",
+    "all": "Todas"
+  },
+  "filters": {
+    "search": "Buscar solicitudes…",
+    "searchLabel": "Buscar solicitudes por nombre, correo electrónico u organización",
+    "status": "Estado",
+    "priority": "Prioridad",
+    "all": "Todos"
+  },
+  "columns": {
+    "request": "Solicitud",
+    "type": "Tipo",
+    "submittedBy": "Enviada por",
+    "assignedTo": "Asignada a",
+    "priority": "Prioridad",
+    "submittedOn": "Enviada el",
+    "status": "Estado",
+    "actions": "Acciones"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Solicitudes de administrador",
+      "badge": "Solicitud de administrador",
+      "title": "Solicitud de acceso de administrador",
+      "subtitle": "{name} solicitó acceso de administrador de la plataforma"
+    },
+    "CREATE_ORG": {
+      "tab": "Solicitudes de organización",
+      "badge": "Organización",
+      "title": "Creación de organización",
+      "subtitle": "{name} solicitó crear {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Solicitudes de miembros",
+      "badge": "Solicitud de miembro",
+      "title": "Solicitud de unión de miembro",
+      "subtitle": "{name} solicitó unirse a {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Todos los estados",
+    "PENDING": "Pendiente",
+    "UNDER_REVIEW": "En revisión",
+    "APPROVED": "Aprobada",
+    "REJECTED": "Rechazada",
+    "WITHDRAWN": "Retirada"
+  },
+  "priority": {
+    "HIGH": "Alta",
+    "MEDIUM": "Media",
+    "LOW": "Baja"
+  },
+  "actions": {
+    "view": "Ver solicitud"
+  },
+  "empty": {
+    "title": "Estás al día",
+    "description": "No tienes solicitudes asignadas en este momento.",
+    "filteredTitle": "No hay solicitudes coincidentes",
+    "filteredDescription": "Prueba con otro estado, prioridad o búsqueda."
+  },
+  "noAccess": {
+    "title": "No hay aprobaciones que revisar",
+    "description": "No revisas ningún tipo de solicitud en este país."
+  }
+}

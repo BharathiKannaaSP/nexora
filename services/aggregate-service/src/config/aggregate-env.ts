@@ -16,6 +16,10 @@ const envSchema = z.object({
   AUTH_SERVICE_URL: z.url(),
   ONBOARDING_SERVICE_URL: z.url(),
   USER_SERVICE_URL: z.url(),
+  ORGANIZATION_SERVICE_URL: z.url(),
+  // Signs CloudFront URLs for private S3 files, e.g. avatars.
+  MEDIA_SERVICE_URL: z.url(),
+
   // Per downstream call, so one slow service can't hold the whole response.
   SERVICE_TIMEOUT_MS: z.coerce.number().int().positive().default(3000),
 })

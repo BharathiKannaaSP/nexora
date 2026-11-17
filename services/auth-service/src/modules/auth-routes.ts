@@ -5,6 +5,7 @@ import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
 import { env } from "../config/auth-env"
 import {
   logout,
+  lookupUsers,
   me,
   refresh,
   register,
@@ -29,5 +30,8 @@ router.get("/me", verifyGateway, me)
 router.patch("/me/update", verifyGateway, updateMe)
 // Public: sign-up and profile forms need it before or without a session.
 router.get("/countries", verifyGateway, listCountries)
+
+router.post("/users/lookup", verifyGateway, lookupUsers)
+
 
 export default router

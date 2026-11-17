@@ -99,6 +99,15 @@ declare const messages: {
     "REQUEST_INCOMPLETE": "This request is missing required details",
     "NOT_FOUND": "Organization not found"
   },
-  "ORGANIZATION_NOT_FOUND": "Organization not found"
+  "ORGANIZATION_NOT_FOUND": "Organization not found",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Approvals loaded."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Approval counts loaded."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "This profile image can't be used. Please upload it again."
 };
 export default messages;

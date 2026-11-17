@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "承認",
+    "description": "承認が必要な申請を確認して対応します。"
+  },
+  "listLabel": "申請",
+  "you": "あなた",
+  "unknownUser": "不明なユーザー",
+  "unknownSubject": "組織",
+  "stats": {
+    "total": "{status}の合計",
+    "totalAll": "リクエスト合計",
+    "requests": "申請",
+    "overdue": "期限超過",
+    "needsAttention": "要対応"
+  },
+  "tabs": {
+    "label": "申請の種類",
+    "all": "すべて"
+  },
+  "filters": {
+    "search": "申請を検索…",
+    "searchLabel": "名前、メールアドレス、組織で申請を検索",
+    "status": "状態",
+    "priority": "優先度",
+    "all": "すべて"
+  },
+  "columns": {
+    "request": "申請",
+    "type": "種類",
+    "submittedBy": "申請者",
+    "assignedTo": "担当者",
+    "priority": "優先度",
+    "submittedOn": "申請日",
+    "status": "状態",
+    "actions": "操作"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "管理者申請",
+      "badge": "管理者申請",
+      "title": "管理者アクセスの申請",
+      "subtitle": "{name} がプラットフォーム管理者アクセスを申請しました"
+    },
+    "CREATE_ORG": {
+      "tab": "組織の申請",
+      "badge": "組織",
+      "title": "組織の作成",
+      "subtitle": "{name} が{subject}の作成を申請しました"
+    },
+    "JOIN_ORG": {
+      "tab": "メンバー申請",
+      "badge": "メンバー申請",
+      "title": "メンバー参加申請",
+      "subtitle": "{name} が{subject}への参加を申請しました"
+    }
+  },
+  "status": {
+    "ALL": "すべてのステータス",
+    "PENDING": "保留中",
+    "UNDER_REVIEW": "審査中",
+    "APPROVED": "承認済み",
+    "REJECTED": "却下",
+    "WITHDRAWN": "取り下げ済み"
+  },
+  "priority": {
+    "HIGH": "高",
+    "MEDIUM": "中",
+    "LOW": "低"
+  },
+  "actions": {
+    "view": "申請を表示"
+  },
+  "empty": {
+    "title": "すべて対応済みです",
+    "description": "現在、あなたに割り当てられた申請はありません。",
+    "filteredTitle": "一致する申請はありません",
+    "filteredDescription": "別の状態、優先度、または検索語をお試しください。"
+  },
+  "noAccess": {
+    "title": "審査する承認はありません",
+    "description": "この国では、どの種類の申請も審査する権限がありません。"
+  }
+}

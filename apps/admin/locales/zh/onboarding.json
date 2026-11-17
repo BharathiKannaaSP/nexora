@@ -49,7 +49,12 @@
     "usernameHint": "这将是您在 Nexora 上的唯一标识。",
     "passwordHint": "留空以保留当前密码，或输入 8 个或更多字符以更改密码。",
     "emailHint": "如果您更改电子邮件地址，则需要重新验证。",
-    "verified": "已验证"
+    "verified": "已验证",
+    "profileImage": "头像",
+    "profileImageHint": "可选。PNG、JPG 或 WEBP，最大 {maxMb, number} MB。",
+    "profileImagePlaceholder": "点击上传或拖放文件",
+    "profileImageWrongFormat": "请上传 PNG、JPG 或 WEBP 图片。",
+    "profileImageTooLarge": "图片不能超过 {maxMb, number} MB。"
   },
   "chooseYourPathForm": {
     "fields": {

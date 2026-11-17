@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "ഈ അപേക്ഷയിൽ ആവശ്യമായ വിവരങ്ങൾ ഇല്ല",
     "NOT_FOUND": "സ്ഥാപനം കണ്ടെത്തിയില്ല"
   },
-  "ORGANIZATION_NOT_FOUND": "സ്ഥാപനം കണ്ടെത്തിയില്ല"
+  "ORGANIZATION_NOT_FOUND": "സ്ഥാപനം കണ്ടെത്തിയില്ല",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "അംഗീകാരങ്ങൾ ലോഡ് ചെയ്തു."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "അംഗീകാര എണ്ണങ്ങൾ ലോഡ് ചെയ്തു."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "ഈ പ്രൊഫൈൽ ചിത്രം ഉപയോഗിക്കാനാവില്ല. ദയവായി വീണ്ടും അപ്‌ലോഡ് ചെയ്യുക."
 }

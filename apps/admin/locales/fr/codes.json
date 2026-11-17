@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "Il manque des informations obligatoires à cette demande",
     "NOT_FOUND": "Organisation introuvable"
   },
-  "ORGANIZATION_NOT_FOUND": "Organisation introuvable"
+  "ORGANIZATION_NOT_FOUND": "Organisation introuvable",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Approbations chargées."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Nombre d'approbations chargé."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "Cette photo de profil ne peut pas être utilisée. Veuillez l'importer à nouveau."
 }

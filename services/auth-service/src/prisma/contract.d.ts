@@ -23,7 +23,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'c3af7ac3be56a89ed4ae53bd34406794b74514cd2aecc022c404a517a034406b'>;
+  StorageHashBase<'6a586e031004b55f5b5d7609b4ecce12a24be59304bd72db4bede73164b61be1'>;
 export type ExecutionHash =
   ExecutionHashBase<'b9413d58a18d90e780443286a51bb9ff241106f338ba6673949731701af36194'>;
 export type ProfileHash =
@@ -367,6 +367,7 @@ export namespace Models {
     lastName: FieldOutputTypes['public']['User']['lastName'];
     passwordHash: FieldOutputTypes['public']['User']['passwordHash'];
     preferredLocale: FieldOutputTypes['public']['User']['preferredLocale'];
+    profileImageKey: FieldOutputTypes['public']['User']['profileImageKey'];
     systemRole: FieldOutputTypes['public']['User']['systemRole'];
     updatedAt: FieldOutputTypes['public']['User']['updatedAt'];
     userName: FieldOutputTypes['public']['User']['userName'];
@@ -802,6 +803,12 @@ type ContractBase = Omit<
                   };
                   readonly many: false;
                 };
+                readonly profileImageKey: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
                 readonly systemRole: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
@@ -1203,6 +1210,10 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
+              readonly profileImageKey: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
               readonly systemRole: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
@@ -1258,6 +1269,7 @@ type ContractBase = Omit<
                 readonly lastName: { readonly column: 'lastName' };
                 readonly passwordHash: { readonly column: 'passwordHash' };
                 readonly preferredLocale: { readonly column: 'preferredLocale' };
+                readonly profileImageKey: { readonly column: 'profileImageKey' };
                 readonly systemRole: { readonly column: 'systemRole' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
                 readonly userName: { readonly column: 'userName' };

@@ -29,7 +29,11 @@
       "reports": "レポート",
       "auditLogs": "監査ログ",
       "notifications": "通知",
-      "settings": "プラットフォーム設定"
+      "settings": "プラットフォーム設定",
+      "allApprovals": "すべての承認",
+      "adminRequests": "管理者申請",
+      "organizationRequests": "組織の申請",
+      "memberRequests": "メンバー申請"
     }
   },
   "userMenu": {

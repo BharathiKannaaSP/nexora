@@ -49,7 +49,12 @@
     "usernameHint": "سيكون هذا معرّفك الفريد على Nexora.",
     "passwordHint": "اتركه فارغًا للاحتفاظ بكلمة المرور الحالية، أو استخدم 8 أحرف أو أكثر لتغييرها.",
     "emailHint": "إذا غيّرت عنوان بريدك الإلكتروني، فستحتاج إلى التحقق منه مرة أخرى.",
-    "verified": "تم التحقق"
+    "verified": "تم التحقق",
+    "profileImage": "صورة الملف الشخصي",
+    "profileImageHint": "اختياري. PNG أو JPG أو WEBP، حتى {maxMb, number} ميغابايت.",
+    "profileImagePlaceholder": "انقر للرفع أو اسحب وأفلت",
+    "profileImageWrongFormat": "ارفع صورة PNG أو JPG أو WEBP.",
+    "profileImageTooLarge": "يجب ألا يتجاوز حجم الصورة {maxMb, number} ميغابايت."
   },
   "chooseYourPathForm": {
     "fields": {

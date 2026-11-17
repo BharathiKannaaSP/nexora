@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "الموافقات",
+    "description": "راجع الطلبات التي تتطلب موافقتك واتخذ الإجراء المناسب بشأنها."
+  },
+  "listLabel": "الطلبات",
+  "you": "أنت",
+  "unknownUser": "مستخدم غير معروف",
+  "unknownSubject": "مؤسسة",
+  "stats": {
+    "total": "الإجمالي: {status}",
+    "totalAll": "إجمالي الطلبات",
+    "requests": "الطلبات",
+    "overdue": "متأخرة",
+    "needsAttention": "تحتاج إلى اهتمام"
+  },
+  "tabs": {
+    "label": "أنواع الطلبات",
+    "all": "الكل"
+  },
+  "filters": {
+    "search": "ابحث في الطلبات…",
+    "searchLabel": "ابحث في الطلبات بالاسم أو البريد الإلكتروني أو المؤسسة",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "all": "الكل"
+  },
+  "columns": {
+    "request": "الطلب",
+    "type": "النوع",
+    "submittedBy": "مقدَّم من",
+    "assignedTo": "مُسنَد إلى",
+    "priority": "الأولوية",
+    "submittedOn": "تاريخ التقديم",
+    "status": "الحالة",
+    "actions": "الإجراءات"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "طلبات المسؤولين",
+      "badge": "طلب مسؤول",
+      "title": "طلب صلاحية المسؤول",
+      "subtitle": "طلب {name} صلاحية مسؤول المنصة"
+    },
+    "CREATE_ORG": {
+      "tab": "طلبات المؤسسات",
+      "badge": "مؤسسة",
+      "title": "إنشاء مؤسسة",
+      "subtitle": "طلب {name} إنشاء {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "طلبات الأعضاء",
+      "badge": "طلب عضوية",
+      "title": "طلب انضمام عضو",
+      "subtitle": "طلب {name} الانضمام إلى {subject}"
+    }
+  },
+  "status": {
+    "ALL": "كل الحالات",
+    "PENDING": "قيد الانتظار",
+    "UNDER_REVIEW": "قيد المراجعة",
+    "APPROVED": "تمت الموافقة",
+    "REJECTED": "مرفوض",
+    "WITHDRAWN": "مسحوب"
+  },
+  "priority": {
+    "HIGH": "عالية",
+    "MEDIUM": "متوسطة",
+    "LOW": "منخفضة"
+  },
+  "actions": {
+    "view": "عرض الطلب"
+  },
+  "empty": {
+    "title": "لا يوجد ما يتطلب انتباهك",
+    "description": "لا توجد طلبات مُسندة إليك حاليًا.",
+    "filteredTitle": "لا توجد طلبات مطابقة",
+    "filteredDescription": "جرّب حالة أو أولوية أو بحثًا آخر."
+  },
+  "noAccess": {
+    "title": "لا توجد موافقات للمراجعة",
+    "description": "أنت لا تراجع أي نوع من الطلبات في هذا البلد."
+  }
+}

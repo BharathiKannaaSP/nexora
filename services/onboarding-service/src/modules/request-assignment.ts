@@ -5,23 +5,17 @@ import type {
   AdminAccessApprovedPayload,
   PlatformPermission,
 } from "@nexora/schemas/events/permissions"
-import type {
-  PermissionAction,
-  PermissionModuleCode,
-} from "@nexora/schemas/onboarding/become-admin"
+import {
+  ApprovalRequestType,
+  REVIEWER_MODULE,
+} from "@nexora/schemas/onboarding/approvals"
+import type { PermissionAction } from "@nexora/schemas/onboarding/become-admin"
 import { AppError } from "@nexora/shared/express/app-error"
 
 import { db } from "../prisma/onboarding-db"
 
 /** RequestAssignment.requestType values. */
-export type AssignableRequestType = "ADMIN_ACCESS" | "CREATE_ORG" | "JOIN_ORG"
-
-/** The admin module whose holders review each kind of request. */
-const REVIEWER_MODULE = {
-  ADMIN_ACCESS: "USER_MANAGEMENT",
-  CREATE_ORG: "ORGANIZATION_MANAGEMENT",
-  JOIN_ORG: "ORGANIZATION_MANAGEMENT",
-} as const satisfies Record<AssignableRequestType, PermissionModuleCode>
+export type AssignableRequestType = ApprovalRequestType
 
 /**
  * Approving or rejecting a request changes it, so a reviewer needs EDIT on

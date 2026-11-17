@@ -157,7 +157,9 @@ const UploadedFileRow = ({
         </span>
       </TableCell>
       <TableCell className="max-w-64">
-        <p className="truncate font-medium">{label}</p>
+        <p className="truncate font-medium" title={label}>
+          {label}
+        </p>
         <p className="truncate text-xs text-muted-foreground" title={name}>
           {name}
         </p>

@@ -1,5 +1,6 @@
 {
   "languageLabel": "اللغة",
+  "countryLabel": "الدولة",
   "error": {
     "title": "حدث خطأ ما",
     "retry": "حاول مرة أخرى"
@@ -58,5 +59,15 @@
     "members": "{count, plural, zero {# عضو} one {# عضو} two {# عضوان} few {# أعضاء} many {# عضوًا} other {# عضو}}",
     "scrollBack": "عرض المؤسسات السابقة",
     "scrollForward": "عرض المزيد من المؤسسات"
+  },
+  "table": {
+    "showing": "عرض {from, number} إلى {to, number} من أصل {total, number} طلب",
+    "perPage": "{count, number} / صفحة",
+    "rowsPerPage": "عدد الصفوف في الصفحة",
+    "clearFilters": "مسح عوامل التصفية",
+    "pagination": "التنقل بين الصفحات",
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية",
+    "goToPage": "الصفحة {page, number}"
   }
 }

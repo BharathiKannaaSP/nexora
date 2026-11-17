@@ -8,6 +8,7 @@ import {
   verifyEmailSchema,
 } from "@nexora/schemas/auth/sign-up"
 import { createUpdateMeSchema } from "@nexora/schemas/auth/update-me"
+import { userLookupInputSchema } from "@nexora/schemas/auth/user-lookup"
 import {
   ACCESS_TOKEN_TTL_SECONDS,
   REFRESH_COOKIE_NAME,
@@ -19,8 +20,10 @@ import {
   ACCESS_TOKEN_REQUIRED,
   requireUserId,
 } from "@nexora/shared/express/require-user-id"
+import { UserLookupResponseData } from "@nexora/shared/types/auth"
 
 import { refreshCookieOptions } from "../lib/helpers/refresh-token"
+import { authRepository } from "./auth-repository"
 import { authService } from "./auth-service"
 
 export const register: RequestHandler = asyncHandler(
@@ -185,6 +188,25 @@ export const updateMe: RequestHandler = asyncHandler(
       "Account updated successfully",
       "AUTH.UPDATED.SUCCESS",
       { user }
+    )
+  }
+)
+
+// ** Service-to-service: names and emails for a list of user ids. */
+export const lookupUsers: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { ids } = userLookupInputSchema.parse(req.body)
+
+    const data: UserLookupResponseData = {
+      users: await authRepository.findSummariesByIds(ids),
+    }
+
+    return sendSuccess(
+      res,
+      200,
+      "Users fetched",
+      "AUTH.USERS_LOOKUP.SUCCESS",
+      data
     )
   }
 )

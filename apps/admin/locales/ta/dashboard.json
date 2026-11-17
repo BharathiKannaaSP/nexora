@@ -29,7 +29,11 @@
       "reports": "அறிக்கைகள்",
       "auditLogs": "தணிக்கைப் பதிவுகள்",
       "notifications": "அறிவிப்புகள்",
-      "settings": "தள அமைப்புகள்"
+      "settings": "தள அமைப்புகள்",
+      "allApprovals": "அனைத்து ஒப்புதல்கள்",
+      "adminRequests": "நிர்வாகி கோரிக்கைகள்",
+      "organizationRequests": "நிறுவனக் கோரிக்கைகள்",
+      "memberRequests": "உறுப்பினர் கோரிக்கைகள்"
     }
   },
   "userMenu": {

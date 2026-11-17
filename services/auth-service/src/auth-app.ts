@@ -10,6 +10,7 @@ import {
 
 import { env } from "./config/auth-env"
 import authRoutes from "./modules/auth-routes"
+import internalRoutes from "./modules/auth-routes"
 
 const app: Express = express()
 
@@ -39,6 +40,7 @@ app.get("/health", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRoutes)
+app.use('/internal/v1', internalRoutes)
 
 app.use(notFoundHandler)
 app.use(createErrorHandler("Auth service"))

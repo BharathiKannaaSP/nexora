@@ -336,7 +336,9 @@ const JoinSections = ({
           <div className="flex items-center gap-3">
             <OrganizationAvatar organization={organization} />
             <div className="flex min-w-0 flex-col gap-0.5">
-              <p className="truncate font-medium">{organization.name}</p>
+              <p className="truncate font-medium" title={organization.name}>
+                {organization.name}
+              </p>
               <OrganizationMeta
                 countryName={
                   regionNames.of(organization.countryCode) ??

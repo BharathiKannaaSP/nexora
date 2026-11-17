@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "Permintaan ini tiada butiran yang diperlukan",
     "NOT_FOUND": "Organisasi tidak ditemui"
   },
-  "ORGANIZATION_NOT_FOUND": "Organisasi tidak ditemui"
+  "ORGANIZATION_NOT_FOUND": "Organisasi tidak ditemui",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Kelulusan dimuatkan."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Bilangan kelulusan dimuatkan."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "Imej profil ini tidak boleh digunakan. Sila muat naik semula."
 }

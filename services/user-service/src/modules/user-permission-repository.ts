@@ -4,6 +4,7 @@ import { KAFKA_TOPICS } from "@nexora/kafka"
 import {
   platformPermissionKey,
   type AdminAccessApprovedPayload,
+  type PlatformPermission,
   type UserPlatformPermissionsChangedPayload,
 } from "@nexora/schemas/events/permissions"
 
@@ -15,18 +16,19 @@ type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]
 const platformPermissions = (tx: Transaction, userId: string) =>
   tx.orm.public.UserPermission.where({ userId, organizationId: null }).all()
 
-/**
- * The countries the user holds any platform permission in, lowercase like
- * the /[country] URLs (permissions store them as "IN").
- */
-export const getPlatformCountriesRepository = async (
+/** The user's platform permissions, countries uppercase as stored ("IN"). */
+export const getPlatformPermissionsRepository = async (
   userId: string
-): Promise<string[]> => {
+): Promise<PlatformPermission[]> => {
   const rows = await db.orm.public.UserPermission.where({
     userId,
     organizationId: null,
   }).all()
-  return [...new Set(rows.map(({ countryCode }) => countryCode.toLowerCase()))]
+  return rows.map(({ countryCode, moduleCode, accessLevel }) => ({
+    countryCode: countryCode.toUpperCase(),
+    moduleCode,
+    accessLevel,
+  }))
 }
 
 /**

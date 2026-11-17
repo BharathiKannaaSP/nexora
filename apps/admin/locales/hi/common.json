@@ -1,5 +1,6 @@
 {
   "languageLabel": "भाषा",
+  "countryLabel": "देश",
   "error": {
     "title": "कुछ गलत हो गया",
     "retry": "फिर से कोशिश करें"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# सदस्य} other {# सदस्य}}",
     "scrollBack": "पिछले संगठन दिखाएँ",
     "scrollForward": "और संगठन दिखाएँ"
+  },
+  "table": {
+    "showing": "{total, number} में से {from, number} से {to, number} अनुरोध दिखाए जा रहे हैं",
+    "perPage": "{count, number} / पेज",
+    "rowsPerPage": "प्रति पेज पंक्तियाँ",
+    "clearFilters": "फ़िल्टर साफ़ करें",
+    "pagination": "पेज नेविगेशन",
+    "previousPage": "पिछला पेज",
+    "nextPage": "अगला पेज",
+    "goToPage": "पेज {page, number}"
   }
 }

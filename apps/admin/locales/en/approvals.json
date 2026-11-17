@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Approvals",
+    "description": "Review and take action on requests that need your approval."
+  },
+  "listLabel": "Requests",
+  "you": "You",
+  "unknownUser": "Unknown user",
+  "unknownSubject": "an organization",
+  "stats": {
+    "total": "Total {status}",
+    "totalAll": "Total requests",
+    "requests": "Requests",
+    "overdue": "Overdue",
+    "needsAttention": "Needs attention"
+  },
+  "tabs": {
+    "label": "Request types",
+    "all": "All"
+  },
+  "filters": {
+    "search": "Search requests…",
+    "searchLabel": "Search requests by name, email or organization",
+    "status": "Status",
+    "priority": "Priority",
+    "all": "All"
+  },
+  "columns": {
+    "request": "Request",
+    "type": "Type",
+    "submittedBy": "Submitted by",
+    "assignedTo": "Assigned to",
+    "priority": "Priority",
+    "submittedOn": "Submitted on",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Admin requests",
+      "badge": "Admin request",
+      "title": "Admin access request",
+      "subtitle": "{name} requested platform admin access"
+    },
+    "CREATE_ORG": {
+      "tab": "Organization requests",
+      "badge": "Organization",
+      "title": "Organization creation",
+      "subtitle": "{name} requested to create {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Member requests",
+      "badge": "Member request",
+      "title": "Member join request",
+      "subtitle": "{name} requested to join {subject}"
+    }
+  },
+  "status": {
+    "ALL": "All statuses",
+    "PENDING": "Pending",
+    "UNDER_REVIEW": "Under review",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected",
+    "WITHDRAWN": "Withdrawn"
+  },
+  "priority": {
+    "HIGH": "High",
+    "MEDIUM": "Medium",
+    "LOW": "Low"
+  },
+  "actions": {
+    "view": "View request"
+  },
+  "empty": {
+    "title": "You're all caught up",
+    "description": "No requests are assigned to you right now.",
+    "filteredTitle": "No matching requests",
+    "filteredDescription": "Try another status, priority or search."
+  },
+  "noAccess": {
+    "title": "No approvals to review",
+    "description": "You don't review any kind of request in this country."
+  }
+}

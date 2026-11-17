@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { UPLOAD_RULES } from "../media/upload"
+import { fileSchema } from "./create-organization"
 import {
   createUpdateMeSchema,
   type UpdateMeValidationMessages,
@@ -7,6 +9,8 @@ import {
 
 export interface BasicInformationValidationMessages extends UpdateMeValidationMessages {
   passwordsDoNotMatch: string
+  profileImageWrongFormat: string
+  profileImageTooLarge: string
 }
 
 /**
@@ -23,7 +27,16 @@ export const createBasicInformationSchema = (
   return updateMeSchema
     .pick({ firstName: true, lastName: true, userName: true, email: true })
     .required()
-    .extend({ password: z.string(), confirmPassword: z.string() })
+    .extend({
+      // Optional: a newly picked File, the saved image, or null/undefined
+      // for none.
+      profileImage: fileSchema(UPLOAD_RULES["user-avatar"], {
+        wrongFormat: messages.profileImageWrongFormat,
+        tooLarge: messages.profileImageTooLarge,
+      }).nullish(),
+      password: z.string(),
+      confirmPassword: z.string(),
+    })
     .superRefine((data, ctx) => {
       if (data.password !== "") {
         const result = updateMeSchema.shape.password.safeParse(data.password)

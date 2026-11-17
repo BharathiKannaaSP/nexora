@@ -49,7 +49,12 @@
     "usernameHint": "यह Nexora पर आपकी विशिष्ट पहचान होगी।",
     "passwordHint": "अपना मौजूदा पासवर्ड रखने के लिए खाली छोड़ें, या इसे बदलने के लिए 8 या अधिक वर्णों का उपयोग करें।",
     "emailHint": "यदि आप अपना ईमेल पता बदलते हैं, तो आपको इसे फिर से सत्यापित करना होगा।",
-    "verified": "सत्यापित"
+    "verified": "सत्यापित",
+    "profileImage": "प्रोफ़ाइल इमेज",
+    "profileImageHint": "वैकल्पिक। PNG, JPG या WEBP, अधिकतम {maxMb, number} MB।",
+    "profileImagePlaceholder": "अपलोड करने के लिए क्लिक करें या खींचकर छोड़ें",
+    "profileImageWrongFormat": "PNG, JPG या WEBP इमेज अपलोड करें।",
+    "profileImageTooLarge": "इमेज {maxMb, number} MB या उससे छोटी होनी चाहिए।"
   },
   "chooseYourPathForm": {
     "fields": {

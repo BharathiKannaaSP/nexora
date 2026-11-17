@@ -49,7 +49,12 @@
     "usernameHint": "Ini akan menjadi pengecam unik anda di Nexora.",
     "passwordHint": "Biarkan kosong untuk mengekalkan kata laluan semasa anda, atau gunakan 8 aksara atau lebih untuk menukarnya.",
     "emailHint": "Jika anda menukar alamat e-mel anda, anda perlu mengesahkannya semula.",
-    "verified": "Disahkan"
+    "verified": "Disahkan",
+    "profileImage": "Imej profil",
+    "profileImageHint": "Pilihan. PNG, JPG atau WEBP, sehingga {maxMb, number} MB.",
+    "profileImagePlaceholder": "Klik untuk muat naik atau seret dan lepas",
+    "profileImageWrongFormat": "Muat naik imej PNG, JPG atau WEBP.",
+    "profileImageTooLarge": "Imej mestilah {maxMb, number} MB atau lebih kecil."
   },
   "chooseYourPathForm": {
     "fields": {

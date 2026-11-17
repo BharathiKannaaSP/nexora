@@ -20,15 +20,43 @@ import {
 } from "lucide-react"
 
 import {
-  hasPermission,
+  REVIEWER_ACCESS_LEVEL,
+  REVIEWER_MODULE,
+} from "@nexora/schemas/onboarding/approvals"
+
+import {
+  satisfiesRule,
   type CountryPermissions,
+  type PermissionRule,
   type RequiredPermission,
 } from "@/lib/auth/permissions"
 import { DASHBOARD_PATH } from "@/lib/bootstrap/bootstrap-path"
+import type dashboard from "@/locales/en/dashboard.json"
 
 // Labels live in dashboard.json under sidebar.groups.* and sidebar.items.*.
+
+/** A key under sidebar.items, so every item and child has a label. */
+export type SidebarItemKey = keyof typeof dashboard.sidebar.items
+
+/** Count keys a sidebar item can show; filled by the dashboard shell. */
+export type SidebarBadgeKey =
+  | "approvals.total"
+  | "approvals.ADMIN_ACCESS"
+  | "approvals.CREATE_ORG"
+  | "approvals.JOIN_ORG"
+
+export type SidebarBadges = Partial<Record<SidebarBadgeKey, number>>
+
+export interface SidebarNavChild {
+  key: SidebarItemKey
+  /** Query added to the parent's path, e.g. { type: "admin" }. */
+  query?: Record<string, string>
+  permission?: PermissionRule
+  badge?: SidebarBadgeKey
+}
+
 export interface SidebarNavItem {
-  key: string
+  key: SidebarItemKey
   path: string
   icon: LucideIcon
   /**
@@ -36,7 +64,9 @@ export interface SidebarNavItem {
    * in for it: an ADMIN sees the item only with this permission too. Left
    * out, everyone sees it.
    */
-  permission?: RequiredPermission
+  permission?: PermissionRule
+  badge?: SidebarBadgeKey
+  children?: SidebarNavChild[]
 }
 
 export interface SidebarNavGroup {
@@ -47,6 +77,20 @@ export interface SidebarNavGroup {
 const view = (
   moduleCode: RequiredPermission["moduleCode"]
 ): RequiredPermission => ({ moduleCode, accessLevel: "VIEW" })
+
+const reviewer = (type: keyof typeof REVIEWER_MODULE): RequiredPermission => ({
+  moduleCode: REVIEWER_MODULE[type],
+  accessLevel: REVIEWER_ACCESS_LEVEL,
+})
+
+/** Anyone who reviews at least one kind of request. */
+export const APPROVALS_PERMISSION: PermissionRule = {
+  anyOf: [
+    reviewer("ADMIN_ACCESS"),
+    reviewer("CREATE_ORG"),
+    reviewer("JOIN_ORG"),
+  ],
+}
 
 export const SIDEBAR_NAV = [
   {
@@ -95,7 +139,29 @@ export const SIDEBAR_NAV = [
         key: "approvals",
         path: "/approvals",
         icon: UserCheck,
-        permission: view("USER_MANAGEMENT"),
+        permission: APPROVALS_PERMISSION,
+        badge: "approvals.total",
+        children: [
+          { key: "allApprovals", badge: "approvals.total" },
+          {
+            key: "adminRequests",
+            query: { type: "admin" },
+            permission: reviewer("ADMIN_ACCESS"),
+            badge: "approvals.ADMIN_ACCESS",
+          },
+          {
+            key: "organizationRequests",
+            query: { type: "organization" },
+            permission: reviewer("CREATE_ORG"),
+            badge: "approvals.CREATE_ORG",
+          },
+          {
+            key: "memberRequests",
+            query: { type: "member" },
+            permission: reviewer("JOIN_ORG"),
+            badge: "approvals.JOIN_ORG",
+          },
+        ],
       },
       {
         key: "rolesPermissions",
@@ -172,12 +238,21 @@ interface SidebarAccess {
   permissions: CountryPermissions
 }
 
-/** The groups and items the user may see; groups left empty are dropped. */
-export const getSidebarNav = ({ countryCode, permissions }: SidebarAccess) =>
-  SIDEBAR_NAV.map((group) => ({
+/** The groups, items and children the user may see; empty groups are dropped. */
+export const getSidebarNav = ({ countryCode, permissions }: SidebarAccess) => {
+  const allowed = ({ permission }: { permission?: PermissionRule }) =>
+    !permission || satisfiesRule(permissions, countryCode, permission)
+
+  return SIDEBAR_NAV.map((group) => ({
     ...group,
-    items: group.items.filter(
-      ({ permission }: SidebarNavItem) =>
-        !permission || hasPermission(permissions, countryCode, permission)
-    ),
+    items: (group.items as readonly SidebarNavItem[])
+      .filter(allowed)
+      .map((item) => ({ ...item, children: item.children?.filter(allowed) })),
   })).filter((group) => group.items.length > 0)
+}
+
+/** Whether the user can open the approvals page in this country. */
+export const canSeeApprovals = (
+  permissions: CountryPermissions,
+  countryCode: string
+) => satisfiesRule(permissions, countryCode, APPROVALS_PERMISSION)

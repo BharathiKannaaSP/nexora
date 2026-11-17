@@ -1,5 +1,6 @@
 {
   "languageLabel": "语言",
+  "countryLabel": "国家",
   "error": {
     "title": "出了点问题",
     "retry": "重试"
@@ -58,5 +59,15 @@
     "members": "{count, plural, other {# 名成员}}",
     "scrollBack": "显示上一组组织",
     "scrollForward": "显示更多组织"
+  },
+  "table": {
+    "showing": "显示第 {from, number} 至 {to, number} 条，共 {total, number} 条申请",
+    "perPage": "{count, number} 条/页",
+    "rowsPerPage": "每页行数",
+    "clearFilters": "清除筛选",
+    "pagination": "分页",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "goToPage": "第 {page, number} 页"
   }
 }

@@ -1,8 +1,10 @@
 "use client"
 
-import { createContext, use, type ReactNode } from "react"
+import { createContext, use, useMemo, type ReactNode } from "react"
 
 import type { CurrentUserOverviewResponseData } from "@nexora/shared/types/aggregate"
+
+import { toCountryPermissions } from "@/lib/auth/permissions"
 
 const BootstrapContext = createContext<CurrentUserOverviewResponseData | null>(
   null
@@ -24,4 +26,13 @@ export const useBootstrap = () => {
     throw new Error("useBootstrap must be used below <BootstrapGuard>")
   }
   return overview
+}
+
+/**
+ * The signed-in user's permissions, from the same overview (see
+ * getPermissions() for Server Components). Only below BootstrapGuard.
+ */
+export const usePermissions = () => {
+  const { permissions } = useBootstrap()
+  return useMemo(() => toCountryPermissions(permissions), [permissions])
 }

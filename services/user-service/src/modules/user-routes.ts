@@ -4,8 +4,8 @@ import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
 
 import { env } from "../config/user-env"
 import {
-  getPlatformCountries,
   getUserDetails,
+  getUserPermissions,
   updateUserDetails,
 } from "./user-controller"
 
@@ -15,7 +15,7 @@ const router: Router = Router()
 
 router.get("/user-details", verifyGateway, getUserDetails)
 router.put("/user-details", verifyGateway, updateUserDetails)
-// The countries the user may open besides their saved one.
-router.get("/platform-countries", verifyGateway, getPlatformCountries)
+// The user's platform permissions: the one place the app reads them from.
+router.get("/permissions", verifyGateway, getUserPermissions)
 
 export default router

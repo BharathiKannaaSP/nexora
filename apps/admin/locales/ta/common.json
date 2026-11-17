@@ -1,5 +1,6 @@
 {
   "languageLabel": "மொழி",
+  "countryLabel": "நாடு",
   "error": {
     "title": "ஏதோ தவறு நடந்துவிட்டது",
     "retry": "மீண்டும் முயற்சிக்கவும்"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# உறுப்பினர்} other {# உறுப்பினர்கள்}}",
     "scrollBack": "முந்தைய நிறுவனங்களைக் காட்டு",
     "scrollForward": "மேலும் நிறுவனங்களைக் காட்டு"
+  },
+  "table": {
+    "showing": "{total, number} கோரிக்கைகளில் {from, number} முதல் {to, number} வரை காட்டப்படுகிறது",
+    "perPage": "{count, number} / பக்கம்",
+    "rowsPerPage": "ஒரு பக்கத்திற்கான வரிசைகள்",
+    "clearFilters": "வடிகட்டிகளை அழி",
+    "pagination": "பக்க எண்ணிடல்",
+    "previousPage": "முந்தைய பக்கம்",
+    "nextPage": "அடுத்த பக்கம்",
+    "goToPage": "பக்கம் {page, number}"
   }
 }

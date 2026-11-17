@@ -29,7 +29,11 @@
       "reports": "التقارير",
       "auditLogs": "سجلات التدقيق",
       "notifications": "الإشعارات",
-      "settings": "إعدادات المنصة"
+      "settings": "إعدادات المنصة",
+      "allApprovals": "كل الموافقات",
+      "adminRequests": "طلبات المسؤولين",
+      "organizationRequests": "طلبات المؤسسات",
+      "memberRequests": "طلبات الأعضاء"
     }
   },
   "userMenu": {

@@ -49,7 +49,12 @@
     "usernameHint": "Dies wird Ihre eindeutige Kennung bei Nexora.",
     "passwordHint": "Leer lassen, um Ihr aktuelles Passwort zu behalten, oder mindestens 8 Zeichen eingeben, um es zu ändern.",
     "emailHint": "Wenn Sie Ihre E-Mail-Adresse ändern, müssen Sie sie erneut bestätigen.",
-    "verified": "Verifiziert"
+    "verified": "Verifiziert",
+    "profileImage": "Profilbild",
+    "profileImageHint": "Optional. PNG, JPG oder WEBP, bis {maxMb, number} MB.",
+    "profileImagePlaceholder": "Zum Hochladen klicken oder hierher ziehen",
+    "profileImageWrongFormat": "Lade ein PNG-, JPG- oder WEBP-Bild hoch.",
+    "profileImageTooLarge": "Das Bild darf höchstens {maxMb, number} MB groß sein."
   },
   "chooseYourPathForm": {
     "fields": {

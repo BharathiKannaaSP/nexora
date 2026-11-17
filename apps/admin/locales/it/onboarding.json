@@ -49,7 +49,12 @@
     "usernameHint": "Sarà il tuo identificativo univoco su Nexora.",
     "passwordHint": "Lascia vuoto per mantenere la password attuale, oppure usa almeno 8 caratteri per modificarla.",
     "emailHint": "Se modifichi il tuo indirizzo email, dovrai verificarlo di nuovo.",
-    "verified": "Verificato"
+    "verified": "Verificato",
+    "profileImage": "Immagine del profilo",
+    "profileImageHint": "Facoltativo. PNG, JPG o WEBP, fino a {maxMb, number} MB.",
+    "profileImagePlaceholder": "Fai clic per caricare o trascina qui",
+    "profileImageWrongFormat": "Carica un'immagine PNG, JPG o WEBP.",
+    "profileImageTooLarge": "L'immagine deve essere di {maxMb, number} MB o meno."
   },
   "chooseYourPathForm": {
     "fields": {

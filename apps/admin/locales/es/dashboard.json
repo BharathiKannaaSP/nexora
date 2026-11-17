@@ -29,7 +29,11 @@
       "reports": "Informes",
       "auditLogs": "Registros de auditoría",
       "notifications": "Notificaciones",
-      "settings": "Configuración de la plataforma"
+      "settings": "Configuración de la plataforma",
+      "allApprovals": "Todas las aprobaciones",
+      "adminRequests": "Solicitudes de administrador",
+      "organizationRequests": "Solicitudes de organización",
+      "memberRequests": "Solicitudes de miembros"
     }
   },
   "userMenu": {

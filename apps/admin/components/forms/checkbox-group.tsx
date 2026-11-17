@@ -68,7 +68,10 @@ export const CheckboxGroupField = memo(function CheckboxGroupField({
             className="flex cursor-pointer items-start justify-between gap-2 rounded-lg border p-3 transition-colors hover:bg-muted/50 data-checked:border-primary data-checked:bg-primary/5 data-disabled:cursor-not-allowed data-disabled:opacity-60"
           >
             <span className="flex min-w-0 flex-col gap-1">
-              <span className="truncate text-sm font-medium">
+              <span
+                className="truncate text-sm font-medium"
+                title={option.label}
+              >
                 {option.label}
               </span>
               {option.description && (

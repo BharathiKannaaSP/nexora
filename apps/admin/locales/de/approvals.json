@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Genehmigungen",
+    "description": "Prüfen Sie Anfragen, die Ihre Genehmigung erfordern, und ergreifen Sie Maßnahmen."
+  },
+  "listLabel": "Anfragen",
+  "you": "Sie",
+  "unknownUser": "Unbekannter Benutzer",
+  "unknownSubject": "eine Organisation",
+  "stats": {
+    "total": "Gesamt: {status}",
+    "totalAll": "Anfragen gesamt",
+    "requests": "Anfragen",
+    "overdue": "Überfällig",
+    "needsAttention": "Handlungsbedarf"
+  },
+  "tabs": {
+    "label": "Anfragetypen",
+    "all": "Alle"
+  },
+  "filters": {
+    "search": "Anfragen suchen…",
+    "searchLabel": "Anfragen nach Name, E-Mail oder Organisation suchen",
+    "status": "Status",
+    "priority": "Priorität",
+    "all": "Alle"
+  },
+  "columns": {
+    "request": "Anfrage",
+    "type": "Typ",
+    "submittedBy": "Eingereicht von",
+    "assignedTo": "Zugewiesen an",
+    "priority": "Priorität",
+    "submittedOn": "Eingereicht am",
+    "status": "Status",
+    "actions": "Aktionen"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Admin-Anfragen",
+      "badge": "Admin-Anfrage",
+      "title": "Anfrage auf Administratorzugriff",
+      "subtitle": "{name} hat Plattform-Administratorzugriff beantragt"
+    },
+    "CREATE_ORG": {
+      "tab": "Organisationsanfragen",
+      "badge": "Organisation",
+      "title": "Organisationserstellung",
+      "subtitle": "{name} hat beantragt, {subject} zu erstellen"
+    },
+    "JOIN_ORG": {
+      "tab": "Mitgliedsanfragen",
+      "badge": "Mitgliedsanfrage",
+      "title": "Beitrittsanfrage",
+      "subtitle": "{name} hat eine Beitrittsanfrage für {subject} gestellt"
+    }
+  },
+  "status": {
+    "ALL": "Alle Status",
+    "PENDING": "Ausstehend",
+    "UNDER_REVIEW": "In Prüfung",
+    "APPROVED": "Genehmigt",
+    "REJECTED": "Abgelehnt",
+    "WITHDRAWN": "Zurückgezogen"
+  },
+  "priority": {
+    "HIGH": "Hoch",
+    "MEDIUM": "Mittel",
+    "LOW": "Niedrig"
+  },
+  "actions": {
+    "view": "Anfrage ansehen"
+  },
+  "empty": {
+    "title": "Alles erledigt",
+    "description": "Ihnen sind derzeit keine Anfragen zugewiesen.",
+    "filteredTitle": "Keine passenden Anfragen",
+    "filteredDescription": "Versuchen Sie einen anderen Status, eine andere Priorität oder Suche."
+  },
+  "noAccess": {
+    "title": "Keine Genehmigungen zu prüfen",
+    "description": "Sie prüfen in diesem Land keine Anfragen."
+  }
+}

@@ -12,6 +12,8 @@ export interface AuthUser {
   userName: string
   firstName: string
   lastName: string
+  /** Private S3 key of the avatar; sign it to show it. */
+  profileImageKey: string | null
   systemRole: SystemRole
   accountStatus: AccountStatus
   isEmailVerified: boolean
@@ -62,3 +64,17 @@ export interface MeResponseData {
 
 /** POST /auth/logout */
 export type LogoutResponseData = null
+
+/** What other services may know about a user. */
+export interface UserSummary {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  profileImageKey: string | null
+}
+
+/** POST /internal/v1/users/lookup. Unknown ids are left out. */
+export interface UserLookupResponseData {
+  users: UserSummary[]
+}

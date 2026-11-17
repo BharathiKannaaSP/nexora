@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "审批",
+    "description": "审核需要您审批的申请并进行处理。"
+  },
+  "listLabel": "申请",
+  "you": "您",
+  "unknownUser": "未知用户",
+  "unknownSubject": "一个组织",
+  "stats": {
+    "total": "{status}总数",
+    "totalAll": "请求总数",
+    "requests": "申请",
+    "overdue": "已逾期",
+    "needsAttention": "需要关注"
+  },
+  "tabs": {
+    "label": "申请类型",
+    "all": "全部"
+  },
+  "filters": {
+    "search": "搜索申请…",
+    "searchLabel": "按姓名、电子邮件或组织搜索申请",
+    "status": "状态",
+    "priority": "优先级",
+    "all": "全部"
+  },
+  "columns": {
+    "request": "申请",
+    "type": "类型",
+    "submittedBy": "提交人",
+    "assignedTo": "负责人",
+    "priority": "优先级",
+    "submittedOn": "提交时间",
+    "status": "状态",
+    "actions": "操作"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "管理员申请",
+      "badge": "管理员申请",
+      "title": "管理员权限申请",
+      "subtitle": "{name} 申请了平台管理员权限"
+    },
+    "CREATE_ORG": {
+      "tab": "组织申请",
+      "badge": "组织",
+      "title": "创建组织",
+      "subtitle": "{name} 申请创建{subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "成员申请",
+      "badge": "成员申请",
+      "title": "成员加入申请",
+      "subtitle": "{name} 申请加入{subject}"
+    }
+  },
+  "status": {
+    "ALL": "全部状态",
+    "PENDING": "待处理",
+    "UNDER_REVIEW": "审核中",
+    "APPROVED": "已批准",
+    "REJECTED": "已拒绝",
+    "WITHDRAWN": "已撤回"
+  },
+  "priority": {
+    "HIGH": "高",
+    "MEDIUM": "中",
+    "LOW": "低"
+  },
+  "actions": {
+    "view": "查看申请"
+  },
+  "empty": {
+    "title": "全部处理完毕",
+    "description": "目前没有分配给您的申请。",
+    "filteredTitle": "没有匹配的申请",
+    "filteredDescription": "请尝试其他状态、优先级或搜索词。"
+  },
+  "noAccess": {
+    "title": "没有需要审核的审批",
+    "description": "您在此国家/地区不负责审核任何类型的申请。"
+  }
+}

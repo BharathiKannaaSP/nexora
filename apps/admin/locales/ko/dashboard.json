@@ -29,7 +29,11 @@
       "reports": "보고서",
       "auditLogs": "감사 로그",
       "notifications": "알림",
-      "settings": "플랫폼 설정"
+      "settings": "플랫폼 설정",
+      "allApprovals": "전체 승인",
+      "adminRequests": "관리자 요청",
+      "organizationRequests": "조직 요청",
+      "memberRequests": "멤버 요청"
     }
   },
   "userMenu": {

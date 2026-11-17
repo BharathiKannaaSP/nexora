@@ -1,5 +1,6 @@
 {
   "languageLabel": "Taal",
+  "countryLabel": "Land",
   "error": {
     "title": "Er is iets misgegaan",
     "retry": "Opnieuw proberen"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# lid} other {# leden}}",
     "scrollBack": "Vorige organisaties weergeven",
     "scrollForward": "Meer organisaties weergeven"
+  },
+  "table": {
+    "showing": "{from, number} tot {to, number} van {total, number} aanvragen",
+    "perPage": "{count, number} / pagina",
+    "rowsPerPage": "Rijen per pagina",
+    "clearFilters": "Filters wissen",
+    "pagination": "Paginering",
+    "previousPage": "Vorige pagina",
+    "nextPage": "Volgende pagina",
+    "goToPage": "Pagina {page, number}"
   }
 }

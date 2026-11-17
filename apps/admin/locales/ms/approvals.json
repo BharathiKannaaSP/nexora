@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Kelulusan",
+    "description": "Semak dan ambil tindakan terhadap permintaan yang memerlukan kelulusan anda."
+  },
+  "listLabel": "Permintaan",
+  "you": "Anda",
+  "unknownUser": "Pengguna tidak diketahui",
+  "unknownSubject": "sebuah organisasi",
+  "stats": {
+    "total": "Jumlah {status}",
+    "totalAll": "Jumlah permintaan",
+    "requests": "Permintaan",
+    "overdue": "Tertunggak",
+    "needsAttention": "Perlu perhatian"
+  },
+  "tabs": {
+    "label": "Jenis permintaan",
+    "all": "Semua"
+  },
+  "filters": {
+    "search": "Cari permintaan…",
+    "searchLabel": "Cari permintaan mengikut nama, e-mel atau organisasi",
+    "status": "Status",
+    "priority": "Keutamaan",
+    "all": "Semua"
+  },
+  "columns": {
+    "request": "Permintaan",
+    "type": "Jenis",
+    "submittedBy": "Dihantar oleh",
+    "assignedTo": "Ditugaskan kepada",
+    "priority": "Keutamaan",
+    "submittedOn": "Dihantar pada",
+    "status": "Status",
+    "actions": "Tindakan"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Permintaan pentadbir",
+      "badge": "Permintaan pentadbir",
+      "title": "Permintaan akses pentadbir",
+      "subtitle": "{name} meminta akses pentadbir platform"
+    },
+    "CREATE_ORG": {
+      "tab": "Permintaan organisasi",
+      "badge": "Organisasi",
+      "title": "Penciptaan organisasi",
+      "subtitle": "{name} meminta untuk mencipta {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Permintaan ahli",
+      "badge": "Permintaan ahli",
+      "title": "Permintaan sertai sebagai ahli",
+      "subtitle": "{name} meminta untuk menyertai {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Semua status",
+    "PENDING": "Belum selesai",
+    "UNDER_REVIEW": "Sedang disemak",
+    "APPROVED": "Diluluskan",
+    "REJECTED": "Ditolak",
+    "WITHDRAWN": "Ditarik balik"
+  },
+  "priority": {
+    "HIGH": "Tinggi",
+    "MEDIUM": "Sederhana",
+    "LOW": "Rendah"
+  },
+  "actions": {
+    "view": "Lihat permintaan"
+  },
+  "empty": {
+    "title": "Semua sudah selesai",
+    "description": "Tiada permintaan yang ditugaskan kepada anda buat masa ini.",
+    "filteredTitle": "Tiada permintaan yang sepadan",
+    "filteredDescription": "Cuba status, keutamaan atau carian lain."
+  },
+  "noAccess": {
+    "title": "Tiada kelulusan untuk disemak",
+    "description": "Anda tidak menyemak sebarang jenis permintaan di negara ini."
+  }
+}

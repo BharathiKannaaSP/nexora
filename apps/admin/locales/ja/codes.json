@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "この申請には必須の情報が不足しています",
     "NOT_FOUND": "組織が見つかりません"
   },
-  "ORGANIZATION_NOT_FOUND": "組織が見つかりません"
+  "ORGANIZATION_NOT_FOUND": "組織が見つかりません",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "承認を読み込みました。"
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "承認件数を読み込みました。"
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "このプロフィール画像は使用できません。もう一度アップロードしてください。"
 }

@@ -1,5 +1,6 @@
 {
   "languageLabel": "Bahasa",
+  "countryLabel": "Negara",
   "error": {
     "title": "Berlaku ralat",
     "retry": "Cuba lagi"
@@ -58,5 +59,15 @@
     "members": "{count, plural, other {# ahli}}",
     "scrollBack": "Tunjukkan organisasi sebelumnya",
     "scrollForward": "Tunjukkan lebih banyak organisasi"
+  },
+  "table": {
+    "showing": "Menunjukkan {from, number} hingga {to, number} daripada {total, number} permintaan",
+    "perPage": "{count, number} / halaman",
+    "rowsPerPage": "Baris setiap halaman",
+    "clearFilters": "Kosongkan penapis",
+    "pagination": "Penomboran halaman",
+    "previousPage": "Halaman sebelumnya",
+    "nextPage": "Halaman seterusnya",
+    "goToPage": "Halaman {page, number}"
   }
 }

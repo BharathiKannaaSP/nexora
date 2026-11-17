@@ -4,12 +4,11 @@ import {
   type PermissionAction,
   type PermissionModuleCode,
 } from "@nexora/schemas/onboarding/become-admin"
-import type { AdminAccessRequestPermission } from "@nexora/shared/types/onboarding"
 
 /**
  * Country access, then moduleCode, then accessLevel, e.g.
  * { IN: { USER_MANAGEMENT: ["VIEW", "EDIT"] } }. Countries are ISO 3166-1
- * alpha-2, uppercase, as stored on AdminAccessRequestPermission.countryCode.
+ * alpha-2, uppercase, as user-service stores them.
  */
 export type CountryPermissions = Record<
   string,
@@ -29,14 +28,16 @@ const isAccessLevel = (value: string): value is PermissionAction =>
   (PERMISSION_ACTIONS as readonly string[]).includes(value)
 
 /**
- * Groups AdminAccessRequestPermission rows by countryCode, then moduleCode,
- * then accessLevel. Rows outside the catalog are dropped.
+ * Groups permission rows (user-service grants, or the ones a request asks
+ * for) by countryCode, then moduleCode, then accessLevel. Rows outside the
+ * catalog are dropped.
  */
 export const toCountryPermissions = (
-  rows: Pick<
-    AdminAccessRequestPermission,
-    "countryCode" | "moduleCode" | "accessLevel"
-  >[]
+  rows: readonly {
+    countryCode: string
+    moduleCode: string
+    accessLevel: string
+  }[]
 ): CountryPermissions =>
   rows.reduce<CountryPermissions>(
     (permissions, { countryCode, moduleCode, accessLevel }) => {
@@ -81,3 +82,16 @@ export const toOrderedPermissions = (permissions: CountryPermissions) =>
         : []
     }),
   }))
+
+/** One permission, or any of several. */
+export type PermissionRule =
+  RequiredPermission | { anyOf: RequiredPermission[] }
+
+export const satisfiesRule = (
+  permissions: CountryPermissions,
+  countryCode: string,
+  rule: PermissionRule
+) =>
+  "anyOf" in rule
+    ? rule.anyOf.some((p) => hasPermission(permissions, countryCode, p))
+    : hasPermission(permissions, countryCode, rule)

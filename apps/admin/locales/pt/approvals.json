@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Aprovações",
+    "description": "Revise e tome providências sobre as solicitações que precisam da sua aprovação."
+  },
+  "listLabel": "Solicitações",
+  "you": "Você",
+  "unknownUser": "Usuário desconhecido",
+  "unknownSubject": "uma organização",
+  "stats": {
+    "total": "Total: {status}",
+    "totalAll": "Total de solicitações",
+    "requests": "Solicitações",
+    "overdue": "Atrasadas",
+    "needsAttention": "Precisa de atenção"
+  },
+  "tabs": {
+    "label": "Tipos de solicitação",
+    "all": "Todas"
+  },
+  "filters": {
+    "search": "Pesquisar solicitações…",
+    "searchLabel": "Pesquisar solicitações por nome, e-mail ou organização",
+    "status": "Status",
+    "priority": "Prioridade",
+    "all": "Todas"
+  },
+  "columns": {
+    "request": "Solicitação",
+    "type": "Tipo",
+    "submittedBy": "Enviada por",
+    "assignedTo": "Atribuída a",
+    "priority": "Prioridade",
+    "submittedOn": "Enviada em",
+    "status": "Status",
+    "actions": "Ações"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Solicitações de administrador",
+      "badge": "Solicitação de administrador",
+      "title": "Solicitação de acesso de administrador",
+      "subtitle": "{name} solicitou acesso de administrador da plataforma"
+    },
+    "CREATE_ORG": {
+      "tab": "Solicitações de organização",
+      "badge": "Organização",
+      "title": "Criação de organização",
+      "subtitle": "{name} solicitou a criação de {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Solicitações de membros",
+      "badge": "Solicitação de membro",
+      "title": "Solicitação de participação",
+      "subtitle": "{name} solicitou participar de {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Todos os status",
+    "PENDING": "Pendente",
+    "UNDER_REVIEW": "Em análise",
+    "APPROVED": "Aprovada",
+    "REJECTED": "Rejeitada",
+    "WITHDRAWN": "Retirada"
+  },
+  "priority": {
+    "HIGH": "Alta",
+    "MEDIUM": "Média",
+    "LOW": "Baixa"
+  },
+  "actions": {
+    "view": "Ver solicitação"
+  },
+  "empty": {
+    "title": "Tudo em dia",
+    "description": "Não há solicitações atribuídas a você no momento.",
+    "filteredTitle": "Nenhuma solicitação correspondente",
+    "filteredDescription": "Tente outro status, prioridade ou pesquisa."
+  },
+  "noAccess": {
+    "title": "Nenhuma aprovação para revisar",
+    "description": "Você não revisa nenhum tipo de solicitação neste país."
+  }
+}

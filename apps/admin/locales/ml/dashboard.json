@@ -29,7 +29,11 @@
       "reports": "റിപ്പോർട്ടുകൾ",
       "auditLogs": "ഓഡിറ്റ് ലോഗുകൾ",
       "notifications": "അറിയിപ്പുകൾ",
-      "settings": "പ്ലാറ്റ്‌ഫോം ക്രമീകരണങ്ങൾ"
+      "settings": "പ്ലാറ്റ്‌ഫോം ക്രമീകരണങ്ങൾ",
+      "allApprovals": "എല്ലാ അംഗീകാരങ്ങളും",
+      "adminRequests": "അഡ്മിൻ അഭ്യർത്ഥനകൾ",
+      "organizationRequests": "സ്ഥാപന അഭ്യർത്ഥനകൾ",
+      "memberRequests": "അംഗത്വ അഭ്യർത്ഥനകൾ"
     }
   },
   "userMenu": {

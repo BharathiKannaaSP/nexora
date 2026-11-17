@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "Deze aanvraag mist verplichte gegevens",
     "NOT_FOUND": "Organisatie niet gevonden"
   },
-  "ORGANIZATION_NOT_FOUND": "Organisatie niet gevonden"
+  "ORGANIZATION_NOT_FOUND": "Organisatie niet gevonden",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Goedkeuringen geladen."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Aantallen goedkeuringen geladen."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "Deze profielfoto kan niet worden gebruikt. Upload hem opnieuw."
 }

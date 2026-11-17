@@ -308,4 +308,16 @@ export const authRepository = {
       }
     })
   },
+
+  async findSummariesByIds(ids: string[]) {
+    const rows = await users.where((user) => user.id.in(ids)).all()
+
+    return rows.map(({ id, firstName, lastName, email, profileImageKey }) => ({
+      id,
+      firstName,
+      lastName,
+      email,
+      profileImageKey,
+    }))
+  },
 }

@@ -190,7 +190,9 @@ const FileUpload = ({
           className="flex items-center gap-2 rounded-sm border border-input px-2.5 py-1.5 text-sm"
         >
           <Paperclip className="size-4 shrink-0 text-muted-foreground" />
-          <span className="min-w-0 flex-1 truncate">{file.name}</span>
+          <span className="min-w-0 flex-1 truncate" title={file.name}>
+            {file.name}
+          </span>
           <span className="shrink-0 text-xs text-muted-foreground">
             {formatFileSize(file.size, locale)}
           </span>
@@ -230,6 +232,7 @@ const FileUpload = ({
               "min-w-0 flex-1 truncate",
               !shown && "text-muted-foreground"
             )}
+            title={multiple || !shown ? undefined : shown.name}
           >
             {multiple || !shown
               ? (fieldConfig.placeholder ?? t("noFile"))
@@ -323,7 +326,10 @@ const FileUpload = ({
                 className={cn("text-primary", isCompact ? "size-6" : "size-8")}
               />
             )}
-            <p className="w-full truncate px-6 text-sm font-medium">
+            <p
+              className="w-full truncate px-6 text-sm font-medium"
+              title={shown.name}
+            >
               {shown.name}
             </p>
             <p className="text-xs text-muted-foreground">

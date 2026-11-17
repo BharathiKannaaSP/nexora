@@ -29,7 +29,11 @@
       "reports": "ವರದಿಗಳು",
       "auditLogs": "ಆಡಿಟ್ ಲಾಗ್‌ಗಳು",
       "notifications": "ಅಧಿಸೂಚನೆಗಳು",
-      "settings": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+      "settings": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+      "allApprovals": "ಎಲ್ಲಾ ಅನುಮೋದನೆಗಳು",
+      "adminRequests": "ನಿರ್ವಾಹಕ ವಿನಂತಿಗಳು",
+      "organizationRequests": "ಸಂಸ್ಥೆ ವಿನಂತಿಗಳು",
+      "memberRequests": "ಸದಸ್ಯ ವಿನಂತಿಗಳು"
     }
   },
   "userMenu": {

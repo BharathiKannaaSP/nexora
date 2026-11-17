@@ -176,22 +176,31 @@ export const OrganizationPicker = ({
                     <RadioGroupItem
                       id={id}
                       value={organization.id}
-                      className="absolute inset-e-3 top-3"
+                      className="inset-e-3 absolute top-3"
                     />
                     <OrganizationAvatar
                       organization={organization}
                       className="mb-2"
                     />
-                    <span className="truncate font-semibold">
+                    <span
+                      className="truncate font-semibold"
+                      title={organization.name}
+                    >
                       {organization.name}
                     </span>
-                    <span className="flex items-center gap-1.5 truncate text-muted-foreground">
+                    <span
+                      className="flex items-center gap-1.5 truncate text-muted-foreground"
+                      title={countryName(organization.countryCode)}
+                    >
                       <span aria-hidden="true">
                         {countryFlag(organization.countryCode)}
                       </span>
                       {countryName(organization.countryCode)}
                     </span>
-                    <span className="truncate text-muted-foreground">
+                    <span
+                      className="truncate text-muted-foreground"
+                      title={industryName(organization.industry)}
+                    >
                       {industryName(organization.industry)}
                     </span>
                     <span className="text-muted-foreground">
@@ -208,7 +217,7 @@ export const OrganizationPicker = ({
               type="button"
               variant="outline"
               size="icon-sm"
-              className="absolute inset-s-0 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-sm rtl:translate-x-1/2"
+              className="inset-s-0 absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full shadow-sm rtl:translate-x-1/2"
               onClick={() => scrollBy(-1)}
               aria-label={t("scrollBack")}
             >
@@ -220,7 +229,7 @@ export const OrganizationPicker = ({
               type="button"
               variant="outline"
               size="icon-sm"
-              className="absolute inset-e-0 top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full shadow-sm rtl:-translate-x-1/2"
+              className="inset-e-0 absolute top-1/2 translate-x-1/2 -translate-y-1/2 rounded-full shadow-sm rtl:-translate-x-1/2"
               onClick={() => scrollBy(1)}
               aria-label={t("scrollForward")}
             >

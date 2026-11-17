@@ -15,11 +15,19 @@ import {
   updateOnboardingStep,
 } from "./onboarding-controller"
 
+import approvalsRoutes from "./approvals/approvals-routes"
+
+
 const verifyGateway = createVerifyGateway(env.INTERNAL_SERVICE_SECRET)
 
 const router: Router = Router()
 
 router.use(verifyGateway)
+
+router.use(approvalsRoutes)
+
+
+
 
 router.get("/onboardingDetails", onboardingDetails)
 router.patch("/step", updateOnboardingStep)

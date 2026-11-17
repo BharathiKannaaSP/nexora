@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Approvazioni",
+    "description": "Esamina e gestisci le richieste che richiedono la tua approvazione."
+  },
+  "listLabel": "Richieste",
+  "you": "Tu",
+  "unknownUser": "Utente sconosciuto",
+  "unknownSubject": "un'organizzazione",
+  "stats": {
+    "total": "Totale {status}",
+    "totalAll": "Richieste totali",
+    "requests": "Richieste",
+    "overdue": "In ritardo",
+    "needsAttention": "Richiede attenzione"
+  },
+  "tabs": {
+    "label": "Tipi di richiesta",
+    "all": "Tutte"
+  },
+  "filters": {
+    "search": "Cerca richieste…",
+    "searchLabel": "Cerca richieste per nome, email o organizzazione",
+    "status": "Stato",
+    "priority": "Priorità",
+    "all": "Tutti"
+  },
+  "columns": {
+    "request": "Richiesta",
+    "type": "Tipo",
+    "submittedBy": "Inviata da",
+    "assignedTo": "Assegnata a",
+    "priority": "Priorità",
+    "submittedOn": "Inviata il",
+    "status": "Stato",
+    "actions": "Azioni"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Richieste amministratore",
+      "badge": "Richiesta amministratore",
+      "title": "Richiesta di accesso come amministratore",
+      "subtitle": "{name} ha richiesto l'accesso come amministratore della piattaforma"
+    },
+    "CREATE_ORG": {
+      "tab": "Richieste di organizzazione",
+      "badge": "Organizzazione",
+      "title": "Creazione di un'organizzazione",
+      "subtitle": "{name} ha richiesto di creare {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Richieste di adesione",
+      "badge": "Richiesta di adesione",
+      "title": "Richiesta di adesione come membro",
+      "subtitle": "{name} ha richiesto di unirsi a {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Tutti gli stati",
+    "PENDING": "In attesa",
+    "UNDER_REVIEW": "In revisione",
+    "APPROVED": "Approvata",
+    "REJECTED": "Rifiutata",
+    "WITHDRAWN": "Ritirata"
+  },
+  "priority": {
+    "HIGH": "Alta",
+    "MEDIUM": "Media",
+    "LOW": "Bassa"
+  },
+  "actions": {
+    "view": "Visualizza richiesta"
+  },
+  "empty": {
+    "title": "Tutto in ordine",
+    "description": "Al momento non ci sono richieste assegnate a te.",
+    "filteredTitle": "Nessuna richiesta corrispondente",
+    "filteredDescription": "Prova con un altro stato, un'altra priorità o un'altra ricerca."
+  },
+  "noAccess": {
+    "title": "Nessuna approvazione da esaminare",
+    "description": "Non esamini alcun tipo di richiesta in questo paese."
+  }
+}

@@ -1,5 +1,6 @@
 {
   "languageLabel": "언어",
+  "countryLabel": "국가",
   "error": {
     "title": "문제가 발생했습니다",
     "retry": "다시 시도"
@@ -58,5 +59,15 @@
     "members": "{count, plural, other {멤버 #명}}",
     "scrollBack": "이전 조직 보기",
     "scrollForward": "더 많은 조직 보기"
+  },
+  "table": {
+    "showing": "전체 {total, number}개 중 {from, number}–{to, number}개 표시",
+    "perPage": "{count, number}개 / 페이지",
+    "rowsPerPage": "페이지당 행 수",
+    "clearFilters": "필터 지우기",
+    "pagination": "페이지 매기기",
+    "previousPage": "이전 페이지",
+    "nextPage": "다음 페이지",
+    "goToPage": "{page, number}페이지"
   }
 }

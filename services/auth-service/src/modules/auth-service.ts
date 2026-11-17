@@ -6,6 +6,7 @@ import type {
   SignUpLocale,
 } from "@nexora/schemas/auth/sign-up"
 import { UpdateMeFormValues } from "@nexora/schemas/auth/update-me"
+import { parseUploadKey } from "@nexora/schemas/media/upload"
 import {
   ACCESS_TOKEN_TTL_SECONDS,
   PASSWORD_HASH_ROUNDS,
@@ -115,6 +116,7 @@ export const authService = {
         userName: user.userName,
         firstName: user.firstName,
         lastName: user.lastName,
+        profileImageKey: user.profileImageKey,
         systemRole: user.systemRole,
         accountStatus: user.accountStatus,
         isEmailVerified: user.isEmailVerified,
@@ -271,6 +273,7 @@ export const authService = {
         userName: user.userName,
         firstName: user.firstName,
         lastName: user.lastName,
+        profileImageKey: user.profileImageKey,
         systemRole: user.systemRole,
         accountStatus: user.accountStatus,
         isEmailVerified: user.isEmailVerified,
@@ -302,6 +305,7 @@ export const authService = {
       userName: user.userName,
       firstName: user.firstName,
       lastName: user.lastName,
+      profileImageKey: user.profileImageKey,
       systemRole: user.systemRole,
       accountStatus: user.accountStatus,
       isEmailVerified: user.isEmailVerified,
@@ -434,6 +438,19 @@ export const authService = {
 
     if (Object.values(input).every((value) => value === undefined)) {
       throw new AppError("No fields to update", 400, "NOTHING_TO_UPDATE")
+    }
+
+    // The key says who uploaded the file and what for (see parseUploadKey),
+    // so another user's file, or a document, can't become the avatar.
+    if (input.profileImageKey) {
+      const upload = parseUploadKey(input.profileImageKey)
+      if (upload?.userId !== userId || upload.purpose !== "user-avatar") {
+        throw new AppError(
+          "Profile image is not a valid upload",
+          400,
+          "PROFILE_IMAGE_INVALID"
+        )
+      }
     }
 
     const email = input.email?.toLowerCase().trim()

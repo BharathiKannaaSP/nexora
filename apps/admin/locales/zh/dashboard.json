@@ -29,7 +29,11 @@
       "reports": "报告",
       "auditLogs": "审计日志",
       "notifications": "通知",
-      "settings": "平台设置"
+      "settings": "平台设置",
+      "allApprovals": "全部审批",
+      "adminRequests": "管理员申请",
+      "organizationRequests": "组织申请",
+      "memberRequests": "成员申请"
     }
   },
   "userMenu": {

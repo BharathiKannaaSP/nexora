@@ -1,5 +1,6 @@
 {
   "languageLabel": "言語",
+  "countryLabel": "国",
   "error": {
     "title": "問題が発生しました",
     "retry": "再試行"
@@ -58,5 +59,15 @@
     "members": "{count, plural, other {#人のメンバー}}",
     "scrollBack": "前の組織を表示",
     "scrollForward": "さらに組織を表示"
+  },
+  "table": {
+    "showing": "{total, number} 件中 {from, number}～{to, number} 件を表示",
+    "perPage": "{count, number} 件 / ページ",
+    "rowsPerPage": "1 ページあたりの行数",
+    "clearFilters": "フィルターをクリア",
+    "pagination": "ページネーション",
+    "previousPage": "前のページ",
+    "nextPage": "次のページ",
+    "goToPage": "{page, number} ページ"
   }
 }

@@ -49,7 +49,12 @@
     "usernameHint": "ಇದು Nexora ನಲ್ಲಿ ನಿಮ್ಮ ಅನನ್ಯ ಗುರುತಾಗಿರುತ್ತದೆ.",
     "passwordHint": "ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಪಾಸ್‌ವರ್ಡ್ ಉಳಿಸಿಕೊಳ್ಳಲು ಖಾಲಿ ಬಿಡಿ, ಅಥವಾ ಬದಲಾಯಿಸಲು 8 ಅಥವಾ ಹೆಚ್ಚಿನ ಅಕ್ಷರಗಳನ್ನು ಬಳಸಿ.",
     "emailHint": "ನೀವು ನಿಮ್ಮ ಇಮೇಲ್ ವಿಳಾಸವನ್ನು ಬದಲಾಯಿಸಿದರೆ, ಅದನ್ನು ಮತ್ತೆ ಪರಿಶೀಲಿಸಬೇಕಾಗುತ್ತದೆ.",
-    "verified": "ಪರಿಶೀಲಿಸಲಾಗಿದೆ"
+    "verified": "ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+    "profileImage": "ಪ್ರೊಫೈಲ್ ಚಿತ್ರ",
+    "profileImageHint": "ಐಚ್ಛಿಕ. PNG, JPG ಅಥವಾ WEBP, ಗರಿಷ್ಠ {maxMb, number} MB.",
+    "profileImagePlaceholder": "ಅಪ್‌ಲೋಡ್ ಮಾಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ ಅಥವಾ ಎಳೆದು ಬಿಡಿ",
+    "profileImageWrongFormat": "PNG, JPG ಅಥವಾ WEBP ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.",
+    "profileImageTooLarge": "ಚಿತ್ರವು {maxMb, number} MB ಅಥವಾ ಕಡಿಮೆ ಇರಬೇಕು."
   },
   "chooseYourPathForm": {
     "fields": {

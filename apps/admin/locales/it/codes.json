@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "Mancano dati obbligatori in questa richiesta",
     "NOT_FOUND": "Organizzazione non trovata"
   },
-  "ORGANIZATION_NOT_FOUND": "Organizzazione non trovata"
+  "ORGANIZATION_NOT_FOUND": "Organizzazione non trovata",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "Approvazioni caricate."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "Conteggi delle approvazioni caricati."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "Questa immagine del profilo non può essere usata. Caricala di nuovo."
 }

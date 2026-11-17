@@ -1,5 +1,6 @@
 import "server-only"
 
+import type approvals from "@/locales/en/approvals.json"
 import type auth from "@/locales/en/auth.json"
 import type codes from "@/locales/en/codes.json"
 import type common from "@/locales/en/common.json"
@@ -10,6 +11,7 @@ import type { Locale } from "./config"
 
 // One entry per locales/<locale>/<namespace>.json file; English is the reference.
 export interface Messages {
+  approvals: typeof approvals
   auth: typeof auth
   codes: typeof codes
   common: typeof common
@@ -20,6 +22,7 @@ export interface Messages {
 type Namespace = keyof Messages
 
 const namespaces = Object.keys({
+  approvals: true,
   auth: true,
   codes: true,
   common: true,

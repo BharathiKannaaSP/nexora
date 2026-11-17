@@ -1,6 +1,7 @@
 import { AtSign, CircleCheck, Lock, Mail, UserRound } from "lucide-react"
 import type { useTranslations } from "next-intl"
 
+import { UPLOAD_RULES } from "@nexora/schemas/media/upload"
 import { createBasicInformationSchema } from "@nexora/schemas/onboarding/basic-information"
 
 import type { EntityFormConfig } from "@/components/forms/form-types"
@@ -10,6 +11,9 @@ interface BasicInformationFormConfigOptions {
   tSignUp: ReturnType<typeof useTranslations<"auth.signUp.form">>
   isEmailVerified: boolean
 }
+
+const AVATAR_RULE = UPLOAD_RULES["user-avatar"]
+const AVATAR_MAX_MB = AVATAR_RULE.maxBytes / (1024 * 1024)
 
 export const createBasicInformationFormConfig = ({
   t,
@@ -23,6 +27,7 @@ export const createBasicInformationFormConfig = ({
       icon: UserRound,
       isLastField: true,
       fields: [
+        "profileImage",
         "firstName",
         "lastName",
         "userName",
@@ -33,6 +38,20 @@ export const createBasicInformationFormConfig = ({
     },
   ],
   fields: [
+    {
+      // Uploaded to S3 through media-service on submit (see the form).
+      name: "profileImage",
+      label: t("basicInformationForm.profileImage"),
+      type: "file-upload",
+      colSpan: 2,
+      placeholder: t("basicInformationForm.profileImagePlaceholder"),
+      description: t("basicInformationForm.profileImageHint", {
+        maxMb: AVATAR_MAX_MB,
+      }),
+      maxFiles: 1,
+      maxFileSize: AVATAR_RULE.maxBytes,
+      accept: [...AVATAR_RULE.mimeTypes],
+    },
     {
       name: "firstName",
       label: tSignUp("fields.firstName"),
@@ -97,6 +116,7 @@ export const createBasicInformationFormConfig = ({
 // Translations only exist inside the component, so the schema is built per
 // render from the caller's translator.
 export const createBasicInformationFormSchema = (
+  t: BasicInformationFormConfigOptions["t"],
   tSignUp: BasicInformationFormConfigOptions["tSignUp"]
 ) =>
   createBasicInformationSchema({
@@ -108,5 +128,9 @@ export const createBasicInformationFormSchema = (
     usernameTooLong: tSignUp("validation.usernameTooLong"),
     invalidEmail: tSignUp("validation.invalidEmail"),
     passwordTooShort: tSignUp("validation.passwordTooShort"),
+    profileImageWrongFormat: t("basicInformationForm.profileImageWrongFormat"),
+    profileImageTooLarge: t("basicInformationForm.profileImageTooLarge", {
+      maxMb: AVATAR_MAX_MB,
+    }),
     passwordsDoNotMatch: tSignUp("validation.passwordsDoNotMatch"),
   })

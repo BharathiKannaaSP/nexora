@@ -23,6 +23,7 @@
   "devDependencies": {
     "@nexora/eslint-config": "workspace:*",
     "@nexora/typescript-config": "workspace:*",
+    "@nexora/schemas": "workspace:*" ,
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.5",
     "eslint": "^10",

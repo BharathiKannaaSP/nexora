@@ -49,7 +49,12 @@
     "usernameHint": "Dit wordt uw unieke ID op Nexora.",
     "passwordHint": "Laat leeg om uw huidige wachtwoord te behouden, of gebruik 8 of meer tekens om het te wijzigen.",
     "emailHint": "Als u uw e-mailadres wijzigt, moet u het opnieuw bevestigen.",
-    "verified": "Bevestigd"
+    "verified": "Bevestigd",
+    "profileImage": "Profielfoto",
+    "profileImageHint": "Optioneel. PNG, JPG of WEBP, tot {maxMb, number} MB.",
+    "profileImagePlaceholder": "Klik om te uploaden of sleep hierheen",
+    "profileImageWrongFormat": "Upload een PNG-, JPG- of WEBP-afbeelding.",
+    "profileImageTooLarge": "De afbeelding mag maximaal {maxMb, number} MB zijn."
   },
   "chooseYourPathForm": {
     "fields": {

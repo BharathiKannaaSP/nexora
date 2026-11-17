@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Goedkeuringen",
+    "description": "Beoordeel aanvragen die uw goedkeuring nodig hebben en onderneem actie."
+  },
+  "listLabel": "Aanvragen",
+  "you": "U",
+  "unknownUser": "Onbekende gebruiker",
+  "unknownSubject": "een organisatie",
+  "stats": {
+    "total": "Totaal: {status}",
+    "totalAll": "Totaal aanvragen",
+    "requests": "Aanvragen",
+    "overdue": "Te laat",
+    "needsAttention": "Vereist aandacht"
+  },
+  "tabs": {
+    "label": "Soorten aanvragen",
+    "all": "Alle"
+  },
+  "filters": {
+    "search": "Aanvragen zoeken…",
+    "searchLabel": "Zoek aanvragen op naam, e-mailadres of organisatie",
+    "status": "Status",
+    "priority": "Prioriteit",
+    "all": "Alle"
+  },
+  "columns": {
+    "request": "Aanvraag",
+    "type": "Type",
+    "submittedBy": "Ingediend door",
+    "assignedTo": "Toegewezen aan",
+    "priority": "Prioriteit",
+    "submittedOn": "Ingediend op",
+    "status": "Status",
+    "actions": "Acties"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Beheerdersaanvragen",
+      "badge": "Beheerdersaanvraag",
+      "title": "Aanvraag voor beheerderstoegang",
+      "subtitle": "{name} heeft platformbeheerderstoegang aangevraagd"
+    },
+    "CREATE_ORG": {
+      "tab": "Organisatieaanvragen",
+      "badge": "Organisatie",
+      "title": "Organisatie aanmaken",
+      "subtitle": "{name} wil {subject} aanmaken"
+    },
+    "JOIN_ORG": {
+      "tab": "Lidmaatschapsaanvragen",
+      "badge": "Lidmaatschapsaanvraag",
+      "title": "Aanvraag om lid te worden",
+      "subtitle": "{name} wil zich aansluiten bij {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Alle statussen",
+    "PENDING": "In afwachting",
+    "UNDER_REVIEW": "In beoordeling",
+    "APPROVED": "Goedgekeurd",
+    "REJECTED": "Afgewezen",
+    "WITHDRAWN": "Ingetrokken"
+  },
+  "priority": {
+    "HIGH": "Hoog",
+    "MEDIUM": "Gemiddeld",
+    "LOW": "Laag"
+  },
+  "actions": {
+    "view": "Aanvraag bekijken"
+  },
+  "empty": {
+    "title": "U bent helemaal bij",
+    "description": "Er zijn momenteel geen aanvragen aan u toegewezen.",
+    "filteredTitle": "Geen overeenkomende aanvragen",
+    "filteredDescription": "Probeer een andere status, prioriteit of zoekopdracht."
+  },
+  "noAccess": {
+    "title": "Geen goedkeuringen om te beoordelen",
+    "description": "U beoordeelt in dit land geen enkel soort aanvraag."
+  }
+}

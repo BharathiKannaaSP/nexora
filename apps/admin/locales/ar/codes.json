@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "هذا الطلب يفتقد إلى بيانات مطلوبة",
     "NOT_FOUND": "لم يتم العثور على المؤسسة"
   },
-  "ORGANIZATION_NOT_FOUND": "لم يتم العثور على المؤسسة"
+  "ORGANIZATION_NOT_FOUND": "لم يتم العثور على المؤسسة",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "تم تحميل الموافقات."
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "تم تحميل أعداد الموافقات."
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "لا يمكن استخدام صورة الملف الشخصي هذه. يرجى رفعها مرة أخرى."
 }

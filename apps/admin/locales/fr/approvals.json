@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "title": "Approbations",
+    "description": "Examinez les demandes qui nécessitent votre approbation et traitez-les."
+  },
+  "listLabel": "Demandes",
+  "you": "Vous",
+  "unknownUser": "Utilisateur inconnu",
+  "unknownSubject": "une organisation",
+  "stats": {
+    "total": "Total : {status}",
+    "totalAll": "Total des demandes",
+    "requests": "Demandes",
+    "overdue": "En retard",
+    "needsAttention": "Action requise"
+  },
+  "tabs": {
+    "label": "Types de demande",
+    "all": "Toutes"
+  },
+  "filters": {
+    "search": "Rechercher des demandes…",
+    "searchLabel": "Rechercher des demandes par nom, e-mail ou organisation",
+    "status": "Statut",
+    "priority": "Priorité",
+    "all": "Tous"
+  },
+  "columns": {
+    "request": "Demande",
+    "type": "Type",
+    "submittedBy": "Soumise par",
+    "assignedTo": "Assignée à",
+    "priority": "Priorité",
+    "submittedOn": "Soumise le",
+    "status": "Statut",
+    "actions": "Actions"
+  },
+  "types": {
+    "ADMIN_ACCESS": {
+      "tab": "Demandes d'administrateur",
+      "badge": "Demande d'administrateur",
+      "title": "Demande d'accès administrateur",
+      "subtitle": "{name} a demandé l'accès administrateur à la plateforme"
+    },
+    "CREATE_ORG": {
+      "tab": "Demandes d'organisation",
+      "badge": "Organisation",
+      "title": "Création d'organisation",
+      "subtitle": "{name} a demandé à créer {subject}"
+    },
+    "JOIN_ORG": {
+      "tab": "Demandes d'adhésion",
+      "badge": "Demande d'adhésion",
+      "title": "Demande d'adhésion d'un membre",
+      "subtitle": "{name} a demandé à rejoindre {subject}"
+    }
+  },
+  "status": {
+    "ALL": "Tous les statuts",
+    "PENDING": "En attente",
+    "UNDER_REVIEW": "En cours d'examen",
+    "APPROVED": "Approuvée",
+    "REJECTED": "Refusée",
+    "WITHDRAWN": "Retirée"
+  },
+  "priority": {
+    "HIGH": "Haute",
+    "MEDIUM": "Moyenne",
+    "LOW": "Basse"
+  },
+  "actions": {
+    "view": "Voir la demande"
+  },
+  "empty": {
+    "title": "Vous êtes à jour",
+    "description": "Aucune demande ne vous est assignée pour le moment.",
+    "filteredTitle": "Aucune demande correspondante",
+    "filteredDescription": "Essayez un autre statut, une autre priorité ou une autre recherche."
+  },
+  "noAccess": {
+    "title": "Aucune approbation à examiner",
+    "description": "Vous n'examinez aucun type de demande dans ce pays."
+  }
+}

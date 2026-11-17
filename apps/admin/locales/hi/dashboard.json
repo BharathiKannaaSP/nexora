@@ -29,7 +29,11 @@
       "reports": "रिपोर्ट",
       "auditLogs": "ऑडिट लॉग",
       "notifications": "सूचनाएँ",
-      "settings": "प्लेटफ़ॉर्म सेटिंग्स"
+      "settings": "प्लेटफ़ॉर्म सेटिंग्स",
+      "allApprovals": "सभी अनुमोदन",
+      "adminRequests": "एडमिन अनुरोध",
+      "organizationRequests": "संगठन अनुरोध",
+      "memberRequests": "सदस्य अनुरोध"
     }
   },
   "userMenu": {

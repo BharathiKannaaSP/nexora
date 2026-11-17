@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 import { SidebarProvider } from "@nexora/ui/components/sidebar"
+import { TooltipProvider } from "@nexora/ui/components/tooltip"
 
 import { resolveLocaleParams } from "@/lib/i18n/locale-params"
 
@@ -14,7 +15,11 @@ const DashboardRouteLayout = async ({
   params,
 }: DashboardRouteLayoutProps) => {
   await resolveLocaleParams(params)
-  return <SidebarProvider>{children}</SidebarProvider>
+  return (
+    <TooltipProvider>
+      <SidebarProvider>{children}</SidebarProvider>
+    </TooltipProvider>
+  )
 }
 
 export default DashboardRouteLayout

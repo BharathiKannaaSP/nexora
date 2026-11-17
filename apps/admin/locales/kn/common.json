@@ -1,5 +1,6 @@
 {
   "languageLabel": "ಭಾಷೆ",
+  "countryLabel": "ದೇಶ",
   "error": {
     "title": "ಏನೋ ತಪ್ಪಾಗಿದೆ",
     "retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
@@ -58,5 +59,15 @@
     "members": "{count, plural, one {# ಸದಸ್ಯ} other {# ಸದಸ್ಯರು}}",
     "scrollBack": "ಹಿಂದಿನ ಸಂಸ್ಥೆಗಳನ್ನು ತೋರಿಸಿ",
     "scrollForward": "ಇನ್ನಷ್ಟು ಸಂಸ್ಥೆಗಳನ್ನು ತೋರಿಸಿ"
+  },
+  "table": {
+    "showing": "{total, number} ವಿನಂತಿಗಳಲ್ಲಿ {from, number} ರಿಂದ {to, number} ತೋರಿಸಲಾಗುತ್ತಿದೆ",
+    "perPage": "{count, number} / ಪುಟ",
+    "rowsPerPage": "ಪ್ರತಿ ಪುಟಕ್ಕೆ ಸಾಲುಗಳು",
+    "clearFilters": "ಫಿಲ್ಟರ್‌ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ",
+    "pagination": "ಪುಟ ವಿಂಗಡಣೆ",
+    "previousPage": "ಹಿಂದಿನ ಪುಟ",
+    "nextPage": "ಮುಂದಿನ ಪುಟ",
+    "goToPage": "ಪುಟ {page, number}"
   }
 }

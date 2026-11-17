@@ -96,5 +96,14 @@
     "REQUEST_INCOMPLETE": "इस अनुरोध में आवश्यक विवरण नहीं हैं",
     "NOT_FOUND": "संगठन नहीं मिला"
   },
-  "ORGANIZATION_NOT_FOUND": "संगठन नहीं मिला"
+  "ORGANIZATION_NOT_FOUND": "संगठन नहीं मिला",
+  "AGGREGATE": {
+    "APPROVALS": {
+      "SUCCESS": "अनुमोदन लोड हो गए।"
+    },
+    "APPROVALS_SUMMARY": {
+      "SUCCESS": "अनुमोदन गणनाएँ लोड हो गईं।"
+    }
+  },
+  "PROFILE_IMAGE_INVALID": "यह प्रोफ़ाइल इमेज उपयोग नहीं की जा सकती। कृपया इसे फिर से अपलोड करें।"
 }

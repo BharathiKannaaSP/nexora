@@ -49,7 +49,12 @@
     "usernameHint": "இது Nexora-வில் உங்கள் தனித்துவ அடையாளமாக இருக்கும்.",
     "passwordHint": "தற்போதைய கடவுச்சொல்லை வைத்திருக்க காலியாக விடவும், அல்லது மாற்ற 8 அல்லது அதற்கு மேற்பட்ட எழுத்துகளைப் பயன்படுத்தவும்.",
     "emailHint": "உங்கள் மின்னஞ்சல் முகவரியை மாற்றினால், அதை மீண்டும் சரிபார்க்க வேண்டும்.",
-    "verified": "சரிபார்க்கப்பட்டது"
+    "verified": "சரிபார்க்கப்பட்டது",
+    "profileImage": "சுயவிவரப் படம்",
+    "profileImageHint": "விருப்பத்தேர்வு. PNG, JPG அல்லது WEBP, அதிகபட்சம் {maxMb, number} MB.",
+    "profileImagePlaceholder": "பதிவேற்ற கிளிக் செய்யவும் அல்லது இழுத்து விடவும்",
+    "profileImageWrongFormat": "PNG, JPG அல்லது WEBP படத்தைப் பதிவேற்றவும்.",
+    "profileImageTooLarge": "படம் {maxMb, number} MB அல்லது அதற்குக் குறைவாக இருக்க வேண்டும்."
   },
   "chooseYourPathForm": {
     "fields": {

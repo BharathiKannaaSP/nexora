@@ -31,19 +31,28 @@ const UserSummary = ({
   fullName,
   initials,
   userName,
+  imageUrl,
 }: {
   fullName: string
+  imageUrl: string | null
   initials: string
   userName: string
 }) => (
   <>
     <Avatar className="size-8 rounded-lg after:rounded-lg">
-      <AvatarImage alt={fullName} className="rounded-lg" />
+      {imageUrl && (
+        <AvatarImage src={imageUrl} alt={fullName} className="rounded-lg" />
+      )}
       <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
     </Avatar>
     <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
-      <span className="truncate font-medium text-foreground">{fullName}</span>
-      <span className="truncate text-xs text-muted-foreground">
+      <span className="truncate font-medium text-foreground" title={fullName}>
+        {fullName}
+      </span>
+      <span
+        className="truncate text-xs text-muted-foreground"
+        title={`@${userName}`}
+      >
         @{userName}
       </span>
     </div>
@@ -64,6 +73,7 @@ export const NavUser = () => {
       fullName={fullName}
       initials={initials}
       userName={account.userName}
+      imageUrl={account.profileImageUrl}
     />
   )
 

@@ -29,7 +29,11 @@
       "reports": "Rapporten",
       "auditLogs": "Auditlogboeken",
       "notifications": "Meldingen",
-      "settings": "Platforminstellingen"
+      "settings": "Platforminstellingen",
+      "allApprovals": "Alle goedkeuringen",
+      "adminRequests": "Beheerdersaanvragen",
+      "organizationRequests": "Organisatieaanvragen",
+      "memberRequests": "Lidmaatschapsaanvragen"
     }
   },
   "userMenu": {

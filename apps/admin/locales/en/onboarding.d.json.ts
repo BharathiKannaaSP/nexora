@@ -52,7 +52,12 @@ declare const messages: {
     "usernameHint": "This will be your unique identifier on Nexora.",
     "passwordHint": "Leave blank to keep your current password, or use 8 or more characters to change it.",
     "emailHint": "If you change your email address, you'll need to verify it again.",
-    "verified": "Verified"
+    "verified": "Verified",
+    "profileImage": "Profile image",
+    "profileImageHint": "Optional. PNG, JPG or WEBP, up to {maxMb, number} MB.",
+    "profileImagePlaceholder": "Click to upload or drag and drop",
+    "profileImageWrongFormat": "Upload a PNG, JPG or WEBP image.",
+    "profileImageTooLarge": "The image must be {maxMb, number} MB or smaller."
   },
   "chooseYourPathForm": {
     "fields": {
