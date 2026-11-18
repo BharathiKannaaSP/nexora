@@ -36,3 +36,12 @@ export const usePermissions = () => {
   const { permissions } = useBootstrap()
   return useMemo(() => toCountryPermissions(permissions), [permissions])
 }
+
+/** See getOrganizationPermissions(). Only below BootstrapGuard. */
+export const useOrganizationPermissions = () => {
+  const { organizationPermissions } = useBootstrap()
+  return useMemo(
+    () => toCountryPermissions(organizationPermissions),
+    [organizationPermissions]
+  )
+}

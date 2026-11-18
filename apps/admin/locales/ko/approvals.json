@@ -77,8 +77,119 @@
     "filteredTitle": "일치하는 요청이 없습니다",
     "filteredDescription": "다른 상태, 우선순위 또는 검색어를 사용해 보세요."
   },
-  "noAccess": {
-    "title": "검토할 승인이 없습니다",
-    "description": "이 국가에서 검토할 수 있는 요청 유형이 없습니다."
+  "forbidden": {
+    "title": "액세스가 거부되었습니다",
+    "description": "이 국가에서 승인을 검토할 권한이 없습니다.",
+    "otherCountry": "이 국가에서 이 요청을 검토할 권한이 없습니다."
+  },
+  "detail": {
+    "metadata": {
+      "title": "요청 세부 정보"
+    },
+    "breadcrumb": {
+      "label": "이동 경로",
+      "details": "요청 세부 정보"
+    },
+    "back": "{list}(으)로 돌아가기",
+    "requestId": "요청 ID: {id}",
+    "action": {
+      "pending": "내 처리 대기 중",
+      "assigned": "{date}에 나에게 할당됨",
+      "decided": "{name}, {date}"
+    },
+    "overview": {
+      "title": "요청 개요",
+      "summary": {
+        "ADMIN_ACCESS": "{name}님이 {countries}의 플랫폼 관리자 권한을 요청했습니다.",
+        "CREATE_ORG": "{name}님이 조직 {subject} 생성을 요청했습니다.",
+        "JOIN_ORG": "{name}님이 조직 {subject} 참여를 요청했습니다."
+      },
+      "requestedBy": "요청자",
+      "email": "이메일 주소",
+      "subject": {
+        "ADMIN_ACCESS": "현재 조직",
+        "CREATE_ORG": "제안된 조직",
+        "JOIN_ORG": "조직"
+      },
+      "countries": "국가",
+      "jobTitle": "직함",
+      "department": "부서",
+      "employeeId": "사원 번호",
+      "requestedOn": "요청일",
+      "assignedTo": "담당자",
+      "you": "나({name})",
+      "reviewedBy": "검토자"
+    },
+    "tabs": {
+      "label": "요청 섹션",
+      "details": "세부 정보",
+      "access": "요청한 권한",
+      "documents": "문서",
+      "noDocuments": "이 요청에 첨부된 문서가 없습니다.",
+      "creatorAccessTitle": "조직 전체 권한",
+      "creatorAccess": "생성자는 조직의 관리자가 되며 조직의 모든 권한을 갖습니다."
+    },
+    "accessSummary": {
+      "title": "요청한 권한 요약",
+      "description": {
+        "ADMIN_ACCESS": "신청자가 다음 플랫폼 권한을 요청하고 있습니다.",
+        "CREATE_ORG": "조직의 관리자로서 생성자는 다음 권한을 받습니다.",
+        "JOIN_ORG": "멤버가 조직의 다음 영역에 대한 접근을 요청하고 있습니다."
+      },
+      "more": "+{count, number}개 더",
+      "moreDescription": "추가 권한"
+    },
+    "progress": {
+      "title": "요청 진행 상황",
+      "stages": {
+        "submitted": "요청 제출됨",
+        "review": "검토 중",
+        "decision": "승인 / 거절",
+        "completed": "완료됨"
+      },
+      "states": {
+        "done": "완료됨",
+        "current": "현재 단계",
+        "pending": "대기 중",
+        "rejected": "중단됨"
+      },
+      "assigned": "{date}에 {name}님에게 할당됨"
+    },
+    "additional": {
+      "title": "추가 정보",
+      "sla": "응답 시간",
+      "onTime": "기한 내",
+      "industry": "업종",
+      "size": "조직 규모",
+      "website": "웹사이트",
+      "members": "멤버",
+      "country": "국가",
+      "joiningDate": "가입일",
+      "reviewComment": "검토자 의견"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "승인하면 요청한 관리자 권한이 부여됩니다. 신청자는 온보딩 페이지에서 결정을 확인합니다.",
+        "CREATE_ORG": "승인하면 신청자를 관리자로 하여 조직이 생성됩니다. 신청자는 온보딩 페이지에서 결정을 확인합니다.",
+        "JOIN_ORG": "승인하면 신청자가 요청한 권한으로 조직에 추가됩니다. 신청자는 온보딩 페이지에서 결정을 확인합니다."
+      },
+      "approve": "요청 승인",
+      "reject": "요청 거절",
+      "approveTitle": "이 요청을 승인하시겠습니까?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "신청자가 요청한 권한을 가진 관리자가 됩니다.",
+        "CREATE_ORG": "조직이 생성되고 신청자가 조직의 관리자가 됩니다.",
+        "JOIN_ORG": "신청자가 요청한 권한으로 조직에 참여합니다."
+      },
+      "rejectTitle": "이 요청을 거절하시겠습니까?",
+      "rejectDescription": "신청자는 온보딩 페이지에서 거절 사유를 확인합니다.",
+      "comment": "의견(선택 사항)",
+      "commentPlaceholder": "기록용 메모 추가",
+      "reason": "거절 사유",
+      "reasonPlaceholder": "누락된 내용이나 요청을 승인할 수 없는 이유를 설명하세요",
+      "reasonRequired": "거절 사유를 입력하세요.",
+      "confirmApprove": "승인",
+      "confirmReject": "거절"
+    }
   }
 }

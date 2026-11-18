@@ -77,8 +77,119 @@
     "filteredTitle": "Keine passenden Anfragen",
     "filteredDescription": "Versuchen Sie einen anderen Status, eine andere Priorität oder Suche."
   },
-  "noAccess": {
-    "title": "Keine Genehmigungen zu prüfen",
-    "description": "Sie prüfen in diesem Land keine Anfragen."
+  "forbidden": {
+    "title": "Zugriff verweigert",
+    "description": "Sie haben keine Berechtigung, Genehmigungen in diesem Land zu prüfen.",
+    "otherCountry": "Sie haben keinen Zugriff, um diese Anfrage in diesem Land zu prüfen."
+  },
+  "detail": {
+    "metadata": {
+      "title": "Anfragedetails"
+    },
+    "breadcrumb": {
+      "label": "Brotkrumennavigation",
+      "details": "Anfragedetails"
+    },
+    "back": "Zurück zu {list}",
+    "requestId": "Anfrage-ID: {id}",
+    "action": {
+      "pending": "Wartet auf Ihre Aktion",
+      "assigned": "Ihnen zugewiesen am {date}",
+      "decided": "Von {name} am {date}"
+    },
+    "overview": {
+      "title": "Anfrageübersicht",
+      "summary": {
+        "ADMIN_ACCESS": "{name} hat Plattform-Administratorzugriff in {countries} beantragt.",
+        "CREATE_ORG": "{name} hat beantragt, die Organisation {subject} zu erstellen.",
+        "JOIN_ORG": "{name} hat beantragt, der Organisation {subject} beizutreten."
+      },
+      "requestedBy": "Beantragt von",
+      "email": "E-Mail-Adresse",
+      "subject": {
+        "ADMIN_ACCESS": "Aktuelle Organisation",
+        "CREATE_ORG": "Vorgeschlagene Organisation",
+        "JOIN_ORG": "Organisation"
+      },
+      "countries": "Länder",
+      "jobTitle": "Berufsbezeichnung",
+      "department": "Abteilung",
+      "employeeId": "Personalnummer",
+      "requestedOn": "Beantragt am",
+      "assignedTo": "Zugewiesen an",
+      "you": "Sie ({name})",
+      "reviewedBy": "Geprüft von"
+    },
+    "tabs": {
+      "label": "Anfrageabschnitte",
+      "details": "Details",
+      "access": "Beantragter Zugriff",
+      "documents": "Dokumente",
+      "noDocuments": "Dieser Anfrage wurden keine Dokumente beigefügt.",
+      "creatorAccessTitle": "Vollständiger Organisationszugriff",
+      "creatorAccess": "Der Ersteller wird Administrator der Organisation und erhält alle Berechtigungen darin."
+    },
+    "accessSummary": {
+      "title": "Übersicht des beantragten Zugriffs",
+      "description": {
+        "ADMIN_ACCESS": "Der Antragsteller beantragt diese Plattformberechtigungen.",
+        "CREATE_ORG": "Als Administrator der Organisation erhält der Ersteller diese Berechtigungen.",
+        "JOIN_ORG": "Das Mitglied beantragt Zugriff auf diese Bereiche der Organisation."
+      },
+      "more": "+{count, number} weitere",
+      "moreDescription": "Zusätzlicher Zugriff"
+    },
+    "progress": {
+      "title": "Anfragefortschritt",
+      "stages": {
+        "submitted": "Anfrage eingereicht",
+        "review": "In Prüfung",
+        "decision": "Genehmigung / Ablehnung",
+        "completed": "Abgeschlossen"
+      },
+      "states": {
+        "done": "Abgeschlossen",
+        "current": "Aktueller Schritt",
+        "pending": "Ausstehend",
+        "rejected": "Gestoppt"
+      },
+      "assigned": "Zugewiesen an {name} am {date}"
+    },
+    "additional": {
+      "title": "Zusätzliche Informationen",
+      "sla": "Antwortzeit",
+      "onTime": "Fristgerecht",
+      "industry": "Branche",
+      "size": "Organisationsgröße",
+      "website": "Website",
+      "members": "Mitglieder",
+      "country": "Land",
+      "joiningDate": "Beitrittsdatum",
+      "reviewComment": "Kommentar des Prüfers"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "Durch die Genehmigung werden die beantragten Administratorberechtigungen erteilt. Der Antragsteller sieht Ihre Entscheidung auf seiner Onboarding-Seite.",
+        "CREATE_ORG": "Durch die Genehmigung wird die Organisation mit dem Antragsteller als Administrator erstellt. Der Antragsteller sieht Ihre Entscheidung auf seiner Onboarding-Seite.",
+        "JOIN_ORG": "Durch die Genehmigung wird der Antragsteller mit dem beantragten Zugriff zur Organisation hinzugefügt. Der Antragsteller sieht Ihre Entscheidung auf seiner Onboarding-Seite."
+      },
+      "approve": "Anfrage genehmigen",
+      "reject": "Anfrage ablehnen",
+      "approveTitle": "Diese Anfrage genehmigen?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "Der Antragsteller wird Administrator mit den beantragten Berechtigungen.",
+        "CREATE_ORG": "Die Organisation wird erstellt und der Antragsteller wird ihr Administrator.",
+        "JOIN_ORG": "Der Antragsteller tritt der Organisation mit dem beantragten Zugriff bei."
+      },
+      "rejectTitle": "Diese Anfrage ablehnen?",
+      "rejectDescription": "Der Antragsteller sieht Ihre Begründung auf seiner Onboarding-Seite.",
+      "comment": "Kommentar (optional)",
+      "commentPlaceholder": "Notiz für die Akten hinzufügen",
+      "reason": "Ablehnungsgrund",
+      "reasonPlaceholder": "Erläutern Sie, was fehlt oder warum die Anfrage nicht genehmigt werden kann",
+      "reasonRequired": "Geben Sie einen Grund für die Ablehnung an.",
+      "confirmApprove": "Genehmigen",
+      "confirmReject": "Ablehnen"
+    }
   }
 }

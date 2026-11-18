@@ -77,8 +77,119 @@
     "filteredTitle": "Tiada permintaan yang sepadan",
     "filteredDescription": "Cuba status, keutamaan atau carian lain."
   },
-  "noAccess": {
-    "title": "Tiada kelulusan untuk disemak",
-    "description": "Anda tidak menyemak sebarang jenis permintaan di negara ini."
+  "forbidden": {
+    "title": "Akses ditolak",
+    "description": "Anda tidak mempunyai kebenaran untuk menyemak kelulusan di negara ini.",
+    "otherCountry": "Anda tiada akses untuk menyemak permintaan ini di negara ini."
+  },
+  "detail": {
+    "metadata": {
+      "title": "Butiran permintaan"
+    },
+    "breadcrumb": {
+      "label": "Serbuk roti",
+      "details": "Butiran permintaan"
+    },
+    "back": "Kembali ke {list}",
+    "requestId": "ID permintaan: {id}",
+    "action": {
+      "pending": "Menunggu tindakan anda",
+      "assigned": "Ditugaskan kepada anda pada {date}",
+      "decided": "Oleh {name} pada {date}"
+    },
+    "overview": {
+      "title": "Gambaran keseluruhan permintaan",
+      "summary": {
+        "ADMIN_ACCESS": "{name} meminta akses pentadbir platform di {countries}.",
+        "CREATE_ORG": "{name} meminta untuk mencipta organisasi {subject}.",
+        "JOIN_ORG": "{name} meminta untuk menyertai organisasi {subject}."
+      },
+      "requestedBy": "Diminta oleh",
+      "email": "Alamat e-mel",
+      "subject": {
+        "ADMIN_ACCESS": "Organisasi semasa",
+        "CREATE_ORG": "Organisasi yang dicadangkan",
+        "JOIN_ORG": "Organisasi"
+      },
+      "countries": "Negara",
+      "jobTitle": "Jawatan",
+      "department": "Jabatan",
+      "employeeId": "ID pekerja",
+      "requestedOn": "Diminta pada",
+      "assignedTo": "Ditugaskan kepada",
+      "you": "Anda ({name})",
+      "reviewedBy": "Disemak oleh"
+    },
+    "tabs": {
+      "label": "Bahagian permintaan",
+      "details": "Butiran",
+      "access": "Akses yang diminta",
+      "documents": "Dokumen",
+      "noDocuments": "Tiada dokumen dilampirkan pada permintaan ini.",
+      "creatorAccessTitle": "Akses penuh organisasi",
+      "creatorAccess": "Pencipta menjadi pentadbir organisasi, dengan setiap kebenaran di dalamnya."
+    },
+    "accessSummary": {
+      "title": "Ringkasan akses yang diminta",
+      "description": {
+        "ADMIN_ACCESS": "Pemohon meminta kebenaran platform ini.",
+        "CREATE_ORG": "Sebagai pentadbir organisasi, pencipta mendapat kebenaran ini.",
+        "JOIN_ORG": "Ahli meminta akses ke bahagian organisasi ini."
+      },
+      "more": "+{count, number} lagi",
+      "moreDescription": "Akses tambahan"
+    },
+    "progress": {
+      "title": "Kemajuan permintaan",
+      "stages": {
+        "submitted": "Permintaan dihantar",
+        "review": "Sedang disemak",
+        "decision": "Kelulusan / penolakan",
+        "completed": "Selesai"
+      },
+      "states": {
+        "done": "Selesai",
+        "current": "Langkah semasa",
+        "pending": "Belum selesai",
+        "rejected": "Dihentikan"
+      },
+      "assigned": "Ditugaskan kepada {name} pada {date}"
+    },
+    "additional": {
+      "title": "Maklumat tambahan",
+      "sla": "Masa respons",
+      "onTime": "Tepat pada masanya",
+      "industry": "Industri",
+      "size": "Saiz organisasi",
+      "website": "Laman web",
+      "members": "Ahli",
+      "country": "Negara",
+      "joiningDate": "Tarikh menyertai",
+      "reviewComment": "Ulasan penyemak"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "Meluluskan akan memberikan kebenaran pentadbir yang diminta. Pemohon melihat keputusan anda di halaman onboarding mereka.",
+        "CREATE_ORG": "Meluluskan akan mencipta organisasi dengan pemohon sebagai pentadbirnya. Pemohon melihat keputusan anda di halaman onboarding mereka.",
+        "JOIN_ORG": "Meluluskan akan menambah pemohon ke organisasi dengan akses yang diminta. Pemohon melihat keputusan anda di halaman onboarding mereka."
+      },
+      "approve": "Luluskan permintaan",
+      "reject": "Tolak permintaan",
+      "approveTitle": "Luluskan permintaan ini?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "Pemohon menjadi pentadbir dengan kebenaran yang diminta.",
+        "CREATE_ORG": "Organisasi dicipta dan pemohon menjadi pentadbirnya.",
+        "JOIN_ORG": "Pemohon menyertai organisasi dengan akses yang diminta."
+      },
+      "rejectTitle": "Tolak permintaan ini?",
+      "rejectDescription": "Pemohon melihat sebab anda di halaman onboarding mereka.",
+      "comment": "Ulasan (pilihan)",
+      "commentPlaceholder": "Tambah nota untuk rekod",
+      "reason": "Sebab penolakan",
+      "reasonPlaceholder": "Terangkan apa yang kurang atau mengapa permintaan tidak dapat diluluskan",
+      "reasonRequired": "Berikan sebab penolakan.",
+      "confirmApprove": "Luluskan",
+      "confirmReject": "Tolak"
+    }
   }
 }

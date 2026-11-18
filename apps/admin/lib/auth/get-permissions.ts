@@ -16,3 +16,15 @@ export const getPermissions = cache(
   async (country: string, lang: string): Promise<CountryPermissions> =>
     toCountryPermissions((await bootstrap(country, lang)).permissions)
 )
+
+/**
+ * What the user may do in their organizations, by each organization's
+ * country, from the same overview. Only for organization-level features:
+ * it never unlocks a platform page.
+ */
+export const getOrganizationPermissions = cache(
+  async (country: string, lang: string): Promise<CountryPermissions> =>
+    toCountryPermissions(
+      (await bootstrap(country, lang)).organizationPermissions
+    )
+)

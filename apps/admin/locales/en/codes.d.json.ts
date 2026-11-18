@@ -70,7 +70,9 @@ declare const messages: {
     "NO_REVIEWER_AVAILABLE": "No reviewer is available for this request yet. Please try again later or contact support.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "Your request to join the organization has been submitted"
-    }
+    },
+    "APPROVAL_APPROVED": "Request approved",
+    "APPROVAL_REJECTED": "Request rejected"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "This file type is not allowed",
@@ -108,6 +110,11 @@ declare const messages: {
       "SUCCESS": "Approval counts loaded."
     }
   },
-  "PROFILE_IMAGE_INVALID": "This profile image can't be used. Please upload it again."
+  "PROFILE_IMAGE_INVALID": "This profile image can't be used. Please upload it again.",
+  "APPROVAL_NOT_FOUND": "This request doesn't exist or isn't assigned to you",
+  "APPROVAL_ALREADY_DECIDED": "This request has already been decided",
+  "APPROVAL_FORBIDDEN": "You can no longer review this request",
+  "APPROVAL_COUNTRY_FORBIDDEN": "You don't have access to this request in this country",
+  "APPROVAL_REQUEST_INCOMPLETE": "This request is missing details needed to approve it"
 };
 export default messages;

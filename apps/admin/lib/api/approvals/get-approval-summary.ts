@@ -1,6 +1,5 @@
 import { cache } from "react"
 
-
 import type { ApprovalSummaryResponseData } from "@nexora/shared/types/approvals"
 
 import { apiResult } from "../result"

@@ -9,6 +9,7 @@ import {
 } from "@nexora/shared/express/error-handler"
 
 import { env } from "./config/user-env"
+import userInternalRoutes from "./modules/user-internal-routes"
 import userRoutes from "./modules/user-routes"
 
 const app: Express = express()
@@ -39,6 +40,7 @@ app.get("/health", (req, res) => {
 })
 
 app.use("/api/v1/user", userRoutes)
+app.use("/internal/v1", userInternalRoutes)
 
 app.use(notFoundHandler)
 app.use(createErrorHandler("User service"))

@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "Non è ancora disponibile alcun revisore per questa richiesta. Riprova più tardi o contatta l’assistenza.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "La tua richiesta di adesione all'organizzazione è stata inviata"
-    }
+    },
+    "APPROVAL_APPROVED": "Richiesta approvata",
+    "APPROVAL_REJECTED": "Richiesta rifiutata"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Questo tipo di file non è consentito",
@@ -105,5 +107,10 @@
       "SUCCESS": "Conteggi delle approvazioni caricati."
     }
   },
-  "PROFILE_IMAGE_INVALID": "Questa immagine del profilo non può essere usata. Caricala di nuovo."
+  "PROFILE_IMAGE_INVALID": "Questa immagine del profilo non può essere usata. Caricala di nuovo.",
+  "APPROVAL_NOT_FOUND": "Questa richiesta non esiste o non è assegnata a te",
+  "APPROVAL_ALREADY_DECIDED": "Questa richiesta è già stata decisa",
+  "APPROVAL_FORBIDDEN": "Non puoi più esaminare questa richiesta",
+  "APPROVAL_COUNTRY_FORBIDDEN": "Non hai accesso a questa richiesta in questo paese",
+  "APPROVAL_REQUEST_INCOMPLETE": "In questa richiesta mancano dati necessari per approvarla"
 }

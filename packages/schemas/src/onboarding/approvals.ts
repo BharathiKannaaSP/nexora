@@ -129,3 +129,44 @@ export const approvalQueueQuerySchema = listApprovalsQuerySchema.pick({
   status: true,
 })
 export type ApprovalQueueQuery = z.infer<typeof approvalQueueQuerySchema>
+/** The route params of one request: /approvals/:type/:id. */
+export const approvalRequestParamsSchema = z.object({
+  type: z.enum(APPROVAL_REQUEST_TYPES),
+  id: z.string().min(1).max(64),
+})
+export type ApprovalRequestParams = z.infer<typeof approvalRequestParamsSchema>
+
+/**
+ * GET /aggregate/approvals/:type/:id. `country` is the page's /[country]:
+ * a request opened under a country it doesn't belong to is not found, the
+ * same rule the list uses.
+ */
+export const approvalDetailQuerySchema = z.object({
+  country: countryCodeSchema,
+})
+export type ApprovalDetailQuery = z.infer<typeof approvalDetailQuerySchema>
+
+export const APPROVAL_DECISIONS = ["APPROVE", "REJECT"] as const
+export type ApprovalDecision = (typeof APPROVAL_DECISIONS)[number]
+
+export const APPROVAL_COMMENT_MAX_LENGTH = 1000
+
+/**
+ * POST /onboarding/approvals/:type/:id/decision. A rejection needs a
+ * reason: the applicant sees it on their review page.
+ */
+export const approvalDecisionInputSchema = z
+  .object({
+    decision: z.enum(APPROVAL_DECISIONS),
+    comment: z
+      .string()
+      .trim()
+      .max(APPROVAL_COMMENT_MAX_LENGTH)
+      .optional()
+      .transform((comment) => comment || undefined),
+  })
+  .refine(({ decision, comment }) => decision !== "REJECT" || !!comment, {
+    path: ["comment"],
+    message: "Give a reason for the rejection",
+  })
+export type ApprovalDecisionInput = z.input<typeof approvalDecisionInputSchema>

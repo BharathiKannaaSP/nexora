@@ -77,8 +77,119 @@
     "filteredTitle": "Geen overeenkomende aanvragen",
     "filteredDescription": "Probeer een andere status, prioriteit of zoekopdracht."
   },
-  "noAccess": {
-    "title": "Geen goedkeuringen om te beoordelen",
-    "description": "U beoordeelt in dit land geen enkel soort aanvraag."
+  "forbidden": {
+    "title": "Toegang geweigerd",
+    "description": "U hebt geen toestemming om goedkeuringen in dit land te beoordelen.",
+    "otherCountry": "U hebt geen toegang om deze aanvraag in dit land te beoordelen."
+  },
+  "detail": {
+    "metadata": {
+      "title": "Aanvraagdetails"
+    },
+    "breadcrumb": {
+      "label": "Kruimelpad",
+      "details": "Aanvraagdetails"
+    },
+    "back": "Terug naar {list}",
+    "requestId": "Aanvraag-ID: {id}",
+    "action": {
+      "pending": "Wacht op uw actie",
+      "assigned": "Aan u toegewezen op {date}",
+      "decided": "Door {name} op {date}"
+    },
+    "overview": {
+      "title": "Aanvraagoverzicht",
+      "summary": {
+        "ADMIN_ACCESS": "{name} heeft platformbeheerderstoegang aangevraagd in {countries}.",
+        "CREATE_ORG": "{name} wil de organisatie {subject} aanmaken.",
+        "JOIN_ORG": "{name} wil zich aansluiten bij de organisatie {subject}."
+      },
+      "requestedBy": "Aangevraagd door",
+      "email": "E-mailadres",
+      "subject": {
+        "ADMIN_ACCESS": "Huidige organisatie",
+        "CREATE_ORG": "Voorgestelde organisatie",
+        "JOIN_ORG": "Organisatie"
+      },
+      "countries": "Landen",
+      "jobTitle": "Functietitel",
+      "department": "Afdeling",
+      "employeeId": "Personeelsnummer",
+      "requestedOn": "Aangevraagd op",
+      "assignedTo": "Toegewezen aan",
+      "you": "U ({name})",
+      "reviewedBy": "Beoordeeld door"
+    },
+    "tabs": {
+      "label": "Aanvraagsecties",
+      "details": "Details",
+      "access": "Aangevraagde toegang",
+      "documents": "Documenten",
+      "noDocuments": "Er zijn geen documenten bij deze aanvraag gevoegd.",
+      "creatorAccessTitle": "Volledige toegang tot de organisatie",
+      "creatorAccess": "De maker wordt beheerder van de organisatie, met alle rechten daarin."
+    },
+    "accessSummary": {
+      "title": "Overzicht van aangevraagde toegang",
+      "description": {
+        "ADMIN_ACCESS": "De aanvrager vraagt deze platformrechten aan.",
+        "CREATE_ORG": "Als beheerder van de organisatie krijgt de maker deze rechten.",
+        "JOIN_ORG": "Het lid vraagt toegang tot deze onderdelen van de organisatie."
+      },
+      "more": "+{count, number} meer",
+      "moreDescription": "Aanvullende toegang"
+    },
+    "progress": {
+      "title": "Voortgang van de aanvraag",
+      "stages": {
+        "submitted": "Aanvraag ingediend",
+        "review": "In beoordeling",
+        "decision": "Goedkeuring / afwijzing",
+        "completed": "Voltooid"
+      },
+      "states": {
+        "done": "Voltooid",
+        "current": "Huidige stap",
+        "pending": "In afwachting",
+        "rejected": "Gestopt"
+      },
+      "assigned": "Toegewezen aan {name} op {date}"
+    },
+    "additional": {
+      "title": "Aanvullende informatie",
+      "sla": "Reactietijd",
+      "onTime": "Op tijd",
+      "industry": "Branche",
+      "size": "Organisatiegrootte",
+      "website": "Website",
+      "members": "Leden",
+      "country": "Land",
+      "joiningDate": "Datum van toetreding",
+      "reviewComment": "Opmerking van beoordelaar"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "Door goed te keuren worden de aangevraagde beheerdersrechten verleend. De aanvrager ziet uw beslissing op de onboardingpagina.",
+        "CREATE_ORG": "Door goed te keuren wordt de organisatie aangemaakt met de aanvrager als beheerder. De aanvrager ziet uw beslissing op de onboardingpagina.",
+        "JOIN_ORG": "Door goed te keuren wordt de aanvrager met de aangevraagde toegang aan de organisatie toegevoegd. De aanvrager ziet uw beslissing op de onboardingpagina."
+      },
+      "approve": "Aanvraag goedkeuren",
+      "reject": "Aanvraag afwijzen",
+      "approveTitle": "Deze aanvraag goedkeuren?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "De aanvrager wordt beheerder met de aangevraagde rechten.",
+        "CREATE_ORG": "De organisatie wordt aangemaakt en de aanvrager wordt de beheerder ervan.",
+        "JOIN_ORG": "De aanvrager sluit zich aan bij de organisatie met de aangevraagde toegang."
+      },
+      "rejectTitle": "Deze aanvraag afwijzen?",
+      "rejectDescription": "De aanvrager ziet uw reden op de onboardingpagina.",
+      "comment": "Opmerking (optioneel)",
+      "commentPlaceholder": "Voeg een notitie toe voor het dossier",
+      "reason": "Reden voor afwijzing",
+      "reasonPlaceholder": "Leg uit wat er ontbreekt of waarom de aanvraag niet kan worden goedgekeurd",
+      "reasonRequired": "Geef een reden voor de afwijzing op.",
+      "confirmApprove": "Goedkeuren",
+      "confirmReject": "Afwijzen"
+    }
   }
 }

@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "이 요청을 검토할 수 있는 검토자가 아직 없습니다. 나중에 다시 시도하거나 지원팀에 문의하세요.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "조직 참여 요청이 제출되었습니다"
-    }
+    },
+    "APPROVAL_APPROVED": "요청이 승인되었습니다",
+    "APPROVAL_REJECTED": "요청이 거절되었습니다"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "허용되지 않는 파일 형식입니다",
@@ -105,5 +107,10 @@
       "SUCCESS": "승인 건수를 불러왔습니다."
     }
   },
-  "PROFILE_IMAGE_INVALID": "이 프로필 이미지는 사용할 수 없습니다. 다시 업로드해 주세요."
+  "PROFILE_IMAGE_INVALID": "이 프로필 이미지는 사용할 수 없습니다. 다시 업로드해 주세요.",
+  "APPROVAL_NOT_FOUND": "이 요청이 존재하지 않거나 나에게 할당되지 않았습니다",
+  "APPROVAL_ALREADY_DECIDED": "이 요청은 이미 처리되었습니다",
+  "APPROVAL_FORBIDDEN": "더 이상 이 요청을 검토할 수 없습니다",
+  "APPROVAL_COUNTRY_FORBIDDEN": "이 국가에서는 이 요청에 접근할 수 없습니다",
+  "APPROVAL_REQUEST_INCOMPLETE": "이 요청에는 승인에 필요한 정보가 없습니다"
 }

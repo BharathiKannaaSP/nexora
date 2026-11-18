@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "このリクエストを担当できるレビュアーがまだいません。後でもう一度お試しいただくか、サポートにお問い合わせください。",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "組織への参加リクエストを送信しました"
-    }
+    },
+    "APPROVAL_APPROVED": "申請を承認しました",
+    "APPROVAL_REJECTED": "申請を却下しました"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "このファイル形式は使用できません",
@@ -105,5 +107,10 @@
       "SUCCESS": "承認件数を読み込みました。"
     }
   },
-  "PROFILE_IMAGE_INVALID": "このプロフィール画像は使用できません。もう一度アップロードしてください。"
+  "PROFILE_IMAGE_INVALID": "このプロフィール画像は使用できません。もう一度アップロードしてください。",
+  "APPROVAL_NOT_FOUND": "この申請は存在しないか、あなたに割り当てられていません",
+  "APPROVAL_ALREADY_DECIDED": "この申請はすでに処理済みです",
+  "APPROVAL_FORBIDDEN": "この申請はもう審査できません",
+  "APPROVAL_COUNTRY_FORBIDDEN": "この国ではこの申請にアクセスできません",
+  "APPROVAL_REQUEST_INCOMPLETE": "この申請には承認に必要な情報が不足しています"
 }

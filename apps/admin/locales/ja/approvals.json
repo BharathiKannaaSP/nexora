@@ -77,8 +77,119 @@
     "filteredTitle": "一致する申請はありません",
     "filteredDescription": "別の状態、優先度、または検索語をお試しください。"
   },
-  "noAccess": {
-    "title": "審査する承認はありません",
-    "description": "この国では、どの種類の申請も審査する権限がありません。"
+  "forbidden": {
+    "title": "アクセスが拒否されました",
+    "description": "この国で承認を審査する権限がありません。",
+    "otherCountry": "この国でこの申請を審査する権限がありません。"
+  },
+  "detail": {
+    "metadata": {
+      "title": "申請の詳細"
+    },
+    "breadcrumb": {
+      "label": "パンくずリスト",
+      "details": "申請の詳細"
+    },
+    "back": "{list}に戻る",
+    "requestId": "申請ID: {id}",
+    "action": {
+      "pending": "あなたの対応待ち",
+      "assigned": "{date}にあなたに割り当て",
+      "decided": "{name}（{date}）"
+    },
+    "overview": {
+      "title": "申請の概要",
+      "summary": {
+        "ADMIN_ACCESS": "{name} が{countries}でのプラットフォーム管理者アクセスを申請しました。",
+        "CREATE_ORG": "{name} が組織「{subject}」の作成を申請しました。",
+        "JOIN_ORG": "{name} が組織「{subject}」への参加を申請しました。"
+      },
+      "requestedBy": "申請者",
+      "email": "メールアドレス",
+      "subject": {
+        "ADMIN_ACCESS": "現在の組織",
+        "CREATE_ORG": "作成予定の組織",
+        "JOIN_ORG": "組織"
+      },
+      "countries": "国",
+      "jobTitle": "役職",
+      "department": "部署",
+      "employeeId": "従業員ID",
+      "requestedOn": "申請日",
+      "assignedTo": "担当者",
+      "you": "あなた（{name}）",
+      "reviewedBy": "審査者"
+    },
+    "tabs": {
+      "label": "申請のセクション",
+      "details": "詳細",
+      "access": "申請されたアクセス",
+      "documents": "書類",
+      "noDocuments": "この申請には書類が添付されていません。",
+      "creatorAccessTitle": "組織への完全なアクセス",
+      "creatorAccess": "作成者は組織の管理者となり、組織内のすべての権限を持ちます。"
+    },
+    "accessSummary": {
+      "title": "申請されたアクセスの概要",
+      "description": {
+        "ADMIN_ACCESS": "申請者は以下のプラットフォーム権限を求めています。",
+        "CREATE_ORG": "組織の管理者として、作成者には以下の権限が付与されます。",
+        "JOIN_ORG": "メンバーは組織内の以下の領域へのアクセスを求めています。"
+      },
+      "more": "他 {count, number} 件",
+      "moreDescription": "追加のアクセス"
+    },
+    "progress": {
+      "title": "申請の進捗",
+      "stages": {
+        "submitted": "申請済み",
+        "review": "審査中",
+        "decision": "承認 / 却下",
+        "completed": "完了"
+      },
+      "states": {
+        "done": "完了",
+        "current": "現在のステップ",
+        "pending": "保留中",
+        "rejected": "停止"
+      },
+      "assigned": "{date}に{name}に割り当て"
+    },
+    "additional": {
+      "title": "追加情報",
+      "sla": "応答時間",
+      "onTime": "期限内",
+      "industry": "業種",
+      "size": "組織の規模",
+      "website": "ウェブサイト",
+      "members": "メンバー",
+      "country": "国",
+      "joiningDate": "参加日",
+      "reviewComment": "審査者のコメント"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "承認すると、申請された管理者権限が付与されます。申請者はオンボーディングページであなたの判断を確認できます。",
+        "CREATE_ORG": "承認すると、申請者を管理者として組織が作成されます。申請者はオンボーディングページであなたの判断を確認できます。",
+        "JOIN_ORG": "承認すると、申請者は申請したアクセス権で組織に追加されます。申請者はオンボーディングページであなたの判断を確認できます。"
+      },
+      "approve": "申請を承認",
+      "reject": "申請を却下",
+      "approveTitle": "この申請を承認しますか？",
+      "approveDescription": {
+        "ADMIN_ACCESS": "申請者は、申請した権限を持つ管理者になります。",
+        "CREATE_ORG": "組織が作成され、申請者がその管理者になります。",
+        "JOIN_ORG": "申請者は、申請したアクセス権で組織に参加します。"
+      },
+      "rejectTitle": "この申請を却下しますか？",
+      "rejectDescription": "申請者はオンボーディングページで却下理由を確認できます。",
+      "comment": "コメント（任意）",
+      "commentPlaceholder": "記録用のメモを追加",
+      "reason": "却下の理由",
+      "reasonPlaceholder": "不足している内容や、申請を承認できない理由を説明してください",
+      "reasonRequired": "却下の理由を入力してください。",
+      "confirmApprove": "承認",
+      "confirmReject": "却下"
+    }
   }
 }

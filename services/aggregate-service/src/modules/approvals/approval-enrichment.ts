@@ -4,7 +4,10 @@ import type {
   ApprovalPerson,
   ApprovalQueueItem,
 } from "@nexora/shared/types/approvals"
-import type { UserLookupResponseData, UserSummary } from "@nexora/shared/types/auth"
+import type {
+  UserLookupResponseData,
+  UserSummary,
+} from "@nexora/shared/types/auth"
 import type {
   OrganizationDirectoryEntry,
   OrganizationDirectoryEntryResponseData,
@@ -19,7 +22,7 @@ const chunk = <T>(items: T[], size: number) =>
   )
 
 /** Names by user id; a failed lookup leaves those ids out. */
-const lookupUsers = async (callerId: string, ids: string[]) => {
+export const lookupUsers = async (callerId: string, ids: string[]) => {
   const results = await Promise.allSettled(
     chunk(ids, USER_LOOKUP_MAX_IDS).map((batch) =>
       fetchFromService<UserLookupResponseData>(
@@ -43,7 +46,7 @@ const lookupUsers = async (callerId: string, ids: string[]) => {
 }
 
 /** Directory entries by id; one that fails or is gone is left out. */
-const lookupOrganizations = async (callerId: string, ids: string[]) => {
+export const lookupOrganizations = async (callerId: string, ids: string[]) => {
   const results = await Promise.allSettled(
     ids.map((id) =>
       fetchFromService<OrganizationDirectoryEntryResponseData>(
@@ -59,7 +62,10 @@ const lookupOrganizations = async (callerId: string, ids: string[]) => {
     if (result.status === "fulfilled") {
       organizations.set(ids[index]!, result.value.organization)
     } else {
-      console.error("Aggregate service: organization lookup failed", result.reason)
+      console.error(
+        "Aggregate service: organization lookup failed",
+        result.reason
+      )
     }
   })
   return organizations
@@ -77,7 +83,9 @@ export const resolveRequestCountries = async (
   items: ApprovalQueueItem[]
 ): Promise<ApprovalQueueItem[]> => {
   const organizationIds = [
-    ...new Set(items.flatMap((i) => (i.organizationId ? [i.organizationId] : []))),
+    ...new Set(
+      items.flatMap((i) => (i.organizationId ? [i.organizationId] : []))
+    ),
   ]
   if (organizationIds.length === 0) return items
 
@@ -98,7 +106,7 @@ export const resolveRequestCountries = async (
   })
 }
 
-const toPerson = (
+export const toPerson = (
   userId: string,
   users: Map<string, UserSummary>,
   avatarUrls: Map<string, string>

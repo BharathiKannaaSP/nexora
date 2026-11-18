@@ -39,9 +39,15 @@ export const noReviewerAvailable = () =>
 
 /**
  * The users who can review `requestType`: they hold REVIEWER_ACCESS_LEVEL
- * on its module in EVERY one of `countryCodes`, so one reviewer can decide
- * the whole request (an admin for India can't approve access to Germany).
- * Empty `countryCodes` means the country isn't known: any country will do.
+ * on its module in every MANAGED one of `countryCodes`, so one reviewer can
+ * decide the whole request (an admin for India can't approve access to
+ * Germany once Germany has its own reviewer).
+ *
+ * A country no one else reviews yet is unmanaged and doesn't count: someone
+ * has to approve its first reviewer, so any reviewer of the module will do.
+ * The requester doesn't make a country managed, since they can't review
+ * their own request. Empty `countryCodes` means the country isn't known:
+ * any country will do.
  *
  * Read from ReviewerPermission, the local copy of user-service's platform
  * permissions, so no other service is called mid-submit. Sorted, so the
@@ -62,19 +68,20 @@ const eligibleReviewers = async (
 
   const countriesByUser = new Map<string, Set<string>>()
   for (const { userId, countryCode } of permissions) {
+    // No one reviews their own request.
+    if (userId === excludeUserId) continue
     const held = countriesByUser.get(userId) ?? new Set<string>()
     held.add(countryCode.toUpperCase())
     countriesByUser.set(userId, held)
   }
 
-  return (
-    [...countriesByUser]
-      .filter(([, held]) => countries.every((country) => held.has(country)))
-      .map(([userId]) => userId)
-      // No one reviews their own request.
-      .filter((userId) => userId !== excludeUserId)
-      .sort()
-  )
+  const managed = new Set([...countriesByUser.values()].flatMap((held) => [...held]))
+  const required = countries.filter((country) => managed.has(country))
+
+  return [...countriesByUser]
+    .filter(([, held]) => required.every((country) => held.has(country)))
+    .map(([userId]) => userId)
+    .sort()
 }
 
 /**

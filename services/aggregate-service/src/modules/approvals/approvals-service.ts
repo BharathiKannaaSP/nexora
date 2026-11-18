@@ -13,25 +13,32 @@ import type {
 
 import { fetchFromService } from "../../clients/service-client"
 import { enrichApprovals, resolveRequestCountries } from "./approval-enrichment"
+import {
+  fetchReviewedCountries,
+  isVisibleInCountry,
+} from "./approval-visibility"
 
 /**
- * The caller's queue in `status`, only the requests for `country`: a
- * reviewer of India and Australia sees India's requests under /in and
- * Australia's under /au. A request for several countries (an admin asking
- * for both) shows in each.
+ * The caller's queue in `status`, only the requests that belong under
+ * /`country` (see isVisibleInCountry): a reviewer of India and Australia
+ * sees India's requests under /in and Australia's under /au.
  */
 const fetchQueue = async (
   userId: string,
   { country, status }: ApprovalSummaryQuery
 ) => {
-  const { items } = await fetchFromService<ApprovalQueueResponseData>(
-    "onboarding",
-    "/api/v1/onboarding/approvals/queue",
-    userId,
-    { query: { status } }
-  )
+  const [{ items }, reviewed] = await Promise.all([
+    fetchFromService<ApprovalQueueResponseData>(
+      "onboarding",
+      "/api/v1/onboarding/approvals/queue",
+      userId,
+      { query: { status } }
+    ),
+    fetchReviewedCountries(userId),
+  ])
   const resolved = await resolveRequestCountries(userId, items)
-  return resolved.filter(({ countryCodes }) => countryCodes.includes(country))
+
+  return resolved.filter((item) => isVisibleInCountry(item, country, reviewed))
 }
 
 export const summarize = (items: ApprovalQueueItem[]): ApprovalSummary => ({

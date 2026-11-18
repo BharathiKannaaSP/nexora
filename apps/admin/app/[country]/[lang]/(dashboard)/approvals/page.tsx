@@ -50,8 +50,8 @@ const ApprovalsContent = async ({
     return (
       <EmptyState
         icon={ShieldOff}
-        title={t("noAccess.title")}
-        description={t("noAccess.description")}
+        title={t("forbidden.title")}
+        description={t("forbidden.description")}
       />
     )
   }

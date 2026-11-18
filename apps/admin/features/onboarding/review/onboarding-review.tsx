@@ -20,7 +20,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import { useFormatter, useTranslations } from "next-intl"
-import { useId, useState, type ReactNode } from "react"
+import { useId, useState } from "react"
 
 import type {
   AdminAccessRequest,
@@ -38,8 +38,10 @@ import {
 } from "@nexora/ui/components/card"
 import { cn } from "@nexora/ui/lib/utils"
 
+import { DetailRow } from "@/components/common/page/detail-row"
 import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
 import { useHydrated } from "@/hooks/use-hydrated"
+import { useLocaleParams } from "@/hooks/use-locale-params"
 
 import {
   PATH_KEYS,
@@ -97,24 +99,6 @@ const STAGE_CAPTION_CLASSES: Record<ReviewStageState, string> = {
   rejected: "text-destructive",
 }
 
-const DetailRow = ({
-  icon: Icon,
-  label,
-  children,
-}: {
-  icon: LucideIcon
-  label: string
-  children: ReactNode
-}) => (
-  <div className="flex items-center justify-between gap-4 py-2.5">
-    <dt className="flex items-center gap-3 text-muted-foreground">
-      <Icon className="size-4 shrink-0" aria-hidden="true" />
-      {label}
-    </dt>
-    <dd className="min-w-0 truncate text-end font-medium">{children}</dd>
-  </div>
-)
-
 const NextStep = ({
   icon: Icon,
   iconClassName,
@@ -161,7 +145,8 @@ const OnboardingReview = ({
 }: OnboardingReviewProps) => {
   const t = useTranslations("onboarding")
   const format = useFormatter()
-  const { account, onboarding } = useBootstrap()
+  const { account, user, onboarding } = useBootstrap()
+  const { country: urlCountry } = useLocaleParams()
   const [showSubmitted, setShowSubmitted] = useState(false)
   const submittedId = useId()
   const hydrated = useHydrated()
@@ -407,6 +392,12 @@ const OnboardingReview = ({
       <div id={submittedId} hidden={!showSubmitted}>
         {showSubmitted && (
           <SubmittedInformation
+            applicant={{
+              name: `${account.firstName} ${account.lastName}`,
+              email: account.email,
+              profile: user,
+            }}
+            documentCountryCode={(user?.bioCountry || urlCountry).toUpperCase()}
             adminAccessRequest={adminAccessRequest}
             organizationRequest={organizationRequest}
             joinRequest={joinRequest}

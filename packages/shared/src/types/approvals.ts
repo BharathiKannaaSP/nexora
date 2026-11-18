@@ -6,6 +6,10 @@ import type {
   ApprovalStatus,
 } from "@nexora/schemas/onboarding/approvals"
 
+import type { AdminAccessRequest, OrganizationRequest } from "./onboarding"
+import type { OrganizationDirectoryEntry } from "./organization"
+import type { UserDetailsResponseData } from "./user"
+
 /** One request in a reviewer's queue, as onboarding-service knows it. */
 export interface ApprovalQueueItem {
   id: string
@@ -75,4 +79,57 @@ export interface ListApprovalsResponseData {
   pageSize: number
   /** Items after type, priority and search, before paging. */
   total: number
+}
+/** The request itself, as the applicant submitted it. */
+export type ApprovalRequestRecord =
+  | { type: "ADMIN_ACCESS"; adminAccessRequest: AdminAccessRequest }
+  | { type: "CREATE_ORG" | "JOIN_ORG"; organizationRequest: OrganizationRequest }
+
+/** One request as onboarding-service knows it, for its reviewer. */
+export interface ApprovalRecordItem extends ApprovalQueueItem {
+  /** When the current reviewer got it. */
+  assignedAt: string
+  reviewedByUserId: string | null
+  reviewedAt: string | null
+  reviewComment: string | null
+}
+
+/** GET /onboarding/approvals/:type/:id */
+export interface ApprovalRecordResponseData {
+  item: ApprovalRecordItem
+  request: ApprovalRequestRecord
+}
+
+/** Short-lived signed URLs for one of the request's files. */
+export interface ApprovalFileUrls {
+  viewUrl: string
+  downloadUrl: string
+}
+
+export interface ApprovalDetail extends ApprovalListItem {
+  assignedAt: string
+  /** Uppercase; see ApprovalQueueItem.countryCodes. */
+  countryCodes: string[]
+  reviewedBy: ApprovalPerson | null
+  reviewedAt: string | null
+  reviewComment: string | null
+  /** The applicant's profile; null when it couldn't be loaded. */
+  applicant: UserDetailsResponseData | null
+  request: ApprovalRequestRecord
+  /** JOIN_ORG: the organization being joined; null otherwise or if gone. */
+  organization: OrganizationDirectoryEntry | null
+  /** By object key, for the logo and documents; a key that failed is missing. */
+  fileUrls: Record<string, ApprovalFileUrls>
+}
+
+/** GET /aggregate/approvals/:type/:id */
+export interface ApprovalDetailResponseData {
+  approval: ApprovalDetail
+}
+
+/** POST /onboarding/approvals/:type/:id/decision */
+export interface ApprovalDecisionResponseData {
+  id: string
+  type: ApprovalRequestType
+  status: ApprovalStatus
 }

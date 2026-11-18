@@ -7,6 +7,11 @@ export type Gender = "MALE" | "FEMALE" | "OTHER" | "PREFER_NOT_TO_SAY"
 
 export type ProfileStatus = "INCOMPLETE" | "COMPLETE"
 
+/** One permission inside an organization; countryCode is the organization's. */
+export interface OrganizationPermissionGrant extends PlatformPermission {
+  organizationId: string
+}
+
 /** GET /user/permissions */
 export interface UserPermissionsResponseData {
   /**
@@ -14,6 +19,8 @@ export interface UserPermissionsResponseData {
    * for what they may do. countryCode is uppercase, e.g. "IN".
    */
   permissions: PlatformPermission[]
+  /** What they may do in their organizations (ORG_ADMIN, ORG_MEMBER). */
+  organizationPermissions: OrganizationPermissionGrant[]
 }
 
 /** GET /user/user-details, PUT /user/user-details */

@@ -5,7 +5,10 @@ import type { PlatformPermission } from "@nexora/schemas/events/permissions"
 import type { CountryAccess } from "../constants/country-access"
 import type { CurrentUser } from "./auth"
 import type { Onboarding } from "./onboarding"
-import type { UserDetailsResponseData } from "./user"
+import type {
+  OrganizationPermissionGrant,
+  UserDetailsResponseData,
+} from "./user"
 
 /** Sources the overview can do without; auth failing fails the request. */
 export type OptionalOverviewSource = "user" | "onboarding" | "permissions"
@@ -26,6 +29,11 @@ export interface CurrentUserOverviewResponseData {
    * lookup failed ("permissions" is then in `unavailable`).
    */
   permissions: PlatformPermission[]
+  /**
+   * Their permissions inside organizations, from user-service; empty when
+   * that lookup failed, like `permissions`.
+   */
+  organizationPermissions: OrganizationPermissionGrant[]
   /** Which /[country] URLs the user may open; see canUseCountry(). */
   countryAccess: CountryAccess
   /** Sources that failed, so clients can tell them from empty results. */

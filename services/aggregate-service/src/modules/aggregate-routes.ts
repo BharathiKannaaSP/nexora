@@ -5,6 +5,7 @@ import { createVerifyGateway } from "@nexora/shared/express/verify-gateway"
 import { env } from "../config/aggregate-env"
 import { me } from "./aggregate-controller"
 import {
+  getApproval,
   getApprovals,
   getApprovalsSummary,
 } from "./approvals/approvals-controller"
@@ -20,5 +21,6 @@ router.get("/me", me)
 
 router.get("/approvals", getApprovals)
 router.get("/approvals/summary", getApprovalsSummary)
+router.get("/approvals/:type/:id", getApproval)
 
 export default router

@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "Er is nog geen beoordelaar beschikbaar voor deze aanvraag. Probeer het later opnieuw of neem contact op met support.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "Uw aanvraag om u bij de organisatie aan te sluiten is ingediend"
-    }
+    },
+    "APPROVAL_APPROVED": "Aanvraag goedgekeurd",
+    "APPROVAL_REJECTED": "Aanvraag afgewezen"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dit bestandstype is niet toegestaan",
@@ -105,5 +107,10 @@
       "SUCCESS": "Aantallen goedkeuringen geladen."
     }
   },
-  "PROFILE_IMAGE_INVALID": "Deze profielfoto kan niet worden gebruikt. Upload hem opnieuw."
+  "PROFILE_IMAGE_INVALID": "Deze profielfoto kan niet worden gebruikt. Upload hem opnieuw.",
+  "APPROVAL_NOT_FOUND": "Deze aanvraag bestaat niet of is niet aan u toegewezen",
+  "APPROVAL_ALREADY_DECIDED": "Over deze aanvraag is al beslist",
+  "APPROVAL_FORBIDDEN": "U kunt deze aanvraag niet meer beoordelen",
+  "APPROVAL_COUNTRY_FORBIDDEN": "U hebt in dit land geen toegang tot deze aanvraag",
+  "APPROVAL_REQUEST_INCOMPLETE": "Deze aanvraag mist gegevens die nodig zijn om haar goed te keuren"
 }

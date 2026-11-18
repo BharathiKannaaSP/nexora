@@ -68,20 +68,26 @@ export const getCurrentUserOverview = async (
     settledValue("onboarding", onboarding, unavailable)?.onboarding ?? null
   // Without the permissions the user may do nothing and only the saved
   // country is allowed, so a failed lookup can't open anything.
-  const permissions =
-    settledValue("permissions", userPermissions, unavailable)?.permissions ??
-    []
+  const granted = settledValue("permissions", userPermissions, unavailable)
+  const permissions = granted?.permissions ?? []
+  const organizationPermissions = granted?.organizationPermissions ?? []
 
   return {
     account: { ...account, profileImageUrl },
     user: settledValue("user", user, unavailable),
     onboarding: onboardingValue,
     permissions,
+    organizationPermissions,
     countryAccess: {
       savedCountry: account.countryCode,
       locked: isCountryLocked(onboardingValue),
       permittedCountries: [
-        ...new Set(permissions.map(({ countryCode }) => countryCode.toLowerCase())),
+        // An organization's members work in its country too.
+        ...new Set(
+          [...permissions, ...organizationPermissions].map(({ countryCode }) =>
+            countryCode.toLowerCase()
+          )
+        ),
       ],
     },
     unavailable,

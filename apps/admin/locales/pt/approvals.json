@@ -77,8 +77,119 @@
     "filteredTitle": "Nenhuma solicitação correspondente",
     "filteredDescription": "Tente outro status, prioridade ou pesquisa."
   },
-  "noAccess": {
-    "title": "Nenhuma aprovação para revisar",
-    "description": "Você não revisa nenhum tipo de solicitação neste país."
+  "forbidden": {
+    "title": "Acesso negado",
+    "description": "Você não tem permissão para revisar aprovações neste país.",
+    "otherCountry": "Você não tem acesso para revisar esta solicitação neste país."
+  },
+  "detail": {
+    "metadata": {
+      "title": "Detalhes da solicitação"
+    },
+    "breadcrumb": {
+      "label": "Trilha de navegação",
+      "details": "Detalhes da solicitação"
+    },
+    "back": "Voltar para {list}",
+    "requestId": "ID da solicitação: {id}",
+    "action": {
+      "pending": "Aguardando sua ação",
+      "assigned": "Atribuída a você em {date}",
+      "decided": "Por {name} em {date}"
+    },
+    "overview": {
+      "title": "Visão geral da solicitação",
+      "summary": {
+        "ADMIN_ACCESS": "{name} solicitou acesso de administrador da plataforma em {countries}.",
+        "CREATE_ORG": "{name} solicitou a criação da organização {subject}.",
+        "JOIN_ORG": "{name} solicitou participar da organização {subject}."
+      },
+      "requestedBy": "Solicitada por",
+      "email": "Endereço de e-mail",
+      "subject": {
+        "ADMIN_ACCESS": "Organização atual",
+        "CREATE_ORG": "Organização proposta",
+        "JOIN_ORG": "Organização"
+      },
+      "countries": "Países",
+      "jobTitle": "Cargo",
+      "department": "Departamento",
+      "employeeId": "ID do funcionário",
+      "requestedOn": "Solicitada em",
+      "assignedTo": "Atribuída a",
+      "you": "Você ({name})",
+      "reviewedBy": "Revisada por"
+    },
+    "tabs": {
+      "label": "Seções da solicitação",
+      "details": "Detalhes",
+      "access": "Acesso solicitado",
+      "documents": "Documentos",
+      "noDocuments": "Nenhum documento foi anexado a esta solicitação.",
+      "creatorAccessTitle": "Acesso total à organização",
+      "creatorAccess": "O criador se torna o administrador da organização, com todas as permissões dela."
+    },
+    "accessSummary": {
+      "title": "Resumo do acesso solicitado",
+      "description": {
+        "ADMIN_ACCESS": "O solicitante está pedindo estas permissões da plataforma.",
+        "CREATE_ORG": "Como administrador da organização, o criador recebe estas permissões.",
+        "JOIN_ORG": "O membro está pedindo acesso a estas áreas da organização."
+      },
+      "more": "+{count, number} a mais",
+      "moreDescription": "Acesso adicional"
+    },
+    "progress": {
+      "title": "Andamento da solicitação",
+      "stages": {
+        "submitted": "Solicitação enviada",
+        "review": "Em análise",
+        "decision": "Aprovação / rejeição",
+        "completed": "Concluída"
+      },
+      "states": {
+        "done": "Concluído",
+        "current": "Etapa atual",
+        "pending": "Pendente",
+        "rejected": "Interrompido"
+      },
+      "assigned": "Atribuída a {name} em {date}"
+    },
+    "additional": {
+      "title": "Informações adicionais",
+      "sla": "Tempo de resposta",
+      "onTime": "No prazo",
+      "industry": "Setor",
+      "size": "Tamanho da organização",
+      "website": "Site",
+      "members": "Membros",
+      "country": "País",
+      "joiningDate": "Data de entrada",
+      "reviewComment": "Comentário do revisor"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "A aprovação concede as permissões de administrador solicitadas. O solicitante verá sua decisão na página de integração.",
+        "CREATE_ORG": "A aprovação cria a organização com o solicitante como administrador. O solicitante verá sua decisão na página de integração.",
+        "JOIN_ORG": "A aprovação adiciona o solicitante à organização com o acesso solicitado. O solicitante verá sua decisão na página de integração."
+      },
+      "approve": "Aprovar solicitação",
+      "reject": "Rejeitar solicitação",
+      "approveTitle": "Aprovar esta solicitação?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "O solicitante se torna administrador com as permissões que pediu.",
+        "CREATE_ORG": "A organização é criada e o solicitante se torna o administrador dela.",
+        "JOIN_ORG": "O solicitante entra na organização com o acesso que pediu."
+      },
+      "rejectTitle": "Rejeitar esta solicitação?",
+      "rejectDescription": "O solicitante verá seu motivo na página de integração.",
+      "comment": "Comentário (opcional)",
+      "commentPlaceholder": "Adicione uma observação para o registro",
+      "reason": "Motivo da rejeição",
+      "reasonPlaceholder": "Explique o que está faltando ou por que a solicitação não pode ser aprovada",
+      "reasonRequired": "Informe um motivo para a rejeição.",
+      "confirmApprove": "Aprovar",
+      "confirmReject": "Rejeitar"
+    }
   }
 }

@@ -34,6 +34,12 @@ export interface StoredFile {
   originalFileName: string
   contentType?: string
   sizeBytes?: number
+  /**
+   * Signed URLs given up front, for files the viewer didn't upload (e.g. a
+   * reviewer's); without them, the uploader's own URL is fetched per click.
+   */
+  viewUrl?: string
+  downloadUrl?: string
 }
 
 export interface UploadedFileItem {
@@ -101,6 +107,10 @@ const UploadedFileRow = ({
       window.open(localUrl, "_blank", "noopener")
       return
     }
+    if (stored?.viewUrl) {
+      window.open(stored.viewUrl, "_blank", "noopener")
+      return
+    }
     // Opened before the await, so popup blockers still see a click.
     const tab = window.open("", "_blank")
     setBusy("view")
@@ -125,6 +135,10 @@ const UploadedFileRow = ({
       link.href = localUrl
       link.download = name
       link.click()
+      return
+    }
+    if (stored?.downloadUrl) {
+      window.location.assign(stored.downloadUrl)
       return
     }
     // Signed as an attachment named `name`, so the page stays put.

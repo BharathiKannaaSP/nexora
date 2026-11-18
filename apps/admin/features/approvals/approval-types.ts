@@ -63,6 +63,10 @@ export const APPROVAL_TYPES = {
   },
 } as const satisfies Record<ApprovalRequestType, ApprovalTypeConfig>
 
+/** The list, on this type's tab; where a request's page goes back to. */
+export const approvalsListPath = (type: ApprovalRequestType) =>
+  `${APPROVALS_PATH}?type=${APPROVAL_TYPES[type].slug}`
+
 /** The "Total pending" card's icon. */
 export const APPROVALS_TOTAL_ICON = ClipboardCheck
 

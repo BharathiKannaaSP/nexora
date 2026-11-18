@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "目前还没有可审核此请求的审核人。请稍后重试或联系支持团队。",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "您加入组织的申请已提交"
-    }
+    },
+    "APPROVAL_APPROVED": "申请已批准",
+    "APPROVAL_REJECTED": "申请已拒绝"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "不允许此文件类型",
@@ -105,5 +107,10 @@
       "SUCCESS": "审批数量已加载。"
     }
   },
-  "PROFILE_IMAGE_INVALID": "无法使用此头像，请重新上传。"
+  "PROFILE_IMAGE_INVALID": "无法使用此头像，请重新上传。",
+  "APPROVAL_NOT_FOUND": "此申请不存在或未分配给您",
+  "APPROVAL_ALREADY_DECIDED": "此申请已处理",
+  "APPROVAL_FORBIDDEN": "您已无法审核此申请",
+  "APPROVAL_COUNTRY_FORBIDDEN": "您无权在此国家/地区访问此申请",
+  "APPROVAL_REQUEST_INCOMPLETE": "此申请缺少批准所需的信息"
 }

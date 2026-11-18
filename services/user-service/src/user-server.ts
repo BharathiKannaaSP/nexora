@@ -1,5 +1,6 @@
 import { env } from "./config/user-env"
 import { startAdminAccessApprovedConsumer } from "./consumers/admin-access-approved.consumer"
+import { startOrganizationMembershipCreatedConsumer } from "./consumers/organization-membership-created.consumer"
 import { startCreateUserProfileConsumer } from "./consumers/create-user-profile.consumer"
 import app from "./user-app"
 
@@ -18,6 +19,13 @@ startAdminAccessApprovedConsumer()
   .then(() => console.info("Admin access approved consumer started"))
   .catch((error: unknown) => {
     console.error("Admin access approved consumer failed to start", error)
+    process.exitCode = 1
+  })
+
+startOrganizationMembershipCreatedConsumer()
+  .then(() => console.info("Organization membership created consumer started"))
+  .catch((error: unknown) => {
+    console.error("Organization membership created consumer failed to start", error)
     process.exitCode = 1
   })
 

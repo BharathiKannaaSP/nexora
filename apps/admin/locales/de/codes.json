@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "Für diese Anfrage ist noch kein Prüfer verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "Ihre Anfrage zum Beitritt zur Organisation wurde gesendet"
-    }
+    },
+    "APPROVAL_APPROVED": "Anfrage genehmigt",
+    "APPROVAL_REJECTED": "Anfrage abgelehnt"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Dieser Dateityp ist nicht erlaubt",
@@ -105,5 +107,10 @@
       "SUCCESS": "Genehmigungszahlen geladen."
     }
   },
-  "PROFILE_IMAGE_INVALID": "Dieses Profilbild kann nicht verwendet werden. Bitte lade es erneut hoch."
+  "PROFILE_IMAGE_INVALID": "Dieses Profilbild kann nicht verwendet werden. Bitte lade es erneut hoch.",
+  "APPROVAL_NOT_FOUND": "Diese Anfrage existiert nicht oder ist Ihnen nicht zugewiesen",
+  "APPROVAL_ALREADY_DECIDED": "Über diese Anfrage wurde bereits entschieden",
+  "APPROVAL_FORBIDDEN": "Sie können diese Anfrage nicht mehr prüfen",
+  "APPROVAL_COUNTRY_FORBIDDEN": "Sie haben in diesem Land keinen Zugriff auf diese Anfrage",
+  "APPROVAL_REQUEST_INCOMPLETE": "Dieser Anfrage fehlen Angaben, die für die Genehmigung erforderlich sind"
 }

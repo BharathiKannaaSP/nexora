@@ -6,15 +6,23 @@ import { asyncHandler } from "@nexora/shared/express/async-handler"
 import { requireUserId } from "@nexora/shared/express/require-user-id"
 import type { UserPermissionsResponseData } from "@nexora/shared/types/user"
 
-import { getPlatformPermissionsRepository } from "./user-permission-repository"
+import {
+  getOrganizationPermissionsRepository,
+  getPlatformPermissionsRepository,
+} from "./user-permission-repository"
 import { getUserDetailsService, updateUserDetailsService } from "./user-service"
 
 export const getUserPermissions: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = requireUserId(req)
 
+    const [permissions, organizationPermissions] = await Promise.all([
+      getPlatformPermissionsRepository(userId),
+      getOrganizationPermissionsRepository(userId),
+    ])
     const data: UserPermissionsResponseData = {
-      permissions: await getPlatformPermissionsRepository(userId),
+      permissions,
+      organizationPermissions,
     }
 
     return sendSuccess(
@@ -57,6 +65,23 @@ export const updateUserDetails: RequestHandler = asyncHandler(
       "User details updated",
       "USER_DETAILS_UPDATED",
       data
+    )
+  }
+)
+
+/** Internal: any user's details, e.g. an applicant's for their reviewer. */
+export const getUserDetailsById: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    requireUserId(req)
+
+    const userDetails = await getUserDetailsService(String(req.params.userId))
+
+    return sendSuccess(
+      res,
+      200,
+      "User details fetched",
+      "USER_DETAILS_FETCHED",
+      userDetails
     )
   }
 )

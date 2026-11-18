@@ -1,6 +1,8 @@
 import type { Request, RequestHandler, Response } from "express"
 
 import {
+  approvalDetailQuerySchema,
+  approvalRequestParamsSchema,
   approvalSummaryQuerySchema,
   listApprovalsQuerySchema,
 } from "@nexora/schemas/onboarding/approvals"
@@ -11,6 +13,7 @@ import {
   requireUserId,
 } from "@nexora/shared/express/require-user-id"
 
+import { getApprovalDetail } from "./approval-detail-service"
 import { getApprovalSummary, listApprovals } from "./approvals-service"
 
 export const getApprovals: RequestHandler = asyncHandler(
@@ -20,7 +23,13 @@ export const getApprovals: RequestHandler = asyncHandler(
     const query = listApprovalsQuerySchema.parse(req.query)
     const data = await listApprovals(userId, query)
 
-    return sendSuccess(res, 200, "Approvals fetched", "AGGREGATE.APPROVALS.SUCCESS", data)
+    return sendSuccess(
+      res,
+      200,
+      "Approvals fetched",
+      "AGGREGATE.APPROVALS.SUCCESS",
+      data
+    )
   }
 )
 
@@ -36,6 +45,24 @@ export const getApprovalsSummary: RequestHandler = asyncHandler(
       200,
       "Approvals summary fetched",
       "AGGREGATE.APPROVALS_SUMMARY.SUCCESS",
+      data
+    )
+  }
+)
+
+export const getApproval: RequestHandler = asyncHandler(
+  async (req: Request, res: Response) => {
+    const userId = requireUserId(req, ACCESS_TOKEN_REQUIRED)
+
+    const params = approvalRequestParamsSchema.parse(req.params)
+    const query = approvalDetailQuerySchema.parse(req.query)
+    const data = await getApprovalDetail(userId, params, query)
+
+    return sendSuccess(
+      res,
+      200,
+      "Approval fetched",
+      "AGGREGATE.APPROVAL.SUCCESS",
       data
     )
   }

@@ -10,5 +10,6 @@ export const { publishPendingOutboxEvents, startOutboxPublisher } =
     // Map each event type this service publishes to its payload handler.
     handlers: {
       [KAFKA_TOPICS.ADMIN_ACCESS_APPROVED]: parseObjectPayload,
+      [KAFKA_TOPICS.ORGANIZATION_REQUEST_APPROVED]: parseObjectPayload,
     },
   })

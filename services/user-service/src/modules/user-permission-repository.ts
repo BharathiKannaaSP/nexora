@@ -1,12 +1,15 @@
 import { Temporal } from "temporal-polyfill"
 
 import { KAFKA_TOPICS } from "@nexora/kafka"
+import type { OrganizationMembershipCreatedPayload } from "@nexora/schemas/events/organization"
 import {
   platformPermissionKey,
   type AdminAccessApprovedPayload,
   type PlatformPermission,
   type UserPlatformPermissionsChangedPayload,
 } from "@nexora/schemas/events/permissions"
+
+import type { OrganizationPermissionGrant } from "@nexora/shared/types/user"
 
 import { db } from "../prisma/user-db"
 
@@ -29,6 +32,20 @@ export const getPlatformPermissionsRepository = async (
     moduleCode,
     accessLevel,
   }))
+}
+
+/** The user's permissions in their organizations, countries uppercase. */
+export const getOrganizationPermissionsRepository = async (
+  userId: string
+): Promise<OrganizationPermissionGrant[]> => {
+  const rows = await db.orm.public.UserPermission.where({ userId })
+    .where((p) => p.organizationId.isNotNull())
+    .all()
+  return rows.flatMap(({ organizationId, countryCode, moduleCode, accessLevel }) =>
+    organizationId
+      ? [{ organizationId, countryCode: countryCode.toUpperCase(), moduleCode, accessLevel }]
+      : []
+  )
 }
 
 /**
@@ -94,6 +111,47 @@ export const grantAdminAccessRepository = async (
 
     // Sent even when nothing was added: a replay then resyncs consumers.
     await queuePlatformPermissionsChanged(tx, event.userId)
+
+    return added
+  })
+}
+
+/**
+ * Grants a new member's permissions in their organization. Idempotent, like
+ * grantAdminAccessRepository: permissions already held there are skipped.
+ * Organization permissions aren't platform ones, so no
+ * user.platform-permissions.changed goes out. Returns how many were added.
+ */
+export const grantOrganizationPermissionsRepository = async (
+  event: OrganizationMembershipCreatedPayload
+): Promise<number> => {
+  return db.transaction(async (tx) => {
+    const held = new Set(
+      (
+        await tx.orm.public.UserPermission.where({
+          userId: event.userId,
+          organizationId: event.organizationId,
+        }).all()
+      ).map(({ moduleCode, accessLevel }) => `${moduleCode}:${accessLevel}`)
+    )
+
+    let added = 0
+    for (const { moduleCode, accessLevel } of event.permissions) {
+      const key = `${moduleCode}:${accessLevel}`
+      if (held.has(key)) continue
+      held.add(key)
+
+      await tx.orm.public.UserPermission.create({
+        userId: event.userId,
+        organizationId: event.organizationId,
+        countryCode: event.countryCode.toUpperCase(),
+        moduleCode,
+        accessLevel,
+        sourceRequestId: event.sourceRequestId,
+        grantedByUserId: event.approvedByUserId,
+      })
+      added++
+    }
 
     return added
   })

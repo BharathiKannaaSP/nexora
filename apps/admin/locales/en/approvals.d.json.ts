@@ -80,9 +80,120 @@ declare const messages: {
     "filteredTitle": "No matching requests",
     "filteredDescription": "Try another status, priority or search."
   },
-  "noAccess": {
-    "title": "No approvals to review",
-    "description": "You don't review any kind of request in this country."
+  "forbidden": {
+    "title": "Access denied",
+    "description": "You don't have permission to review approvals in this country.",
+    "otherCountry": "You don't have access to review this request in this country."
+  },
+  "detail": {
+    "metadata": {
+      "title": "Request details"
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "details": "Request details"
+    },
+    "back": "Back to {list}",
+    "requestId": "Request ID: {id}",
+    "action": {
+      "pending": "Pending your action",
+      "assigned": "Assigned to you on {date}",
+      "decided": "By {name} on {date}"
+    },
+    "overview": {
+      "title": "Request overview",
+      "summary": {
+        "ADMIN_ACCESS": "{name} has requested platform admin access in {countries}.",
+        "CREATE_ORG": "{name} has requested to create the organization {subject}.",
+        "JOIN_ORG": "{name} has requested to join the organization {subject}."
+      },
+      "requestedBy": "Requested by",
+      "email": "Email address",
+      "subject": {
+        "ADMIN_ACCESS": "Current organization",
+        "CREATE_ORG": "Proposed organization",
+        "JOIN_ORG": "Organization"
+      },
+      "countries": "Countries",
+      "jobTitle": "Job title",
+      "department": "Department",
+      "employeeId": "Employee ID",
+      "requestedOn": "Requested on",
+      "assignedTo": "Assigned to",
+      "you": "You ({name})",
+      "reviewedBy": "Reviewed by"
+    },
+    "tabs": {
+      "label": "Request sections",
+      "details": "Details",
+      "access": "Requested access",
+      "documents": "Documents",
+      "noDocuments": "No documents were attached to this request.",
+      "creatorAccessTitle": "Full organization access",
+      "creatorAccess": "The creator becomes the organization's admin, with every permission in it."
+    },
+    "accessSummary": {
+      "title": "Requested access summary",
+      "description": {
+        "ADMIN_ACCESS": "The applicant is asking for these platform permissions.",
+        "CREATE_ORG": "As the organization's admin, the creator gets these permissions.",
+        "JOIN_ORG": "The member is asking for access to these areas of the organization."
+      },
+      "more": "+{count, number} more",
+      "moreDescription": "Additional access"
+    },
+    "progress": {
+      "title": "Request progress",
+      "stages": {
+        "submitted": "Request submitted",
+        "review": "Under review",
+        "decision": "Approval / rejection",
+        "completed": "Completed"
+      },
+      "states": {
+        "done": "Completed",
+        "current": "Current step",
+        "pending": "Pending",
+        "rejected": "Stopped"
+      },
+      "assigned": "Assigned to {name} on {date}"
+    },
+    "additional": {
+      "title": "Additional information",
+      "sla": "Response time",
+      "onTime": "On time",
+      "industry": "Industry",
+      "size": "Organization size",
+      "website": "Website",
+      "members": "Members",
+      "country": "Country",
+      "joiningDate": "Joining date",
+      "reviewComment": "Reviewer's comment"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "Approving grants the requested admin permissions. The applicant sees your decision on their onboarding page.",
+        "CREATE_ORG": "Approving creates the organization with the applicant as its admin. The applicant sees your decision on their onboarding page.",
+        "JOIN_ORG": "Approving adds the applicant to the organization with the requested access. The applicant sees your decision on their onboarding page."
+      },
+      "approve": "Approve request",
+      "reject": "Reject request",
+      "approveTitle": "Approve this request?",
+      "approveDescription": {
+        "ADMIN_ACCESS": "The applicant becomes an admin with the permissions they asked for.",
+        "CREATE_ORG": "The organization is created and the applicant becomes its admin.",
+        "JOIN_ORG": "The applicant joins the organization with the access they asked for."
+      },
+      "rejectTitle": "Reject this request?",
+      "rejectDescription": "The applicant sees your reason on their onboarding page.",
+      "comment": "Comment (optional)",
+      "commentPlaceholder": "Add a note for the record",
+      "reason": "Reason for rejection",
+      "reasonPlaceholder": "Explain what's missing or why the request can't be approved",
+      "reasonRequired": "Give a reason for the rejection.",
+      "confirmApprove": "Approve",
+      "confirmReject": "Reject"
+    }
   }
 };
 export default messages;

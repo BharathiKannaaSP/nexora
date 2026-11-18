@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "Ainda não há nenhum revisor disponível para esta solicitação. Tente novamente mais tarde ou entre em contato com o suporte.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "Sua solicitação para participar da organização foi enviada"
-    }
+    },
+    "APPROVAL_APPROVED": "Solicitação aprovada",
+    "APPROVAL_REJECTED": "Solicitação rejeitada"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Este tipo de arquivo não é permitido",
@@ -105,5 +107,10 @@
       "SUCCESS": "Contagem de aprovações carregada."
     }
   },
-  "PROFILE_IMAGE_INVALID": "Esta imagem de perfil não pode ser usada. Envie-a novamente."
+  "PROFILE_IMAGE_INVALID": "Esta imagem de perfil não pode ser usada. Envie-a novamente.",
+  "APPROVAL_NOT_FOUND": "Esta solicitação não existe ou não está atribuída a você",
+  "APPROVAL_ALREADY_DECIDED": "Esta solicitação já foi decidida",
+  "APPROVAL_FORBIDDEN": "Você não pode mais revisar esta solicitação",
+  "APPROVAL_COUNTRY_FORBIDDEN": "Você não tem acesso a esta solicitação neste país",
+  "APPROVAL_REQUEST_INCOMPLETE": "Faltam nesta solicitação informações necessárias para aprová-la"
 }

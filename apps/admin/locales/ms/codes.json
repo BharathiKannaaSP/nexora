@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "Belum ada penyemak tersedia untuk permintaan ini. Sila cuba lagi kemudian atau hubungi sokongan.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "Permintaan anda untuk menyertai organisasi telah dihantar"
-    }
+    },
+    "APPROVAL_APPROVED": "Permintaan diluluskan",
+    "APPROVAL_REJECTED": "Permintaan ditolak"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "Jenis fail ini tidak dibenarkan",
@@ -105,5 +107,10 @@
       "SUCCESS": "Bilangan kelulusan dimuatkan."
     }
   },
-  "PROFILE_IMAGE_INVALID": "Imej profil ini tidak boleh digunakan. Sila muat naik semula."
+  "PROFILE_IMAGE_INVALID": "Imej profil ini tidak boleh digunakan. Sila muat naik semula.",
+  "APPROVAL_NOT_FOUND": "Permintaan ini tidak wujud atau tidak ditugaskan kepada anda",
+  "APPROVAL_ALREADY_DECIDED": "Permintaan ini telah pun diputuskan",
+  "APPROVAL_FORBIDDEN": "Anda tidak lagi boleh menyemak permintaan ini",
+  "APPROVAL_COUNTRY_FORBIDDEN": "Anda tiada akses kepada permintaan ini di negara ini",
+  "APPROVAL_REQUEST_INCOMPLETE": "Permintaan ini kekurangan butiran yang diperlukan untuk meluluskannya"
 }

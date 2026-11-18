@@ -77,8 +77,119 @@
     "filteredTitle": "没有匹配的申请",
     "filteredDescription": "请尝试其他状态、优先级或搜索词。"
   },
-  "noAccess": {
-    "title": "没有需要审核的审批",
-    "description": "您在此国家/地区不负责审核任何类型的申请。"
+  "forbidden": {
+    "title": "访问被拒绝",
+    "description": "您无权审核此国家/地区的审批。",
+    "otherCountry": "您无权在此国家/地区审核此申请。"
+  },
+  "detail": {
+    "metadata": {
+      "title": "申请详情"
+    },
+    "breadcrumb": {
+      "label": "面包屑导航",
+      "details": "申请详情"
+    },
+    "back": "返回{list}",
+    "requestId": "申请 ID：{id}",
+    "action": {
+      "pending": "等待您处理",
+      "assigned": "于 {date} 分配给您",
+      "decided": "由 {name} 于 {date} 处理"
+    },
+    "overview": {
+      "title": "申请概览",
+      "summary": {
+        "ADMIN_ACCESS": "{name} 申请了 {countries} 的平台管理员权限。",
+        "CREATE_ORG": "{name} 申请创建组织 {subject}。",
+        "JOIN_ORG": "{name} 申请加入组织 {subject}。"
+      },
+      "requestedBy": "申请人",
+      "email": "电子邮件地址",
+      "subject": {
+        "ADMIN_ACCESS": "当前组织",
+        "CREATE_ORG": "拟创建的组织",
+        "JOIN_ORG": "组织"
+      },
+      "countries": "国家/地区",
+      "jobTitle": "职位",
+      "department": "部门",
+      "employeeId": "员工编号",
+      "requestedOn": "申请时间",
+      "assignedTo": "负责人",
+      "you": "您（{name}）",
+      "reviewedBy": "审核人"
+    },
+    "tabs": {
+      "label": "申请内容分区",
+      "details": "详情",
+      "access": "申请的权限",
+      "documents": "文件",
+      "noDocuments": "此申请未附加任何文件。",
+      "creatorAccessTitle": "组织完全访问权限",
+      "creatorAccess": "创建者将成为该组织的管理员，拥有组织内的所有权限。"
+    },
+    "accessSummary": {
+      "title": "申请权限摘要",
+      "description": {
+        "ADMIN_ACCESS": "申请人正在申请以下平台权限。",
+        "CREATE_ORG": "作为组织管理员，创建者将获得以下权限。",
+        "JOIN_ORG": "该成员正在申请访问组织的以下区域。"
+      },
+      "more": "另外 {count, number} 项",
+      "moreDescription": "其他权限"
+    },
+    "progress": {
+      "title": "申请进度",
+      "stages": {
+        "submitted": "已提交申请",
+        "review": "审核中",
+        "decision": "批准 / 拒绝",
+        "completed": "已完成"
+      },
+      "states": {
+        "done": "已完成",
+        "current": "当前步骤",
+        "pending": "待处理",
+        "rejected": "已终止"
+      },
+      "assigned": "于 {date} 分配给 {name}"
+    },
+    "additional": {
+      "title": "其他信息",
+      "sla": "响应时间",
+      "onTime": "按时",
+      "industry": "行业",
+      "size": "组织规模",
+      "website": "网站",
+      "members": "成员",
+      "country": "国家/地区",
+      "joiningDate": "加入日期",
+      "reviewComment": "审核人意见"
+    },
+    "decision": {
+      "note": {
+        "ADMIN_ACCESS": "批准后将授予所申请的管理员权限。申请人可在其入职引导页面查看您的决定。",
+        "CREATE_ORG": "批准后将创建该组织，并由申请人担任管理员。申请人可在其入职引导页面查看您的决定。",
+        "JOIN_ORG": "批准后申请人将以所申请的权限加入该组织。申请人可在其入职引导页面查看您的决定。"
+      },
+      "approve": "批准申请",
+      "reject": "拒绝申请",
+      "approveTitle": "批准此申请？",
+      "approveDescription": {
+        "ADMIN_ACCESS": "申请人将成为管理员，并获得其申请的权限。",
+        "CREATE_ORG": "将创建该组织，申请人将成为其管理员。",
+        "JOIN_ORG": "申请人将以其申请的权限加入该组织。"
+      },
+      "rejectTitle": "拒绝此申请？",
+      "rejectDescription": "申请人可在其入职引导页面查看您的拒绝理由。",
+      "comment": "备注（可选）",
+      "commentPlaceholder": "添加备注以供记录",
+      "reason": "拒绝理由",
+      "reasonPlaceholder": "说明缺少哪些内容或无法批准该申请的原因",
+      "reasonRequired": "请填写拒绝理由。",
+      "confirmApprove": "批准",
+      "confirmReject": "拒绝"
+    }
   }
 }

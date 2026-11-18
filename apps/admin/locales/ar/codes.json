@@ -67,7 +67,9 @@
     "NO_REVIEWER_AVAILABLE": "لا يوجد مراجع متاح لهذا الطلب حاليًا. يُرجى المحاولة لاحقًا أو التواصل مع الدعم.",
     "JOIN_ORGANIZATION_REQUEST": {
       "SUCCESS": "تم إرسال طلب انضمامك إلى المؤسسة"
-    }
+    },
+    "APPROVAL_APPROVED": "تمت الموافقة على الطلب",
+    "APPROVAL_REJECTED": "تم رفض الطلب"
   },
   "MEDIA": {
     "UNSUPPORTED_TYPE": "نوع الملف هذا غير مسموح به",
@@ -105,5 +107,10 @@
       "SUCCESS": "تم تحميل أعداد الموافقات."
     }
   },
-  "PROFILE_IMAGE_INVALID": "لا يمكن استخدام صورة الملف الشخصي هذه. يرجى رفعها مرة أخرى."
+  "PROFILE_IMAGE_INVALID": "لا يمكن استخدام صورة الملف الشخصي هذه. يرجى رفعها مرة أخرى.",
+  "APPROVAL_NOT_FOUND": "هذا الطلب غير موجود أو غير مُسنَد إليك",
+  "APPROVAL_ALREADY_DECIDED": "تم البت في هذا الطلب بالفعل",
+  "APPROVAL_FORBIDDEN": "لم يعد بإمكانك مراجعة هذا الطلب",
+  "APPROVAL_COUNTRY_FORBIDDEN": "ليس لديك صلاحية الوصول إلى هذا الطلب في هذا البلد",
+  "APPROVAL_REQUEST_INCOMPLETE": "تنقص هذا الطلب تفاصيل مطلوبة للموافقة عليه"
 }

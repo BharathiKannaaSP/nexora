@@ -25,6 +25,7 @@ import {
 
 import {
   useBootstrap,
+  useOrganizationPermissions,
   usePermissions,
 } from "@/features/bootstrap/bootstrap-provider"
 import { useLocaleParams } from "@/hooks/use-locale-params"
@@ -66,13 +67,19 @@ export const AppSidebar = ({ badges = {} }: AppSidebarProps) => {
   const searchParams = useSearchParams()
   const { account } = useBootstrap()
   const permissions = usePermissions()
+  const organizationPermissions = useOrganizationPermissions()
   const t = useTranslations("dashboard")
   const { isMobile, setOpenMobile } = useSidebar()
   const closeOnMobile = () => isMobile && setOpenMobile(false)
 
   const groups = useMemo(
-    () => getSidebarNav({ countryCode: country, permissions }),
-    [country, permissions]
+    () =>
+      getSidebarNav({
+        countryCode: country,
+        permissions,
+        organizationPermissions,
+      }),
+    [country, permissions, organizationPermissions]
   )
 
   return (

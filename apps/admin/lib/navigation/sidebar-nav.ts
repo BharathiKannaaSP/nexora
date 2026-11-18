@@ -65,6 +65,13 @@ export interface SidebarNavItem {
    * out, everyone sees it.
    */
   permission?: PermissionRule
+  /**
+   * Also open to organization members whose organization permissions
+   * satisfy `permission` (ORG_ADMIN, ORG_MEMBER). Left out, only platform
+   * permissions count: an org admin holds USER_MANAGEMENT in their
+   * organization, which mustn't open the platform's Admins page.
+   */
+  organization?: true
   badge?: SidebarBadgeKey
   children?: SidebarNavChild[]
 }
@@ -123,6 +130,7 @@ export const SIDEBAR_NAV = [
         path: "/users",
         icon: UsersRound,
         permission: view("USER_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "admins",
@@ -179,30 +187,35 @@ export const SIDEBAR_NAV = [
         path: "/products",
         icon: Package,
         permission: view("PRODUCT_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "categories",
         path: "/categories",
         icon: FolderTree,
         permission: view("PRODUCT_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "inventory",
         path: "/inventory",
         icon: Boxes,
         permission: view("INVENTORY_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "orders",
         path: "/orders",
         icon: ShoppingCart,
         permission: view("BILLING_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "promotions",
         path: "/promotions",
         icon: Tag,
         permission: view("BILLING_MANAGEMENT"),
+        organization: true,
       },
     ],
   },
@@ -214,12 +227,14 @@ export const SIDEBAR_NAV = [
         path: "/reports",
         icon: BarChart3,
         permission: view("ANALYTICS_MANAGEMENT"),
+        organization: true,
       },
       {
         key: "auditLogs",
         path: "/audit-logs",
         icon: FileClock,
         permission: view("ANALYTICS_MANAGEMENT"),
+        organization: true,
       },
       { key: "notifications", path: "/notifications", icon: Bell },
       {
@@ -236,12 +251,27 @@ interface SidebarAccess {
   /** The country in the URL, e.g. "au"; permissions only count there. */
   countryCode: string
   permissions: CountryPermissions
+  /** Organization permissions; only items marked `organization` use them. */
+  organizationPermissions: CountryPermissions
 }
 
 /** The groups, items and children the user may see; empty groups are dropped. */
-export const getSidebarNav = ({ countryCode, permissions }: SidebarAccess) => {
-  const allowed = ({ permission }: { permission?: PermissionRule }) =>
-    !permission || satisfiesRule(permissions, countryCode, permission)
+export const getSidebarNav = ({
+  countryCode,
+  permissions,
+  organizationPermissions,
+}: SidebarAccess) => {
+  const allowed = ({
+    permission,
+    organization,
+  }: {
+    permission?: PermissionRule
+    organization?: true
+  }) =>
+    !permission ||
+    satisfiesRule(permissions, countryCode, permission) ||
+    (!!organization &&
+      satisfiesRule(organizationPermissions, countryCode, permission))
 
   return SIDEBAR_NAV.map((group) => ({
     ...group,

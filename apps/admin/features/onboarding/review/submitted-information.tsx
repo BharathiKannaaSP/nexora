@@ -1,6 +1,6 @@
 "use client"
 
-import { useFormatter, useTranslations } from "next-intl"
+import { useFormatter, useLocale, useTranslations } from "next-intl"
 import { useMemo, type ReactNode } from "react"
 
 import type {
@@ -15,13 +15,14 @@ import {
   ORGANIZATION_PERMISSION_MODULES,
   type JoinDocumentSlot,
 } from "@nexora/schemas/onboarding/join-organization"
+import type { ApprovalFileUrls } from "@nexora/shared/types/approvals"
 import type {
   AdminAccessRequest,
   CreateOrganizationFormDetails,
   JoinOrganizationFormDetails,
 } from "@nexora/shared/types/onboarding"
 import type { OrganizationDirectoryEntry } from "@nexora/shared/types/organization"
-import type { Gender } from "@nexora/shared/types/user"
+import type { Gender, UserDetailsResponseData } from "@nexora/shared/types/user"
 import {
   Card,
   CardContent,
@@ -29,9 +30,11 @@ import {
   CardTitle,
 } from "@nexora/ui/components/card"
 
-import { UploadedFilesTable } from "@/components/forms/uploaded-files-table"
+import {
+  UploadedFilesTable,
+  type StoredFile,
+} from "@/components/forms/uploaded-files-table"
 import { OrganizationAvatar } from "@/components/organization/organization-avatar"
-import { useBootstrap } from "@/features/bootstrap/bootstrap-provider"
 import {
   ACTION_KEYS,
   MODULE_ICONS,
@@ -49,12 +52,45 @@ import {
   organizationIndustryName,
 } from "@/features/onboarding/join-organization/join-organization-form-config"
 import { toModulePermissions } from "@/features/onboarding/join-organization/join-organization-form-defaults"
-import { useLocaleParams } from "@/hooks/use-locale-params"
 import { useRegionNames } from "@/hooks/use-region-names"
 import {
   toCountryPermissions,
   toOrderedPermissions,
 } from "@/lib/auth/permissions"
+
+/**
+ * The parts of a submission: who sent it, what they asked for (role,
+ * organization, employment…), the permissions, and the files.
+ */
+export const SUBMITTED_PARTS = [
+  "personal",
+  "request",
+  "permissions",
+  "documents",
+] as const
+export type SubmittedPart = (typeof SUBMITTED_PARTS)[number]
+
+/** Who sent the request. */
+export interface Applicant {
+  name: string
+  email: string | null
+  /** Null when it couldn't be loaded. */
+  profile: UserDetailsResponseData | null
+}
+
+/** Signed URLs by object key, for files the viewer didn't upload. */
+type FileUrls = Record<string, ApprovalFileUrls>
+
+/** A saved file with its signed URLs, when there are some. */
+const withUrls = <F extends StoredFile>(
+  file: F | undefined,
+  fileUrls: FileUrls | undefined
+): F | undefined => {
+  const urls = file && fileUrls?.[file.key]
+  return urls && file
+    ? { ...file, viewUrl: urls.viewUrl, downloadUrl: urls.downloadUrl }
+    : file
+}
 
 // Labels live in onboarding.json under chooseYourPathForm.genderOptions.
 const GENDER_KEYS = {
@@ -145,9 +181,13 @@ const savedFile = (value: unknown) => (isSavedFile(value) ? value : undefined)
 const OrganizationSections = ({
   request,
   regionNames,
+  parts,
+  fileUrls,
 }: {
   request: CreateOrganizationFormDetails
   regionNames: Intl.DisplayNames
+  parts: readonly SubmittedPart[]
+  fileUrls?: FileUrls
 }) => {
   const t = useTranslations("onboarding")
   const format = useFormatter()
@@ -164,108 +204,114 @@ const OrganizationSections = ({
     {
       id: "proposedLogo",
       label: t(`${form}.fields.logo`),
-      value: savedFile(values.proposedLogo),
+      value: withUrls(savedFile(values.proposedLogo), fileUrls),
     },
     ...DOCUMENT_FIELDS.map(({ name }) => ({
       id: name,
       label: t(`${form}.documents.${name}.label`),
-      value: savedFile(values.proposedDocuments?.[name]),
+      value: withUrls(savedFile(values.proposedDocuments?.[name]), fileUrls),
     })),
   ]
 
   return (
     <>
-      <Section title={t(`${form}.sections.details.title`)}>
-        <Fields
-          fields={[
-            { label: t(`${form}.fields.name`), value: values.proposedName },
-            { label: t(`${form}.fields.slug`), value: values.proposedSlug },
-            {
-              label: t(`${form}.fields.industry`),
-              value:
-                values.proposedIndustry &&
-                t(
-                  `${form}.industries.${INDUSTRY_KEYS[values.proposedIndustry]}`
-                ),
-            },
-            {
-              label: t(`${form}.fields.size`),
-              value:
-                values.proposedSize &&
-                t(`${form}.sizeOption`, {
-                  range: values.proposedSize.replace("-", "–"),
-                }),
-            },
-            {
-              label: t(`${form}.fields.website`),
-              value: values.proposedWebsite && (
-                <a
-                  href={values.proposedWebsite}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline-offset-4 hover:underline"
-                >
-                  {values.proposedWebsite}
-                </a>
-              ),
-            },
-          ]}
-        />
-        {values.proposedDescription && (
-          <div className="flex flex-col gap-1">
-            <p className="text-muted-foreground">
-              {t(`${form}.fields.description`)}
-            </p>
-            <p className="whitespace-pre-line">{values.proposedDescription}</p>
-          </div>
-        )}
-      </Section>
+      {parts.includes("request") && (
+        <>
+          <Section title={t(`${form}.sections.details.title`)}>
+            <Fields
+              fields={[
+                { label: t(`${form}.fields.name`), value: values.proposedName },
+                { label: t(`${form}.fields.slug`), value: values.proposedSlug },
+                {
+                  label: t(`${form}.fields.industry`),
+                  value:
+                    values.proposedIndustry &&
+                    t(
+                      `${form}.industries.${INDUSTRY_KEYS[values.proposedIndustry]}`
+                    ),
+                },
+                {
+                  label: t(`${form}.fields.size`),
+                  value:
+                    values.proposedSize &&
+                    t(`${form}.sizeOption`, {
+                      range: values.proposedSize.replace("-", "–"),
+                    }),
+                },
+                {
+                  label: t(`${form}.fields.website`),
+                  value: values.proposedWebsite && (
+                    <a
+                      href={values.proposedWebsite}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline-offset-4 hover:underline"
+                    >
+                      {values.proposedWebsite}
+                    </a>
+                  ),
+                },
+              ]}
+            />
+            {values.proposedDescription && (
+              <div className="flex flex-col gap-1">
+                <p className="text-muted-foreground">
+                  {t(`${form}.fields.description`)}
+                </p>
+                <p className="whitespace-pre-line">
+                  {values.proposedDescription}
+                </p>
+              </div>
+            )}
+          </Section>
 
-      <Section title={t(`${form}.sections.location.title`)}>
-        <Fields
-          fields={[
-            {
-              label: t(`${userFields}.bioCountry`),
-              value:
-                values.proposedCountryCode &&
-                (regionNames.of(values.proposedCountryCode) ??
-                  values.proposedCountryCode),
-            },
-            {
-              label: t(`${userFields}.addressLine1`),
-              value: address?.addressLine1,
-            },
-            {
-              label: t(`${userFields}.addressLine2`),
-              value: address?.addressLine2,
-            },
-            { label: t(`${userFields}.city`), value: address?.city },
-            { label: t(`${userFields}.state`), value: address?.state },
-            {
-              label: t(`${userFields}.postalCode`),
-              value: address?.postalCode,
-            },
-            { label: t(`${form}.fields.taxId`), value: tax?.taxId },
-            {
-              label: t(`${form}.fields.registrationNumber`),
-              value: tax?.registrationNumber,
-            },
-            {
-              label: t(`${form}.fields.incorporationDate`),
-              // A calendar date; formatting it in the viewer's zone could
-              // move it a day.
-              value:
-                tax?.incorporationDate &&
-                format.dateTime(new Date(tax.incorporationDate), {
-                  dateStyle: "long",
-                  timeZone: "UTC",
-                }),
-            },
-          ]}
-        />
-      </Section>
+          <Section title={t(`${form}.sections.location.title`)}>
+            <Fields
+              fields={[
+                {
+                  label: t(`${userFields}.bioCountry`),
+                  value:
+                    values.proposedCountryCode &&
+                    (regionNames.of(values.proposedCountryCode) ??
+                      values.proposedCountryCode),
+                },
+                {
+                  label: t(`${userFields}.addressLine1`),
+                  value: address?.addressLine1,
+                },
+                {
+                  label: t(`${userFields}.addressLine2`),
+                  value: address?.addressLine2,
+                },
+                { label: t(`${userFields}.city`), value: address?.city },
+                { label: t(`${userFields}.state`), value: address?.state },
+                {
+                  label: t(`${userFields}.postalCode`),
+                  value: address?.postalCode,
+                },
+                { label: t(`${form}.fields.taxId`), value: tax?.taxId },
+                {
+                  label: t(`${form}.fields.registrationNumber`),
+                  value: tax?.registrationNumber,
+                },
+                {
+                  label: t(`${form}.fields.incorporationDate`),
+                  // A calendar date; formatting it in the viewer's zone could
+                  // move it a day.
+                  value:
+                    tax?.incorporationDate &&
+                    format.dateTime(new Date(tax.incorporationDate), {
+                      dateStyle: "long",
+                      timeZone: "UTC",
+                    }),
+                },
+              ]}
+            />
+          </Section>
+        </>
+      )}
 
-      {files.some(({ value }) => value) && (
+      {parts.includes("documents") && files.some(({ value }) => value) && (
         <Section title={t(`${form}.sections.documents.title`)}>
           {/* No onRemove: View and Download only. */}
           <UploadedFilesTable items={files} />
@@ -285,6 +331,8 @@ const JoinSections = ({
   organization,
   documentCountryCode,
   regionNames,
+  parts,
+  fileUrls,
 }: {
   request: JoinOrganizationFormDetails
   /** From the directory; null when it couldn't be loaded. */
@@ -292,6 +340,8 @@ const JoinSections = ({
   /** The country whose document names apply, as on the form. */
   documentCountryCode: string
   regionNames: Intl.DisplayNames
+  parts: readonly SubmittedPart[]
+  fileUrls?: FileUrls
 }) => {
   const t = useTranslations("onboarding")
   const tPicker = useTranslations("common.organizationPicker")
@@ -313,12 +363,15 @@ const JoinSections = ({
       {
         id: slot,
         label: t(`${form}.documents.${labelKey}.label`),
-        value: {
-          key: document.objectKey,
-          originalFileName: document.originalFileName,
-          contentType: document.contentType,
-          sizeBytes: document.sizeBytes,
-        },
+        value: withUrls(
+          {
+            key: document.objectKey,
+            originalFileName: document.originalFileName,
+            contentType: document.contentType,
+            sizeBytes: document.sizeBytes,
+          },
+          fileUrls
+        ),
       },
     ]
   })
@@ -329,79 +382,91 @@ const JoinSections = ({
     return actions ? [{ code, actions }] : []
   })
 
+  const showRequest = parts.includes("request")
+
   return (
     <>
-      <Section title={t("review.submittedInformation.organization")}>
-        {organization ? (
-          <div className="flex items-center gap-3">
-            <OrganizationAvatar organization={organization} />
-            <div className="flex min-w-0 flex-col gap-0.5">
-              <p className="truncate font-medium" title={organization.name}>
-                {organization.name}
+      {showRequest && (
+        <>
+          <Section title={t("review.submittedInformation.organization")}>
+            {organization ? (
+              <div className="flex items-center gap-3">
+                <OrganizationAvatar organization={organization} />
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <p className="truncate font-medium" title={organization.name}>
+                    {organization.name}
+                  </p>
+                  <OrganizationMeta
+                    countryName={
+                      regionNames.of(organization.countryCode) ??
+                      organization.countryCode
+                    }
+                    industryName={organizationIndustryName(
+                      t,
+                      organization.industry
+                    )}
+                    members={tPicker("members", {
+                      count: organization.memberCount,
+                    })}
+                  />
+                </div>
+              </div>
+            ) : (
+              <p className="text-muted-foreground">
+                {t("review.submittedInformation.organizationUnavailable")}
               </p>
-              <OrganizationMeta
-                countryName={
-                  regionNames.of(organization.countryCode) ??
-                  organization.countryCode
-                }
-                industryName={organizationIndustryName(
-                  t,
-                  organization.industry
-                )}
-                members={tPicker("members", {
-                  count: organization.memberCount,
-                })}
-              />
-            </div>
-          </div>
-        ) : (
-          <p className="text-muted-foreground">
-            {t("review.submittedInformation.organizationUnavailable")}
-          </p>
-        )}
-      </Section>
+            )}
+          </Section>
 
-      <Section title={t(`${form}.sections.employment.title`)}>
-        <Fields
-          fields={[
-            {
-              label: t(`${form}.fields.employeeId`),
-              value: request.employeeId,
-            },
-            { label: t(`${form}.fields.jobTitle`), value: request.jobTitle },
-            {
-              label: t(`${form}.fields.department`),
-              value: department
-                ? t(`${form}.departments.${DEPARTMENT_KEYS[department]}`)
-                : request.department,
-            },
-            { label: t(`${form}.fields.workEmail`), value: request.workEmail },
-            {
-              label: t(`${form}.fields.joiningDate`),
-              // A calendar date; formatting it in the viewer's zone could
-              // move it a day.
-              value:
-                request.joiningDate &&
-                format.dateTime(new Date(request.joiningDate), {
-                  dateStyle: "long",
-                  timeZone: "UTC",
-                }),
-            },
-            {
-              label: t(`${form}.fields.reportingManager`),
-              value: request.reportingManager,
-            },
-          ]}
-        />
-      </Section>
+          <Section title={t(`${form}.sections.employment.title`)}>
+            <Fields
+              fields={[
+                {
+                  label: t(`${form}.fields.employeeId`),
+                  value: request.employeeId,
+                },
+                {
+                  label: t(`${form}.fields.jobTitle`),
+                  value: request.jobTitle,
+                },
+                {
+                  label: t(`${form}.fields.department`),
+                  value: department
+                    ? t(`${form}.departments.${DEPARTMENT_KEYS[department]}`)
+                    : request.department,
+                },
+                {
+                  label: t(`${form}.fields.workEmail`),
+                  value: request.workEmail,
+                },
+                {
+                  label: t(`${form}.fields.joiningDate`),
+                  // A calendar date; formatting it in the viewer's zone could
+                  // move it a day.
+                  value:
+                    request.joiningDate &&
+                    format.dateTime(new Date(request.joiningDate), {
+                      dateStyle: "long",
+                      timeZone: "UTC",
+                    }),
+                },
+                {
+                  label: t(`${form}.fields.reportingManager`),
+                  value: request.reportingManager,
+                },
+              ]}
+            />
+          </Section>
 
-      {request.message && (
-        <Section title={t(`${form}.sections.reason.title`)}>
-          <p className="whitespace-pre-line">{request.message}</p>
-        </Section>
+          {request.message && (
+            <Section title={t(`${form}.sections.reason.title`)}>
+              <p className="whitespace-pre-line">{request.message}</p>
+            </Section>
+          )}
+        </>
       )}
 
-      {modules.length > 0 && (
+      {parts.includes("permissions") && modules.length > 0 && (
         <Section title={t("review.submittedInformation.permissions")}>
           <div className="rounded-lg border p-4">
             <ModulePermissionList modules={modules} />
@@ -409,13 +474,13 @@ const JoinSections = ({
         </Section>
       )}
 
-      {request.additionalNotes && (
+      {showRequest && request.additionalNotes && (
         <Section title={t(`${form}.sections.notes.title`)}>
           <p className="whitespace-pre-line">{request.additionalNotes}</p>
         </Section>
       )}
 
-      {files.length > 0 && (
+      {parts.includes("documents") && files.length > 0 && (
         <Section title={t(`${form}.sections.documents.title`)}>
           {/* No onRemove: View and Download only. */}
           <UploadedFilesTable items={files} />
@@ -426,22 +491,36 @@ const JoinSections = ({
 }
 
 interface SubmittedInformationProps {
+  applicant: Applicant
   adminAccessRequest: AdminAccessRequest | null
   organizationRequest: CreateOrganizationFormDetails | null
   joinRequest: JoinOrganizationFormDetails | null
   joinOrganization: OrganizationDirectoryEntry | null
+  /** The country whose JOIN document names apply, uppercase. */
+  documentCountryCode: string
+  /** Signed URLs for files the viewer didn't upload (a reviewer's view). */
+  fileUrls?: FileUrls
+  /** Which parts to show; all of them by default. */
+  parts?: readonly SubmittedPart[]
+  /** Without the card and its title, to sit inside another card. */
+  bare?: boolean
 }
 
 const SubmittedInformation = ({
+  applicant,
   adminAccessRequest,
   organizationRequest,
   joinRequest,
   joinOrganization,
+  documentCountryCode,
+  fileUrls,
+  parts = SUBMITTED_PARTS,
+  bare = false,
 }: SubmittedInformationProps) => {
   const t = useTranslations("onboarding")
   const format = useFormatter()
-  const { account, user } = useBootstrap()
-  const { country: urlCountry, lang } = useLocaleParams()
+  const lang = useLocale()
+  const user = applicant.profile
 
   const regionNames = useRegionNames(lang)
   const languageNames = useMemo(
@@ -452,24 +531,19 @@ const SubmittedInformation = ({
   const fields = "chooseYourPathForm.fields" as const
   const adminFields = "becomeAdminForm.fields" as const
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="font-semibold">
-          {t("review.submittedInformation.title")}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-8">
+  const content = (
+    <>
+      {parts.includes("personal") && (
         <Section title={t("review.submittedInformation.personal")}>
           <Fields
             fields={[
               {
                 label: t("review.submittedInformation.name"),
-                value: `${account.firstName} ${account.lastName}`,
+                value: applicant.name,
               },
               {
                 label: t("review.submittedInformation.email"),
-                value: account.email,
+                value: applicant.email,
               },
               { label: t(`${fields}.phoneNumber`), value: user?.phoneNumber },
               {
@@ -515,70 +589,89 @@ const SubmittedInformation = ({
             </div>
           )}
         </Section>
+      )}
 
-        {adminAccessRequest && (
-          <>
-            <Section title={t("becomeAdminForm.sections.role.title")}>
-              <Fields
-                fields={[
-                  {
-                    label: t(`${adminFields}.jobTitle`),
-                    value: adminAccessRequest.jobTitle,
-                  },
-                  {
-                    label: t(`${adminFields}.department`),
-                    value: adminAccessRequest.department,
-                  },
-                  {
-                    label: t(`${adminFields}.currentOrganizationName`),
-                    value: adminAccessRequest.currentOrganizationName,
-                  },
-                ]}
-              />
-            </Section>
+      {adminAccessRequest && parts.includes("request") && (
+        <>
+          <Section title={t("becomeAdminForm.sections.role.title")}>
+            <Fields
+              fields={[
+                {
+                  label: t(`${adminFields}.jobTitle`),
+                  value: adminAccessRequest.jobTitle,
+                },
+                {
+                  label: t(`${adminFields}.department`),
+                  value: adminAccessRequest.department,
+                },
+                {
+                  label: t(`${adminFields}.currentOrganizationName`),
+                  value: adminAccessRequest.currentOrganizationName,
+                },
+              ]}
+            />
+          </Section>
 
-            <Section title={t("becomeAdminForm.sections.justification.title")}>
-              <p className="whitespace-pre-line">
-                {adminAccessRequest.justification}
-              </p>
-            </Section>
+          <Section title={t("becomeAdminForm.sections.justification.title")}>
+            <p className="whitespace-pre-line">
+              {adminAccessRequest.justification}
+            </p>
+          </Section>
+        </>
+      )}
 
-            <Section title={t("review.submittedInformation.permissions")}>
-              <div className="flex flex-col gap-4">
-                {toOrderedPermissions(
-                  toCountryPermissions(adminAccessRequest.requestedPermissions)
-                ).map(({ countryCode, modules }) => (
-                  <div
-                    key={countryCode}
-                    className="flex flex-col gap-3 rounded-lg border p-4"
-                  >
-                    <p className="font-medium">
-                      {regionNames.of(countryCode) ?? countryCode}
-                    </p>
-                    <ModulePermissionList modules={modules} />
-                  </div>
-                ))}
+      {adminAccessRequest && parts.includes("permissions") && (
+        <Section title={t("review.submittedInformation.permissions")}>
+          <div className="flex flex-col gap-4">
+            {toOrderedPermissions(
+              toCountryPermissions(adminAccessRequest.requestedPermissions)
+            ).map(({ countryCode, modules }) => (
+              <div
+                key={countryCode}
+                className="flex flex-col gap-3 rounded-lg border p-4"
+              >
+                <p className="font-medium">
+                  {regionNames.of(countryCode) ?? countryCode}
+                </p>
+                <ModulePermissionList modules={modules} />
               </div>
-            </Section>
-          </>
-        )}
+            ))}
+          </div>
+        </Section>
+      )}
 
-        {organizationRequest && (
-          <OrganizationSections
-            request={organizationRequest}
-            regionNames={regionNames}
-          />
-        )}
+      {organizationRequest && (
+        <OrganizationSections
+          request={organizationRequest}
+          regionNames={regionNames}
+          parts={parts}
+          fileUrls={fileUrls}
+        />
+      )}
 
-        {joinRequest && (
-          <JoinSections
-            request={joinRequest}
-            organization={joinOrganization}
-            documentCountryCode={(user?.bioCountry || urlCountry).toUpperCase()}
-            regionNames={regionNames}
-          />
-        )}
-      </CardContent>
+      {joinRequest && (
+        <JoinSections
+          request={joinRequest}
+          organization={joinOrganization}
+          documentCountryCode={documentCountryCode}
+          regionNames={regionNames}
+          parts={parts}
+          fileUrls={fileUrls}
+        />
+      )}
+    </>
+  )
+
+  if (bare) return <div className="flex flex-col gap-8">{content}</div>
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="font-semibold">
+          {t("review.submittedInformation.title")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-8">{content}</CardContent>
     </Card>
   )
 }
